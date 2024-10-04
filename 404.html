@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>404 - Page Not Found</title>
+</head>
+<body>
+  <h1>Oops! We can't seem to find the page you're looking for.</h1>
+  <script>
+    const ua = navigator.userAgent;
+    let content;
+    if (/Windows NT/i.test(ua)) {
+      content = "/windows_404.html";
+    } else if (/Android/i.test(ua)) {
+      content = "/android_404.html";
+    } else if (/iPhone|iPad|iPod/i.test(ua)) {
+      content = "/apple_404.html";
+    } else {
+      content = ""; // Default content for other devices
+    }
+    if (content) {
+      window.location.href = content;
+    }
+  </script>
+</body>
+</html>
