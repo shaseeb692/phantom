@@ -1,2 +1,19 @@
 User-agent: *
-Disallow: 
+Disallow: /graphics-design-services.html
+Disallow: /2d-animation.html
+Disallow: /web-development-services.html
+Disallow: /social-media-paid-marketing.html
+Disallow: /branding.html
+Disallow: /animation.html
+Disallow: /printing-services.html
+Disallow: /pay-per-click.html
+Disallow: /privacy-policy.html
+Disallow: /web-design-services.html
+Disallow: /search-engine-marketing.html
+Disallow: /search-engine-optimization.html
+Disallow: /testimonials.html
+Disallow: /terms-and-condition.html
+Disallow: /digital-marketing.html
+Disallow: /3d-animation.html
+Disallow: /pr-marketing.html
+Disallow: /social-media-marketing.html
