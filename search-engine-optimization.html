@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Marketing - Conquer Your Digital Demons</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS for Frosted Glass Effect and Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        /* Cosmic SaaS Theme Design System */
+
+        /* Define CSS Variables for colors */
+        :root {
+            --background: 220 27% 6%; /* Very dark grey/black for background */
+            --foreground: 0 0% 98%;    /* Very light grey/off-white for foreground text */
+
+            --card: 220 27% 8%;
+            --card-foreground: 0 0% 98%;
+
+            --popover: 220 27% 8%;
+            --popover-foreground: 0 0% 98%;
+
+            --primary: 271 76% 53%;
+            --primary-foreground: 0 0% 98%;
+
+            --secondary: 220 27% 12%;
+            --secondary-foreground: 0 0% 98%;
+
+            --muted: 220 27% 12%;
+            --muted-foreground: 0 0% 65%;
+
+            --accent: 271 76% 53%;
+            --accent-foreground: 0 0% 98%;
+
+            --destructive: 0 84% 60%;
+            --destructive-foreground: 0 0% 98%;
+
+            --border: 220 27% 18%;
+            --input: 220 27% 18%;
+            --ring: 271 76% 53%;
+
+            --radius: 0.75rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Applying colors from CSS variables */
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(139, 69, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 20, 147, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(20, 184, 255, 0.15) 0%, transparent 50%);
+            background-attachment: fixed; /* Keep background fixed while scrolling */
+            position: relative;
+            overflow-x: hidden; /* Prevent horizontal scroll from background elements */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            padding-bottom: 70px; /* Add space for fixed mobile footer */
+        }
+
+        .frosted-glass {
+            background-color: rgba(255, 255, 255, 0.02); /* Even more subtle */
+            backdrop-filter: blur(12px) saturate(180%); /* Slightly more blur, retain saturation */
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05); /* Lighter border */
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .frosted-glass:hover {
+            box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Specific frosted-glass style for header */
+        .header-frosted {
+            background-color: rgba(0, 0, 0, 0.6); /* More opaque black for the header */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(147, 51, 234, 0.4), 0 0 15px rgba(236, 72, 153, 0.3); /* Purple and Pink glow */
+        }
+
+        /* Custom underline for headings */
+        .heading-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .heading-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px; /* Adjust based on desired distance from text */
+            width: 60%; /* Shorter line */
+            height: 3px;
+            background: linear-gradient(to right, #a78bfa, #f472b6); /* Purple to pink gradient */
+            border-radius: 9999px; /* Rounded ends */
+        }
+
+        /* Custom button style */
+        .btn-gradient {
+            background: linear-gradient(to right, #9333ea, #db2777); /* Purple to pink */
+            border-radius: 9999px;
+            padding: 12px 32px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #db2777, #9333ea); /* Reverse gradient on hover */
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        .btn-outline-glow {
+            border: 1px solid #a78bfa; /* Purple border */
+            color: #a78bfa;
+            background: none;
+            padding: 12px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
+        }
+        .btn-outline-glow:hover {
+            background-color: rgba(147, 51, 234, 0.2);
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+        }
+
+
+        /* Accordion styles */
+        .accordion-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.03); /* Lighter frosted glass background */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            padding: 0 1.5rem; /* No padding when closed */
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .accordion-content.active {
+            max-height: 500px; /* Adjust as needed for content length */
+            padding: 1rem 1.5rem; /* Padding when open */
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        /* Digital Arsenal specific styles */
+        .digital-arsenal-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0; /* Prevent shrinking */
+            min-width: 180px; /* Increased fixed width for each item to ensure consistent spacing and name room */
+            padding: 8px; /* Padding for spacing around the card and text */
+            box-sizing: border-box; /* Include padding in the width calculation */
+        }
+
+        .digital-arsenal-card {
+            width: 120px; /* Fixed size for the card itself */
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: grab; /* Indicate draggable */
+            backdrop-filter: blur(8.55795px);
+            -webkit-backdrop-filter: blur(8.55795px); /* Webkit prefix */
+            border-radius: 29.886px; /* User requested border-radius */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transform: scale(1); /* Base scale for transition */
+            background: rgba(255, 255, 255, 0.01); /* Default background for glass effect */
+            position: relative; /* Needed for any absolute positioning inside, if future use */
+            overflow: hidden; /* Important to contain the inner shadow effects within the card boundaries */
+        }
+
+        .digital-arsenal-card:hover {
+            transform: scale(1.1); /* Make bigger on hover */
+        }
+
+        /* Styles for the inner image and glow within digital-arsenal-card */
+        .digital-arsenal-card .img-wrapper {
+            position: relative; /* For z-index if needed */
+            z-index: 2; /* Ensure image is above inner shadow */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%; /* Fill card width */
+            height: 100%; /* Fill card height */
+        }
+
+        .digital-arsenal-card .img-wrapper img {
+            width: 59px; /* User specified width */
+            height: 59px; /* User specified height */
+            object-fit: contain;
+        }
+
+        .digital-arsenal-card .shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 29.886px; /* Match card border-radius */
+            overflow: hidden; /* Contain inner shadow__wrapper */
+            z-index: 1; /* Below image */
+            pointer-events: none; /* Ensure it doesn't block clicks */
+        }
+
+        .digital-arsenal-card .shadow__wrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.6; /* Subtle glow */
+            transition: opacity 0.3s ease;
+            /* The background will be set by specific card-style classes below */
+        }
+
+
+        /* Specific styles for each card based on desired gradients and glows (Increased vibrancy) */
+        /* Card 1: Neuron Writer (Cyan/Light Blue Theme) */
+        .card-style-1 {
+            box-shadow: rgb(66, 211, 244, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(66, 211, 244, 0.4);
+        }
+        .card-style-1 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(66, 211, 244, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(66, 211, 244, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 2: WordPress (Vibrant Purple Theme) */
+        .card-style-2 {
+            box-shadow: rgba(139, 69, 255, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(139, 69, 255, 0.4);
+        }
+        .card-style-2 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(139, 69, 255, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(139, 69, 255, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 3: Shopify (Bright Pink Theme) */
+        .card-style-3 {
+            box-shadow: rgba(255, 20, 147, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(255, 20, 147, 0.4);
+        }
+        .card-style-3 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(255, 20, 147, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(255, 20, 147, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 4: Drupal (Deeper Blue Theme) */
+        .card-style-4 {
+            box-shadow: rgba(20, 184, 255, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(20, 184, 255, 0.4);
+        }
+        .card-style-4 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(20, 184, 255, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(20, 184, 255, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 5: GTmetrix (Orange Theme) */
+        .card-style-5 {
+            box-shadow: rgba(255, 165, 0, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(255, 165, 0, 0.4);
+        }
+        .card-style-5 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(255, 165, 0, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(255, 165, 0, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 6: WebPageTest (Red Theme) */
+        .card-style-6 {
+            box-shadow: rgba(255, 0, 0, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+        }
+        .card-style-6 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(255, 0, 0, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(255, 0, 0, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 7: Rank Math (Light Green Theme) */
+        .card-style-7 {
+            box-shadow: rgba(144, 238, 144, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(144, 238, 144, 0.4);
+        }
+        .card-style-7 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(144, 238, 144, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(144, 238, 144, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 8: Bing Webmaster (Indigo Theme) */
+        .card-style-8 {
+            box-shadow: rgba(75, 0, 130, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(75, 0, 130, 0.4);
+        }
+        .card-style-8 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(75, 0, 130, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(75, 0, 130, 0.4) 0%, transparent 60%);
+        }
+
+        .tool-name {
+            margin-top: 0.75rem; /* Space between card and name */
+            text-align: center;
+            font-weight: 600;
+            color: #cbd5e1; /* gray-300 */
+            transition: color 0.2s ease;
+            white-space: nowrap; /* Prevent name from wrapping */
+            max-width: 100%; /* Ensure text stays within item width */
+            overflow: hidden; /* Hide overflow if text is too long */
+            text-overflow: ellipsis; /* Add ellipsis if text is too long */
+        }
+        .group:hover .tool-name { /* Apply hover effect to name */
+            color: white; /* Brighter color on hover */
+        }
+
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Darker overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.08); /* Frosted glass for modal content */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            max-width: 700px;
+            width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            color: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .modal-close-button:hover {
+            color: white;
+        }
+
+        /* Ticker Animation Styles (JavaScript controlled) */
+        .scrolling-container {
+            display: flex; /* Make it a flex container for the inner content groups */
+            white-space: nowrap; /* Keep all items in one line */
+            will-change: transform; /* Optimize for smooth transforms */
+            cursor: grab; /* Default cursor for draggable area */
+        }
+
+        .scrolling-container.dragging {
+            cursor: grabbing; /* Cursor when dragging */
+        }
+
+        /* Centered Nav Logo Specific Styles - Adjusting for new layout */
+        .header-main-nav {
+            display: flex;
+            justify-content: space-between; /* Distribute items with space between */
+            align-items: center;
+            width: 100%;
+            padding: 0 1.5rem; /* Add padding for full width header */
+            position: relative; /* Needed for mobile menu positioning */
+        }
+
+        .header-main-nav .logo-container {
+            /* For desktop, logo is centered */
+            flex-shrink: 0;
+            margin: 0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .header-main-nav .logo-container img {
+            width: auto;
+            height: 60px;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+
+        .header-main-nav .nav-links {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            width: auto;
+            padding: 0;
+        }
+
+        .header-main-nav .nav-links.nav-left {
+            justify-content: flex-start;
+        }
+
+        .header-main-nav .nav-links.nav-right {
+            justify-content: flex-end;
+        }
+
+        .header-main-nav .nav-links ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Mobile specific adjustments for header */
+        @media (max-width: 768px) {
+            .header-main-nav .nav-links {
+                display: none; /* Hide desktop nav links on mobile */
+            }
+            .header-main-nav .logo-container {
+                display: none; /* Hide logo from header on mobile */
+            }
+            /* Ensure mobile menu toggle and menu are hidden as per previous request */
+            .mobile-nav-menu,
+            #mobile-menu-button {
+                display: none;
+            }
+        }
+
+        /* New utility classes for specific elements */
+        .cosmic-glow {
+            box-shadow: 0 0 20px rgba(139, 69, 255, 0.3);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #8b45ff, #ff1493, #14b8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cosmic-border {
+            border: 1px solid;
+            border-image: linear-gradient(45deg, rgba(139, 69, 255, 0.5), rgba(255, 20, 147, 0.5), rgba(20, 184, 255, 0.5)) 1;
+        }
+
+        /* Client Logos specific styles */
+        .client-logo-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            min-width: 200px; /* Consistent width for each logo item */
+            height: 100px; /* Height to contain the image */
+            padding: 0 10px; /* Removed vertical padding, kept horizontal */
+            box-sizing: border-box; /* Include padding in the width calculation */
+            transition: none; /* Remove transitions/hover effects */
+        }
+
+        .client-logo-item img {
+            width: 150px; /* Fixed width for the image */
+            height: 75px; /* Fixed height for the image */
+            object-fit: contain; /* Ensures the image fits without distortion */
+            opacity: 1; /* Always full opacity */
+            transition: none; /* Remove transitions/hover effects */
+        }
+
+        /* Responsive adjustments for ticker sections */
+        @media (max-width: 768px) {
+            .digital-arsenal-ticker .relative,
+            .client-logo-ticker .relative {
+                padding-left: 1rem; /* Reduce padding for smaller screens */
+                padding-right: 1rem;
+            }
+            /* Adjust columns for smaller screens in grid layouts */
+            .grid-cols-1-md-2-lg-3 {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+            .md\:grid-cols-2 {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+            .lg\:grid-cols-3 {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+            /* Adjust text sizes for smaller screens */
+            .text-5xl {
+                font-size: 3rem; /* Smaller H1 on mobile */
+            }
+            .lg\:text-7xl {
+                font-size: 3.5rem; /* Smaller H1 on mobile */
+            }
+            .text-4xl {
+                font-size: 2.25rem; /* Smaller H2 on mobile */
+            }
+            .text-xl {
+                font-size: 1.125rem; /* Slightly smaller for paragraphs */
+            }
+            .btn-gradient, .btn-outline-glow {
+                width: 100%; /* Full width buttons on mobile */
+                max-width: 300px; /* Max width for buttons */
+            }
+        }
+
+        /* Mobile Footer Navigation Styles */
+        .mobile-footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px; /* Adjust height as needed */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
+            background-color: rgba(0, 0, 0, 0.6); /* Frosted black background */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.8);
+            z-index: 100; /* Ensure it stays on top */
+            border-radius: 1rem 1rem 0 0; /* Rounded top corners */
+        }
+
+        .mobile-footer-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1; /* Gray text */
+            font-size: 0.75rem; /* Small text */
+            font-weight: 500;
+            transition: color 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            padding: 0.25rem; /* Add some padding */
+            flex: 1; /* Distribute space evenly */
+        }
+
+        .mobile-footer-nav-item i {
+            font-size: 1.5rem; /* Icon size */
+            margin-bottom: 0.25rem; /* Space between icon and text */
+            transition: color 0.2s ease;
+        }
+
+        .mobile-footer-nav-item.active,
+        .mobile-footer-nav-item:hover {
+            color: #a78bfa; /* Purple on active/hover for text */
+        }
+
+        .mobile-footer-nav-item.active i,
+        .mobile-footer-nav-item:hover i {
+            color: #a78bfa; /* Purple on active/hover for icon */
+        }
+
+        /* New styles for the central circular logo */
+        .mobile-footer-logo-container {
+            position: relative; /* Allows precise positioning of the logo within the nav */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px; /* Size of the circular container */
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #a78bfa, #f472b6); /* Gradient background for the circle */
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.6); /* Glow effect */
+            transform: translateY(-20px); /* Lift it up above the nav bar */
+            z-index: 101; /* Ensure it's above other nav items */
+            flex-shrink: 0; /* Prevent shrinking when space is limited */
+            margin: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mobile-footer-logo-container:hover {
+            transform: translateY(-22px) scale(1.05); /* Slight lift and scale on hover */
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.8);
+        }
+
+        .mobile-footer-logo {
+            width: 40px; /* Size of the logo inside the circle */
+            height: 40px;
+            object-fit: contain;
+            filter: brightness(1.2); /* Slightly brighter for visibility */
+        }
+
+        /* Mobile Services Submenu Styles */
+        .services-submenu {
+            position: absolute;
+            bottom: 75px; /* Position above the footer nav item */
+            left: 50%;
+            transform: translateX(-50%);
+            /* Applying even more "super frosted" properties */
+            background-color: rgba(0, 0, 0, 0.83); /* Changed to 83% opacity */
+            backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
+            -webkit-backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Kept consistent */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8); /* Kept consistent */
+            
+            border-radius: 0.75rem;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            z-index: 99; /* Below the central logo, but above other content */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: bottom center; /* Scale from bottom */
+            /* Initial state for transition */
+            transform: translateX(-50%) translateY(10px) scale(0.9);
+        }
+
+        .services-submenu.active {
+            opacity: 1;
+            visibility: visible;
+            /* Final state for transition */
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .services-submenu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        .services-submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+        }
+
+        /* Specific optimizations for screens below 400px width (e.g., foldable phones) */
+        @media (max-width: 399px) {
+            .mobile-footer-nav-item {
+                font-size: 0.65rem; /* Slightly smaller text for very narrow screens */
+                padding: 0.15rem; /* Reduce padding slightly */
+            }
+            .mobile-footer-nav-item i {
+                font-size: 1.2rem; /* Smaller icon size */
+                margin-bottom: 0.15rem; /* Adjust space accordingly */
+            }
+            .mobile-footer-logo-container {
+                width: 50px; /* Slightly smaller logo container */
+                height: 50px;
+                transform: translateY(-15px); /* Adjust lift */
+                margin: 0 0.25rem; /* Reduce horizontal margin further */
+            }
+            .mobile-footer-logo {
+                width: 30px; /* Slightly smaller logo image */
+                height: 30px;
+            }
+            .services-submenu {
+                bottom: 65px; /* Adjust submenu position if footer height changes or logo lift changes */
+                min-width: 150px; /* Slightly smaller submenu width */
+            }
+            .services-submenu a {
+                padding: 0.6rem 1rem; /* Slightly smaller padding for submenu items */
+                font-size: 0.8rem; /* Slightly smaller font for submenu items */
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-950 to-black text-white min-h-screen">
+
+    <!-- Header/Navigation -->
+    <header class="bg-gray-900 bg-opacity-70 header-frosted p-4 sticky top-0 z-50 rounded-full max-w-7xl mx-auto mt-4 hidden md:block">
+        <div class="flex items-center justify-between header-main-nav w-full px-4 relative">
+            <!-- Left Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-left flex-grow">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:text-purple-400 transition duration-200">Home</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">About</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Services</a></li>
+                </ul>
+            </nav>
+
+            <!-- Centered Logo (Desktop Only) -->
+            <div class="logo-container mx-4 hidden md:flex">
+                <a href="#">
+                    <!-- Using the provided GIF logo -->
+                    <img src="https://phantommarketing.netlify.app/assets/img/logo/logo-white.gif" alt="Phantom Marketing Logo" class="h-12 w-auto">
+                </a>
+            </div>
+
+            <!-- Right Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-right flex-grow">
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Search</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Contact</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Cart</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Profile</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Menu Toggle (Removed as per previous request) -->
+        </div>
+        <!-- Mobile Navigation Menu (Removed as per previous request) -->
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[70vh] flex items-center justify-center p-4 overflow-hidden text-center">
+        <!-- Abstract background pattern -->
+        <div class="absolute inset-0 opacity-20" style="background-image: url('https://placehold.co/1920x1080/0d0d0d/1a1a1a?text=Abstract+Digital+Lines'); background-size: cover; background-position: center;"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 py-16">
+            <!-- Small tagline above H1 -->
+            <p class="text-lg text-gray-400 mb-4 inline-flex items-center frosted-glass rounded-full px-4 py-2 border border-gray-700 shadow-md">
+                <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                Award-Winning SEO Platform
+            </p>
+
+            <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight">
+                Transform Your <span class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">Digital Universe</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Phantom Marketing Services: Conjure Up Digital Success.<br>Lost in the Digital Shadows? We'll Haunt the Top of Search Results for You! Is your website buried in the abyss of search results? Tired of chasing after leads that never convert? We understand. The digital world is a battlefield, and your competitors aren't waiting for you to catch up.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
+                <button class="btn-gradient text-white flex items-center justify-center">
+                    Get Started Free
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+                <button class="btn-outline-glow text-purple-400 flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.064V9.336a1 1 0 011.555-.832l3.197 2.132a1 1 0 010 1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Watch Demo
+                </button>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-gray-400 text-sm">
+                <p class="flex items-center">
+                    <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                    No Credit Card Required
+                </p>
+                <p class="flex items-center">
+                    <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                    14-Day Free Trial
+                </p>
+                <p class="flex items-center">
+                    <span class="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                    Cancel Anytime
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-16 max-w-7xl">
+
+        <!-- Section 1: The Haunting Truth of SEO -->
+        <section class="mb-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="frosted-glass p-8 rounded-xl order-2 md:order-1">
+                <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline">The Haunting Truth of SEO</h2>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    At Phantom Marketing, we don't just "do SEO." We dominate search engine rankings, summon high-quality leads, and turn your business into an unstoppable force. Our battle-tested SEO strategies are designed to haunt the search engine results pages (SERPs), ensuring your brand stays visible and untouchable.
+                </p>
+                <p class="text-gray-300 leading-relaxed">
+                    Our expertise lies in identifying, confronting, and ultimately conquering the entities that prevent your website from reaching its rightful place at the top of search results. We transform complex algorithms into a clear, actionable strategy. Ready to leave your competition in the dust?
+                </p>
+            </div>
+            <div class="order-1 md:order-2 flex justify-center items-center">
+                <img src="https://placehold.co/600x400/1a1a1a/cccccc?text=SEO+Concept+Graphic" alt="SEO Concept Graphic" class="rounded-xl shadow-lg w-full max-w-lg transform hover:scale-105 transition duration-300">
+            </div>
+        </section>
+
+        <!-- Section 2: Our SEO Sorcery: The Services That Drive Results (Expanded) -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Our SEO Sorcery: Services That Drive Results</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    You don't need another agency feeding you the same old SEO jargon. You need results, and that's where we come in. We offer a comprehensive suite of services designed to deliver tangible results, ensuring your business stands out in the digital realm.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: Keyword Research & Strategy -->
+                <div class="frosted-glass p-6 rounded-xl border border-gray-800 hover:border-purple-500">
+                    <h3 class="text-2xl font-semibold mb-4 text-purple-400">Keyword Research & Strategy</h3>
+                    <p class="text-gray-300 mb-4">
+                        We don't just find keywords, we unlock the phrases that bring you real business. Our strategy ensures your brand shows up right when customers need you.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>More qualified traffic that converts into sales</li>
+                        <li>A competitive edge by outranking rivals in search</li>
+                        <li>A roadmap to consistent online growth</li>
+                        <li>Better keywords = better visibility, leads, and conversions.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: On-Page Optimization -->
+                <div class="frosted-glass p-6 rounded-xl border border-gray-800 hover:border-pink-500">
+                    <h3 class="text-2xl font-semibold mb-4 text-pink-400">On-Page Optimization</h3>
+                    <p class="text-gray-300 mb-4">
+                        We transform your website into a sales-generating machine by making every page search-friendly and persuasive.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Improving site speed so visitors stay, engage, and buy</li>
+                        <li>Creating a seamless mobile experience for effortless browsing</li>
+                        <li>Structuring content to lead users toward action</li>
+                        <li>More engagement = higher conversions and better ROI.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Off-Page Optimization & Link Building -->
+                <div class="frosted-glass p-6 rounded-xl border border-gray-800 hover:border-red-500">
+                    <h3 class="text-2xl font-semibold mb-4 text-red-400">Off-Page Optimization & Link Building</h3>
+                    <p class="text-gray-300 mb-4">
+                        We build trust and credibility so Google and your audience see you as an industry leader.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Securing high-value backlinks that boost rankings</li>
+                        <li>Expanding your digital footprint with strategic partnerships</li>
+                        <li>Enhancing reputation through press mentions and outreach</li>
+                        <li>Driving long-term growth without risky tactics</li>
+                        <li>More authority = higher rankings, more trust, and steady traffic growth.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Technical SEO -->
+                <div class="frosted-glass p-6 rounded-xl border border-gray-800 hover:border-teal-500">
+                    <h3 class="text-2xl font-semibold mb-4 text-teal-400">Technical SEO</h3>
+                    <p class="text-gray-300 mb-4">
+                        A slow, glitchy website scares away customers and search engines. We fix the hidden technical flaws that block your growth.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Boosting site speed for lightning-fast performance</li>
+                        <li>Ensuring flawless mobile usability for on-the-go users</li>
+                        <li>Fixing crawl errors so search engines find and rank your site</li>
+                        <li>Securing your site with HTTPS for trust and protection</li>
+                        <li>With a solid technical foundation, your website becomes an unstoppable force in search rankings.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 5: Content Marketing -->
+                <div class="frosted-glass p-6 rounded-xl border border-gray-800 hover:border-blue-500">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-400">Content Marketing</h3>
+                    <p class="text-gray-300 mb-4">
+                        Your content shouldn't just exist. It should captivate, convince, and convert. We create high-impact content.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Attracts ready-to-buy customers through engaging storytelling</li>
+                        <li>Positions your brand as a trusted expert in your industry</li>
+                        <li>Drives organic traffic with SEO-rich, value-packed content</li>
+                        <li>Keeps visitors hooked, turning readers into loyal customers</li>
+                        <li>Compelling content isn't just words, it's a sales engine that works 24/7.</li>
+                    </ul>
+                </div>
+
+                <!-- Card 6: Local SEO -->
+                <div class="frosted-glass p-6 rounded-xl border border-gray-800 hover:border-orange-500">
+                    <h3 class="text-2xl font-semibold mb-4 text-orange-400">Local SEO</h3>
+                    <p class="text-gray-300 mb-4">
+                        When people search for businesses near them, we ensure they find you first.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Optimize your Google Business Profile for maximum visibility</li>
+                        <li>Build raving reviews that establish trust and attract customers</li>
+                        <li>Improve local search rankings, so you outshine competitors</li>
+                        <li>Get you found in "near me" searches, driving real foot traffic</li>
+                        <li>If you're not showing up in local searches, your competitors are. Let's change that.</li>
+                    </ul>
+                </div>
+
+                <!-- New Card 7: E-Commerce SEO -->
+                <div class="frosted-glass p-6 rounded-xl border border-gray-800 hover:border-green-500">
+                    <h3 class="text-2xl font-semibold mb-4 text-green-400">E-Commerce SEO</h3>
+                    <p class="text-gray-300 mb-4">
+                        Your products deserve more eyes, more clicks, and more sales. We optimize your store.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Make product pages irresistible with high-converting content</li>
+                        <li>Rank higher in search results, bringing in ready-to-buy shoppers</li>
+                        <li>Speed up your site for a seamless shopping experience</li>
+                        <li>Implement structured data for richer search listings</li>
+                        <li>More visibility = more traffic. And More traffic = more sales.</li>
+                    </ul>
+                </div>
+
+                <!-- New Card 8: App Store Optimization (ASO) -->
+                <div class="frosted-glass p-6 rounded-xl border border-gray-800 hover:border-indigo-500">
+                    <h3 class="text-2xl font-semibold mb-4 text-indigo-400">App Store Optimization (ASO)</h3>
+                    <p class="text-gray-300 mb-4">
+                        Your app should be at the top of the charts, not lost in the crowd. Our ASO strategies help.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Boost visibility with high-impact keywords</li>
+                        <li>Increase downloads with engaging app descriptions & visuals</li>
+                        <li>Improve rankings with optimized reviews & ratings</li>
+                        <li>Expand your reach with localization for global markets</li>
+                        <li>More visibility, more installs, more engagement, that's how apps win.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: Why Phantom Marketing: SEO That Sells & Our Process -->
+        <section class="mb-20 frosted-glass p-8 rounded-xl">
+            <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline">Why Phantom Marketing: SEO That Sells</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-10">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-purple-400">SEO: Your 24/7 Sales Machine</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        SEO isn't just about being seen, it's about turning searchers into buyers. The businesses winning today aren't just ranking; they're dominating their markets with strategies that drive real revenue.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Attract ready-to-buy visitors - people actively searching for what you sell.</li>
+                        <li>Convert clicks into leads & customers - because traffic alone won't pay the bills.</li>
+                        <li>Outrank competitors & own your space - because second place means lost business.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-pink-400">Why Most Businesses Fail at SEO</h3>
+                    <p class="text-300 leading-relaxed mb-4">
+                        Most businesses struggle with SEO because they:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Focus on rankings instead of conversions.</li>
+                        <li>Trust outdated tactics that don't move the needle.</li>
+                        <li>Expect overnight results instead of long-term growth.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-3xl font-bold mb-6 text-gray-200 heading-underline mx-auto md:mx-0">Our Winning SEO Process: A Data-Driven Approach</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-teal-400 mb-2">1. Strategy Call</p>
+                    <p class="text-gray-300">We discuss your business, goals, and SEO needs to align our approach with your vision.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-red-400 mb-2">2. SEO Audit</p>
+                    <p class="text-gray-300">We identify strengths, weaknesses, and opportunities on your site to create a tailored plan.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-blue-400 mb-2">3. Implementation</p>
+                    <p class="text-gray-300">We execute a custom-tailored SEO plan, putting our battle-tested strategies into action.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-orange-400 mb-2">4. Optimization</p>
+                    <p class="text-gray-300">Continuous improvements to maximize results, adapting to algorithm shifts and market trends.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-green-400 mb-2">5. Reporting</p>
+                    <p class="text-gray-300">Transparent analytics and performance tracking, so you always know your ROI.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who We Help: Global Domination Starts Here (with Font Awesome Icons) -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Who We Help: Global Domination Starts Here</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    From local startups to global powerhouses, we don't just get you seen, we make you the top choice.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 text-center">
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-earth-asia text-purple-400 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-purple-300">Thailand</p>
+                    <p class="text-sm text-gray-400">Win in a fast-growing digital economy.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-city text-pink-400 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-pink-300">Dubai</p>
+                    <p class="text-sm text-gray-400">Dominate a competitive market.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-globe-americas text-red-400 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-red-300">Australia</p>
+                    <p class="text-sm text-gray-400">Own local & nationwide searches.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-tree-city text-teal-400 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-teal-300">Malaysia</p>
+                    <p class="text-sm text-gray-400">Expand and scale in a booming digital landscape.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-flag-pakistan text-blue-400 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-blue-300">Pakistan</p>
+                    <p class="text-sm text-gray-400">Lead local & international markets.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-globe text-orange-400 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-orange-300">Beyond</p>
+                    <p class="text-sm text-gray-400">If your business is online, we'll ensure customers find you first.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Industries We Serve: We Rank It All (with Font Awesome Icons) -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Industries We Serve: We Rank It All</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    We turn competition into opportunity. If people search for it, we make sure they find you.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 text-center">
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-building text-purple-300 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-purple-300">Real Estate</p>
+                    <p class="text-sm text-gray-400">More leads, more property sales.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-hand-holding-medical text-pink-300 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-pink-300">Healthcare</p>
+                    <p class="text-sm text-gray-400">More bookings, more patient trust.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-cart-shopping text-red-300 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-red-300">E-Commerce</p>
+                    <p class="text-sm text-gray-400">More traffic, more conversions.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-laptop-code text-teal-300 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-teal-300">SaaS</p>
+                    <p class="text-sm text-gray-400">More sign-ups, more software adoption.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-scale-balanced text-blue-300 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-blue-300">Finance & Legal</p>
+                    <p class="text-sm text-gray-400">More visibility, more credibility.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800 flex flex-col items-center">
+                    <i class="fa-solid fa-screwdriver-wrench text-orange-300 w-12 h-12 mb-2"></i>
+                    <p class="text-xl font-semibold text-orange-300">Home Services</p>
+                    <p class="text-sm text-gray-400">More calls, more clients.</p>
+                </div>
+                <div class="lg:col-span-3 p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-gray-300">Not seeing your industry? No problem!</p>
+                    <p class="text-sm text-gray-400">If your customers are searching, we ensure they find YOU.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Our Digital Arsenal (AI-Driven SEO Infrastructure inspired) -->
+        <section class="mb-20 digital-arsenal-ticker">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Our Digital Arsenal</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    We leverage cutting-edge AI-powered and industry-standard tools to precisely navigate the digital realm and secure your dominance.
+                </p>
+            </div>
+
+            <div class="relative overflow-hidden px-4 md:px-16 py-4"> <!-- Adjusted padding for responsiveness -->
+                <div id="digital-arsenal-scroll-container" class="scrolling-container">
+                    <!-- Updated structure for Neuron Writer -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-1" onclick="showToolDetail('neuron-writer')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=NW" alt="Neuron Writer Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Neuron Writer</span>
+                    </div>
+                    <!-- Updated structure for WordPress -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-2" onclick="showToolDetail('wordpress')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=WP" alt="WordPress Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">WordPress</span>
+                    </div>
+                    <!-- Updated structure for Shopify -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-3" onclick="showToolDetail('shopify')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=SH" alt="Shopify Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Shopify</span>
+                    </div>
+                    <!-- Updated structure for Drupal -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-4" onclick="showToolDetail('drupal')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=DR" alt="Drupal Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Drupal</span>
+                    </div>
+                    <!-- Updated structure for GTmetrix -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-5" onclick="showToolDetail('gtmetrix')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=GT" alt="GTmetrix Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">GTmetrix</span>
+                    </div>
+                    <!-- Updated structure for WebPageTest -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-6" onclick="showToolDetail('webpagetest')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=WPT" alt="WebPageTest Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">WebPageTest</span>
+                    </div>
+                    <!-- Updated structure for Rank Math -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-7" onclick="showToolDetail('rank-math')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=RM" alt="Rank Math Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Rank Math</span>
+                    </div>
+                    <!-- Updated structure for Bing Webmaster -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-8" onclick="showToolDetail('bing-webmaster')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=BW" alt="Bing Webmaster Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Bing Webmaster</span>
+                    </div>
+                    <!-- Duplicated set of tool items for seamless loop -->
+                    <!-- Updated structure for Neuron Writer -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-1" onclick="showToolDetail('neuron-writer')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=NW" alt="Neuron Writer Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Neuron Writer</span>
+                    </div>
+                    <!-- Updated structure for WordPress -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-2" onclick="showToolDetail('wordpress')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=WP" alt="WordPress Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">WordPress</span>
+                    </div>
+                    <!-- Updated structure for Shopify -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-3" onclick="showToolDetail('shopify')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=SH" alt="Shopify Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Shopify</span>
+                    </div>
+                    <!-- Updated structure for Drupal -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-4" onclick="showToolDetail('drupal')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=DR" alt="Drupal Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Drupal</span>
+                    </div>
+                    <!-- Updated structure for GTmetrix -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-5" onclick="showToolDetail('gtmetrix')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=GT" alt="GTmetrix Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">GTmetrix</span>
+                    </div>
+                    <!-- Updated structure for WebPageTest -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-6" onclick="showToolDetail('webpagetest')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=WPT" alt="WebPageTest Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">WebPageTest</span>
+                    </div>
+                    <!-- Updated structure for Rank Math -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-7" onclick="showToolDetail('rank-math')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=RM" alt="Rank Math Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Rank Math</span>
+                    </div>
+                    <!-- Updated structure for Bing Webmaster -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-8" onclick="showToolDetail('bing-webmaster')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/333333/666666?text=BW" alt="Bing Webmaster Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Bing Webmaster</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section: Client Logos (with Ticker Effect) -->
+        <section class="mb-20 text-center client-logo-ticker">
+            <h2 class="text-4xl font-bold mb-12 text-gray-200 heading-underline mx-auto">Trusted by Apparitions & Enterprises Alike</h2>
+            <div class="relative overflow-hidden px-4 md:px-16 py-4"> <!-- Adjusted padding for responsiveness -->
+                <!-- First Row: Scrolling Right -->
+                <div id="client-logos-scroll-container-1" class="scrolling-container">
+                    <!-- Each client logo is now wrapped in a .client-logo-item div for consistent spacing -->
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+A" alt="Client Logo A">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+B" alt="Client Logo B">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+C" alt="Client Logo C">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+D" alt="Client Logo D">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+E" alt="Client Logo E">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+F" alt="Client Logo F">
+                    </div>
+                    <!-- Duplicated set of client logos for seamless loop -->
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+A" alt="Client Logo A">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+B" alt="Client Logo B">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+C" alt="Client Logo C">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+D" alt="Client Logo D">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+E" alt="Client Logo E">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Client+F" alt="Client Logo F">
+                    </div>
+                </div>
+
+                <!-- Second Row: Scrolling Left -->
+                <div id="client-logos-scroll-container-2" class="scrolling-container">
+                    <!-- Each client logo is now wrapped in a .client-logo-item div for consistent spacing -->
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+1" alt="Client Logo G">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+2" alt="Client Logo H">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+3" alt="Client Logo I">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+4" alt="Client Logo J">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+5" alt="Client Logo K">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+6" alt="Client Logo L">
+                    </div>
+                    <!-- Duplicated set of client logos for seamless loop -->
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+1" alt="Client Logo G">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+2" alt="Client Logo H">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+3" alt="Client Logo I">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+4" alt="Client Logo J">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+5" alt="Client Logo K">
+                    </div>
+                    <div class="client-logo-item">
+                        <img src="https://placehold.co/150x75/000000/ffffff?text=Partner+6" alt="Client Logo L">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Statistics/Counters (Placeholder) -->
+        <section class="mb-20 py-16 bg-gray-900 rounded-xl shadow-inner border border-gray-800">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Our Spectral Impact</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Numbers don't lie. See the tangible results we've conjured for our clients. More traffic. More leads. More revenue. Every strategy we implement is backed by data to convert clicks into conversions.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center px-4">
+                <div class="p-6 frosted-glass rounded-xl">
+                    <p class="text-4xl md:text-6xl font-extrabold text-purple-400 mb-2" data-target="500">+</p>
+                    <p class="text-lg text-gray-300">Happy Clients</p>
+                </div>
+                <div class="p-6 frosted-glass rounded-xl">
+                    <p class="text-4xl md:text-6xl font-extrabold text-pink-400 mb-2" data-target="1000000">+</p>
+                    <p class="text-lg text-gray-300">Keywords Ranked</p>
+                </div>
+                <div class="p-6 frosted-glass rounded-xl">
+                    <p class="text-4xl md:text-6xl font-extrabold text-red-400 mb-2" data-target="95">%</p>
+                    <p class="text-lg text-gray-300">Client Retention</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: FAQ Accordion -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Whispers from the Void: FAQs</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Have questions about SEO? We've got answers that cut through the digital fog.
+                </p>
+            </div>
+
+            <div class="frosted-glass p-4 rounded-xl">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3 class="text-xl font-semibold text-gray-200">What is SEO and why is it important for my business?</h3>
+                        <svg class="accordion-icon w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="text-gray-400 py-4">SEO, or Search Engine Optimization, is the process of improving your website's visibility on search engines like Google. It's crucial because higher visibility means more organic traffic, which translates to more potential customers and increased revenue for your business.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3 class="text-xl font-semibold text-gray-200">How long does it take to see results from SEO?</h3>
+                        <svg class="accordion-icon w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="text-gray-400 py-4">SEO is a long-term strategy. While some initial improvements can be seen within a few weeks or months, significant results, especially for competitive keywords, typically take 6 to 12 months. Our focus is on sustainable, enduring growth.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3 class="text-xl font-semibold text-gray-200">Do you offer local SEO services?</h3>
+                        <svg class="accordion-icon w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="text-gray-400 py-4">Absolutely! We specialize in local SEO strategies designed to boost your visibility in geo-targeted searches. This includes optimizing your Google My Business profile, building local citations, and managing online reviews to attract nearby customers.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3 class="text-xl font-semibold text-gray-200">What makes Phantom Marketing different?</h3>
+                        <svg class="accordion-icon w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="text-gray-400 py-4">Our unique approach combines deep technical SEO expertise with creative content strategies, all delivered with transparent reporting. We don't just chase rankings; we build a robust, sustainable online presence tailored to banish your specific digital demons and achieve long-term success.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Call to Action Section -->
+        <section class="text-center py-16 frosted-glass rounded-xl">
+            <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline mx-auto">The Choice is Yours… Stay Invisible or Dominate Your Market</h2>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                The digital world waits for no one. The longer you wait, the more business you lose to competitors. It's time to step up. Let's craft an SEO strategy that makes you UNSTOPPABLE.
+            </p>
+            <button class="btn-gradient text-white">
+                HIT THAT DAMN BUTTON NOW!
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Desktop Footer (existing) -->
+    <footer class="bg-gray-950 text-gray-500 py-8 text-center text-sm mt-16 hidden md:block">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 Phantom Marketing. All rights reserved. | <a href="#" class="hover:text-white transition duration-200">Privacy Policy</a> | <a href="#" class="hover:text-white transition duration-200">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <!-- Mobile Footer Navigation -->
+    <footer class="mobile-footer-nav md:hidden">
+        <a href="index.html" class="mobile-footer-nav-item active" onclick="setActiveNavItem(this)">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <div class="mobile-footer-nav-item relative" id="mobile-services-item">
+            <a href="#" onclick="toggleServicesSubmenu(event, this.parentNode)" class="flex flex-col items-center justify-center w-full h-full">
+                <i class="fas fa-cogs"></i>
+                <span>Services</span>
+            </a>
+            <div class="services-submenu" id="services-submenu">
+                <a href="#">Keyword Research</a>
+                <a href="#">On-Page Optimization</a>
+                <a href="#">Off-Page Optimization</a>
+                <a href="#">Technical SEO</a>
+                <a href="#">Content Marketing</a>
+                <a href="#">Local SEO</a>
+                <a href="#">E-Commerce SEO</a>
+                <a href="#">App Store Optimization</a>
+            </div>
+        </div>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </a>
+        <!-- New central logo container -->
+        <div class="mobile-footer-logo-container">
+            <img src="https://i.ibb.co/C5gVjVS4/Untitled-design.gif" alt="Central Logo" class="mobile-footer-logo">
+        </div>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </footer>
+
+
+    <!-- Tool Detail Modal -->
+    <div id="tool-detail-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-button" onclick="hideToolDetail()">&times;</button>
+            <h3 id="modal-tool-title" class="text-3xl font-bold mb-4 text-purple-400"></h3>
+            <p id="modal-tool-description" class="text-gray-300 leading-relaxed"></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Accordion functionality
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.accordion-icon');
+
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                icon.classList.remove('rotate');
+            } else {
+                // Close all other active accordions
+                document.querySelectorAll('.accordion-content.active').forEach(item => {
+                    item.classList.remove('active');
+                    item.previousElementSibling.querySelector('.accordion-icon').classList.remove('rotate');
+                });
+                content.classList.add('active');
+                icon.classList.add('rotate');
+            }
+        }
+
+        // JavaScript for simple counter animation
+        function animateCounters() {
+            document.querySelectorAll('[data-target]').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 200; // Adjust speed
+
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current) + (counter.getAttribute('data-target').includes('%') ? '%' : '+');
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + (counter.getAttribute('data-target').includes('%') ? '%' : '+');
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        // Trigger counter animation when section is in view
+        const statsSection = document.querySelector('section.py-16.bg-gray-900');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // JavaScript for Tool Detail Modal
+        const toolDetails = {
+            'neuron-writer': {
+                title: 'Neuron Writer: AI-Powered Content Optimization',
+                description: 'We harness Neuron Writer\'s advanced AI capabilities for deep content analysis, ensuring your articles are not only keyword-rich but also semantically optimized to outrank competitors. It helps us craft content that truly resonates with search intent and user engagement.'
+            },
+            'wordpress': {
+                title: 'WordPress: CMS Mastery',
+                description: 'As the world\'s most popular CMS, WordPress is a powerhouse for SEO when optimized correctly. We specialize in WordPress SEO, focusing on clean code, fast loading times, mobile responsiveness, and plugin configuration to maximize its search engine potential.'
+            },
+            'shopify': {
+                title: 'Shopify: E-commerce SEO Prowess',
+                description: 'For our e-commerce clients, Shopify\'s robust platform combined with our specialized SEO strategies ensures product pages and collections rank high. We optimize everything from product descriptions to collection structures, driving organic sales and visibility.'
+            },
+            'drupal': {
+                title: 'Drupal: Enterprise-Gade SEO',
+                description: 'Leveraging Drupal\'s powerful and flexible architecture, we implement complex SEO strategies for enterprise-level websites. Our expertise includes advanced caching, module integration for SEO, and content modeling to ensure optimal performance on search engines.'
+            },
+            'gtmetrix': {
+                title: 'GTmetrix: Performance Demystified',
+                description: 'Website speed is a critical ranking factor. GTmetrix helps us meticulously analyze your site\'s performance, identifying bottlenecks and recommending precise optimizations to improve loading times and user experience, which Google loves.'
+            },
+            'webpagetest': {
+                title: 'WebPageTest: Multi-Location Performance Insights',
+                description: 'To ensure global reach and performance, we use WebPageTest to evaluate your website\'s speed and efficiency from various geographic locations. This allows us to fine-tune delivery for your international audience and reduce latency.'
+            },
+            'rank-math': {
+                title: 'Rank Math: All-in-One SEO Plugin',
+                description: 'Rank Math is our go-to SEO plugin for WordPress, simplifying on-page SEO tasks with powerful features like schema markup integration, keyword tracking, and SEO audits. It streamlines our optimization process for faster, more effective results.'
+            },
+            'bing-webmaster': {
+                title: 'Bing Webmaster Tools: Unlocking Bing & Beyond',
+                description: 'While Google dominates, Bing still holds significant market share. We utilize Bing Webmaster Tools to ensure your site is perfectly indexed and optimized for Bing and other Microsoft search properties, capturing a broader audience.'
+            }
+        };
+
+        function showToolDetail(toolId) {
+            const modal = document.getElementById('tool-detail-modal');
+            const titleElement = document.getElementById('modal-tool-title');
+            const descriptionElement = document.getElementById('modal-tool-description');
+
+            const detail = toolDetails[toolId];
+            if (detail) {
+                titleElement.textContent = detail.title;
+                descriptionElement.textContent = detail.description;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling body when modal is open
+            }
+        }
+
+        function hideToolDetail() {
+            const modal = document.getElementById('tool-detail-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore body scrolling
+        }
+
+        // Close modal when clicking outside content
+        document.getElementById('tool-detail-modal').addEventListener('click', function(event) {
+            if (event.target === this) { // Only if the click is directly on the overlay, not its children
+                hideToolDetail();
+            }
+        });
+
+
+        // Generalized Ticker Controller Class
+        class TickerController {
+            constructor(containerId, initialSpeed = 0.5) {
+                this.container = document.getElementById(containerId);
+                if (!this.container) {
+                    console.error(`Container with ID "${containerId}" not found.`);
+                    return;
+                }
+
+                this.isDown = false;
+                this.startX = 0;
+                this.scrollLeftCurrent = 0; // Tracks the transformX value
+                this.animationFrameId = null;
+                this.speed = initialSpeed; // positive for left scroll, negative for right scroll
+
+                // Bind event handlers to the class instance
+                this.handleMouseDown = this.handleMouseDown.bind(this);
+                this.handleMouseLeave = this.handleMouseLeave.bind(this);
+                this.handleMouseUp = this.handleMouseUp.bind(this);
+                this.handleMouseMove = this.handleMouseMove.bind(this);
+
+                this.addEventListeners();
+                this.startAutoScroll();
+            }
+
+            addEventListeners() {
+                this.container.addEventListener('mousedown', this.handleMouseDown);
+                this.container.addEventListener('mouseleave', this.handleMouseLeave);
+                this.container.addEventListener('mouseup', this.handleMouseUp);
+                this.container.addEventListener('mousemove', this.handleMouseMove);
+                // Add touch events for mobile
+                this.container.addEventListener('touchstart', (e) => this.handleMouseDown(e.touches[0]));
+                this.container.addEventListener('touchend', this.handleMouseUp);
+                this.container.addEventListener('touchmove', (e) => this.handleMouseMove(e.touches[0]));
+                this.container.addEventListener('touchcancel', this.handleMouseUp);
+            }
+
+            startAutoScroll() {
+                // Prevent starting if already scrolling or if a drag operation is active
+                if (this.animationFrameId !== null || this.isDown) {
+                    return;
+                }
+
+                const performScroll = () => {
+                    if (!this.container) {
+                        this.stopAutoScroll(); // Stop if container no longer exists
+                        return;
+                    }
+
+                    this.scrollLeftCurrent -= this.speed; // Adjust position by speed
+
+                    // Calculate contentWidth from the actual first child's scrollWidth, not the container itself
+                    // This is robust because we duplicate the content. The real content width is half of scrollWidth.
+                    const contentWidth = this.container.scrollWidth / 2;
+
+                    // Seamless looping logic for auto-scroll
+                    if (this.speed > 0) { // Scrolling left
+                        if (Math.abs(this.scrollLeftCurrent) >= contentWidth) {
+                            this.scrollLeftCurrent = 0; // Reset to start of duplicate content
+                        }
+                    } else { // Scrolling right (speed is negative)
+                        if (this.scrollLeftCurrent >= 0) { // If it scrolled past the start (0), reset to end of first set
+                            this.scrollLeftCurrent = -contentWidth;
+                        }
+                    }
+
+                    this.container.style.transform = `translateX(${this.scrollLeftCurrent}px)`;
+                    this.animationFrameId = requestAnimationFrame(performScroll);
+                };
+                this.animationFrameId = requestAnimationFrame(performScroll);
+            }
+
+            stopAutoScroll() {
+                if (this.animationFrameId !== null) {
+                    cancelAnimationFrame(this.animationFrameId);
+                    this.animationFrameId = null;
+                }
+            }
+
+            handleMouseDown(e) {
+                this.isDown = true;
+                this.container.classList.add('dragging');
+                this.stopAutoScroll(); // Pause auto-scroll during drag
+                this.startX = e.pageX || e.clientX; // For mouse and touch events
+                
+                // Get current transformX value to start dragging from there
+                const transformMatrix = window.getComputedStyle(this.container).getPropertyValue('transform');
+                const matrixValues = transformMatrix.match(/matrix.*\((.+)\)/);
+                this.scrollLeftCurrent = matrixValues && matrixValues[1] ? parseFloat(matrixValues[1].split(', ')[4]) : 0;
+            }
+
+            handleMouseLeave() {
+                // Only resume auto-scroll if mouse button was pressed down and then left the container
+                if (this.isDown) {
+                    this.isDown = false;
+                    this.container.classList.remove('dragging');
+                    this.startAutoScroll(); // Resume auto-scroll
+                }
+            }
+
+            handleMouseUp() {
+                this.isDown = false;
+                this.container.classList.remove('dragging');
+                this.startAutoScroll(); // Resume auto-scroll
+            }
+
+            handleMouseMove(e) {
+                if (!this.isDown) return;
+                e.preventDefault(); // Prevent text selection and default scrolling behavior
+                
+                const x = e.pageX || e.clientX; // For mouse and touch events
+                const dx = x - this.startX; // Calculate distance moved
+                this.scrollLeftCurrent += dx; // Update scroll position based on drag
+                this.startX = x; // Update startX for next move
+
+                const contentWidth = this.container.scrollWidth / 2;
+
+                // Seamless looping logic for manual drag
+                if (this.scrollLeftCurrent < -contentWidth) {
+                    this.scrollLeftCurrent += contentWidth;
+                } else if (this.scrollLeftCurrent > 0) {
+                    this.scrollLeftCurrent -= contentWidth;
+                }
+                
+                this.container.style.transform = `translateX(${this.scrollLeftCurrent}px)`;
+            }
+        }
+
+
+        // Initialize Ticker Controllers when the window loads
+        window.addEventListener('load', () => {
+            // Initialize Digital Arsenal Ticker (scrolling left)
+            new TickerController('digital-arsenal-scroll-container', 0.5); // Positive speed for left scroll
+
+            // Initialize Client Logos Ticker 1 (scrolling left)
+            new TickerController('client-logos-scroll-container-1', 0.3); // Positive speed for left scroll
+
+            // Initialize Client Logos Ticker 2 (scrolling right)
+            new TickerController('client-logos-scroll-container-2', -0.3); // Negative speed for right scroll
+
+
+            // Existing counter animation (no change)
+            const statsSection = document.querySelector('section.py-16.bg-gray-900');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        });
+
+        // Function to set the active navigation item in the mobile footer
+        function setActiveNavItem(clickedElement) {
+            // Get all mobile footer navigation items
+            const navItems = document.querySelectorAll('.mobile-footer-nav-item');
+            
+            // Remove 'active' class from all items
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add 'active' class to the clicked element
+            clickedElement.classList.add('active');
+        }
+
+        // Global variable to store the timeout ID for the submenu
+        let submenuCloseTimeoutId;
+
+        // Mobile Services Submenu Toggle
+        function toggleServicesSubmenu(event, parentElement) {
+            event.preventDefault(); // Prevent default link behavior
+            event.stopPropagation(); // Stop event bubbling to close other submenus/modals
+
+            const servicesSubmenu = document.getElementById('services-submenu');
+            
+            // Clear any existing timeout when toggling the menu
+            clearTimeout(submenuCloseTimeoutId);
+
+            if (servicesSubmenu.classList.contains('active')) {
+                // If currently active, close it
+                servicesSubmenu.classList.remove('active');
+                // No need to set timeout if it's explicitly closed
+            } else {
+                // If not active, open it
+                servicesSubmenu.classList.add('active');
+                // Set a timeout to close the submenu after 3 seconds
+                submenuCloseTimeoutId = setTimeout(() => {
+                    servicesSubmenu.classList.remove('active');
+                }, 3000); // 3000 milliseconds = 3 seconds
+
+                // Set the parent "Services" item as active
+                setActiveNavItem(parentElement);
+
+                // Close submenu if clicked outside
+                // Re-attach this listener each time the submenu is opened to ensure it works correctly
+                document.addEventListener('click', function closeServicesMenu(e) {
+                    const mobileServicesItem = document.getElementById('mobile-services-item');
+                    if (!mobileServicesItem.contains(e.target) && servicesSubmenu.classList.contains('active')) {
+                        servicesSubmenu.classList.remove('active');
+                        clearTimeout(submenuCloseTimeoutId); // Clear timeout if closed manually
+                        document.removeEventListener('click', closeServicesMenu); // Remove this specific listener
+                    }
+                }, { once: true }); // Use { once: true } to automatically remove after one execution
+            }
+        }
+
+        // Add event listeners to submenu links to close the submenu and clear timeout if an item is selected
+        document.querySelectorAll('#services-submenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const servicesSubmenu = document.getElementById('services-submenu');
+                servicesSubmenu.classList.remove('active');
+                clearTimeout(submenuCloseTimeoutId); // Clear timeout when a submenu item is clicked
+            });
+        });
+    </script>
+</body>
+</html>
