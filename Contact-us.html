@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phantom Marketing - Contact Us</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS for Frosted Glass Effect and Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+        /* Cosmic SaaS Theme Design System */
+
+        /* Define CSS Variables for colors */
+        :root {
+            --background: 220 27% 6%; /* Very dark grey/black for background */
+            --foreground: 0 0% 98%;    /* Very light grey/off-white for foreground text */
+
+            --card: 220 27% 8%;
+            --card-foreground: 0 0% 98%;
+
+            --popover: 220 27% 8%;
+            --popover-foreground: 0 0% 98%;
+
+            --primary: 271 76% 53%;
+            --primary-foreground: 0 0% 98%;
+
+            --secondary: 220 27% 12%;
+            --secondary-foreground: 0 0% 98%;
+
+            --muted: 220 27% 12%;
+            --muted-foreground: 0 0% 65%;
+
+            --accent: 271 76% 53%;
+            --accent-foreground: 0 0% 98%;
+
+            --destructive: 0 84% 60%;
+            --destructive-foreground: 0 0% 98%;
+
+            --border: 220 27% 18%;
+            --input: 220 27% 18%;
+            --ring: 271 76% 53%;
+
+            --radius: 0.75rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Applying colors from CSS variables */
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(139, 69, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 20, 147, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(20, 184, 255, 0.15) 0%, transparent 50%);
+            background-attachment: fixed; /* Keep background fixed while scrolling */
+            position: relative;
+            overflow-x: hidden; /* Prevent horizontal scroll from background elements */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            padding-bottom: 70px; /* Add space for fixed mobile footer */
+        }
+
+        .frosted-glass {
+            background-color: rgba(255, 255, 255, 0.02); /* Even more subtle */
+            backdrop-filter: blur(12px) saturate(180%); /* Slightly more blur, retain saturation */
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05); /* Lighter border */
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .frosted-glass:hover {
+            box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Specific frosted-glass style for header */
+        .header-frosted {
+            background-color: rgba(0, 0, 0, 0.6); /* More opaque black for the header */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(147, 51, 234, 0.4), 0 0 15px rgba(236, 72, 153, 0.3); /* Purple and Pink glow */
+        }
+
+        /* Custom underline for headings */
+        .heading-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .heading-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px; /* Adjust based on desired distance from text */
+            width: 60%; /* Shorter line */
+            height: 3px;
+            background: linear-gradient(to right, #a78bfa, #f472b6); /* Purple to pink gradient */
+            border-radius: 9999px; /* Rounded ends */
+        }
+
+        /* Custom button style */
+        .btn-gradient {
+            background: linear-gradient(to right, #9333ea, #db2777); /* Purple to pink */
+            border-radius: 9999px;
+            padding: 12px 32px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #db2777, #9333ea); /* Reverse gradient on hover */
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        .btn-outline-glow {
+            border: 1px solid #a78bfa; /* Purple border */
+            color: #a78bfa;
+            background: none;
+            padding: 12px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
+        }
+        .btn-outline-glow:hover {
+            background-color: rgba(147, 51, 234, 0.2);
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+        }
+
+        /* Responsive adjustments for overall layout */
+        @media (max-width: 768px) {
+            .text-5xl {
+                font-size: 3rem; /* Smaller H1 on mobile */
+            }
+            .lg\:text-7xl {
+                font-size: 3.5rem; /* Smaller H1 on mobile */
+            }
+            .text-4xl {
+                font-size: 2.25rem; /* Smaller H2 on mobile */
+            }
+            .text-xl {
+                font-size: 1.125rem; /* Slightly smaller for paragraphs */
+            }
+            .btn-gradient, .btn-outline-glow {
+                width: 100%; /* Full width buttons on mobile */
+                max-width: 300px; /* Max width for buttons */
+            }
+        }
+
+        /* Mobile Footer Navigation Styles */
+        .mobile-footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px; /* Adjust height as needed */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
+            background-color: rgba(0, 0, 0, 0.6); /* Frosted black background */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.8);
+            z-index: 100; /* Ensure it stays on top */
+            border-radius: 1rem 1rem 0 0; /* Rounded top corners */
+        }
+
+        .mobile-footer-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1; /* Gray text */
+            font-size: 0.75rem; /* Small text */
+            font-weight: 500;
+            transition: color 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            padding: 0.25rem; /* Add some padding */
+            flex: 1; /* Distribute space evenly */
+        }
+
+        .mobile-footer-nav-item i {
+            font-size: 1.5rem; /* Icon size */
+            margin-bottom: 0.25rem; /* Space between icon and text */
+            transition: color 0.2s ease;
+        }
+
+        .mobile-footer-nav-item.active,
+        .mobile-footer-nav-item:hover {
+            color: #a78bfa; /* Purple on active/hover for text */
+        }
+
+        .mobile-footer-nav-item.active i,
+        .mobile-footer-nav-item:hover i {
+            color: #a78bfa; /* Purple on active/hover for icon */
+        }
+
+        /* New styles for the central circular logo */
+        .mobile-footer-logo-container {
+            position: relative; /* Allows precise positioning of the logo within the nav */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px; /* Size of the circular container */
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #a78bfa, #f472b6); /* Gradient background for the circle */
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.6); /* Glow effect */
+            transform: translateY(-20px); /* Lift it up above the nav bar */
+            z-index: 101; /* Ensure it's above other nav items */
+            flex-shrink: 0; /* Prevent shrinking when space is limited */
+            margin: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mobile-footer-logo-container:hover {
+            transform: translateY(-22px) scale(1.05); /* Slight lift and scale on hover */
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.8);
+        }
+
+        .mobile-footer-logo {
+            width: 40px; /* Size of the logo inside the circle */
+            height: 40px;
+            object-fit: contain;
+            filter: brightness(1.2); /* Slightly brighter for visibility */
+        }
+
+        /* Mobile Services Submenu Styles */
+        .services-submenu {
+            position: absolute;
+            bottom: 75px; /* Position above the footer nav item */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.83); /* Changed to 83% opacity */
+            backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
+            -webkit-backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Kept consistent */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8); /* Kept consistent */
+            
+            border-radius: 0.75rem;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            z-index: 99; /* Below the central logo, but above other content */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: bottom center; /* Scale from bottom */
+            /* Initial state for transition */
+            transform: translateX(-50%) translateY(10px) scale(0.9);
+        }
+
+        .services-submenu.active {
+            opacity: 1;
+            visibility: visible;
+            /* Final state for transition */
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .services-submenu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        .services-submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+        }
+
+        /* Specific optimizations for screens below 400px width (e.g., foldable phones) */
+        @media (max-width: 399px) {
+            .mobile-footer-nav-item {
+                font-size: 0.65rem; /* Slightly smaller text for very narrow screens */
+                padding: 0.15rem; /* Reduce padding slightly */
+            }
+            .mobile-footer-nav-item i {
+                font-size: 1.2rem; /* Smaller icon size */
+                margin-bottom: 0.15rem; /* Adjust space accordingly */
+            }
+            .mobile-footer-logo-container {
+                width: 50px; /* Slightly smaller logo container */
+                height: 50px;
+                transform: translateY(-15px); /* Adjust lift */
+                margin: 0 0.25rem; /* Reduce horizontal margin further */
+            }
+            .mobile-footer-logo {
+                width: 30px; /* Slightly smaller logo image */
+                height: 30px;
+            }
+            .services-submenu {
+                bottom: 65px; /* Adjust submenu position if footer height changes or logo lift changes */
+                min-width: 150px; /* Slightly smaller submenu width */
+            }
+            .services-submenu a {
+                padding: 0.6rem 1rem; /* Slightly smaller padding for submenu items */
+                font-size: 0.8rem; /* Slightly smaller font for submenu items */
+            }
+        }
+
+        /* Contact Page Specific Styles */
+        .contact-info-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .contact-info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-input {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: white;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-input:focus {
+            border-color: #a78bfa; /* Purple glow on focus */
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
+        }
+
+        /* Specific styles for map placeholder */
+        .map-placeholder {
+            background-color: #333; /* Dark grey to mimic map background */
+            color: #eee;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 1rem;
+            font-size: 1.25rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5); /* Inner shadow for depth */
+            margin-top: 4rem; /* Space from form */
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-950 to-black text-white min-h-screen">
+
+    <!-- Header/Navigation -->
+    <header class="bg-gray-900 bg-opacity-70 header-frosted p-4 sticky top-0 z-50 rounded-full max-w-7xl mx-auto mt-4 hidden md:block">
+        <div class="flex items-center justify-between header-main-nav w-full px-4 relative">
+            <!-- Left Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-left flex-grow">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:text-purple-400 transition duration-200">Home</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">About</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Services</a></li>
+                </ul>
+            </nav>
+
+            <!-- Centered Logo (Desktop Only) -->
+            <div class="logo-container mx-4 hidden md:flex">
+                <a href="#">
+                    <!-- Using the provided GIF logo -->
+                    <img src="https://phantommarketing.netlify.app/assets/img/logo/logo-white.gif" alt="Phantom Marketing Logo" class="h-12 w-auto">
+                </a>
+            </div>
+
+            <!-- Right Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-right flex-grow">
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Search</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Contact</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Cart</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-16 max-w-7xl">
+
+        <!-- Contact Hero Section -->
+        <section class="relative min-h-[50vh] flex items-center justify-center p-4 overflow-hidden text-center mb-16">
+            <!-- Background image for the hero section -->
+            <div class="absolute inset-0" style="background-image: url('https://media.gettyimages.com/id/1157134981/vector/contact-us-related-banner-template-with-line-icons-modern-vector-illustration-for.jpg?s=2048x2048&w=gi&k=20&c=ZZwRxkCoyk2DsBrmaZ4ehhyTEWuWfZNw0UaDifKNHuI='); background-size: cover; background-position: center; opacity: 0.5;"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto px-4 py-16">
+                <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight text-glow">
+                    Say Hello
+                </h1>
+                <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                    Unleash Your Thoughts. We're All Ears!
+                </p>
+            </div>
+        </section>
+
+        <!-- Contact Information Section -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <div class="contact-info-card frosted-glass">
+                <i class="fas fa-map-marker-alt text-purple-400 text-3xl mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Address</h3>
+                <p class="text-gray-300">London Business, UK.</p>
+            </div>
+            <div class="contact-info-card frosted-glass">
+                <i class="fas fa-envelope text-pink-400 text-3xl mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Email</h3>
+                <p class="text-gray-300 break-words">hello@phantommarketing.digital</p>
+            </div>
+            <div class="contact-info-card frosted-glass">
+                <i class="fas fa-phone-alt text-teal-400 text-3xl mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Contact</h3>
+                <p class="text-gray-300">+1 (213) 600-7167</p>
+            </div>
+            <div class="contact-info-card frosted-glass">
+                <i class="fas fa-comment-dots text-blue-400 text-3xl mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Talk To Our Expert</h3>
+                <a href="#" class="text-purple-300 hover:text-purple-400 transition duration-200">Click Here To Talk</a>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="mb-16 frosted-glass p-8 rounded-xl">
+            <h2 class="text-3xl font-bold mb-8 text-gray-200 heading-underline mx-auto md:mx-0">Send Us A Message</h2>
+            <form class="space-y-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="fullName" class="sr-only">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="FULLNAME" class="contact-input" required>
+                    </div>
+                    <div>
+                        <label for="emailAddress" class="sr-only">Email Address</label>
+                        <input type="email" id="emailAddress" name="emailAddress" placeholder="EMAIL ADDRESS" class="contact-input" required>
+                    </div>
+                </div>
+                <div>
+                    <label for="subject" class="sr-only">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="SUBJECT (Optional)" class="contact-input">
+                </div>
+                <div>
+                    <label for="message" class="sr-only">Message</label>
+                    <textarea id="message" name="message" rows="6" placeholder="YOUR MESSAGE HERE" class="contact-input resize-y" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn-gradient text-white flex items-center justify-center mx-auto">
+                        SEND MESSAGE
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Map Section (Placeholder) -->
+        <section class="mb-16">
+            <div class="map-placeholder frosted-glass">
+                <i class="fas fa-exclamation-triangle text-red-500 text-4xl mb-4"></i>
+                <p class="text-red-300 font-semibold mb-2">This page can't load Google Maps correctly.</p>
+                <p class="text-gray-400 text-base">Do you own this website?</p>
+                <button class="mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200">OK</button>
+                <p class="text-gray-500 text-xs mt-4">For development purposes only</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Desktop Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-8 text-sm border-t border-gray-800">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- About Us -->
+            <div>
+                <h3 class="text-white text-lg font-semibold mb-4">ABOUT US</h3>
+                <p class="text-gray-500 mb-2">Phantom Marketing is a Creative agency with digital plans, and promotional tools. Bringing your vision to life, we are on a mission to reshape the digital marketing landscape through brand recognition and creativity.</p>
+            </div>
+
+            <!-- Legal -->
+            <div>
+                <h3 class="text-white text-lg font-semibold mb-4">LEGAL</h3>
+                <ul>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Privacy Policy</a></li>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow, Like & Subscribe -->
+            <div class="text-center md:text-left">
+                <h3 class="text-white text-lg font-semibold mb-4">FOLLOW, LIKE & SUBSCRIBE</h3>
+                <div class="flex justify-center md:justify-start space-x-4 text-2xl mb-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="text-gray-500 text-xs mt-2">SUBSCRIBE</p>
+            </div>
+
+            <!-- Newsletter - Using a placeholder for now as no input field visible in image -->
+            <div class="text-center md:text-left">
+                <h3 class="text-white text-lg font-semibold mb-4">Newsletter</h3>
+                <p class="text-gray-500 mb-2">Join our newsletter for exclusive updates and insights.</p>
+                <!-- Placeholder for actual input field if needed -->
+                <button class="btn-gradient text-white text-sm py-2 px-4 rounded-full mt-2">Sign Up</button>
+            </div>
+        </div>
+        <div class="text-center mt-8 border-t border-gray-800 pt-6">
+            <p>&copy; 2023 Phantom Marketing. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Footer Navigation -->
+    <footer class="mobile-footer-nav md:hidden">
+        <a href="index.html" class="mobile-footer-nav-item active" onclick="setActiveNavItem(this)">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <div class="mobile-footer-nav-item relative" id="mobile-services-item">
+            <a href="#" onclick="toggleServicesSubmenu(event, this.parentNode)" class="flex flex-col items-center justify-center w-full h-full">
+                <i class="fas fa-cogs"></i>
+                <span>Services</span>
+            </a>
+            <div class="services-submenu" id="services-submenu">
+                <a href="search-engine-optimization.html">Search Engine Optimization</a>
+                <a href="#">On-Page Optimization</a>
+                <a href="#">Off-Page Optimization</a>
+                <a href="#">Technical SEO</a>
+                <a href="#">Content Marketing</a>
+                <a href="#">Local SEO</a>
+                <a href="#">E-Commerce SEO</a>
+                <a href="#">App Store Optimization</a>
+            </div>
+        </div>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </a>
+        <!-- New central logo container -->
+        <div class="mobile-footer-logo-container">
+            <img src="https://i.ibb.co/C5gVjVS4/Untitled-design.gif" alt="Central Logo" class="mobile-footer-logo">
+        </div>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </footer>
+
+    <script>
+        // Function to set the active navigation item in the mobile footer
+        function setActiveNavItem(clickedElement) {
+            // Get all mobile footer navigation items
+            const navItems = document.querySelectorAll('.mobile-footer-nav-item');
+            
+            // Remove 'active' class from all items
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add 'active' class to the clicked element
+            clickedElement.classList.add('active');
+        }
+
+        // Global variable to store the timeout ID for the submenu
+        let submenuCloseTimeoutId;
+
+        // Mobile Services Submenu Toggle
+        function toggleServicesSubmenu(event, parentElement) {
+            event.preventDefault(); // Prevent default link behavior
+            event.stopPropagation(); // Stop event bubbling to close other submenus/modals
+
+            const servicesSubmenu = document.getElementById('services-submenu');
+            
+            // Clear any existing timeout when toggling the menu
+            clearTimeout(submenuCloseTimeoutId);
+
+            if (servicesSubmenu.classList.contains('active')) {
+                // If currently active, close it
+                servicesSubmenu.classList.remove('active');
+                // No need to set timeout if it's explicitly closed
+            } else {
+                // If not active, open it
+                servicesSubmenu.classList.add('active');
+                // Set a timeout to close the submenu after 3 seconds
+                submenuCloseTimeoutId = setTimeout(() => {
+                    servicesSubmenu.classList.remove('active');
+                }, 3000); // 3000 milliseconds = 3 seconds
+
+                // Set the parent "Services" item as active
+                setActiveNavItem(parentElement);
+
+                // Close submenu if clicked outside
+                // Re-attach this listener each time the submenu is opened to ensure it works correctly
+                document.addEventListener('click', function closeServicesMenu(e) {
+                    const mobileServicesItem = document.getElementById('mobile-services-item');
+                    if (!mobileServicesItem.contains(e.target) && servicesSubmenu.classList.contains('active')) {
+                        servicesSubmenu.classList.remove('active');
+                        clearTimeout(submenuCloseTimeoutId); // Clear timeout if closed manually
+                        document.removeEventListener('click', closeServicesMenu); // Remove this specific listener
+                    }
+                }, { once: true }); // Use { once: true } to automatically remove after one execution
+            }
+        }
+
+        // Add event listeners to submenu links to close the submenu and clear timeout if an item is selected
+        document.querySelectorAll('#services-submenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const servicesSubmenu = document.getElementById('services-submenu');
+                servicesSubmenu.classList.remove('active');
+                clearTimeout(submenuCloseTimeoutId); // Clear timeout when a submenu item is clicked
+            });
+        });
+    </script>
+</body>
+</html>
