@@ -1,0 +1,2903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unleash Your Brand's Potential | Phantom Marketing</title>
+    <meta name="theme-color" content="#0c1321" />
+    <meta name="description" content="Phantom Marketing crafts spellbinding digital strategies to elevate your brand, enchant your audience, and dominate your market.">
+    <meta name="keywords" content="digital marketing, SEO, social media, web development, web design, graphics design, branding, PPC, animation">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+       <style>
+        /* Custom CSS for Frosted Glass Effect and Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@300;400;600;700&family=Pacifico&display=swap');
+
+        /* Cosmic SaaS Theme Design System */
+
+        /* Define CSS Variables for colors */
+        :root {
+            --background: 220 27% 6%; /* Very dark grey/black for background */
+            --foreground: 0 0% 98%;    /* Very light grey/off-white for foreground text */
+
+            --card: 220 27% 8%;
+            --card-foreground: 0 0% 98%;
+
+            --popover: 220 27% 8%;
+            --popover-foreground: 0 0% 98%;
+
+            --primary: 271 76% 53%;
+            --primary-foreground: 0 0% 98%;
+
+            --secondary: 220 27% 12%;
+            --secondary-foreground: 0 0% 98%;
+
+            --muted: 220 27% 12%;
+            --muted-foreground: 0 0% 65%;
+
+            --accent: 271 76% 53%;
+            --accent-foreground: 0 0% 98%;
+
+            --destructive: 0 84% 60%;
+            --destructive-foreground: 0 0% 98%;
+
+            --border: 220 27% 18%;
+            --input: 220 27% 18%;
+            --ring: 271 76% 53%;
+
+            --radius: 0.75rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Applying colors from CSS variables */
+            background-color: #000; /* Solid black background */
+            color: hsl(var(--foreground));
+            /* Removed background-image gradient */
+            background-attachment: scroll; /* Changed to scroll, as fixed was related to the gradient */
+            position: relative;
+            overflow-x: hidden; /* Prevent horizontal scroll from background elements */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            padding-bottom: 70px; /* Add space for fixed mobile footer */
+        }
+
+        .frosted-glass {
+            background-color: rgba(255, 255, 255, 0.02); /* Even more subtle */
+            backdrop-filter: blur(12px) saturate(180%); /* Slightly more blur, retain saturation */
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05); /* Lighter border */
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .frosted-glass:hover {
+            box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Specific frosted-glass style for header */
+        .header-frosted {
+            background-color: rgba(0, 0, 0, 0.6); /* More opaque black for the header */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(147, 51, 234, 0.4), 0 0 15px rgba(236, 72, 153, 0.3); /* Purple and Pink glow */
+        }
+
+        /* Custom underline for headings */
+        .heading-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .heading-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px; /* Adjust based on desired distance from text */
+            width: 60%; /* Shorter line */
+            height: 3px;
+            background: linear-gradient(to right, #a78bfa, #f472b6); /* Purple to pink gradient */
+            border-radius: 9999px; /* Rounded ends */
+        }
+
+        /* Custom button style */
+        .btn-gradient {
+            background: linear-gradient(to right, #9333ea, #db2777); /* Purple to pink */
+            border-radius: 9999px;
+            padding: 12px 32px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #db2777, #9333ea); /* Reverse gradient on hover */
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        .btn-outline-glow {
+            border: 1px solid #a78bfa; /* Purple border */
+            color: #a78bfa;
+            background: none;
+            padding: 12px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
+        }
+        .btn-outline-glow:hover {
+            background-color: rgba(147, 51, 234, 0.2);
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+        }
+
+        /* Responsive adjustments for overall layout */
+        @media (max-width: 768px) {
+            .text-5xl {
+                font-size: 3rem; /* Smaller H1 on mobile */
+            }
+            .lg\:text-7xl {
+                font-size: 3.5rem; /* Smaller H1 on mobile */
+            }
+            .text-4xl {
+                font-size: 2.25rem; /* Smaller H2 on mobile */
+            }
+            .text-xl {
+                font-size: 1.125rem; /* Slightly smaller for paragraphs */
+            }
+            .btn-gradient, .btn-outline-glow {
+                width: 100%; /* Full width buttons on mobile */
+                max-width: 300px; /* Max width for buttons */
+            }
+        }
+
+        /* Mobile Footer Navigation Styles */
+        .mobile-footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px; /* Adjust height as needed */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
+            background-color: rgba(0, 0, 0, 0.6); /* Frosted black background */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.8);
+            z-index: 100; /* Ensure it stays on top */
+            border-radius: 1rem 1rem 0 0; /* Rounded top corners */
+        }
+
+        .mobile-footer-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1; /* Gray text */
+            font-size: 0.75rem; /* Small text */
+            font-weight: 500;
+            transition: color 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            padding: 0.25rem; /* Add some padding */
+            flex-grow: 1; /* Allow to grow */
+            flex-shrink: 0; /* Prevent shrinking below initial size */
+            flex-basis: 1px; /* Allow items to shrink very small if needed, but grow */
+            min-width: 0; /* Important for flex items to shrink */
+            overflow: hidden; /* Hide any content that tries to overflow the item */
+        }
+
+        .mobile-footer-nav-item i {
+            font-size: 1.5rem; /* Icon size */
+            margin-bottom: 0.25rem; /* Space between icon and text */
+            transition: color 0.2s ease;
+        }
+
+        .mobile-footer-nav-item.active,
+        .mobile-footer-nav-item:hover {
+            color: #a78bfa; /* Purple on active/hover for text */
+        }
+
+        .mobile-footer-nav-item.active i,
+        .mobile-footer-nav-item:hover i {
+            color: #a78bfa; /* Purple on active/hover for icon */
+        }
+
+        /* Span inside mobile footer nav item for text labels - MODIFIED FOR SINGLE LINE WITH ELLIPSIS */
+        .mobile-footer-nav-item span {
+            white-space: nowrap; /* Force text onto a single line */
+            overflow: hidden; /* Hide overflowing content */
+            text-overflow: ellipsis; /* Show ellipsis for clipped text */
+            text-align: center; /* Center text within the span */
+            line-height: 1.3; /* Adjust line height for wrapped text */
+            width: 100%; /* Ensure it takes full width of its parent flex item */
+            flex-shrink: 0; /* Prevent shrinking its own content (text) */
+            min-width: 0; /* Allow the actual text content to respect its container's min-width */
+        }
+
+        /* New styles for the central circular logo */
+        .mobile-footer-logo-container {
+            position: relative; /* Allows precise positioning of the logo within the nav */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px; /* Size of the circular container */
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #a78bfa, #f472b6); /* Gradient background for the circle */
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.6); /* Glow effect */
+            transform: translateY(-20px); /* Lift it up above the nav bar */
+            z-index: 101; /* Ensure it's above other nav items */
+            flex-shrink: 0; /* Prevent shrinking when space is limited */
+            margin: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mobile-footer-logo-container:hover {
+            transform: translateY(-22px) scale(1.05); /* Slight lift and scale on hover */
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.8);
+        }
+
+        .mobile-footer-logo {
+            width: 40px; /* Size of the logo inside the circle */
+            height: 40px;
+            object-fit: contain;
+            filter: brightness(1.2); /* Slightly brighter for visibility */
+        }
+
+        /* Mobile Services Submenu Styles */
+        .services-submenu {
+            position: absolute;
+            bottom: 75px; /* Position above the footer nav item */
+            left: 50%; /* Centered using translateX */
+            transform: translateX(-50%); /* Adjust for true centering */
+            background-color: rgba(0, 0, 0, 0.83); /* Changed to 83% opacity */
+            backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
+            -webkit-backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Kept consistent */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8); /* Kept consistent */
+            
+            border-radius: 0.75rem;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            z-index: 99; /* Below the central logo, but above other content */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: bottom center; /* Scale from bottom */
+            /* Initial state for transition */
+            transform: translateX(-50%) translateY(10px) scale(0.9);
+
+            /* Scrolling properties re-added */
+            max-height: 240px; /* Approximately 5 items * (1.5rem line-height + 2 * 0.75rem padding) */
+            overflow-y: auto; /* Enable vertical scrolling */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .services-submenu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .services-submenu.active {
+            opacity: 1;
+            visibility: visible;
+            /* Final state for transition */
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+        
+        .services-submenu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        .services-submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+        }
+
+        /* Specific optimizations for screens below 400px width (e.g., foldable phones) */
+        @media (max-width: 399px) {
+            .mobile-footer-nav-item {
+                font-size: 0.65rem; /* Slightly smaller text for very narrow screens */
+                padding: 0.15rem; /* Reduce padding slightly */
+                flex-basis: auto; /* Let content dictate base size before growing/shrinking */
+            }
+            .mobile-footer-nav-item i {
+                font-size: 1.2rem; /* Smaller icon size */
+                margin-bottom: 0.15rem; /* Adjust space accordingly */
+            }
+            .mobile-footer-logo-container {
+                width: 50px; /* Slightly smaller logo container */
+                height: 50px;
+                transform: translateY(-15px); /* Adjust lift */
+                margin: 0 0.25rem; /* Reduce horizontal margin further */
+            }
+            .mobile-footer-logo {
+                width: 30px; /* Slightly smaller logo image */
+                height: 30px;
+            }
+            .services-submenu {
+                bottom: 65px; /* Adjust submenu position if footer height changes or logo lift changes */
+                min-width: 150px;
+            }
+            .services-submenu a {
+                padding: 0.6rem 1rem; /* Slightly smaller padding for submenu items */
+                font-size: 0.8rem; /* Slightly smaller font for submenu items */
+            }
+        }
+
+        /* SERP Tool Specific Styles */
+        .tool-input {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: white;
+            width: 100%;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            /* Default font styling for all inputs if not overridden */
+            font-family: 'Inter', sans-serif;
+            font-weight: 400; 
+            overflow-wrap: break-word; /* Added for responsive wrapping of long unbroken words */
+        }
+
+        /* Specific font sizes for Page Title and Meta Description inputs */
+        .pagetitle {
+            font-size: 18.65px; /* Set to 18.65px for title input field */
+        }
+
+        .websitename {
+            font-size: 14px; /* Set to 14px for URL input field to match snippet */
+        }
+
+        .descriptionchar {
+            font-size: 13.67px; /* Set to 13.67px for description input field */
+        }
+
+        .tool-input:focus {
+            border-color: #a78bfa; /* Purple glow on focus */
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
+        }
+
+        .snippet-box {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: left;
+            margin-top: 2rem;
+            min-height: 200px; /* Ensure space for content */
+        }
+
+        /* Updated font sizes for snippet previews */
+        .snippet-url {
+            color: #8ab4f8; /* Google blue link color */
+            font-size: 13.67px; /* Set to 13.67px */
+            margin-bottom: 0.25rem;
+            width: 100%; /* Explicitly set width to 100% to ensure ellipsis works */
+            white-space: nowrap; /* Prevent URL from wrapping */
+            overflow: hidden; /* Hide overflowing content */
+            text-overflow: ellipsis; /* Show ellipsis for clipped text */
+            min-width: 0; /* Allow shrinking in flex context */
+        }
+
+        .snippet-title {
+            color: #a78bfa; /* Purple title */
+            font-size: 18.65px; /* Set to 18.65px */
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            white-space: nowrap; /* Enforce single line */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Add ellipsis */
+            min-width: 0; /* Ensure it can shrink */
+        }
+
+        .snippet-description {
+            color: #bdc1c6; /* Gray text color */
+            font-size: 13.67px; /* Set to 13.67px */
+            line-height: 1.4;
+            white-space: nowrap; /* Enforce single line */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Add ellipsis */
+            min-width: 0; /* Ensure it can shrink */
+        }
+
+        .badge-status {
+            display: inline-flex; /* Changed to inline-flex for better alignment control */
+            align-items: center;
+            background-color: transparent;
+            border: 2px solid;
+            border-radius: 9999px; /* Fully rounded */
+            font-weight: bold;
+            font-size: 0.875rem; /* Default font size */
+            padding: 0.5rem 1rem; /* Adjust padding for desired sizing */
+            vertical-align: middle; /* Ensures vertical alignment with adjacent text */
+            /* Removed margin-left to allow stacking on mobile */
+            flex-shrink: 0; /* Prevent shrinking too much */
+            white-space: nowrap; /* Default: Prevent text wrapping in badges */
+            text-align: center; /* Center text horizontally within the badge */
+            justify-content: center; /* Center content for inline-flex */
+        }
+
+        /* New status colors */
+        .badge-status.status-cyan { border-color: #06b6d4; color: #06b6d4; } /* Cyan */
+        .badge-status.status-orange { border-color: #f97316; color: #f97316; } /* Orange */
+        .badge-status.status-red { border-color: #ef4444; color: #ef4444; } /* Red */
+        .badge-status.status-default { border-color: #9ca3af; color: #9ca3af; } /* Gray for 'Status' */
+
+        /* Responsive adjustments for badge status on smaller screens */
+        @media (max-width: 768px) {
+            .badge-status {
+                white-space: normal; /* Allow text to wrap */
+                max-width: 150px; /* Max-width to force wrapping within the badge */
+                padding: 0.3rem 0.7rem; /* Slightly reduced padding */
+                font-size: 0.8rem; /* Slightly smaller font size for mobile badges */
+            }
+        }
+
+        /* Testimonial Carousel CSS */
+        .testimonials-carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Adjust max-width as needed */
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5);
+            /* Ensure box-sizing is consistent */
+            box-sizing: border-box; 
+        }
+
+        .testimonials-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            box-sizing: border-box; /* Ensure wrapper also respects box-sizing */
+        }
+
+        .testimonial-item {
+            /* These are crucial for correct flex behavior with horizontal scrolling */
+            flex-shrink: 0; /* Prevent items from shrinking */
+            width: 100%; /* Each item takes full width of its immediate flex parent (the wrapper) */
+            box-sizing: border-box; /* Important for consistent padding/border behavior */
+            
+            padding: 2rem;
+            background-color: rgba(255, 255, 255, 0.05); /* Frosted glass effect */
+            backdrop-filter: blur(10px) saturate(180%);
+            -webkit-backdrop-filter: blur(10px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .testimonial-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .testimonial-nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .testimonial-nav-button.prev {
+            left: 10px;
+        }
+
+        .testimonial-nav-button.next {
+            right: 10px;
+        }
+
+        /* Client Logos Ticker CSS (Old - kept for reference, new one uses different classes) */
+        .client-logos-ticker-container,
+        .accreditation-ticker-container {
+            width: 100%;
+            overflow: hidden; /* Hides overflow for the continuous scroll */
+            position: relative;
+            padding: 2rem 0; /* Vertical padding */
+        }
+
+        .client-logos-ticker-wrapper,
+        .accreditation-ticker-wrapper {
+            display: flex;
+            align-items: center;
+            white-space: nowrap; /* Keeps items in a single line */
+            will-change: transform; /* Performance optimization */
+        }
+
+        .client-logos-ticker-wrapper {
+            animation: scroll-left 10s linear infinite; /* Adjust duration for speed */
+        }
+
+        .accreditation-ticker-wrapper {
+            animation: scroll-left 20s linear infinite; /* Slightly different speed */
+        }
+
+        .client-logos-ticker-wrapper:hover,
+        .accreditation-ticker-wrapper:hover {
+            animation-play-state: paused; /* Pause on hover */
+        }
+
+        .client-logo-item,
+        .accreditation-logo-item { /* Added for accreditation logos */
+            flex-shrink: 0; /* Prevents items from shrinking */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90px; /* Standard height for logo items */
+            width: 180px; /* Standard width for logo items */
+            margin: 0 1rem; /* Space between logos */
+            padding: 1rem; /* Internal padding */
+            box-sizing: border-box; /* Include padding in width/height */
+
+            /* Frosted glass effect for individual logos */
+            background-color: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(8px) saturate(180%);
+            -webkit-backdrop-filter: blur(8px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .client-logo-item:hover,
+        .accreditation-logo-item:hover { /* Added for accreditation logos */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px) scale(1.05); /* Slight lift and scale on hover */
+        }
+
+        .client-logo-item img,
+        .accreditation-logo-item img { /* Added for accreditation logos */
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            opacity: 0.75;
+            transition: opacity 0.3s ease;
+        }
+
+        .client-logo-item:hover img,
+        .accreditation-logo-item:hover img { /* Added for accreditation logos */
+            opacity: 1;
+        }
+
+        /* Keyframe animation for continuous left scroll (Old) */
+        @keyframes scroll-left {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); } /* Scrolls half the width of the duplicated content */
+        }
+
+        /* Why Choose Us Blockquote Photo replacement with icons */
+        .blockquote-pasific-has-photo {
+            margin-bottom: 1.5rem; /* Added margin for spacing between blockquotes */
+        }
+
+        .blockquote-pasific-has-photo i {
+            display: inline-flex; /* Use inline-flex to center content */
+            justify-content: center;
+            align-items: center;
+            width: 60px; /* Match original img width */
+            height: 60px; /* Match original img height */
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.05); /* Subtle background for icon circle */
+            margin-right: 1rem; /* Space between icon and text */
+            float: left; /* Keep it floating left as per original layout */
+            line-height: 1; /* Adjust line height for icon centering */
+        }
+
+        /* Clearfix for blockquote after floated element */
+        .blockquote-pasific-has-photo:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Hero section specific styles for digitalgravity.ae replication */
+        /* Full viewport hero section */
+        .hero-full-fold {
+            position: relative;
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Ensure nothing spills out */
+            margin: 0; /* Remove any default margins */
+            padding: 0; /* Remove any default padding */
+            /* Make sure no background/border on this section itself to prevent cropping */
+            background: none !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .hero-section-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none; /* Allows clicks to pass through to elements behind */
+        }
+
+        .hero-section-video video { /* Changed from iframe to video */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto; /* Allow width to scale beyond 100% to fill */
+            height: auto; /* Allow height to scale beyond 100% to fill */
+            transform: translate(-50%, -50%);
+            object-fit: cover; /* Ensures video covers the area without distortion */
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.8) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px; /* Wider content area */
+            margin: 0 auto;
+            text-align: center;
+            padding: 4rem 1rem; /* Adjust padding */
+            box-sizing: border-box; /* Include padding in element's total width/height */
+        }
+        
+        .hero-tagline {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(147, 51, 234, 0.1); /* Subtle purple background */
+            border: 1px solid #9333ea; /* Purple border */
+            color: #c084fc; /* Lighter purple text */
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem; /* More space below tagline */
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hero-tagline:hover {
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.6);
+            background-color: rgba(147, 51, 234, 0.2);
+        }
+
+        .hero-tagline .icon-star {
+            color: #fde047; /* Yellow star */
+            margin-right: 0.5rem;
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 5px #fde047; }
+            100% { text-shadow: 0 0 15px #fde047, 0 0 30px #fde047; }
+        }
+
+        .hero-main-heading {
+            font-size: 4.5rem; /* Larger font size */
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.05em; /* Tighter letter spacing */
+        }
+
+        .hero-main-heading .gradient-text {
+            background: linear-gradient(to right, #9333ea, #db2777); /* Purple to pink */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(147, 51, 234, 0.5)); /* Glow for gradient text */
+        }
+
+        .hero-sub-heading {
+            font-size: 1.875rem; /* h3 equivalent */
+            font-weight: 600;
+            color: #cbd5e1; /* Lighter gray */
+            margin-bottom: 2rem;
+        }
+
+        .hero-paragraph {
+            font-size: 1.125rem; /* Paragraph size */
+            color: #a0aec0; /* Slightly darker gray */
+            max-width: 700px;
+            margin: 0 auto 2.5rem auto; /* Space below paragraph */
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: row; /* Always row for these buttons */
+            justify-content: center;
+            gap: 1.5rem; /* Space between buttons */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .btn-primary-hero {
+            background: linear-gradient(to right, #9333ea, #db2777);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(147, 51, 234, 0.5);
+        }
+        .btn-primary-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.7);
+        }
+
+        .btn-secondary-hero {
+            background-color: transparent;
+            border: 2px solid #a78bfa;
+            color: #a78bfa;
+            padding: 1rem 2.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
+        }
+        .btn-secondary-hero:hover {
+            background-color: rgba(147, 51, 234, 0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+        }
+
+        /* Responsive adjustments for the hero section */
+        @media (max-width: 768px) {
+            .hero-main-heading {
+                font-size: 3rem; /* Adjust for mobile */
+            }
+            .hero-sub-heading {
+                font-size: 1.5rem;
+            }
+            .hero-paragraph {
+                font-size: 1rem;
+            }
+        }
+
+        /* New styles for the tabbed service section */
+        .service-tabs-container {
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2); /* bb-dashed-1 approximation */
+        }
+
+        .service-tabs-list {
+            display: flex;
+            justify-content: center; /* Center tabs */
+            flex-wrap: wrap; /* Allow tabs to wrap on smaller screens */
+            gap: 1rem; /* Space between tabs */
+            margin-bottom: 2rem;
+        }
+
+        .service-tabs-list li {
+            list-style: none; /* Remove default list styling */
+        }
+
+        .service-tabs-list li a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* Pill shape */
+            color: #cbd5e1; /* Default tab text color */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.05); /* Subtle background for tabs */
+            border: 1px solid transparent; /* Default border */
+            text-decoration: none; /* Remove underline */
+        }
+
+        .service-tabs-list li a:hover {
+            color: #a78bfa; /* Purple text on hover */
+            background-color: rgba(147, 51, 234, 0.1);
+            border-color: #a78bfa; /* Purple border on hover */
+        }
+
+        .service-tabs-list li.active a {
+            background: linear-gradient(to right, #9333ea, #db2777); /* Active tab gradient */
+            color: white;
+            border-color: transparent; /* No border for active tab */
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+
+        .service-tabs-list li.active a:hover {
+            background: linear-gradient(to right, #db2777, #9333ea);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        .service-tab-pane {
+            display: none; /* Hidden by default */
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            padding-top: 2rem; /* Spacing between tabs and content */
+        }
+
+        .service-tab-pane.active {
+            display: block; /* Show active tab */
+            opacity: 1;
+        }
+
+        .service-tab-pane .general-content {
+            padding: 1rem; /* Padding for content within tab pane */
+        }
+
+        .service-tab-pane img {
+            border-radius: 0.75rem; /* Rounded corners for images */
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5); /* Shadow for images */
+            margin-bottom: 1.5rem; /* Space below image on mobile */
+        }
+
+        /* Adjust button styles within tab content for consistency */
+        .service-tab-pane .button {
+            display: inline-flex; /* Use flex for button content alignment */
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 2rem; /* Adjusted padding for a good size */
+            border-radius: 9999px; /* Make them pill-shaped */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none; /* Remove underline */
+        }
+
+        .service-tab-pane .button.button-grad-blood-mary {
+            background: linear-gradient(to right, #a71d31, #d44d5c); /* Example gradient */
+            color: white;
+            box-shadow: 0 4px 15px rgba(167, 29, 49, 0.4);
+        }
+        .service-tab-pane .button.button-grad-blood-mary:hover {
+            background: linear-gradient(to right, #d44d5c, #a71d31);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(167, 29, 49, 0.6);
+        }
+
+        .service-tab-pane .button.button-grad-purple {
+            background: linear-gradient(to right, #9333ea, #db2777); /* Same as btn-gradient */
+            color: white;
+            box-shadow: 0 44px 15px rgba(147, 51, 234, 0.4);
+        }
+        .service-tab-pane .button.button-grad-purple:hover {
+            background: linear-gradient(to right, #db2777, #9333ea);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        .service-tab-pane .button.button-grad-bora {
+            background: linear-gradient(to right, #0ea5e9, #6366f1); /* Blue to Indigo */
+            color: white;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+        }
+        .service-tab-pane .button.button-bora:hover {
+            background: linear-gradient(to right, #6366f1, #0ea5e9);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.6);
+        }
+
+        /* Specific icon styling within buttons */
+        .service-tab-pane .button i {
+            margin-left: 0.5rem; /* Space between text and icon */
+            transition: transform 0.3s ease;
+        }
+
+        /* Hover effect for icon (if 'hover-icon-wobble-horizontal' is simulated) */
+        .service-tab-pane .button:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Responsive adjustments for service tabs */
+        @media (max-width: 768px) {
+            .service-tabs-list {
+                flex-direction: column; /* Stack tabs vertically on small screens */
+                align-items: center; /* Center stacked tabs */
+            }
+            .service-tabs-list li {
+                width: 90%; /* Make tabs wider on mobile */
+                max-width: 300px; /* Max width for consistency */
+            }
+            .service-tabs-list li a {
+                width: 100%; /* Ensure link fills the tab item */
+                text-align: center; /* Center text in tabs */
+            }
+            .service-tab-pane .flex {
+                flex-direction: column; /* Stack image and content vertically */
+            }
+            .service-tab-pane .md\:w-1\/2 {
+                width: 100%; /* Full width for content and image */
+            }
+            .service-tab-pane .md\:ml-auto {
+                margin-left: 0; /* Remove left margin */
+            }
+            .service-tab-pane img {
+                margin-top: 1.5rem; /* Space above image when stacked */
+                margin-left: auto;
+                margin-right: auto; /* Center image */
+            }
+            .service-tab-pane .general-content {
+                text-align: center; /* Center content on mobile */
+            }
+            .service-tab-pane .button {
+                width: 100%; /* Full width button on mobile */
+                max-width: 300px; /* Max width for button */
+                margin-left: auto;
+                margin-right: auto; /* Center button */
+            }
+        }
+
+        /* Masonry Grid Specific Styles for Portfolio (UPDATED) */
+        .grid-wrapper {
+            display: grid;
+            grid-gap: 10px; /* Gap between grid items */
+            /* Responsive columns: At least 250px wide, no more than 1fr */
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            /* Fixed row height as per user's latest CSS */
+            grid-auto-rows: 200px;
+            grid-auto-flow: dense; /* Fill in empty spaces */
+            max-width: 1200px; /* Limit overall width */
+            margin: 0 auto; /* Center the grid */
+            width: 100%; /* Ensure it takes full available width */
+            box-sizing: border-box; /* Include padding/border in total width */
+        }
+
+        /* Base style for grid items (frosted-glass already applied) */
+        .grid-wrapper > div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative; /* Needed for overlay positioning */
+            overflow: hidden; /* Ensure content stays within rounded corners and handles hover scale */
+            border-radius: 0.75rem; /* Frosted glass style */
+            background-color: rgba(255, 255, 255, 0.02); /* Frosted glass base */
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .grid-wrapper > div:hover {
+            box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .grid-wrapper > div > a > img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            display: block;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .grid-wrapper > div:hover > a > img {
+            transform: scale(1.08);
+        }
+
+        /* Specific span classes for masonry layout */
+        .grid-wrapper .wide {
+            grid-column: span 2; /* Span two columns */
+        }
+
+        .grid-wrapper .tall {
+            grid-row: span 2; /* Span two rows */
+        }
+
+        .grid-wrapper .big {
+            grid-column: span 2; /* Span two columns */
+            grid-row: span 2; /* Span two rows */
+        }
+
+
+        /* Overlay styles for hover effect (UPDATED) */
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            box-sizing: border-box;
+            z-index: 1;
+            border-radius: 0.75rem;
+        }
+
+        .grid-wrapper > div:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-description {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .gallery-magnify-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2.5rem;
+            color: white;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        .grid-wrapper > div:hover .gallery-magnify-icon {
+            opacity: 1;
+        }
+        /* End Masonry Grid Specific Styles */
+
+        /* Portfolio Filter Buttons Styling */
+        .portfolio-filters {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            justify-content: center;
+            gap: 0.75rem; /* Space between buttons */
+            margin-bottom: 2rem;
+            list-style: none; /* Remove list bullets */
+            padding: 0; /* Remove default padding */
+        }
+
+        .portfolio-filters li a {
+            display: block;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px; /* Pill shape */
+            color: #cbd5e1; /* Default text color */
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.05); /* Subtle background for tabs */
+            border: 1px solid transparent; /* Default border */
+            text-decoration: none; /* Remove underline */
+            white-space: nowrap; /* Prevent text wrap within buttons */
+        }
+
+        .portfolio-filters li a:hover {
+            color: #a78bfa; /* Purple text on hover */
+            background-color: rgba(147, 51, 234, 0.1);
+            border-color: #a78bfa; /* Purple border on hover */
+        }
+
+        .portfolio-filters li a.active {
+            background: linear-gradient(to right, #9333ea, #db2777); /* Active tab gradient */
+            color: white;
+            border-color: transparent; /* No border for active tab */
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+
+        .portfolio-filters li a.active:hover {
+            background: linear-gradient(to right, #db2777, #9333ea); /* Active tab reverse gradient on hover */
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        /* Custom style for small heading texts */
+        .small-heading-text {
+            font-size: 14px; /* Set font size to 14px */
+            text-transform: capitalize; /* Capitalize the first letter of each word */
+        }
+
+        /* Loading Spinner for AI generation */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #9333ea; /* Purple */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+            display: none; /* Hidden by default */
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Styles for the large faded "PHANTOM" text in the background */
+        .background-phantom-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Pacifico', cursive; /* A script/handwriting font */
+            font-size: 250px; /* Extremely large font size */
+            color: transparent; /* Make the fill transparent */
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1); /* Subtle white stroke */
+            opacity: 0.05; /* Very faded */
+            z-index: 0; /* Behind other content */
+            white-space: nowrap; /* Prevent word wrap */
+            user-select: none; /* Prevent selection */
+            pointer-events: none; /* Allow clicks to pass through */
+            background: linear-gradient(137deg, rgba(255, 210, 106, 0.2), rgba(255, 86, 70, 0.2)); /* Faded gradient for the text stroke effect */
+            -webkit-background-clip: text;
+            /* This property is sometimes needed for -webkit-text-stroke to reveal background-clip */
+            -webkit-text-fill-color: transparent; 
+        }
+
+        /* Responsive adjustments for the background PHANTOM text */
+        @media (max-width: 1024px) {
+            .background-phantom-text {
+                font-size: 180px; /* Adjust font size for smaller screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .background-phantom-text {
+                font-size: 120px; /* Adjust font size for mobile */
+                -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.1); /* Thinner stroke on mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .background-phantom-text {
+                font-size: 70px; /* Even smaller for very small mobile screens */
+                /* Potentially center text with width 100% and text-align if it overflows */
+            }
+        }
+
+        /* --- NEW TICKER SECTION STYLES (FROM EXP.HTML) --- */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-1680px); } /* This needs to be dynamic or duplicated */
+        }
+
+        .h-large-card {
+            height: 298px;
+        }
+        .h-small-card-column {
+            height: calc(141px * 2 + 16px);
+        }
+
+        .marquee-outer-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .marquee-inner-content {
+            display: flex;
+            gap: 16px;
+            /* This width will be set by JS or careful duplication to ensure seamless loop */
+            /* For now, assuming a total width from exp.html's static value, but better to calculate dynamically */
+            width: 3376px; /* (448 + 250 + 448 + 250 + 250 + 4*16) * 2 + gaps if duplicated once */
+            animation: marquee 50s linear infinite;
+            white-space: nowrap;
+            will-change: transform;
+        }
+
+        .group\/tw-marquee:hover .marquee-inner-content {
+            animation-play-state: paused;
+        }
+
+        @media (max-width: 768px) {
+            .marquee-inner-content {
+                animation: none;
+                flex-direction: column;
+                width: 100%;
+                white-space: normal;
+                padding: 0 1rem;
+            }
+
+            .marquee-outer-container {
+                overflow-x: hidden;
+            }
+
+            .marquee-inner-content .flex-shrink-0 {
+                width: 100% !important;
+                height: auto !important;
+                margin-bottom: 1rem;
+            }
+            .marquee-inner-content .h-small-card-column {
+                height: auto !important;
+            }
+            .marquee-inner-content .h-large-card {
+                height: auto !important;
+            }
+            .marquee-inner-content .text-2xl {
+                font-size: 1.5rem;
+            }
+            .marquee-inner-content .text-base {
+                font-size: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    
+    <!-- Go To Top Button -->
+    <a href="#page-top" class="go-to-top fixed bottom-8 right-8 z-50 p-3 bg-purple-600 text-white rounded-full shadow-lg hover:bg-purple-700 transition duration-300 hidden">
+        <i class="fa fa-long-arrow-up"></i>
+    </a>
+        
+    <!-- Header/Navigation (Desktop Only) -->
+    <header class="bg-gray-900 bg-opacity-70 header-frosted p-4 sticky top-0 z-50 rounded-full max-w-7xl mx-auto mt-4 hidden md:block">
+        <div class="flex items-center justify-between header-main-nav w-full px-4 relative">
+            <!-- Left Navigation Links -->
+            <nav class="hidden md:flex nav-links nav-left flex-grow">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:text-purple-400 transition duration-200">Home</a></li>
+                    <li><a href="about.html" class="hover:text-purple-400 transition duration-200">About</a></li>
+                    <li><a href="services.html" class="hover:text-purple-400 transition duration-200">Services</a></li>
+                </ul>
+            </nav>
+
+            <!-- Centered Logo -->
+            <div class="logo-container mx-4 hidden md:flex">
+                <a href="index.html">
+                    <img src="https://phantommarketing.netlify.app/assets/img/logo/logo-white.gif" alt="Phantom Marketing Logo" class="h-12 w-auto">
+                </a>
+            </div>
+
+            <!-- Right Navigation Links -->
+            <nav class="hidden md:flex nav-links nav-right flex-grow justify-end">
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Case Studies</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Blogs</a></li>
+                    <li><a href="contact-us.html" class="hover:text-purple-400 transition duration-200">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section - Full Viewport Video Background -->
+    <section class="hero-full-fold">
+        <!-- Video Background -->
+        <div class="hero-section-video">
+            <video autoplay loop muted playsinline>
+                <source src="https://www.digitalgravity.ae/assets/video/home-hero.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <p class="hero-tagline">
+                <i class="fas fa-star icon-star"></i>
+                Unleash your business potential with us
+            </p>
+
+            <h1 class="hero-main-heading text-white">
+                <span class="gradient-text">Unleash Your Brand's</span> Power: <br class="hidden md:block">Digital Marketing
+                <span class="text-white">Expertise That Delivers</span>
+            </h1>
+            <h3 class="hero-sub-heading">
+                We craft engaging stories & strategic campaigns to captivate your audience.
+            </h3>
+            <p class="hero-paragraph">
+                Phantom Marketing is a full-service digital agency specializing in bespoke solutions for SEO, social media, web development, and more. Our data-driven approach ensures measurable results and lasting growth for your brand.
+            </p>
+            <div class="hero-buttons">
+                <a href="contact-us.html" class="btn-primary-hero">
+                    GET A FREE CONSULTATION
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="services.html" class="btn-secondary-hero">
+                    LEARN MORE ABOUT US
+                    <i class="fas fa-info-circle ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- The rest of your content starts AFTER the hero section -->
+    <main class="container mx-auto px-4 py-16 max-w-7xl">
+
+        <!-- Scan Your Website Section -->
+        <section class="py-16 bg-gray-900 rounded-xl shadow-inner border border-gray-800 mb-16">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <!-- Left Content -->
+                    <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+                        <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto md:mx-0">
+                            <small class="color-purple-400 block mb-2 small-heading-text">Is Your Website Performance According to Google Algorithm?</small>
+                            Let's Scan Your Website!
+                        </h2>
+                        <p class="text-lg text-gray-300 max-w-xl mx-auto md:mx-0">Scan your website's performance against Google's algorithm. Ensure optimal page speed, mobile responsiveness, code quality, and more. Improve user experience and search engine rankings.</p>
+                    </div>
+                    
+                    <!-- Right Content - Scan Tool -->
+                    <div class="md:w-1/2 flex justify-center items-center">
+                        <div class="flex items-center bg-white rounded-full p-2 pr-6 border border-gray-300 shadow-lg max-w-md w-full">
+                            <a class="p-2 mr-2" href="index.html" target="_blank">
+                                <!-- Image for Google PageSpeed Insights logo (Original Size: 300x300) -->
+                                <img src="https://seeklogo.com/images/G/google-pagespeed-insights-logo-4536A2D986-seeklogo.com.png" alt="google icon" class="h-8 w-8 object-contain" />
+                            </a>
+                            <input id="website-scan-input" class="flex-grow p-2 text-gray-800 border-none outline-none text-base lg:text-lg rounded-md" type="text" placeholder="Domain.com" />
+                            <button id="submit-scan" class="ml-2 bg-transparent border-none cursor-pointer">
+                                <i class="fa-solid fa-magnifying-glass-chart text-3xl" style="background: linear-gradient(-45deg, #441ba4, #990fd7, #cc128f, #ff5646, #ffd26a);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="py-16 mb-16">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                    <!-- Left Content - Image -->
+                    <div class="md:w-1/2">
+                        <!-- Image for About Us (Original Size: 778x508) -->
+                        <img src="uploaded:image_85df08.png" alt="browser iphone" class="img-responsive center-block rounded-lg shadow-lg frosted-glass">
+                    </div>
+                    
+                    <!-- Right Content - Text -->
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto md:mx-0">
+                            <small class="color-orange-400 block mb-2 small-heading-text">Your Trustworthy Partner In Brand Visibility</small>
+                            Proficient Digital Marketing Agency
+                        </h2>
+                        <p class="text-lg text-gray-300 mb-6"><b>Phantom Marketing</b> is a creative advertising digital agency. It is as unique as its name; we are the upholders of creative ideas and unparalleled concepts that will take your brand name into brand recognition. We are one of its kind creative agency that firmly believes in bringing best to the table. The journey to bring appealing ideas into reality is what <b>"Phantom Marketing"</b> is capable of. From developing and preparing advertising and digital plan, advertisement, and other promotional tools, we effortlessly transform your imagery into the outer world.</p>
+                        <a href="about.html" class="btn-gradient text-white flex items-center justify-center md:inline-flex">
+                            Dive Into Our History<i class="fas fa-clock-rotate-left ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Techy Points Section -->
+        <section class="py-16 bg-gray-900 rounded-xl shadow-inner border border-gray-800 mb-16">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-12 mb-12">
+                    <!-- Left Content - Text -->
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto md:mx-0">
+                            <small class="color-blue-400 block mb-2 small-heading-text">Revolutionizing Audience Connections</small>
+                            Unparalleled Brand Transformation
+                        </h2 >
+                        <p class="text-lg text-gray-300 mb-6">Experience unparalleled brand transformation with <b>Phantom Marketing</b>, the strategic digital agency that revolutionizes audience connections. Our expert team creates impactful digital experiences infused with strategic understanding, delivering superior marketing services. Elevate your brand's online presence with <b>Phantom Marketing</b>.</p>
+                        <a href="contact-us.html" class="btn-gradient text-white flex items-center justify-center md:inline-flex">
+                            Get A Free Consultation<i class="fas fa-calendar-check ml-2"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Right Content - Image -->
+                    <div class="md:w-1/2">
+                        <!-- Image for Techy Points (Original Size: 778x508) -->
+                        <img src="uploaded:image_84fa0a.png" alt="browser iphone" class="img-responsive pull-right rounded-lg shadow-lg frosted-glass">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center mt-12">
+                    <!-- Item One -->
+                    <div class="service-card frosted-glass p-6">
+                        <i class="fa-solid fa-rocket icon mb-4" style="background: linear-gradient(135deg, #9333ea, #db2777);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"></i>
+                        <h3 class="text-lg font-bold text-white mb-2">Cutting-Edge Technology</h3>
+                        <p class="text-gray-300">Harness the power of cutting-edge tech solutions for unparalleled digital marketing success</p>
+                    </div>
+                    
+                    <!-- Item Two -->
+                    <div class="service-card frosted-glass p-6">
+                        <i class="fa-solid fa-microchip icon mb-4" style="background: linear-gradient(135deg, #9333ea, #db2777);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"></i>
+                        <h3 class="text-lg font-bold text-white mb-2">AI-Driven Strategies</h3>
+                        <p class="text-gray-300">Leverage artificial intelligence to drive data-driven insights and optimize your marketing campaigns.</p>
+                    </div>
+                    
+                    <!-- Item Three -->
+                    <div class="service-card frosted-glass p-6">
+                        <i class="fa-solid fa-link icon mb-4" style="background: linear-gradient(135deg, #9333ea, #db2777);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"></i>
+                        <h3 class="text-lg font-bold text-white mb-2">Seamless Integration</h3>
+                        <p class="text-gray-300">Seamlessly integrate diverse technologies to create a cohesive and dynamic digital marketing ecosystem.</p>
+                    </div>
+                    
+                    <!-- Item Four -->
+                    <div class="service-card frosted-glass p-6">
+                        <i class="fas fa-lightbulb icon mb-4" style="background: linear-gradient(135deg, #9333ea, #db2777);-webkit-background-clip: text;-webkit-text-fill-color: transparent;"></i>
+                        <h3 class="text-lg font-bold text-white mb-2">Innovative Automation</h3>
+                        <p class="text-gray-300">Embrace innovative automation tools to streamline processes and maximize efficiency in your marketing efforts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+		
+        <!-- Our Core Services Section (Tabbed Layout) -->
+        <section class="py-16 mb-20 service-tabs-container">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">
+                        <small class="color-cyan-400 block mb-2 small-heading-text">Delivering Excellence, Always</small>
+                        Our Core Services
+                    </h2 >
+                </div>
+                
+                <div class="w-full">
+                    <ul class="service-tabs-list" role="tablist">
+                        <li class="active"><a href="#tab-digital-marketing">Digital Marketing</a></li>
+                        <li><a href="#tab-seo">SEO</a></li>
+                        <li><a href="#tab-social-media">Social Media Marketing</a></li>
+                        <li><a href="#tab-web-development">Web Development</a></li>
+                        <li><a href="#tab-pay-per-click">Pay Per Click</a></li>
+                        <li><a href="#tab-graphics-designing">Graphics Designing</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <!-- Digital Marketing Tab Content -->
+                        <div id="tab-digital-marketing" class="service-tab-pane active fade in">
+                            <div class="flex flex-col md:flex-row items-center justify-center">
+                                <!-- Left Content - Image -->
+                                <div class="md:w-1/2 px-4">
+                                    <!-- Image (Original Size: 600x400) -->
+                                    <img src="uploaded:image_2ca085.png" alt="Digital Marketing" class="img-responsive center-block rounded-lg shadow-lg frosted-glass mx-auto">
+                                </div>
+                                <!-- Right Content -->
+                                <div class="md:w-5/12 md:ml-auto px-4">
+                                    <div class="general-content text-center md:text-left">
+                                        <h3 class="mb-6 text-center">
+                                            Digital Marketing
+                                            <small class="heading heading-double-icon center-block">
+                                                <span class="color-gr2">&nbsp;</span>
+                                                <span class="color-gr2">&nbsp;</span>
+                                            </small>
+                                        </h3>
+                                        <p class="text-lg text-gray-300 mb-6">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                                        <a href="digital-marketing.html" class="button button-lg button-circle button-grad-blood-mary hover-icon-wobble-horizontal">Take a Closer Look<i class="fas fa-rectangle-ad"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SEO Tab Content -->
+                        <div id="tab-seo" class="service-tab-pane fade">
+                            <div class="flex flex-col md:flex-row items-center justify-center">
+                                <!-- Left Content - Image -->
+                                <div class="md:w-1/2 px-4">
+                                    <!-- Image (Original Size: 600x400) -->
+                                    <img src="uploaded:image_2ca085.png" alt="Search Engine Optimization" class="img-responsive center-block rounded-lg shadow-lg frosted-glass mx-auto">
+                                </div>
+                                <!-- Right Content -->
+                                <div class="md:w-5/12 md:ml-auto px-4">
+                                    <div class="general-content text-center md:text-left">
+                                        <h3 class="mb-6 text-center">
+                                            Search Engine Optimization
+                                            <small class="heading heading-double-icon center-block">
+                                                <span class="color-gr2">&nbsp;</span>
+                                                <span class="color-gr2">&nbsp;</span>
+                                            </small>
+                                        </h3>
+                                        <p class="text-lg text-gray-300 mb-6">Dominate search rankings and attract organic traffic with our advanced SEO strategies. We optimize your website to ensure higher visibility and drive qualified leads, boosting your online presence and business growth.</p>
+                                        <a href="search-engine-optimization.html" class="button button-lg button-circle button-grad-purple hover-icon-wobble-horizontal">Take a Closer Look<i class="fas fa-chart-line"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Marketing Tab Content -->
+                        <div id="tab-social-media" class="service-tab-pane fade">
+                            <div class="flex flex-col md:flex-row items-center justify-center">
+                                <!-- Left Content - Image -->
+                                <div class="md:w-1/2 px-4">
+                                    <!-- Image (Original Size: 600x400) -->
+                                    <img src="uploaded:image_2ca085.png" alt="Social Media Marketing" class="img-responsive center-block rounded-lg shadow-lg frosted-glass mx-auto">
+                                </div>
+                                <!-- Right Content -->
+                                <div class="md:w-5/12 md:ml-auto px-4">
+                                    <div class="general-content text-center md:text-left">
+                                        <h3 class="mb-6 text-center">
+                                            Social Media Marketing
+                                            <small class="heading heading-double-icon center-block">
+                                                <span class="color-gr2">&nbsp;</span>
+                                                <span class="color-gr2">&nbsp;</span>
+                                            </small>
+                                        </h3>
+                                        <p class="text-lg text-gray-300 mb-6">Build strong brand presence and engage your target audience effectively across all major social media platforms. Our strategies focus on content creation, community management, and targeted campaigns.</p>
+                                        <a href="social-media-marketing.html" class="button button-lg button-circle button-grad-bora hover-icon-wobble-horizontal">Take a Closer Look<i class="fa fa-share-alt"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Web Development Tab Content -->
+                        <div id="tab-web-development" class="service-tab-pane fade">
+                            <div class="flex flex-col md:flex-row items-center justify-center">
+                                <!-- Left Content - Image -->
+                                <div class="md:w-1/2 px-4">
+                                    <!-- Image (Original Size: 600x400) -->
+                                    <img src="uploaded:image_2ca085.png" alt="Web Development" class="img-responsive center-block rounded-lg shadow-lg frosted-glass mx-auto">
+                                </div>
+                                <!-- Right Content -->
+                                <div class="md:w-5/12 md:ml-auto px-4">
+                                    <div class="general-content text-center md:text-left">
+                                        <h3 class="mb-6 text-center">
+                                            Web Development
+                                            <small class="heading heading-double-icon center-block">
+                                                <span class="color-gr2">&nbsp;</span>
+                                                <span class="color-gr2">&nbsp;</span>
+                                            </small>
+                                        </h3>
+                                        <p class="text-lg text-gray-300 mb-6">We craft bespoke, high-performance websites tailored to your unique business needs. From custom coding to robust CMS solutions, our web development ensures a seamless and engaging user experience.</p>
+                                        <a href="web-development-services.html" class="button button-lg button-circle button-grad-blood-mary hover-icon-wobble-horizontal">Take a Closer Look<i class="fa fa-code"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pay Per Click Tab Content -->
+                        <div id="tab-pay-per-click" class="service-tab-pane fade">
+                            <div class="flex flex-col md:flex-row items-center justify-center">
+                                <!-- Left Content - Image -->
+                                <div class="md:w-1/2 px-4">
+                                    <!-- Image (Original Size: 600x400) -->
+                                    <img src="uploaded:image_2ca085.png" alt="Pay Per Click" class="img-responsive center-block rounded-lg shadow-lg frosted-glass mx-auto">
+                                </div>
+                                <!-- Right Content -->
+                                <div class="md:w-5/12 md:ml-auto px-4">
+                                    <div class="general-content text-center md:text-left">
+                                        <h3 class="mb-6 text-center">
+                                            Pay Per Click
+                                            <small class="heading heading-double-icon center-block">
+                                                <span class="color-gr2">&nbsp;</span>
+                                                <span class="color-gr2">&nbsp;</span>
+                                            </small>
+                                        </h3>
+                                        <p class="text-lg text-gray-300 mb-6">Drive immediate traffic and conversions with highly targeted Pay Per Click campaigns. We manage your bids, keywords, and ad creatives to maximize your ROI on platforms like Google Ads and social media.</p>
+                                        <a href="pay-per-click.html" class="button button-lg button-circle button-grad-purple hover-icon-wobble-horizontal">Take a Closer Look<i class="fa fa-coins"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Graphics Designing Tab Content -->
+                        <div id="tab-graphics-designing" class="service-tab-pane fade">
+                            <div class="flex flex-col md:flex-row items-center justify-center">
+                                <!-- Left Content - Image -->
+                                <div class="md:w-1/2 px-4">
+                                    <!-- Image (Original Size: 600x400) -->
+                                    <img src="uploaded:image_2ca085.png" alt="Graphics Designing" class="img-responsive center-block rounded-lg shadow-lg frosted-glass mx-auto">
+                                </div>
+                                <!-- Right Content -->
+                                <div class="md:w-5/12 md:ml-auto px-4">
+                                    <div class="general-content text-center md:text-left">
+                                        <h3 class="mb-6 text-center">
+                                            Graphics Designing
+                                            <small class="heading heading-double-icon center-block">
+                                                <span class="color-gr2">&nbsp;</span>
+                                                <span class="color-gr2">&nbsp;</span>
+                                            </small>
+                                        </h3>
+                                        <p class="text-lg text-gray-300 mb-6">Elevate your brand with striking visuals, from logos and brand guidelines to marketing collateral and digital assets. Our graphic design services ensure your brand communicates effectively and leaves a lasting impression.</p>
+                                        <a href="graphics-design-services.html" class="button button-lg button-circle button-grad-bora hover-icon-wobble-horizontal">Take a Closer Look<i class="fa fa-pencil"></i></a>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+		
+		<!-- Client Counter / Our Spectral Impact Section -->
+        <section class="mb-20 py-16 bg-gray-900 rounded-xl shadow-inner border border-gray-800">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Our Spectral Impact</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Numbers don't lie. See the tangible results we've conjured for our clients. More traffic. More leads. More revenue. Every strategy we implement is backed by data to convert clicks into conversions.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center px-4">
+                <div class="p-6 frosted-glass rounded-xl">
+                    <i class="fas fa-mobile-alt text-4xl text-purple-400 mb-2"></i>
+                    <p class="text-4xl md:text-6xl font-extrabold text-purple-400 mb-2 count-to" data-target="387">+</p>
+                    <p class="text-lg text-gray-300">Projects Completed</p>
+                </div>
+                <div class="p-6 frosted-glass rounded-xl">
+                    <i class="fas fa-desktop text-4xl text-pink-400 mb-2"></i>
+                    <p class="text-4xl md:text-6xl font-extrabold text-pink-400 mb-2 count-to" data-target="545">+</p>
+                    <p class="text-lg text-gray-300">Happy Clients</p>
+                </div>
+                <div class="p-6 frosted-glass rounded-xl">
+                    <i class="fas fa-wallet text-4xl text-red-400 mb-2"></i>
+                    <p class="text-4xl md:text-6xl font-extrabold text-red-400 mb-2 count-to" data-target="750">+</p>
+                    <p class="text-lg text-gray-300">Positive Feedbacks</p>
+                </div>
+                <div class="p-6 frosted-glass rounded-xl">
+                    <i class="fas fa-briefcase text-4xl text-green-400 mb-2"></i>
+                    <p class="text-4xl md:text-6xl font-extrabold text-green-400 mb-2 count-to" data-target="950">+</p>
+                    <p class="text-lg text-gray-300">Cups of Coffee</p>
+                </div>
+            </div>
+        </section>
+		
+        <!-- Your Project Call to Action Section (Parallax background) -->
+        <section class="relative py-20 px-8 mb-20 rounded-xl overflow-hidden text-center bg-cover bg-center" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 100%), url('https://placehold.co/1920x950/0d0d0d/1a1a1a?text=Your+Project+Background');">
+            <!-- Background "PHANTOM" text -->
+            <div class="background-phantom-text">PHANTOM</div>
+            <div class="relative z-10 text-white max-w-3xl mx-auto">
+                <h2 class="text-4xl lg:text-5xl font-extrabold mb-4 leading-tight text-white">
+                    <small class="block text-gray-400 mb-2 font-normal">Let's Talk About</small>
+                    <strong class="text-6xl font-pacifico" style="color: transparent; -webkit-text-stroke: 1px white; background: linear-gradient(137deg, #ffd26a, #ff5646, #ffd26a); -webkit-background-clip: text;">Your NEXT Project</strong> 
+                </h2>
+                <!-- Video link - assuming it will open in a new tab -->
+                <a class="flex items-center justify-center mx-auto w-24 h-24 bg-red-600 rounded-full text-white text-5xl hover:scale-110 transition duration-300 shadow-lg" href="https://youtu.be/dpdtV7WU6jE" title="Play Video" target="_blank">
+                    <i class="fa-brands fa-youtube" style="font-size:56px; color: #fff;"></i>
+                </a>
+            </div>
+        </section>
+		
+        <!-- Our Partners & Clientele Section (New Marquee Style) -->
+        <section class="w-full max-w-7xl mb-20 text-center py-12 frosted-glass rounded-xl overflow-hidden">
+            <h2 class="text-4xl font-bold mb-12 text-gray-200 heading-underline mx-auto">Our Partners & Clientele</h2>
+            <!-- Main container for the marquee viewport, also handles hover for pausing -->
+            <div class="relative w-full h-full group/tw-marquee marquee-outer-container">
+                <!-- Inner container that holds duplicated content and is animated -->
+                <div class="marquee-inner-content">
+                    <!-- FIRST SET OF COLUMNS -->
+
+                    <!-- Column 1: Large Item (Chatbase) - 448x298 ratio -->
+                    <a class="flex-shrink-0 w-[448px] h-[298px] rounded-lg md:rounded-xl p-px frosted-glass hover:shadow-md flex items-center justify-center relative group cursor-pointer overflow-hidden text-center transition" href="#">
+                        <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 p-4 md:p-8 flex flex-col gap-6 justify-between">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right not-sr-only absolute top-8 right-8 -rotate-45 stroke-1 -translate-x-1 translate-y-1 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            <div class="relative box-content opacity-50 group-hover:opacity-75 transition-opacity">
+                                <!-- Company Name - now left-aligned -->
+                                <div class="flex items-center justify-start h-[33px] w-auto max-w-[145px] pl-4">
+                                    <span class="text-2xl font-semibold text-gray-200">Chatbase</span>
+                                </div>
+                            </div>
+                            <!-- Text wrapped and centered -->
+                            <p class="text-base text-gray-400 text-center whitespace-normal">Bootstrapped founder builds an AI app with Supabase and scales to $1M in 5 months.</p>
+                            <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                        </div>
+                    </a>
+
+                    <!-- Column 2: Two stacked items (Mobbin, HappyTeams) - each 250x141 ratio -->
+                    <div class="flex flex-col flex-shrink-0 gap-4 w-[250px] h-small-card-column">
+                        <!-- Mobbin -->
+                        <a class="w-full h-[141px] rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center relative flex-grow" href="#">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">Mobbin</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </a>
+                        <!-- HappyTeams -->
+                        <a class="w-full h-[141px] rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center relative flex-grow" href="#">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">HappyTeams</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Column 3: Large Item (Pebblely) - 448x298 ratio -->
+                    <a class="flex-shrink-0 w-[448px] h-[298px] rounded-lg md:rounded-xl p-px frosted-glass hover:shadow-md flex items-center justify-center relative group cursor-pointer overflow-hidden text-center transition" href="#">
+                        <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 p-4 md:p-8 flex flex-col gap-6 justify-between">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right not-sr-only absolute top-8 right-8 -rotate-45 stroke-1 -translate-x-1 translate-y-1 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            <div class="relative box-content opacity-50 group-hover:opacity-75 transition-opacity">
+                                <!-- Company Name - now left-aligned -->
+                                <div class="flex items-center justify-start h-[33px] w-auto max-w-[145px] pl-4">
+                                    <span class="text-2xl font-semibold text-gray-200">Pebblely</span>
+                                </div>
+                            </div>
+                            <!-- Text wrapped and centered -->
+                            <p class="text-base text-gray-400 text-center whitespace-normal">Scaling securely: one million users in 7 months protected with Supabase Auth</p>
+                            <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                        </div>
+                    </a>
+
+                    <!-- Column 4: Two stacked items (Quivr, Tinloof) - each 250x141 ratio -->
+                    <div class="flex flex-col flex-shrink-0 gap-4 w-[250px] h-small-card-column">
+                        <!-- Quivr -->
+                        <div class="group/panel relative rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center w-full h-[141px] flex-grow pointer-events-none">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">Quivr</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </div>
+                        <!-- Tinloof -->
+                        <div class="group/panel relative rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center w-full h-[141px] flex-grow pointer-events-none">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">Tinloof</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 5: Two stacked items (1Password, Next Door Lending) - each 250x141 ratio -->
+                    <div class="flex flex-col flex-shrink-0 gap-4 w-[250px] h-small-card-column">
+                        <!-- 1Password -->
+                        <div class="group/panel relative rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center w-full h-[141px] flex-grow pointer-events-none">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">1Password</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </div>
+                        <!-- Next Door Lending -->
+                        <a class="w-full h-[141px] rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center relative flex-grow" href="#">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">Next Door Lending</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- SECOND SET OF COLUMNS (DUPLICATE TO ENSURE CONTINUOUS LOOP) -->
+
+                    <!-- Column 1: Large Item (Chatbase) - 448x298 ratio -->
+                    <a class="flex-shrink-0 w-[448px] h-[298px] rounded-lg md:rounded-xl p-px frosted-glass hover:shadow-md flex items-center justify-center relative group cursor-pointer overflow-hidden text-center transition" href="#">
+                        <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 p-4 md:p-8 flex flex-col gap-6 justify-between">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right not-sr-only absolute top-8 right-8 -rotate-45 stroke-1 -translate-x-1 translate-y-1 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            <div class="relative box-content opacity-50 group-hover:opacity-75 transition-opacity">
+                                <!-- Company Name - now left-aligned -->
+                                <div class="flex items-center justify-start h-[33px] w-auto max-w-[145px] pl-4">
+                                    <span class="text-2xl font-semibold text-gray-200">Chatbase</span>
+                                </div>
+                            </div>
+                            <!-- Text wrapped and centered -->
+                            <p class="text-base text-gray-400 text-center whitespace-normal">Bootstrapped founder builds an AI app with Supabase and scales to $1M in 5 months.</p>
+                            <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                        </div>
+                    </a>
+
+                    <!-- Column 2: Two stacked items (Mobbin, HappyTeams) - each 250x141 ratio -->
+                    <div class="flex flex-col flex-shrink-0 gap-4 w-[250px] h-small-card-column">
+                        <!-- Mobbin -->
+                        <a class="w-full h-[141px] rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center relative flex-grow" href="#">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">Mobbin</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </a>
+                        <!-- HappyTeams -->
+                        <a class="w-full h-[141px] rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center relative flex-grow" href="#">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">HappyTeams</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Column 3: Large Item (Pebblely) - 448x298 ratio -->
+                    <a class="flex-shrink-0 w-[448px] h-[298px] rounded-lg md:rounded-xl p-px frosted-glass hover:shadow-md flex items-center justify-center relative group cursor-pointer overflow-hidden text-center transition" href="#">
+                        <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 p-4 md:p-8 flex flex-col gap-6 justify-between">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right not-sr-only absolute top-8 right-8 -rotate-45 stroke-1 -translate-x-1 translate-y-1 opacity-0 transition-all group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            <div class="relative box-content opacity-50 group-hover:opacity-75 transition-opacity">
+                                <!-- Company Name - now left-aligned -->
+                                <div class="flex items-center justify-start h-[33px] w-auto max-w-[145px] pl-4">
+                                    <span class="text-2xl font-semibold text-gray-200">Pebblely</span>
+                                </div>
+                            </div>
+                            <!-- Text wrapped and centered -->
+                            <p class="text-base text-gray-400 text-center whitespace-normal">Scaling securely: one million users in 7 months protected with Supabase Auth</p>
+                            <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                        </div>
+                    </a>
+
+                    <!-- Column 4: Two stacked items (Quivr, Tinloof) - each 250x141 ratio -->
+                    <div class="flex flex-col flex-shrink-0 gap-4 w-[250px] h-small-card-column">
+                        <!-- Quivr -->
+                        <div class="group/panel relative rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center w-full h-[141px] flex-grow pointer-events-none">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">Quivr</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </div>
+                        <!-- Tinloof -->
+                        <div class="group/panel relative rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center w-full h-[141px] flex-grow pointer-events-none">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">Tinloof</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Column 5: Two stacked items (1Password, Next Door Lending) - each 250x141 ratio -->
+                    <div class="flex flex-col flex-shrink-0 gap-4 w-[250px] h-small-card-column">
+                        <!-- 1Password -->
+                        <div class="group/panel relative rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center w-full h-[141px] flex-grow pointer-events-none">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">1Password</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </div>
+                        <!-- Next Door Lending -->
+                        <a class="w-full h-[141px] rounded-lg md:rounded-xl p-px frosted-glass transition-all hover:shadow-md flex items-center justify-center relative flex-grow" href="#">
+                            <div class="relative z-10 w-full h-full rounded-[7px] md:rounded-[11px] bg-transparent overflow-hidden text-gray-100 flex items-center justify-center">
+                                <!-- Company Name - kept centered -->
+                                <span class="text-2xl font-semibold text-gray-200">Next Door Lending</span>
+                                <div class="absolute z-10 inset-0 w-full h-full pointer-events-none opacity-20"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Study / Portfolio Section (UPDATED) -->
+        <section class="mb-20 py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Our Enchanting Portfolio</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    A glimpse into the captivating digital experiences we've crafted for our clients. Click to enlarge!
+                </p>
+            </div>
+
+            <!-- Portfolio Filters -->
+            <ul class="portfolio-filters mb-8" data-filter-group="category">
+                <li><a class="active" data-filter="*">All Projects</a></li>                          
+                <li><a data-filter=".seo">Search Engine Optimization</a></li>
+                <li><a data-filter=".smm">Social Media Marketing</a></li>
+                <li><a data-filter=".web-dev">Web Development</a></li>
+                <li><a data-filter=".web-design">Web Designing</a></li>
+                <li><a data-filter=".graphics">Graphics Designing</a></li>
+                <li><a data-filter=".branding">Branding</a></li>
+                <li><a data-filter=".print">Print Services</a></li>
+                <li><a data-filter=".pr">PR Marketing</a></li>
+                <li><a data-filter=".sem">Pay Per Click (SEM)</a></li>
+                <li><a data-filter=".paid-smm">Paid SMM</a></li>
+                <li><a data-filter=".animation-2d">Animation (2D)</a></li>
+                <li><a data-filter=".animation-3d">Animation (3D)</a></li>
+            </ul>
+            
+            <div class="grid-wrapper" id="portfolio-grid">
+                <!-- Each div needs a class for filtering (e.g., seo, web-dev) and layout (wide, tall, big) -->
+                <!-- Portfolio Item 1: Standard landscape (SEO, Web Dev) -->
+                <div class="frosted-glass seo web-dev">
+                    <a href="https://images.unsplash.com/photo-1541845157-a6d2d100c931?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" title="Project Alpha - Digital Marketing">
+                        <img src="https://images.unsplash.com/photo-1541845157-a6d2d100c931?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" alt="Abstract Colors" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Project Alpha</h3>
+                            <p class="gallery-description">Web Design & SEO for a tech startup.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 2: Taller portrait (SMM, Branding) -->
+                <div class="frosted-glass tall smm branding">
+                    <a href="https://images.unsplash.com/photo-1588282322673-c31965a75c3e?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1351&amp;q=80" title="Modern Architecture">
+                        <img src="https://images.unsplash.com/photo-1588282322673-c31965a75c3e?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1351&amp;q=80" alt="Modern Architecture" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Modern Architecture</h3>
+                            <p class="gallery-description">Clean lines and minimalist design.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 3: Wider landscape (Graphics, Web Design) -->
+                <div class="frosted-glass wide graphics web-design">
+                    <a href="https://images.unsplash.com/photo-1588117472013-59bb13edafec?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" alt="" title="Cityscape Reflections">
+                        <img src="https://images.unsplash.com/photo-1588117472013-59bb13edafec?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" alt="Cityscape Reflections" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Cityscape Reflections</h3>
+                            <p class="gallery-description">Urban beauty captured.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 4: Small square (SEM, Paid SMM) -->
+                <div class="frosted-glass sem paid-smm">
+                    <a href="https://images.unsplash.com/photo-1587588354456-ae376af71a25?ixlib=rb-1.2.1&ixid=eyJaucHBfaWQiOjEyMDd9&auto=format&amp;fit=crop&amp;w=1350&q=80" title="Nature's Palette">
+                        <img src="https://images.unsplash.com/photo-1587588354456-ae376af71a25?ixlib=rb-1.2.1&ixid=eyJaucHBfaWQiOjEyMDd9&auto=format&amp;fit=crop&amp;w=1350&q=80" alt="Nature's Palette" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Nature's Palette</h3>
+                            <p class="gallery-description">Stunning natural landscapes.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 5: Very tall portrait (Animation 2D, PR Marketing) -->
+                <div class="frosted-glass tall animation-2d pr">
+                    <a href="https://images.unsplash.com/photo-1558980663-3685c1d673c4?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=60" title="Geometric Patterns">
+                        <img src="https://images.unsplash.com/photo-1558980663-3685c1d673c4?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=60" alt="Geometric Patterns" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Geometric Patterns</h3>
+                            <p class="gallery-description">Intricate digital designs.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 6: Slightly wider landscape (Animation 3D, Print Services) -->
+                <div class="frosted-glass wide animation-3d print">
+                    <a href="https://images.unsplash.com/photo-1588499756884-d72584d84df5?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2134&amp;q=80" title="Abstract Art">
+                        <img src="https://images.unsplash.com/photo-1588499756884-d72584d84df5?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2134&amp;q=80" alt="Abstract Art" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Abstract Art</h3>
+                            <p class="gallery-description">A unique artistic expression.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 7: Big (SEO, Web Design) -->
+                <div class="frosted-glass big seo web-design">
+                    <a href="https://images.unsplash.com/photo-1588492885706-b8917f06df77?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1951&amp;q=80" title="Digital Landscape">
+                        <img src="https://images.unsplash.com/photo-1588492885706-b8917f06df77?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1951&amp;q=80" alt="Digital Landscape" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Digital Landscape</h3>
+                            <p class="gallery-description">Future-forward digital art.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 8: Regular (SMM, Graphics) -->
+                <div class="frosted-glass smm graphics">
+                    <a href="https://images.unsplash.com/photo-1588247866001-68fa8c438dd7?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=564&amp;q=80" title="Minimalist Design">
+                        <img src="https://images.unsplash.com/photo-1588247866001-68fa8c438dd7?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=564&amp;q=80" alt="Minimalist Design" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Minimalist Design</h3>
+                            <p class="gallery-description">Clean and impactful visuals.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 9: Wider landscape (Branding, PR Marketing) -->
+                <div class="frosted-glass wide branding pr">
+                    <a href="https://images.unsplash.com/photo-1586521995568-39abaa0c2311?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" title="Urban Serenity">
+                        <img src="https://images.unsplash.com/photo-1586521995568-39abaa0c2311?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" alt="Urban Serenity" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Urban Serenity</h3>
+                            <p class="gallery-description">Capturing peace in the city.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 10: Big (SEM, Animation 2D) -->
+                <div class="frosted-glass big sem animation-2d">
+                    <a href="https://images.unsplash.com/photo-1572914857229-37bf6ee8101c?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1951&amp;q=80" title="Cosmic Trails">
+                        <img src="https://images.unsplash.com/photo-1572914857229-37bf6ee8101c?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1951&q=80" alt="Cosmic Trails" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Cosmic Trails</h3>
+                            <p class="gallery-description">Interstellar design concepts.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 11: Tall (Paid SMM, Web Dev) -->
+                <div class="frosted-glass tall paid-smm web-dev">
+                    <a href="https://images.unsplash.com/photo-1588453862014-cd1a9ad06a12?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80" title="Geometric Abstraction">
+                        <img src="https://images.unsplash.com/photo-1588453862014-cd1a9ad06a12?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80" alt="Geometric Abstraction" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Geometric Abstraction</h3>
+                            <p class="gallery-description">Complex patterns in art.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 12: Regular (Animation 3D, Print Services) -->
+                <div class="frosted-glass print animation-3d">
+                    <a href="https://images.unsplash.com/photo-1553984840-b8cbc34f215?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" title="Geometric Shapes">
+                        <img src="https://images.unsplash.com/photo-1553984840-b8cbc34f215?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" alt="Geometric Shapes" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Geometric Shapes</h3>
+                            <p class="gallery-description">Abstract digital art.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 13: Regular (SEO, SMM) -->
+                <div class="frosted-glass seo smm">
+                    <a href="https://images.unsplash.com/photo-1588224575346-501f5880ef29?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=80" title="Abstract Form">
+                        <img src="https://images.unsplash.com/photo-1588224575346-501f5880ef29?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="Abstract Form" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Abstract Form</h3>
+                            <p class="gallery-description">Sculptural digital work.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 14: Regular (Web Design, Graphics) -->
+                <div class="frosted-glass web-design graphics">
+                    <a href="https://images.unsplash.com/photo-1574798834926-b39501d8eda2?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" title="Neon Lights">
+                        <img src="https://images.unsplash.com/photo-1574798834926-b39501d8eda2?ixlib=rb-1.2.1&amp;ixid=eyJocirc;d9&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Neon Lights" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Neon Lights</h3>
+                            <p class="gallery-description">Vibrant urban photography.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 15: Regular (Branding, SEM) -->
+                <div class="frosted-glass branding sem">
+                    <a href="https://images.unsplash.com/photo-1547234935-80c7145ec969?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1353&amp;q=80" title="Abstract Colors 2">
+                        <img src="https://images.unsplash.com/photo-1547234935-80c7145ec969?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1353&q=80" alt="Abstract Colors 2" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Abstract Colors 2</h3>
+                            <p class="gallery-description">Another vibrant digital art piece.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 16: Wide (Paid SMM, Print Services) -->
+                <div class="frosted-glass wide paid-smm print">
+                    <a href="https://images.unsplash.com/photo-1588263823647-ce3546d42bfe?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=675&amp;q=80" title="Forest Path">
+                        <img src="https://images.unsplash.com/photo-1588263823647-ce3546d42bfe?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=675&amp;q=80" alt="Forest Path" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Forest Path</h3>
+                            <p class="gallery-description">A serene journey through nature.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 17: Regular (Animation 2D, PR Marketing) -->
+                <div class="frosted-glass animation-2d pr">
+                    <a href="https://images.unsplash.com/photo-1587732608058-5ccfedd3ea63?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" title="Ocean Waves">
+                        <img src="https://images.unsplash.com/photo-1587732608058-5ccfedd3ea63?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" alt="Ocean Waves" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Ocean Waves</h3>
+                            <p class="gallery-description">Powerful forces of nature.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 18: Regular (Animation 3D, SEO) -->
+                <div class="frosted-glass animation-3d seo">
+                    <a href="https://images.unsplash.com/photo-1587897773780-fe72528d5081?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1489&q=80" title="Mountain View">
+                        <img src="https://images.unsplash.com/photo-1587897773780-fe72528d5081?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1489&q=80" alt="Mountain View" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Mountain View</h3>
+                            <p class="gallery-description">Majestic landscapes.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 19: Wide (SMM, Web Dev) -->
+                <div class="frosted-glass wide smm web-dev">
+                    <a href="https://images.unsplash.com/photo-1588083949404-c4f1ed1323b3?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1489&q=80" title="City at Night">
+                        <img src="https://images.unsplash.com/photo-1588083949404-c4f1ed1323b3?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1489&q=80" alt="City at Night" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">City at Night</h3>
+                            <p class="gallery-description">The city never sleeps.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 20: Regular (Web Design, Graphics) -->
+                <div class="frosted-glass web-design graphics">
+                    <a href="https://images.unsplash.com/photo-1587572236558-a3751c6d42c0?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" title="Neon Lights 2">
+                        <img src="https://images.unsplash.com/photo-1587572236558-a3751c6d42c0?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" alt="Neon Lights 2" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Neon Lights 2</h3>
+                            <p class="gallery-description">Another vibrant urban photography.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 21: Wide (Branding, SEM) -->
+                <div class="frosted-glass wide branding sem">
+                    <a href="https://images.unsplash.com/photo-1583542225715-473a32c9b0ef?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" title="Sunrise Over Mountains">
+                        <img src="https://images.unsplash.com/photo-1583542225715-473a32c9b0ef?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" alt="Sunrise Over Mountains" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Sunrise Over Mountains</h3>
+                            <p class="gallery-description">A new day's beginning.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 22: Big (Paid SMM, Animation 2D) -->
+                <div class="frosted-glass big paid-smm animation-2d">
+                    <a href="https://images.unsplash.com/photo-1527928159272-7d012024eb74?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" title="Forest Clearing">
+                        <img src="https://images.unsplash.com/photo-1527928159272-7d012024eb74?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" alt="Forest Clearing" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Forest Clearing</h3>
+                            <p class="gallery-description">Nature's hidden gems.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 23: Regular (Print Services, Animation 3D) -->
+                <div class="frosted-glass print animation-3d">
+                    <a href="https://images.unsplash.com/photo-1553984840-b8cbc34f215?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" title="Geometric Shapes">
+                        <img src="https://images.unsplash.com/photo-1553984840-b8cbc34f215?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&q=80" alt="Geometric Shapes" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Geometric Shapes</h3>
+                            <p class="gallery-description">Abstract digital art.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 24: Regular (PR Marketing, SEO) -->
+                <div class="frosted-glass pr seo">
+                    <a href="https://images.unsplash.com/photo-1433446787703-42d5bf446876?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1351&q=80" title="Abstract City">
+                        <img src="https://images.unsplash.com/photo-1433446787703-42d5bf446876?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1351&q=80" alt="Abstract City" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Abstract City</h3>
+                            <p class="gallery-description">A modern urban depiction.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 25: Big (SMM, Web Design) -->
+                <div class="frosted-glass big smm web-design">
+                    <a href="https://images.unsplash.com/photo-1541187714594-731deadcd16a?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=80" title="Digital Glow">
+                        <img src="https://images.unsplash.com/photo-1541187714594-731deadcd16a?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=700&amp;q=80" alt="Digital Glow" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Digital Glow</h3>
+                            <p class="gallery-description">Illuminated digital design.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 26: Tall (Branding, SEM) -->
+                <div class="frosted-glass tall branding sem">
+                    <a href="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80" title="Intricate Patterns">
+                        <img src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=634&amp;q=80" alt="Intricate Patterns" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Intricate Patterns</h3>
+                            <p class="gallery-description">Detailed artistic designs.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 27: Regular (Paid SMM, Animation 2D) -->
+                <div class="frosted-glass paid-smm animation-2d">
+                    <a href="https://images.unsplash.com/photo-1421930866250-aa0594cea05c?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1355&amp;q=80" title="Abstract Lines">
+                        <img src="https://images.unsplash.com/photo-1421930866250-aa0594cea05c?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1355&amp;q=80" alt="Abstract Lines" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Abstract Lines</h3>
+                            <p class="gallery-description">Dynamic visual elements.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 28: Regular (Print Services, Animation 3D) -->
+                <div class="frosted-glass print animation-3d">
+                    <a href="https://images.unsplash.com/photo-1493306454986-c8877a09cbeb?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1381&amp;q=80" title="Creative Space">
+                        <img src="https://images.unsplash.com/photo-1493306454986-c8877a09cbeb?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1381&amp;q=80" alt="Creative Space" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Creative Space</h3>
+                            <p class="gallery-description">Inspirational design environment.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+                <!-- Portfolio Item 29: Wide (PR Marketing, SEO) -->
+                <div class="frosted-glass wide pr seo">
+                    <a href="https://images.unsplash.com/photo-1536466528142-f752ae7bdd0c?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" title="Digital Grid">
+                        <img src="https://images.unsplash.com/photo-1536466528142-f752ae7bdd0c?ixlib=rb-1.2.1&amp;ixid=eyJaucHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" alt="Digital Grid" />
+                        <div class="gallery-overlay">
+                            <h3 class="gallery-title">Digital Grid</h3>
+                            <p class="gallery-description">Complex network visualization.</p>
+                        </div>
+                        <i class="fas fa-magnifying-glass gallery-magnify-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+		<!-- Why Choose Us Section -->
+        <section class="mb-20 py-16 frosted-glass rounded-xl">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">
+                    <small class="color-purple-400 block mb-2 small-heading-text">Your Trusted Partner</small>
+                    Why Choose Us
+                </h2 >
+                
+                <div class="flex flex-col md:flex-row gap-8 mt-12 items-start"> <!-- Added items-start here for vertical alignment -->
+                    <div class="md:w-1/2 text-left">
+                        <p class="text-lg text-gray-300 mb-6">Phantom Marketing is your ultimate marketing partner, driven by skilled professionals who masterfully craft impactful strategies. With a deep understanding of your business, we tailor solutions to align perfectly with your goals and target audience. Our innovative approach, coupled with cutting-edge tools, ensures a competitive edge and outstanding results. Customer satisfaction is our core, and we're committed to your success. Transparent and collaborative, we keep you involved in every step, guaranteeing seamless execution. Our track record of successful campaigns reflects our dedication to achieving your objectives.<br>From branding to social media, SEO, PPC, content marketing, and more, we deliver top-notch solutions. Choose Phantom Marketing for exceptional creativity and service that leave a lasting impression, elevating your business to new heights.</p>
+                    </div>
+
+                    <div class="md:w-1/2 text-left">
+                        <blockquote class="blockquote-pasific-has-photo frosted-glass">
+                            <!-- Replaced img with icon -->
+                            <i class="fas fa-lightbulb img-circle text-4xl mb-2" style="color: #FFD700;"></i> 
+                            <h3>Creative And Smart Objective</h3>
+                            <p>We create smart work but always keep the objective of each campaign/project our utmost priority.</p>
+                        </blockquote>
+                        <blockquote class="blockquote-pasific-has-photo frosted-glass">
+                            <!-- Replaced img with icon -->
+                            <i class="fas fa-chart-simple img-circle text-4xl mb-2" style="color: #1E90FF;"></i>
+                            <h3>Result-Oriented Service</h3>
+                            <p>Our utmost priority is to create our client’s brand image in the best possible manner with diverse strategies and creative endeavors.</p>
+                        </blockquote>
+                        <blockquote class="blockquote-pasific-has-photo frosted-glass">
+                            <!-- Replaced img with icon -->
+                            <i class="fas fa-heart img-circle text-4xl mb-2" style="color: #FF69B4;"></i>
+                            <h3>Our Work Is Our Passion</h3>
+                            <p>We know our craft, creativity is our work. We love our clients and the relationship we have with our client's matters the most. We only succeed when our clients succeed.</p>
+                        </blockquote>
+                    </div>
+                </div>
+                <a href="contact-us.html" class="btn-gradient text-white flex items-center justify-center md:inline-flex mt-8">
+                    Discover the Difference<i class="fa fa-cogs ml-2"></i>
+                </a>
+            </div>
+        </section>
+		
+        <!-- Accreditation Section -->
+		<section class="mb-20 py-12 bg-gray-900 rounded-xl shadow-inner border border-gray-800">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">
+                        <small class="color-blue-400 block mb-2 small-heading-text">Recognized Excellence, Proven Trust</small>
+                        Accreditations
+                    </h2 >
+                </div>
+                <!-- Accreditation Logos Ticker Container -->
+                <div class="accreditation-ticker-container">
+                    <div class="accreditation-ticker-wrapper" id="accreditation-ticker-wrapper">
+                        <!-- Original content. Duplicated by JavaScript for infinite scroll. -->
+                        <div class="accreditation-logo-item">
+                            <!-- Accreditation Logo (Original Size: 250x125) -->
+                            <img src="uploaded:image_841c8e.png" alt="Google Partner logo" class="img-responsive opacity-75 hover:opacity-100 transition duration-300">
+                        </div>
+                        <div class="accreditation-logo-item">
+                            <!-- Accreditation Logo (Original Size: 250x125) -->
+                            <img src="uploaded:image_841fd6.png" alt="Meta Partner logo" class="img-responsive opacity-75 hover:opacity-100 transition duration-300">
+                        </div>
+                        <div class="accreditation-logo-item">
+                            <!-- Accreditation Logo (Original Size: 250x125) -->
+                            <img src="uploaded:image_8510b1.png" alt="HubSpot logo" class="img-responsive opacity-75 hover:opacity-100 transition duration-300">
+                        </div>
+                        <div class="accreditation-logo-item">
+                            <!-- Accreditation Logo (Original Size: 250x125) -->
+                            <img src="uploaded:image_856a2d.png" alt="Clutch logo" class="img-responsive opacity-75 hover:opacity-100 transition duration-300">
+                        </div>
+                        <div class="accreditation-logo-item">
+                            <!-- Accreditation Logo (Original Size: 250x125) -->
+                            <img src="uploaded:image_856a85.png" alt="Semrush logo" class="img-responsive opacity-75 hover:opacity-100 transition duration-300">
+                        </div>
+                        <div class="accreditation-logo-item">
+                            <!-- Accreditation Logo (Original Size: 250x125) -->
+                            <img src="uploaded:image_85edd0.png" alt="Ahrefs logo" class="img-responsive opacity-75 hover:opacity-100 transition duration-300">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+		
+		<!-- Testimonial Area (Vanilla JS Carousel) -->
+        <section class="mb-20 py-16 bg-cover bg-center rounded-xl" style="background-image: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.7) 100%), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTL9v6bMIW9jwuonpZeJ1WNfeHptPKjak4V4BrSHP0xjYVIjw9C3L_dSus&s=10');">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-4xl font-bold mb-12 text-gray-200 heading-underline mx-auto">
+                    <small class="color-cyan-400 block mb-2 small-heading-text">Raving Reviews!</small>
+                    Testimonials
+                </h2 >
+                
+                <div class="testimonials-carousel-container" id="testimonials-carousel-container">
+                    <div class="testimonials-wrapper" id="testimonials-wrapper">
+                        <!-- Testimonial Item start -->
+                        <div class="testimonial-item">
+                            <p class="text-lg text-gray-300 italic mb-4">"Pasific template is the best template so far. So easy to customize and clean code. Recommended!"</p>
+                            <div class="flex items-center justify-center mt-4">
+                                <!-- Testimonial Author Image (Original Size: 60x60) -->
+                                <img src="https://placehold.co/60x60/777/fff?text=JS" alt="testimonial author" class="img-responsive img-circle w-16 h-16 rounded-full mr-4 object-cover border-2 border-purple-400">
+                                <div>
+                                    <p class="font-semibold text-purple-400">Martin Smith</p>
+                                    <a href="#" class="text-gray-400 text-sm hover:underline">envato.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial Item end -->
+
+                        <!-- Testimonial Item start -->
+                        <div class="testimonial-item">
+                            <p class="text-lg text-gray-300 italic mb-4">"Quisque mollis lacus augue, a hendrerit leo tristique vitae. Mauris non ipsum molestie sagittis elit ac vulputate odio."</p>
+                            <div class="flex items-center justify-center mt-4">
+                                <!-- Testimonial Author Image (Original Size: 60x60) -->
+                                <img src="https://placehold.co/60x60/777/fff?text=SA" alt="testimonial author" class="img-responsive img-circle w-16 h-16 rounded-full mr-4 object-cover border-2 border-pink-400">
+                                <div>
+                                    <p class="font-semibold text-pink-400">Steve Austin</p>
+                                    <a href="#" class="text-gray-400 text-sm hover:underline">facebook.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial Item end -->
+
+                        <!-- Testimonial Item start -->
+                        <div class="testimonial-item">
+                            <p class="text-lg text-gray-300 italic mb-4">"Fusce quam augue, gravida tincidunt dui nec, tempor iaculis justo."</p>
+                            <div class="flex items-center justify-center mt-4">
+                                <!-- Testimonial Author Image (Original Size: 60x60) -->
+                                <img src="https://placehold.co/60x60/777/fff?text=GM" alt="testimonial author" class="img-responsive img-circle w-16 h-16 rounded-full mr-4 object-cover border-2 border-red-400">
+                                <div>
+                                    <p class="font-semibold text-red-400">Gisselse</p>
+                                    <a href="#" class="text-gray-400 text-sm hover:underline">Smashingmagazine.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial Item end -->
+
+                        <!-- Testimonial Item start -->
+                        <div class="testimonial-item">
+                            <p class="text-lg text-gray-300 italic mb-4">"Pasific template is the best template so far. So easy to customize and clean code. Recommended!"</p>
+                            <div class="flex items-center justify-center mt-4">
+                                <!-- Testimonial Author Image (Original Size: 60x60) -->
+                                <img src="https://placehold.co/60x60/777/fff?text=MS" alt="testimonial author" class="img-responsive img-circle w-16 h-16 rounded-full mr-4 object-cover border-2 border-purple-400">
+                                <div>
+                                    <p class="font-semibold text-purple-400">Martin Smith</p>
+                                    <a href="#" class="text-gray-400 text-sm hover:underline">Smashingmagazine.com</a>
+                                    </div>
+                            </div>
+                        </div>
+                        <!-- Testimonial Item end -->
+                    </div>
+                    <button class="testimonial-nav-button prev" id="prev-testimonial">&leftarrow;</button>
+                    <button class="testimonial-nav-button next" id="next-testimonial">&rightarrow;</button>
+                </div>
+            </div>
+        </section>
+		
+		<!-- Let's Talk Section -->
+        <section class="py-20 px-8 rounded-xl bg-gradient-to-r from-gray-800 to-black text-center shadow-lg">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-4xl lg:text-5xl font-extrabold mb-4 leading-tight text-white">
+                    <small class="block text-gray-400 mb-2 font-normal">Let's Talk About</small>
+                    <strong class="text-6xl font-pacifico" style="color: transparent; -webkit-text-stroke: 1px white; background: linear-gradient(137deg, #ffd26a, #ff5646, #ffd26a); -webkit-background-clip: text;">Your NEXT Project</strong> 
+                </h2>
+                <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    In the vast and untamed wilderness of the web, you'll stumble upon countless <b>"AGENCIES"</b> and <b>"GURUS."</b> But let's be real – most are just <b>BARK, not BITE</b>, all fluff, no substance. 'Cause, you know, marketers can bend the truth, but numbers? They don't lie. So, <b>Hit That Damn Button Now!</b>
+                </p>
+                <a href="contact-us.html" class="btn-gradient text-white text-lg flex items-center justify-center md:inline-flex">
+                    HIT THE DAMN BUTTON!<i class="fa-solid fa-handshake ml-2"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Desktop Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-8 text-sm border-t border-gray-800 hidden md:block">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- About Us -->
+            <div>
+                <h3 class="text-white text-lg font-semibold mb-4">ABOUT US</h3>
+                <p class="text-gray-500 mb-2">Phantom Marketing is a Creative agency with digital plans, and promotional tools. Bringing your vision to life, we are on a mission to reshape the digital marketing landscape through brand recognition and creativity.</p>
+            </div>
+
+            <!-- Legal -->
+            <div>
+                <h3 class="text-white text-lg font-semibold mb-4">LEGAL</h3>
+                <ul>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Privacy Policy</a></li>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow, Like & Subscribe -->
+            <div class="text-center md:text-left">
+                <h3 class="text-white text-lg font-semibold mb-4">FOLLOW, LIKE & SUBSCRIBE</h3>
+                <div class="flex justify-center md:justify-start space-x-4 text-2xl mb-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="text-gray-500 text-xs mt-2">SUBSCRIBE</p>
+            </div>
+
+            <!-- Newsletter - Using a placeholder for now as no input field visible in image -->
+            <div class="text-center md:text-left">
+                <h3 class="text-white text-lg font-semibold mb-4">Newsletter</h3>
+                <p class="text-gray-500 mb-2">Join our newsletter for exclusive updates and insights.</p>
+                <!-- Placeholder for actual input field if needed -->
+                <button class="btn-gradient text-white text-sm py-2 px-4 rounded-full mt-2">Sign Up</button>
+            </div>
+        </div>
+        <div class="text-center mt-8 border-t border-gray-800 pt-6">
+            <p>&copy; <span id="currentYear"></span> Phantom Marketing. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Footer Navigation -->
+    <footer class="mobile-footer-nav md:hidden">
+        <a href="index.html" class="mobile-footer-nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <div class="mobile-footer-nav-item relative" id="mobile-services-item">
+            <a href="#" id="services-toggle" class="flex flex-col items-center justify-center w-full h-full">
+                <i class="fas fa-cogs"></i>
+                <span>Services</span>
+            </a>
+            <div class="services-submenu" id="services-submenu">
+                <a href="search-engine-optimization.html">Search Engine Optimization</a>
+                <a href="#">Social Media Marketing</a>
+                <a href="#">Web Development</a>
+                <a href="#">Web Designing</a>
+                <a href="#">Graphics Designing</a>
+                <a href="#">Branding</a>
+                <a href="#">Print Services</a>
+                <a href="#">PR Marketing</a>
+            </div>
+        </div>
+        <a href="#" class="mobile-footer-nav-item">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </a>
+        <!-- New central logo container -->
+        <div class="mobile-footer-logo-container">
+            <img src="https://i.ibb.co/C5gVjVS4/Untitled-design.gif" alt="Central Logo" class="mobile-footer-logo">
+        </div>
+        <a href="contact-us.html" class="mobile-footer-nav-item">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </footer>
+
+    <!-- JQuery and other Core JS -->
+    <!-- Corrected CDN URLs for script tags -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Helper Functions ---
+            function getElement(selector) {
+                return document.querySelector(selector);
+            }
+
+            function getAllElements(selector) {
+                return document.querySelectorAll(selector);
+            }
+
+            function addClass(element, className) {
+                element.classList.add(className);
+            }
+
+            function removeClass(element, className) {
+                element.classList.remove(className);
+            }
+
+            function hasClass(element, className) {
+                return element.classList.contains(className);
+            }
+
+            // --- Mobile Footer Navigation Logic ---
+            const mobileFooterNavItems = getAllElements('.mobile-footer-nav-item');
+            const servicesToggle = getElement('#services-toggle');
+            const servicesSubmenu = getElement('#services-submenu');
+            let submenuCloseTimeoutId;
+
+            // Set current year in footer
+            const currentYearElement = getElement('#currentYear');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+
+            function setActiveNavItem(clickedElement) {
+                mobileFooterNavItems.forEach(item => {
+                    removeClass(item, 'active');
+                });
+                addClass(clickedElement, 'active');
+            }
+
+            function setSubmenuTimeout() {
+                clearTimeout(submenuCloseTimeoutId);
+                submenuCloseTimeoutId = setTimeout(() => {
+                    closeAllSubmenus();
+                }, 3000);
+            }
+
+            function closeAllSubmenus() {
+                clearTimeout(submenuCloseTimeoutId);
+                if (servicesSubmenu) {
+                    removeClass(servicesSubmenu, 'active');
+                }
+            }
+
+            function toggleServicesSubmenu(event) {
+                event.preventDefault();
+                event.stopPropagation(); // Prevent immediate closing by outside click handler
+
+                if (hasClass(servicesSubmenu, 'active')) {
+                    closeAllSubmenus();
+                } else {
+                    closeAllSubmenus(); // Ensure all submenus are closed first (though now only one)
+                    addClass(servicesSubmenu, 'active'); // Open primary submenu
+                    setActiveNavItem(servicesToggle.parentNode); // Set the main Services icon as active
+                    setSubmenuTimeout(); // Start the auto-close timer
+                }
+            }
+
+            // Event listeners for mobile footer navigation
+            mobileFooterNavItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (link && item.id !== 'mobile-services-item') { // Exclude the services item with special toggle
+                    link.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Prevent document click from immediately closing
+                        setActiveNavItem(item);
+                        closeAllSubmenus(); // Close any open submenus when another nav item is clicked
+                    });
+                }
+            });
+
+            if (servicesToggle) {
+                servicesToggle.addEventListener('click', toggleServicesSubmenu);
+            }
+
+            getAllElements('#services-submenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    removeClass(servicesSubmenu, 'active');
+                    clearTimeout(submenuCloseTimeoutId);
+                });
+            });
+
+            // General click outside handler for closing all submenus
+            document.addEventListener('click', (e) => {
+                const mobileServicesItem = getElement('#mobile-services-item');
+                if (mobileServicesItem && !mobileServicesItem.contains(e.target) && hasClass(servicesSubmenu, 'active')) {
+                    closeAllSubmenus();
+                }
+            });
+
+            // Set active class on page load
+            const currentPath = window.location.pathname.split('/').pop();
+            const homeNavItem = getElement('.mobile-footer-nav-item a[href="index.html"]');
+
+            if (currentPath === '' || currentPath === 'index.html') {
+                if (homeNavItem) {
+                    setActiveNavItem(homeNavItem.parentNode);
+                }
+            } else {
+                const servicesLinks = getAllElements('#services-submenu a');
+                let foundActiveService = false;
+                servicesLinks.forEach(link => {
+                    const linkPath = link.href.split('/').pop();
+                    if (linkPath === currentPath) {
+                        addClass(link, 'active');
+                        const mobileServicesItem = getElement('#mobile-services-item');
+                        if (mobileServicesItem) {
+                            setActiveNavItem(mobileServicesItem);
+                            foundActiveService = true;
+                        }
+                    }
+                });
+                // If no specific service page matched, and not on home, don't set any active
+            }
+
+
+            // --- "Scan Your Website" Section Logic ---
+            const websiteScanInput = getElement('#website-scan-input');
+            const submitScanButton = getElement('#submit-scan');
+
+            if (submitScanButton && websiteScanInput) {
+                submitScanButton.addEventListener('click', () => {
+                    const url = websiteScanInput.value;
+                    if (url) {
+                        window.open('https://pagespeed.web.dev/report?url=' + url, '_blank');
+                    } else {
+                        // Using alert for simplicity, consider a custom modal in a real application
+                        alert('Please enter a website URL to scan.');
+                    }
+                });
+
+                websiteScanInput.addEventListener('keyup', (e) => {
+                    if (e.key === 'Enter' || e.keyCode === 13) { // keyCode for older browsers
+                        submitScanButton.click();
+                    }
+                });
+            }
+
+            // --- "Go To Top" Button Logic ---
+            const goToTopButton = getElement('.go-to-top');
+
+            if (goToTopButton) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 200) { // Show button after scrolling 200px
+                        removeClass(goToTopButton, 'hidden');
+                    } else {
+                        addClass(goToTopButton, 'hidden');
+                    }
+                });
+
+                goToTopButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // --- Counter Animation (Vanilla JS) ---
+            const countToElements = getAllElements('.count-to');
+            const observerOptions = {
+                root: null, // viewport as the root
+                rootMargin: '0px',
+                threshold: 0.5 // Trigger when 50% of the element is visible
+            };
+
+            const countUp = (entry) => {
+                const element = entry.target;
+                if (entry.isIntersecting && !element.dataset.counted) {
+                    const target = parseInt(element.dataset.target);
+                    let current = 0;
+                    const increment = target / 200; // Adjust speed
+                    const appendText = element.dataset.append || '';
+
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                            element.dataset.counted = 'true'; // Mark as counted
+                        }
+                        element.textContent = Math.floor(current) + appendText;
+                    }, 10); // Update every 10ms
+                }
+            };
+
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(countUp);
+            }, observerOptions);
+
+            countToElements.forEach(element => {
+                counterObserver.observe(element);
+                element.textContent = element.dataset.from || '0'; // Set initial value
+            });
+
+
+            // --- Portfolio Filtering (Isotope.js Integration) ---
+            // Ensure jQuery and imagesLoaded are loaded before Isotope
+            // Moved Magnific Popup CSS link to head for proper loading
+            if (typeof jQuery !== 'undefined' && typeof Isotope !== 'undefined' && typeof imagesLoaded !== 'undefined') {
+                var $grid = $('#portfolio-grid').imagesLoaded(function() {
+                    $grid.isotope({
+                        itemSelector: '.frosted-glass', // Use the class for individual portfolio items
+                        layoutMode: 'masonry',
+                        masonry: {
+                            columnWidth: '.frosted-glass', // Isotope will calculate based on content if not specified
+                            gutter: 10 // Space between items, matches grid-gap
+                        }
+                    });
+                });
+
+                // Bind click events to filter buttons
+                $('.portfolio-filters').on('click', 'a', function() {
+                    var filterValue = $(this).attr('data-filter');
+                    $grid.isotope({ filter: filterValue });
+
+                    // Update active class for filters
+                    $('.portfolio-filters a').removeClass('active');
+                    $(this).addClass('active');
+                });
+
+                // Initialize Magnific Popup for portfolio items
+                $('.grid-wrapper').magnificPopup({
+                    delegate: 'div.frosted-glass a', // Select the anchor tags within the grid items
+                    type: 'image',
+                    gallery: {
+                        enabled: true // Enable gallery mode
+                    },
+                    verticalFit: true, // Fit image vertically in popup
+                    closeOnContentClick: false, // Keep false to allow content inside overlay to be clicked
+                    closeBtnInside: true, // Place close button inside the content
+                    mainClass: 'mfp-with-zoom mfp-img-mobile' // CSS classes for styling
+                });
+
+                // Initially trigger 'All Projects' filter to layout the grid
+                $('.portfolio-filters a[data-filter="*"]').click();
+            } else {
+                console.warn('Isotope.js, imagesLoaded.js, Magnific Popup, or jQuery not loaded. Portfolio filtering and enlargement may not work as expected.');
+                // Fallback for visual display if JS libraries are missing
+                const filterButtons = getAllElements('.portfolio-filters li a');
+                const portfolioItems = getAllElements('.grid-wrapper > div'); // Select direct children of grid-wrapper
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        filterButtons.forEach(btn => removeClass(btn, 'active'));
+                        addClass(button, 'active');
+                        const filterValue = button.dataset.filter;
+                        portfolioItems.forEach(item => {
+                            if (filterValue === '*' || hasClass(item, filterValue.substring(1))) {
+                                item.style.display = 'flex'; // Maintain flex display for centering content
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        });
+                    });
+                });
+                const allProjectsButton = getElement('.portfolio-filters li a[data-filter="*"]');
+                if (allProjectsButton) {
+                    allProjectsButton.click();
+                }
+            }
+
+
+            // --- Testimonial Carousel (Vanilla JS Basic with Autoplay) ---
+            const testimonialsWrapper = getElement('#testimonials-wrapper');
+            const prevButton = getElement('#prev-testimonial');
+            const nextButton = getElement('#next-testimonial');
+            const testimonialItems = getAllElements('.testimonial-item');
+            const testimonialsContainer = getElement('#testimonials-carousel-container'); // Get the container
+            let currentTestimonialIndex = 0;
+            let autoPlayTestimonialInterval;
+            const autoPlayTestimonialDuration = 5000; // 5 seconds
+
+            // Function to update the carousel position and ensure correct item widths
+            function updateTestimonialCarousel() {
+                if (!testimonialsWrapper || testimonialItems.length === 0 || !testimonialsContainer) return;
+
+                // Set the width of each testimonial item to match the container's visible width
+                // This is crucial for correct spacing and flex behavior
+                const containerWidth = testimonialsContainer.offsetWidth;
+                testimonialItems.forEach(item => {
+                    item.style.width = `${containerWidth}px`; // Explicitly set width
+                });
+
+                // Apply the transform to the wrapper
+                testimonialsWrapper.style.transform = `translateX(-${currentTestimonialIndex * containerWidth}px)`;
+            }
+
+            function startTestimonialAutoPlay() {
+                stopTestimonialAutoPlay(); // Clear any existing interval to prevent multiple intervals
+                autoPlayTestimonialInterval = setInterval(() => {
+                    currentTestimonialIndex = (currentTestimonialIndex < testimonialItems.length - 1) ? currentTestimonialIndex + 1 : 0;
+                    updateTestimonialCarousel();
+                }, autoPlayTestimonialDuration);
+            }
+
+            function stopTestimonialAutoPlay() {
+                clearInterval(autoPlayTestimonialInterval);
+            }
+
+            if (prevButton && nextButton && testimonialsWrapper && testimonialsContainer) {
+                // Initial setup for items' widths
+                updateTestimonialCarousel(); // Call once initially to set correct widths and position
+
+                prevButton.addEventListener('click', () => {
+                    stopTestimonialAutoPlay(); // Stop autoplay on manual interaction
+                    currentTestimonialIndex = (currentTestimonialIndex > 0) ? currentTestimonialIndex - 1 : testimonialItems.length - 1;
+                    updateTestimonialCarousel();
+                    startTestimonialAutoPlay(); // Restart autoplay after a delay
+                });
+
+                nextButton.addEventListener('click', () => {
+                    stopTestimonialAutoPlay(); // Stop autoplay on manual interaction
+                    currentTestimonialIndex = (currentTestimonialIndex < testimonialItems.length - 1) ? currentTestimonialIndex + 1 : 0;
+                    updateTestimonialCarousel();
+                    startTestimonialAutoPlay(); // Restart autoplay after a delay
+                });
+
+                testimonialsContainer.addEventListener('mouseenter', stopTestimonialAutoPlay);
+                testimonialsContainer.addEventListener('mouseleave', startTestimonialAutoPlay);
+
+                // Update carousel on window resize for responsiveness
+                window.addEventListener('resize', () => {
+                    updateTestimonialCarousel(); // Recalculate widths and update position
+                });
+
+                // Start autoplay when the page loads
+                startTestimonialAutoPlay();
+            }
+
+            // --- Client Logos Ticker (Vanilla JS Infinite Scroll) ---
+            // This section was removed from HTML, so the JS related to it is no longer necessary.
+            /*
+            const clientLogosTickerWrapper = getElement('#client-logos-ticker-wrapper');
+            if (clientLogosTickerWrapper) {
+                const clientLogoItems = getAllElements('.client-logos-ticker-wrapper .client-logo-item');
+                if (clientLogoItems.length > 0) {
+                    const originalContent = clientLogosTickerWrapper.innerHTML;
+                    clientLogosTickerWrapper.innerHTML += originalContent; // Duplicate once for seamless looping
+                } else {
+                    console.warn('No client logo items found for duplication.');
+                }
+            }
+            */
+
+            // --- Accreditation Logos Ticker (Vanilla JS Infinite Scroll) ---
+            const accreditationTickerWrapper = getElement('#accreditation-ticker-wrapper');
+            
+            // Duplicate items to create infinite scroll effect
+            if (accreditationTickerWrapper) {
+                const accreditationLogoItems = getAllElements('.accreditation-ticker-wrapper .accreditation-logo-item');
+                if (accreditationLogoItems.length > 0) {
+                    const originalAccreditationContent = accreditationTickerWrapper.innerHTML;
+                    accreditationTickerWrapper.innerHTML += originalAccreditationContent; // Duplicate once for seamless looping
+                } else {
+                    console.warn('No accreditation logo items found for duplication.');
+                }
+            }
+
+
+            // --- Tab Switching Logic for Service Section ---
+            const serviceTabLinks = getAllElements('.service-tabs-list a');
+            const serviceTabPanes = getAllElements('.tab-content .service-tab-pane');
+
+            // Function to handle tab clicks
+            function handleServiceTabClick(event) {
+                event.preventDefault(); // Prevent default link behavior
+
+                // Remove 'active' class from all tab links and panes
+                serviceTabLinks.forEach(link => {
+                    link.parentNode.classList.remove('active');
+                });
+                serviceTabPanes.forEach(pane => {
+                    pane.classList.remove('active', 'in');
+                });
+
+                // Add 'active' class to the clicked tab's parent <li>
+                const clickedTab = event.target;
+                clickedTab.parentNode.classList.add('active');
+
+                // Get the target pane ID from the href and activate it
+                const targetPaneId = clickedTab.getAttribute('href').substring(1);
+                const targetPane = getElement(`#${targetPaneId}`);
+                if (targetPane) {
+                    addClass(targetPane, 'active');
+                    // 'in' class might be used for fade-in animations, add it if needed
+                    setTimeout(() => addClass(targetPane, 'in'), 10); // Small delay for fade effect
+                }
+            }
+
+            // Attach click listeners to all service tab links
+            serviceTabLinks.forEach(link => {
+                link.addEventListener('click', handleServiceTabClick);
+            });
+
+            // Set the first tab as active by default on page load
+            const defaultActiveTab = getElement('.service-tabs-list li:first-child a');
+            if (defaultActiveTab) {
+                // Trigger a click event on the first tab to set it as active and display its content
+                // This ensures the content is loaded correctly on initial page load
+                defaultActiveTab.click(); 
+            }
+        });
+    </script>
+</body>
+</html>
