@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0c1321" />
+    <title>Phantom Marketing - Pay Per Click (PPC) Services</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS for Frosted Glass Effect and Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@300;400;600;700&family=Pacifico&display=swap');
+
+        /* Cosmic SaaS Theme Design System */
+        :root {
+            --background: 220 27% 6%; /* Very dark grey/black for background */
+            --foreground: 0 0% 98%;    /* Very light grey/off-white for foreground text */
+            --card: 220 27% 8%;
+            --card-foreground: 0 0% 98%;
+            --popover: 220 27% 8%;
+            --popover-foreground: 0 0% 98%;
+            --primary: 271 76% 53%;
+            --primary-foreground: 0 0% 98%;
+            --secondary: 220 27% 12%;
+            --secondary-foreground: 0 0% 98%;
+            --muted: 220 27% 12%;
+            --muted-foreground: 0 0% 65%;
+            --accent: 271 76% 53%;
+            --accent-foreground: 0 0% 98%;
+            --destructive: 0 84% 60%;
+            --destructive-foreground: 0 0% 98%;
+            --border: 220 27% 18%;
+            --input: 220 27% 18%;
+            --ring: 271 76% 53%;
+            --radius: 0.75rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            /* Reverted body background to static gradient */
+            background-image: linear-gradient(to br, hsl(var(--background)) 0%, rgba(0, 0, 0, 1) 100%);
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding-bottom: 70px;
+        }
+
+        .frosted-glass {
+            background-color: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .frosted-glass:hover {
+            box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* New class for solid background for ad type cards */
+        .solid-card-bg {
+            background-color: hsl(var(--card)); /* Use the defined card background color */
+            border: 1px solid hsl(var(--border));
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+            position: relative; /* Needed for pseudo-element positioning */
+            overflow: hidden; /* Ensure background image doesn't spill out */
+            z-index: 1; /* Ensure content is above the background image */
+        }
+
+        .solid-card-bg:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Background images for individual service cards */
+        .solid-card-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.15; /* Increased opacity for more visibility */
+            z-index: -1; /* Place behind content */
+            border-radius: inherit; /* Inherit border-radius from parent */
+            transition: opacity 0.3s ease;
+        }
+
+        .solid-card-bg:hover::before {
+            opacity: 0.25; /* Even more visible on hover */
+        }
+
+        /* Assign specific images to each card using nth-child */
+        .solid-card-bg:nth-child(1)::before { background-image: url('https://media.istockphoto.com/id/2098359215/photo/digital-marketing-concept-businessman-using-laptop-with-ads-dashboard-digital-marketing.jpg?s=2048x2048&w=is&k=20&c=enTR0-sMB481lfHGaMcaoiBBY0_uxXDzhLeEbL2mAtk='); }
+        .solid-card-bg:nth-child(2)::before { background-image: url('https://media.istockphoto.com/id/1492180527/photo/digital-marketing-commerce-online-sale-concept-promotion-of-products-or-services-through.jpg?s=2048x2048&w=is&k=20&c=q4skkMXxF3v4GosnWs7bIvpONwhq_pdQuGcVWLUdRZY='); }
+        .solid-card-bg:nth-child(3)::before { background-image: url('https://media.istockphoto.com/id/1464312029/photo/digital-online-marketing-commerce-sale-concept-promotion-of-products-or-services-through.jpg?s=2048x2048&w=is&k=20&c=Wqv5NPqj-ddguUnqnxXN1qxzJDcBlTHNGoKnQvQe0ao='); }
+        .solid-card-bg:nth-child(4)::before { background-image: url('https://media.istockphoto.com/id/2096762565/photo/digital-marketing-concept-online-advertising-website-ads-and-social-media-businessman-uses.jpg?s=2048x2048&w=is&k=20&c=umQSMDsGfQfBEl5gl3oFzdJF3-Cv7cr9H_KNR8qTk0U='); }
+        .solid-card-bg:nth-child(5)::before { background-image: url('https://media.istockphoto.com/id/1448317558/photo/online-advertisement-ads-on-internet.jpg?s=2048x2048&w=is&k=20&c=Rbw7ip-SUCYQtmcMI0XYgZvL_-MF6FmdAg2ClVy0t8U='); }
+        .solid-card-bg:nth-child(6)::before { background-image: url('https://media.istockphoto.com/id/2156198253/photo/online-sales-concept-of-digital-marketing-ad-product-ads-promotion-of-products-or-services.jpg?s=2048x2048&w=is&k=20&c=ECVmuTv8POZ9ELGUn_P4jlbU5oYbAstKfQ4vFeZzog0='); }
+        .solid-card-bg:nth-child(7)::before { background-image: url('https://media.istockphoto.com/id/1484855551/photo/online-programmatic-advertising-in-feed-on-computer-screen-optimize-advertisement-target.jpg?s=2048x2048&w=is&k=20&c=eEFNpW3QYNDrFHRqOTaXbxvd-3YRGFhFVmYv-x1H2wg='); }
+        .solid-card-bg:nth-child(8)::before { background-image: url('https://media.istockphoto.com/id/2171092251/photo/digital-marketing-commerce-online-sale-concept-businessman-using-laptop-with-ads-dashboard.jpg?s=2048x2048&w=is&k=20&c=7oGcCaydZEkdUgaZrmWcVyNiX95mBwJGyt8e6SpxDdk='); }
+        .solid-card-bg:nth-child(9)::before { background-image: url('https://media.istockphoto.com/id/2073120207/photo/ad-on-website-and-social-media-banner-ads-on-internet-digital-marketing-concept-marketer.jpg?s=2048x2048&w=is&k=20&c=1b4nRo2zIOfZJ819GRpAFPaGqJaiqQLbKxr6QfJ4N5s='); }
+
+
+        .header-frosted {
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(147, 51, 234, 0.4), 0 0 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .heading-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .heading-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(to right, #a78bfa, #f472b6);
+            border-radius: 9999px;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(to right, #9333ea, #db2777);
+            border-radius: 9999px;
+            padding: 12px 32px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #db2777, #9333ea);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        .btn-outline-glow {
+            border: 1px solid #a78bfa;
+            color: #a78bfa;
+            background: none;
+            padding: 12px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
+        }
+        .btn-outline-glow:hover {
+            background-color: rgba(147, 51, 234, 0.2);
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+        }
+
+        /* Accordion styles */
+        .accordion-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background-color: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+            padding: 0 1.5rem;
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .accordion-content.active {
+            max-height: 500px; /* Adjust as needed for content length */
+            padding: 1rem 1.5rem;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        /* Digital Arsenal specific styles for PPC tools (using placeholder images) */
+        .digital-arsenal-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            min-width: 180px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        .digital-arsenal-card {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+            backdrop-filter: blur(8.55795px);
+            -webkit-backdrop-filter: blur(8.55795px);
+            border-radius: 29.886px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transform: scale(1);
+            background: rgba(255, 255, 255, 0.01);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .digital-arsenal-card:hover {
+            transform: scale(1.1);
+        }
+
+        .digital-arsenal-card .img-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .digital-arsenal-card .img-wrapper img {
+            width: 59px;
+            height: 59px;
+            object-fit: contain;
+        }
+
+        .digital-arsenal-card .shadow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 29.886px;
+            overflow: hidden;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .digital-arsenal-card .shadow__wrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Specific styles for each card based on desired gradients and glows (Increased vibrancy) */
+        /* Card 1: Search Ads (Blue Theme) */
+        .card-style-1 {
+            box-shadow: rgba(66, 133, 244, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(66, 133, 244, 0.4);
+        }
+        .card-style-1 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(66, 133, 244, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(66, 133, 244, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 2: Display Ads (Green Theme) */
+        .card-style-2 {
+            box-shadow: rgba(52, 168, 83, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(52, 168, 83, 0.4);
+        }
+        .card-style-2 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(52, 168, 83, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(52, 168, 83, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 3: Shopping Ads (Orange Theme) */
+        .card-style-3 {
+            box-shadow: rgba(251, 188, 5, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(251, 188, 5, 0.4);
+        }
+        .card-style-3 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(251, 188, 5, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(251, 188, 5, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 4: YouTube Ads (Red Theme) */
+        .card-style-4 {
+            box-shadow: rgba(255, 0, 0, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(255, 0, 0, 0.4);
+        }
+        .card-style-4 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(255, 0, 0, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(255, 0, 0, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 5: App Campaigns (Teal Theme) */
+        .card-style-5 {
+            box-shadow: rgba(0, 150, 136, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(0, 150, 136, 0.4);
+        }
+        .card-style-5 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(0, 150, 136, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(0, 150, 136, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 6: Performance Max (Purple Theme) */
+        .card-style-6 {
+            box-shadow: rgba(139, 69, 255, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(139, 69, 255, 0.4);
+        }
+        .card-style-6 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(139, 69, 255, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(139, 69, 255, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 7: Demand Gen Campaigns (Pink Theme) */
+        .card-style-7 {
+            box-shadow: rgba(233, 30, 99, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(233, 30, 99, 0.4);
+        }
+        .card-style-7 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(233, 30, 99, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(233, 30, 99, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 8: Local Ads (Indigo Theme) */
+        .card-style-8 {
+            box-shadow: rgba(63, 81, 181, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(63, 81, 181, 0.4);
+        }
+        .card-style-8 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(63, 81, 181, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(63, 81, 181, 0.4) 0%, transparent 60%);
+        }
+
+        /* Card 9: SEM (Gray Theme - general marketing) */
+        .card-style-9 {
+            box-shadow: rgba(158, 158, 158, 0.7) 0px -2px 18px -1px inset, rgba(255, 255, 255, 0.2) 0px 0px 12px 0px inset;
+            border: 1px solid rgba(158, 158, 158, 0.4);
+        }
+        .card-style-9 .shadow__wrapper {
+            background: radial-gradient(circle at 50% 20%, rgba(158, 158, 158, 0.4) 0%, transparent 60%),
+                        radial-gradient(circle at 50% 80%, rgba(158, 158, 158, 0.4) 0%, transparent 60%);
+        }
+
+        .tool-name {
+            margin-top: 0.75rem;
+            text-align: center;
+            font-weight: 600;
+            color: #cbd5e1;
+            transition: color 0.2s ease;
+            white-space: nowrap;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .group:hover .tool-name {
+            color: white;
+        }
+
+        /* Modal styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            max-width: 700px;
+            width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            color: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #ccc;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .modal-close-button:hover {
+            color: white;
+        }
+
+        /* Ticker Animation Styles (JavaScript controlled) */
+        .scrolling-container {
+            display: flex;
+            white-space: nowrap;
+            will-change: transform;
+            cursor: grab;
+        }
+
+        .scrolling-container.dragging {
+            cursor: grabbing;
+        }
+
+        /* Centered Nav Logo Specific Styles */
+        .header-main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .header-main-nav .logo-container {
+            flex-shrink: 0;
+            margin: 0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .header-main-nav .logo-container img {
+            width: auto;
+            height: 60px;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+
+        .header-main-nav .nav-links {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            width: auto;
+            padding: 0;
+        }
+
+        .header-main-nav .nav-links.nav-left {
+            justify-content: flex-start;
+        }
+
+        .header-main-nav .nav-links.nav-right {
+            justify-content: flex-end;
+        }
+
+        .header-main-nav .nav-links ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Mobile specific adjustments for header */
+        @media (max-width: 768px) {
+            .header-main-nav .nav-links {
+                display: none;
+            }
+            .header-main-nav .logo-container {
+                display: none;
+            }
+            .mobile-nav-menu,
+            #mobile-menu-button {
+                display: none;
+            }
+        }
+
+        /* New utility classes for specific elements */
+        .cosmic-glow {
+            box-shadow: 0 0 20px rgba(139, 69, 255, 0.3);
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #8b45ff, #ff1493, #14b8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cosmic-border {
+            border: 1px solid;
+            border-image: linear-gradient(45deg, rgba(139, 69, 255, 0.5), rgba(255, 20, 147, 0.5), rgba(20, 184, 255, 0.5)) 1;
+        }
+
+        /* Client Logos specific styles - KEPT FOR REFERENCE but sections removed */
+        .client-logo-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            min-width: 200px;
+            height: 100px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            transition: none;
+        }
+
+        .client-logo-item img {
+            width: 150px;
+            height: 75px;
+            object-fit: contain;
+            opacity: 1;
+            transition: none;
+        }
+
+        /* Responsive adjustments for ticker sections */
+        @media (max-width: 768px) {
+            .digital-arsenal-ticker .relative,
+            .client-logo-ticker .relative { /* client-logo-ticker might still exist if other sections use it */
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .grid-cols-1-md-2-lg-3 {
+                grid-template-columns: 1fr;
+            }
+            .md\:grid-cols-2 {
+                grid-template-columns: 1fr;
+            }
+            .lg\:grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            .text-5xl {
+                font-size: 3rem;
+            }
+            .lg\:text-7xl {
+                font-size: 3.5rem;
+            }
+            .text-4xl {
+                font-size: 2.25rem;
+            }
+            .text-xl {
+                font-size: 1.125rem;
+            }
+            .btn-gradient, .btn-outline-glow {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        /* Mobile Footer Navigation Styles */
+        .mobile-footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 0.5rem;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            border-radius: 1rem 1rem 0 0;
+        }
+
+        .mobile-footer-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            padding: 0.25rem;
+            flex: 1;
+        }
+
+        .mobile-footer-nav-item i {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+            transition: color 0.2s ease;
+        }
+
+        .mobile-footer-nav-item.active,
+        .mobile-footer-nav-item:hover {
+            color: #a78bfa;
+        }
+
+        .mobile-footer-nav-item.active i,
+        .mobile-footer-nav-item:hover i {
+            color: #a78bfa;
+        }
+
+        .mobile-footer-logo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #a78bfa, #f472b6);
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.6);
+            transform: translateY(-20px);
+            z-index: 101;
+            flex-shrink: 0;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mobile-footer-logo-container:hover {
+            transform: translateY(-22px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.8);
+        }
+
+        .mobile-footer-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            filter: brightness(1.2);
+        }
+
+        .services-submenu {
+            position: absolute;
+            bottom: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.83);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+            border-radius: 0.75rem;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            box-sizing: border-box;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: bottom center;
+            transform: translateX(-50%) translateY(10px) scale(0.9);
+            max-height: 240px;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .services-submenu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .services-submenu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+        
+        .services-submenu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .services-submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+        }
+
+        @media (max-width: 399px) {
+            .mobile-footer-nav-item {
+                font-size: 0.65rem;
+                padding: 0.15rem;
+                flex-basis: auto;
+            }
+            .mobile-footer-nav-item i {
+                font-size: 1.2rem;
+                margin-bottom: 0.15rem;
+            }
+            .mobile-footer-logo-container {
+                width: 50px;
+                height: 50px;
+                transform: translateY(-15px);
+                margin: 0 0.25rem;
+            }
+            .mobile-footer-logo {
+                width: 30px;
+                height: 30px;
+            }
+            .services-submenu {
+                bottom: 65px;
+                min-width: 150px;
+            }
+            .services-submenu a {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        .small-heading-text {
+            font-size: 14px;
+            text-transform: capitalize;
+        }
+
+        /* Styles for the large faded "PHANTOM" text in the background */
+        .background-phantom-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Pacifico', cursive;
+            font-size: 250px;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+            opacity: 0.05;
+            z-index: 0;
+            white-space: nowrap;
+            user-select: none;
+            pointer-events: none;
+            background: linear-gradient(137deg, rgba(255, 210, 106, 0.2), rgba(255, 86, 70, 0.2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 1024px) {
+            .background-phantom-text {
+                font-size: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .background-phantom-text {
+                font-size: 120px;
+                -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .background-phantom-text {
+                font-size: 70px;
+            }
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen">
+
+    <!-- Header/Navigation -->
+    <header class="bg-gray-900 bg-opacity-70 header-frosted p-4 sticky top-0 z-50 rounded-full max-w-7xl mx-auto mt-4 hidden md:block">
+        <div class="flex items-center justify-between header-main-nav w-full px-4 relative">
+            <!-- Left Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-left flex-grow">
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="hover:text-purple-400 transition duration-200">Home</a></li>
+                    <li><a href="about.html" class="hover:text-purple-400 transition duration-200">About</a></li>
+                    <li><a href="services.html" class="hover:text-purple-400 transition duration-200">Services</a></li>
+                </ul>
+            </nav>
+
+            <!-- Centered Logo (Desktop Only) -->
+            <div class="logo-container mx-4 hidden md:flex">
+                <a href="index.html">
+                    <img src="https://phantommarketing.netlify.app/assets/img/logo/logo-white.gif" alt="Phantom Marketing Logo" class="h-12 w-auto">
+                </a>
+            </div>
+
+            <!-- Right Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-right flex-grow">
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Case Studies</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Blogs</a></li>
+                    <li><a href="contact-us.html" class="hover:text-purple-400 transition duration-200">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[70vh] flex items-center justify-center p-4 overflow-hidden text-center">
+        <!-- Hero Section background - reverted to static gradient -->
+        <div class="absolute inset-0 z-0 bg-gradient-to-br from-gray-950 to-black opacity-100"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 py-16">
+            <!-- Small tagline above H1 -->
+            <p class="text-lg text-gray-400 mb-4 inline-flex items-center frosted-glass rounded-full px-4 py-2 border border-gray-700 shadow-md">
+                <span class="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></span>
+                Command the Clicks, Conquer the SERP
+            </p>
+
+            <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight">
+                Phantom PPC: <span class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">Unleashing Paid Power Across the Web</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                In today's digital world, attention is currency, and most brands are struggling financially. They blindly throw their gold into weak ad strategies, bland copy, and keyword chaos, hoping something sticks. At Phantom Marketing, we don't "hope." We command.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
+                <a href="contact-us.html" class="btn-gradient text-white flex items-center justify-center">
+                    Get Started Free
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+                <a href="#our-process" class="btn-outline-glow text-purple-400 flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.064V9.336a1 1 0 011.555-.832l3.197 2.132a1 1 0 010 1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Watch Our Process
+                </a>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-6 text-gray-400 text-sm">
+                <p class="flex items-center">
+                    <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                    Maximize ROI
+                </p>
+                <p class="flex items-center">
+                    <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                    Targeted Campaigns
+                </p>
+                <p class="flex items-center">
+                    <span class="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
+                    Transparent Reporting
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-16 max-w-7xl">
+
+        <!-- Voice AI Button -->
+        <div class="text-center mb-12">
+            <button id="voiceCommandBtn" class="btn-gradient text-white flex items-center justify-center mx-auto">
+                <i class="fas fa-microphone mr-2"></i> Click to Speak
+            </button>
+            <p id="voiceStatus" class="text-gray-400 text-sm mt-2">Ready</p>
+        </div>
+
+        <!-- Section 1: Ad Alchemy That Works: Phantom’s Rituals of Paid Reach -->
+        <section class="mb-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="frosted-glass p-8 rounded-xl order-2 md:order-1">
+                <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline">Ad Alchemy That Works: Phantom’s Rituals of Paid Reach</h2>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    Step into the spellbound realm of clicks, conversions, and ROI beyond reason. There's more than one way to summon a soul, and we master them all. From the hidden shadows of the SERP to the captivating heart of YouTube, from impulse-fueled mobile taps to hyper-local hauntings, Google Ads offers countless dimensions of paid power.
+                </p>
+                <p class="text-gray-300 leading-relaxed">
+                    And Phantom doesn't choose just one; we wield every format in the Google grimoire. Each ad type is meticulously tailored to your unique business goals, audience behavior, and the intricacies of their buyer journey, ensuring maximum impact at every touchpoint.
+                </p>
+            </div>
+            <div class="order-1 md:order-2 flex justify-center items-center">
+                <img src="https://placehold.co/600x400/1a1a1a/cccccc?text=PPC+Alchemy" alt="PPC Alchemy Graphic" class="rounded-xl shadow-lg w-full max-w-lg transform hover:scale-105 transition duration-300">
+            </div>
+        </section>
+
+        <!-- Section 2: Our PPC Sorcery: The Services That Drive Results (Ad Types) -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Our PPC Sorcery: Services That Drive Results</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    We offer a comprehensive suite of PPC services designed to deliver tangible results, ensuring your business stands out in the digital realm.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1: Search Ads -->
+                <div class="solid-card-bg p-6 rounded-xl border border-gray-800 hover:border-purple-500" data-tool-id="google-search-ads">
+                    <h3 class="text-2xl font-semibold mb-4 text-purple-400">Search Ads: The High-Intent Hex</h3>
+                    <p class="text-gray-300 mb-4">
+                        The query is the incantation. The searcher, a ready soul. Phantom's Search Ads are engineered for unparalleled visibility, compelling clarity, and immediate response. We drive clicks, generating qualified leads that directly connect to your offering.
+                    </p>
+                </div>
+
+                <!-- Card 2: Display Ads -->
+                <div class="solid-card-bg p-6 rounded-xl border border-gray-800 hover:border-pink-500" data-tool-id="google-display-ads">
+                    <h3 class="text-2xl font-semibold mb-4 text-pink-400">Display Ads: Banner Sorcery That Stalks</h3>
+                    <p class="text-gray-300 mb-4">
+                        These are not your average rectangles. Our Display Ads are visual enchantments designed to subtly yet powerfully whisper your brand across millions of websites, apps, and platforms. We transform passive browsing into active consideration.
+                    </p>
+                </div>
+
+                <!-- Card 3: Shopping Ads -->
+                <div class="solid-card-bg p-6 rounded-xl border border-gray-800 hover:border-red-500" data-tool-id="google-shopping-ads">
+                    <h3 class="text-2xl font-semibold mb-4 text-red-400">Shopping Ads: Product Listings That Practically Levitate</h3>
+                    <p class="text-gray-300 mb-4">
+                        For eCommerce, this is your ultimate money spell. We optimize your product feed, meticulously structure your inventory, and align bidding strategies to dominate SERPs for every transactional search.
+                    </p>
+                </div>
+
+                <!-- Card 4: YouTube Ads -->
+                <div class="solid-card-bg p-6 rounded-xl border border-gray-800 hover:border-teal-500" data-tool-id="google-youtube-ads">
+                    <h3 class="text-2xl font-semibold mb-4 text-teal-400">YouTube Ads: Cast Commercials They Can’t Skip</h3>
+                    <p class="text-gray-300 mb-4">
+                        Our YouTube campaigns are meticulously crafted to capture viewers' attention within the first three seconds. We drive conversions from audiences at every stage of awareness, transforming viewers into loyal customers.
+                    </p>
+                </div>
+
+                <!-- Card 5: Performance Max -->
+                <div class="solid-card-bg p-6 rounded-xl border border-gray-800 hover:border-blue-500" data-tool-id="google-performance-max">
+                    <h3 class="text-2xl font-semibold mb-4 text-blue-400">Performance Max: The All-in-One Ritual</h3>
+                    <p class="text-gray-300 mb-4">
+                        This is where Phantom flexes its full sorcery. Performance Max leverages Google's entire ad inventory. We optimize Performance Max like a living entity, ensuring this powerful tool is always aligned with your most ambitious conversion objectives.
+                    </p>
+                </div>
+
+                <!-- Card 6: App Ads -->
+                <div class="solid-card-bg p-6 rounded-xl border border-gray-800 hover:border-orange-500" data-tool-id="google-app-ads">
+                    <h3 class="text-2xl font-semibold mb-4 text-orange-400">App Ads: Possession Through the Play Store</h3>
+                    <p class="text-gray-300 mb-4">
+                        We create App Campaigns that whisper "download me…" across YouTube, Google Play, Search, and Display networks. We drive long-term user acquisition and in-app monetization.
+                    </p>
+                </div>
+
+                <!-- Card 7: Demand Gen Campaigns -->
+                <div class="solid-card-bg p-6 rounded-xl border border-gray-800 hover:border-green-500" data-tool-id="google-demand-gen">
+                    <h3 class="text-2xl font-semibold mb-4 text-green-400">Demand Gen Campaigns: Ads That Seduce the Scroll</h3>
+                    <p class="text-gray-300 mb-4">
+                        Demand Gen is Google's latest sorcery that is swipeable, seductive, and exceptionally smart. We craft thumb-stopping creatives designed to build brand demand and pique interest.
+                    </p>
+                </div>
+
+                <!-- Card 8: Local Ads -->
+                <div class="solid-card-bg p-6 rounded-xl border border-gray-800 hover:border-indigo-500" data-tool-id="google-local-ads">
+                    <h3 class="text-2xl font-semibold mb-4 text-indigo-400">Local Ads: Hyper-Targeted Rituals for Real-World Domination</h3>
+                    <p class="text-gray-300 mb-4">
+                        For service-based and location-specific brands, we summon visibility that drives real-world foot traffic, direct calls, and crucial store visits. Our Local Ads are possessed by precision targeting.
+                    </p>
+                </div>
+
+                <!-- Card 9: Other Google Ad Formats We Command -->
+                <div class="solid-card-bg p-6 rounded-xl border border-gray-800 hover:border-gray-500 lg:col-span-1" data-tool-id="sem">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-400">Other Google Ad Formats We Command</h3>
+                    <p class="text-gray-300 mb-4">
+                        No matter the ad type, if it exists in the Google ecosystem, Phantom can conjure it, from Discovery Ads for passive interest to Call-Only Ads for immediate inbound calls.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW SECTION: Phantom’s PPC Services: Spellbooks We Use to Convert -->
+        <section class="mb-20 frosted-glass p-8 rounded-xl">
+            <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline">Phantom’s PPC Services: Spellbooks We Use to Convert</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-10">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-purple-400">Real spells. Real clicks. Real ROI.</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        Launching Google Ads is deceptively easy. Winning at it is not. Our PPC sorcery extends far beyond a one-time setup; it's a relentless, dynamic process of channeling the right message to the right mind at the right time, continuously adapting to the ever-shifting digital currents.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-pink-400">Why Most Businesses Fail at PPC</h3>
+                    <p class="text-300 leading-relaxed mb-4">
+                        Most brands run their ads like forgotten rituals that are outdated, misaligned, and tragically under-optimized. This leads to frustration, wasted investment, and the mistaken belief that paid advertising "doesn't work" for their business.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Targeting too broadly (or too narrowly): Reaching the wrong people or missing too many of the right ones.</li>
+                        <li>Irrelevant keywords draining budget: Paying for clicks that never convert.</li>
+                        <li>Weak copy and creatives: Ads that fail to capture attention or compel action.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 class="text-3xl font-bold mb-6 text-gray-200 heading-underline mx-auto md:mx-0" id="our-process">Our Winning PPC Process: A Data-Driven Approach</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-teal-400 mb-2">1. Discovery & Keyword Necromancy</p>
+                    <p class="text-gray-300">Deep dive into market, competitor espionage, and advanced keyword necromancy to find potent, high-intent keywords.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-red-400 mb-2">2. Campaign Casting & Ad Creation</p>
+                    <p class="text-gray-300">Meticulous construction of ad accounts, precise targeting, and creative alchemy of compelling visuals and irresistible headlines.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-blue-400 mb-2">3. Optimization & Offerings to the Algorithm Gods</p>
+                    <p class="text-gray-300">Daily optimization rituals, continuous adjustments based on metrics, and strategic tweaks ensuring highest ROI and dominance.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-orange-400 mb-2">4. Reporting the Revenants</p>
+                    <p class="text-gray-300">Transparent reports revealing every click, impression, conversion, and cost in clean, actionable dashboards for complete clarity.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-green-400 mb-2">5. Landing Page Possession</p>
+                    <p class="text-gray-300">We don’t just send users to a page; we bind them there. Phantom builds or refines landing pages that are lightning-fast, crystal clear, emotionally resonant, and designed to compel conversions.</p>
+                </div>
+                <div class="p-4 frosted-glass rounded-xl border border-gray-800">
+                    <p class="text-xl font-semibold text-purple-400 mb-2">6. A/B Hex Testing</p>
+                    <p class="text-gray-300">Two headlines enter. One survives. We test ad creatives, copy, and Call-to-Actions (CTAs) like battle spells.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who We Bewitch: Industries We’ve Enchanted with PPC -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Who We Bewitch: Industries We’ve Enchanted with PPC</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Phantom PPC is not bound to one industry; our potent spells work across virtually all verticals. Our mastery of audience intent and conversion psychology allows us to tailor strategies that deliver supernatural results for diverse businesses.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 text-left">
+                <div class="list-item frosted-glass p-4 rounded-lg">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p><strong>E-Commerce:</strong> Skyrocket product sales across Shopping, Search, and Performance Max campaigns, turning browsers into buyers.</p>
+                </div>
+                <div class="list-item frosted-glass p-4 rounded-lg">
+                    <i class="fas fa-cloud"></i>
+                    <p><strong>SaaS:</strong> Feed your sales funnel with high-quality free trials, demo bookings, and consistent Monthly Recurring Revenue (MRR).</p>
+                </div>
+                <div class="list-item frosted-glass p-4 rounded-lg">
+                    <i class="fas fa-building"></i>
+                    <p><strong>Real Estate:</strong> Generate highly qualified investor leads and property inquiries with hyper-local targeting and compelling visuals.</p>
+                </div>
+                <div class="list-item frosted-glass p-4 rounded-lg">
+                    <i class="fas fa-heartbeat"></i>
+                    <p><strong>Health & Wellness:</strong> Attract new clients, build regional visibility, and drive appointments for clinics, practitioners, and wellness brands.</p>
+                </div>
+                <div class="list-item frosted-glass p-4 rounded-lg">
+                    <i class="fas fa-user-graduate"></i>
+                    <p><strong>Education:</strong> Drive enrollments for online courses, physical campuses, and professional development programs with precision targeting.</p>
+                </div>
+                <div class="list-item frosted-glass p-4 rounded-lg">
+                    <i class="fas fa-microphone-alt"></i>
+                    <p><strong>Personal Brands & Coaches:</strong> Sell digital products, build authority, and leverage targeted ads to go viral and expand your influence.</p>
+                </div>
+            </div>
+            <p class="section-paragraph mt-8 text-center text-gray-400">If it breathes a desire for growth, we can enchant it.</p>
+        </section>
+
+        <!-- Our Digital Arsenal (AI-Driven PPC Infrastructure) -->
+        <section class="mb-20 digital-arsenal-ticker">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Our Digital Arsenal: Google Ad Types & SEM</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    We wield Google's full suite of advertising tools and Search Engine Marketing (SEM) strategies to ensure your digital dominance.
+                </p>
+            </div>
+
+            <div class="relative overflow-hidden px-4 md:px-16 py-4">
+                <div id="digital-arsenal-scroll-container" class="scrolling-container">
+                    <!-- Google Search Ads -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-1" onclick="showToolDetail('google-search-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/4285F4/FFFFFF?text=Search" alt="Google Search Ads Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Search Ads</span>
+                    </div>
+                    <!-- Google Display Ads -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-2" onclick="showToolDetail('google-display-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/34A853/FFFFFF?text=Display" alt="Google Display Ads Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Display Ads</span>
+                    </div>
+                    <!-- Google Shopping Ads -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-3" onclick="showToolDetail('google-shopping-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/FBBC05/FFFFFF?text=Shopping" alt="Google Shopping Ads Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Shopping Ads</span>
+                    </div>
+                    <!-- Google YouTube Ads -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-4" onclick="showToolDetail('google-youtube-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/EA4335/FFFFFF?text=YouTube" alt="Google YouTube Ads Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">YouTube Ads</span>
+                    </div>
+                    <!-- Google App Campaigns -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-5" onclick="showToolDetail('google-app-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/009688/FFFFFF?text=App" alt="Google App Campaigns Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">App Campaigns</span>
+                    </div>
+                    <!-- Google Performance Max -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-6" onclick="showToolDetail('google-performance-max')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/9C27B0/FFFFFF?text=P-Max" alt="Google Performance Max Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Performance Max</span>
+                    </div>
+                    <!-- Google Demand Gen Campaigns -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-7" onclick="showToolDetail('google-demand-gen')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/E91E63/FFFFFF?text=Demand" alt="Google Demand Gen Campaigns Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Demand Gen</span>
+                    </div>
+                    <!-- Google Local Ads -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-8" onclick="showToolDetail('google-local-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/3F51B5/FFFFFF?text=Local" alt="Google Local Ads Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Local Ads</span>
+                    </div>
+                    <!-- SEM (General) -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-9" onclick="showToolDetail('sem')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/607D8B/FFFFFF?text=SEM" alt="SEM Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">SEM Strategy</span>
+                    </div>
+
+                    <!-- Duplicated set for seamless loop -->
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-1" onclick="showToolDetail('google-search-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/4285F4/FFFFFF?text=Search" alt="Google Search Ads Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Search Ads</span>
+                    </div>
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-2" onclick="showToolDetail('google-display-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/34A853/FFFFFF?text=Display" alt="Google Display Ads Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Display Ads</span>
+                    </div>
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-3" onclick="showToolDetail('google-shopping-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/FBBC05/FFFFFF?text=Shopping" alt="Google Shopping Ads Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Shopping Ads</span>
+                    </div>
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-4" onclick="showToolDetail('google-youtube-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/EA4335/FFFFFF?text=YouTube" alt="Google YouTube Ads Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">YouTube Ads</span>
+                    </div>
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-5" onclick="showToolDetail('google-app-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/009688/FFFFFF?text=App" alt="Google App Campaigns Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">App Campaigns</span>
+                    </div>
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-6" onclick="showToolDetail('google-performance-max')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/9C27B0/FFFFFF?text=P-Max" alt="Google Performance Max Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Performance Max</span>
+                    </div>
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-7" onclick="showToolDetail('google-demand-gen')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/E91E63/FFFFFF?text=Demand" alt="Google Demand Gen Campaigns Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Demand Gen</span>
+                    </div>
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-8" onclick="showToolDetail('google-local-ads')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/3F51B5/FFFFFF?text=Local" alt="Google Local Ads Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">Local Ads</span>
+                    </div>
+                    <div class="digital-arsenal-item group">
+                        <div class="digital-arsenal-card card-style-9" onclick="showToolDetail('sem')">
+                            <div class="img-wrapper">
+                                <img src="https://placehold.co/59x59/607D8B/FFFFFF?text=SEM" alt="SEM Icon">
+                            </div>
+                            <div class="shadow">
+                                <div class="shadow__wrapper"></div>
+                            </div>
+                        </div>
+                        <span class="tool-name">SEM Strategy</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section: Statistics/Counters (Placeholder) -->
+        <section class="mb-20 py-16 bg-gray-900 rounded-xl shadow-inner border border-gray-800">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Phantom Results: Metrics That Raise the Dead</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Our campaigns have transformed the damned into the dominant. These aren't just hypotheticals. These are real-world triumphs.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center px-4">
+                <div class="p-6 frosted-glass rounded-xl">
+                    <p class="text-4xl md:text-6xl font-extrabold text-purple-400 mb-2 count-to" data-target="25000" data-append="+" >0</p>
+                    <p class="text-lg text-gray-300">Qualified Pipeline Opportunities</p>
+                </div>
+                <div class="p-6 frosted-glass rounded-xl">
+                    <p class="text-4xl md:text-6xl font-extrabold text-pink-400 mb-2 count-to" data-target="4.1" data-append="x">0</p>
+                    <p class="text-lg text-gray-300">Increased ROAS for eCommerce</p>
+                </div>
+                <div class="p-6 frosted-glass rounded-xl">
+                    <p class="text-4xl md:text-6xl font-extrabold text-red-400 mb-2 count-to" data-target="213" data-append="%">0</p>
+                    <p class="text-lg text-gray-300">Increase in Call Volume</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: FAQ Accordion -->
+        <section class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Whispers from the Void: FAQs</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Have questions about PPC? We've got answers that cut through the digital fog.
+                </p>
+            </div>
+
+            <div class="frosted-glass p-4 rounded-xl">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3 class="text-xl font-semibold text-gray-200">What is PPC and how does it work?</h3>
+                        <svg class="accordion-icon w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="text-gray-400 py-4">PPC (Pay-Per-Click) is an online advertising model where advertisers pay a fee each time one of their ads is clicked. Essentially, it’s a way of buying visits to your site, rather than attempting to “earn” those visits organically. It works by setting up campaigns with specific keywords, demographics, and ad creatives, then bidding on ad placements.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3 class="text-xl font-semibold text-gray-200">How long does it take to see results from PPC?</h3>
+                        <svg class="accordion-icon w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="text-gray-400 py-4">One of the main advantages of PPC is its speed. You can start seeing traffic and conversions almost immediately after launching a campaign. However, optimal performance and significant ROI typically require a few weeks to a few months of continuous optimization, A/B testing, and data analysis.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3 class="text-xl font-semibold text-gray-200">What is a good ROI for PPC?</h3>
+                        <svg class="accordion-icon w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="text-gray-400 py-4">A good ROI (Return on Investment) for PPC varies significantly by industry, business model, and campaign goals. A common benchmark for a good ROI in Google Ads is 2:1, meaning you get $2 back for every $1 spent. However, for some businesses, a 4:1 or even higher ROI is achievable. Our goal is always to maximize your specific ROI based on your objectives.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <h3 class="text-xl font-semibold text-gray-200">What makes Phantom Marketing different for PPC?</h3>
+                        <svg class="accordion-icon w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="accordion-content">
+                        <p class="text-gray-400 py-4">Phantom Marketing differentiates itself through our "Ad Alchemy" approach, focusing on meticulous strategy, relentless optimization, and transparent reporting. We don't just manage bids; we craft compelling narratives and leverage cutting-edge tools to ensure every dollar spent drives maximum conversions and makes your brand an "unshakable, omnipresent entity" online.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Call to Action Section -->
+        <section class="text-center py-16 frosted-glass rounded-xl">
+            <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline mx-auto">The Choice is Yours… Stay Ghosted or Be Unforgettable</h2>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                The web is haunted by forgettable brands. Don’t be one of them. Stand out. Stand above. Be unforgettable. This isn’t just another ad campaign. It’s your digital rebirth, powered by demons that deliver.
+            </p>
+            <a href="contact-us.html" class="btn-gradient text-white">
+                HIT THAT DAMN BUTTON!<i class="fa-solid fa-handshake ml-2"></i>
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Desktop Footer (existing) -->
+    <footer class="bg-gray-950 text-gray-500 py-8 text-center text-sm mt-16 hidden md:block">
+        <div class="container mx-auto px-4">
+            <p>&copy; <span id="currentYear"></span> Phantom Marketing. All rights reserved. | <a href="#" class="hover:text-white transition duration-200">Privacy Policy</a> | <a href="#" class="hover:text-white transition duration-200">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <!-- Mobile Footer Navigation -->
+    <footer class="mobile-footer-nav md:hidden">
+        <a href="index.html" class="mobile-footer-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <div class="mobile-footer-nav-item relative" id="mobile-services-item">
+            <a href="#" id="services-toggle" class="flex flex-col items-center justify-center w-full h-full">
+                <i class="fas fa-cogs"></i>
+                <span>Services</span>
+            </a>
+            <div class="services-submenu" id="services-submenu">
+                <a href="search-engine-optimization.html">Search Engine Optimization</a>
+                <a href="social-media-marketing.html">Social Media Marketing</a>
+                <a href="web-development-services.html">Web Development</a>
+                <a href="web-designing-services.html">Web Designing</a>
+                <a href="graphics-design-services.html">Graphics Designing</a>
+                <a href="branding-services.html">Branding</a>
+                <a href="print-services.html">Print Services</a>
+                <a href="pr-marketing-services.html">PR Marketing</a>
+                <a href="pay-per-click.html" class="active">Pay Per Click</a>
+            </div>
+        </div>
+        <a href="#" class="mobile-footer-nav-item">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </a>
+        <!-- New central logo container -->
+        <div class="mobile-footer-logo-container">
+            <img src="https://i.ibb.co/C5gVjVS4/Untitled-design.gif" alt="Central Logo" class="mobile-footer-logo">
+        </div>
+        <a href="contact-us.html" class="mobile-footer-nav-item">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </footer>
+
+    <!-- Tool Detail Modal -->
+    <div id="tool-detail-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-button" onclick="hideToolDetail()">&times;</button>
+            <h3 id="modal-tool-title" class="text-3xl font-bold mb-4 text-purple-400"></h3>
+            <p id="modal-tool-description" class="text-gray-300 leading-relaxed"></p>
+        </div>
+    </div>
+
+    <script>
+        // Global variable to store the timeout ID for the submenu
+        var submenuCloseTimeoutId;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Removed hero section background logic as per user request.
+
+            // --- Helper Functions ---
+            function getElement(selector) {
+                return document.querySelector(selector);
+            }
+
+            function getAllElements(selector) {
+                return document.querySelectorAll(selector);
+            }
+
+            function addClass(element, className) {
+                element.classList.add(className);
+            }
+
+            function removeClass(element, className) {
+                element.classList.remove(className);
+            }
+
+            function hasClass(element, className) {
+                return element.classList.contains(className);
+            }
+
+            // --- Mobile Footer Navigation Logic ---
+            const mobileFooterNavItems = getAllElements('.mobile-footer-nav-item');
+            const servicesToggle = getElement('#services-toggle');
+            const servicesSubmenu = getElement('#services-submenu');
+            
+
+            // Set current year in footer
+            const currentYearElement = getElement('#currentYear');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+
+            function setActiveNavItem(clickedElement) {
+                mobileFooterNavItems.forEach(item => {
+                    removeClass(item, 'active');
+                });
+                addClass(clickedElement, 'active');
+            }
+
+            function setSubmenuTimeout() {
+                clearTimeout(submenuCloseTimeoutId);
+                submenuCloseTimeoutId = setTimeout(() => {
+                    closeAllSubmenus();
+                }, 3000);
+            }
+
+            function closeAllSubmenus() {
+                clearTimeout(submenuCloseTimeoutId);
+                if (servicesSubmenu) {
+                    removeClass(servicesSubmenu, 'active');
+                }
+            }
+
+            function toggleServicesSubmenu(event) {
+                event.preventDefault();
+                event.stopPropagation(); // Prevent immediate closing by outside click handler
+
+                if (hasClass(servicesSubmenu, 'active')) {
+                    closeAllSubmenus();
+                } else {
+                    closeAllSubmenus(); // Ensure all submenus are closed first (though now only one)
+                    addClass(servicesSubmenu, 'active'); // Open primary submenu
+                    setActiveNavItem(servicesToggle.parentNode); // Set the main Services icon as active
+                    setSubmenuTimeout(); // Start the auto-close timer
+                }
+            }
+
+            // Event listeners for mobile footer navigation
+            mobileFooterNavItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (link && item.id !== 'mobile-services-item') { // Exclude the services item with special toggle
+                    link.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Prevent document click from immediately closing
+                        setActiveNavItem(item);
+                        closeAllSubmenus(); // Close any open submenus when another nav item is clicked
+                    });
+                }
+            });
+
+            if (servicesToggle) {
+                servicesToggle.addEventListener('click', toggleServicesSubmenu);
+            }
+
+            getAllElements('#services-submenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    removeClass(servicesSubmenu, 'active');
+                    clearTimeout(submenuCloseTimeoutId);
+                });
+            });
+
+            // General click outside handler for closing all submenus
+            document.addEventListener('click', (e) => {
+                const mobileServicesItem = getElement('#mobile-services-item');
+                if (mobileServicesItem && !mobileServicesItem.contains(e.target) && hasClass(servicesSubmenu, 'active')) {
+                    closeAllSubmenus();
+                }
+            });
+
+            // Set active class on page load
+            const currentPath = window.location.pathname.split('/').pop();
+            const homeNavItem = getElement('.mobile-footer-nav-item a[href="index.html"]');
+
+            if (currentPath === '' || currentPath === 'index.html') {
+                if (homeNavItem) {
+                    setActiveNavItem(homeNavItem.parentNode);
+                }
+            } else {
+                const servicesLinks = getAllElements('#services-submenu a');
+                let foundActiveService = false;
+                servicesLinks.forEach(link => {
+                    const linkPath = link.href.split('/').pop();
+                    if (linkPath === currentPath) {
+                        addClass(link, 'active');
+                        const mobileServicesItem = getElement('#mobile-services-item');
+                        if (mobileServicesItem) {
+                            setActiveNavItem(mobileServicesItem);
+                            foundActiveService = true;
+                        }
+                    }
+                });
+                if (!foundActiveService) {
+                    mobileFooterNavItems.forEach(item => {
+                        const link = item.querySelector('a');
+                        if (link && link.href.split('/').pop() === currentPath) {
+                            setActiveNavItem(item);
+                        }
+                    });
+                }
+            }
+
+
+            // --- "Go To Top" Button Logic ---
+            const goToTopButton = getElement('.go-to-top');
+
+            if (goToTopButton) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 200) { // Show button after scrolling 200px
+                        removeClass(goToTopButton, 'hidden');
+                    } else {
+                        addClass(goToTopButton, 'hidden');
+                    }
+                });
+
+                goToTopButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+
+            // JavaScript for Accordion functionality
+            function toggleAccordion(header) {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.accordion-icon');
+
+                if (content.classList.contains('active')) {
+                    content.classList.remove('active');
+                    icon.classList.remove('rotate');
+                } else {
+                    document.querySelectorAll('.accordion-content.active').forEach(item => {
+                        item.classList.remove('active');
+                        item.previousElementSibling.querySelector('.accordion-icon').classList.remove('rotate');
+                    });
+                    content.classList.add('active');
+                    icon.classList.add('rotate');
+                }
+            }
+            window.toggleAccordion = toggleAccordion; // Make it globally accessible
+
+            // JavaScript for simple counter animation
+            function animateCounters() {
+                document.querySelectorAll('.count-to').forEach(counter => {
+                    const target = parseFloat(counter.getAttribute('data-target'));
+                    let current = 0;
+                    const duration = 2000; // milliseconds
+                    const start = performance.now();
+                    const appendText = counter.getAttribute('data-append') || '';
+
+                    function updateCount(timestamp) {
+                        const elapsed = timestamp - start;
+                        let progress = Math.min(elapsed / duration, 1); // Clamp progress to 0-1
+
+                        if (counter.getAttribute('data-append') === '%') {
+                            current = progress * target;
+                            counter.textContent = Math.round(current) + appendText;
+                        } else if (counter.getAttribute('data-append') === 'x') {
+                             current = progress * target;
+                             counter.textContent = current.toFixed(1) + appendText;
+                        } else {
+                            current = progress * target;
+                            counter.textContent = Math.round(current) + appendText;
+                        }
+                        
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCount);
+                        }
+                    }
+                    requestAnimationFrame(updateCount);
+                });
+            }
+
+            const statsSection = document.querySelector('section.mb-20.py-16.bg-gray-900');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+
+            // JavaScript for Tool Detail Modal
+            const toolDetails = {
+                'google-search-ads': {
+                    title: 'Google Search Ads: High-Intent Visibility',
+                    description: 'Google Search Ads place your brand at the top of search results when users are actively looking for your products or services. We optimize keywords, ad copy, and bidding strategies to capture high-intent traffic and drive immediate conversions.'
+                },
+                'google-display-ads': {
+                    title: 'Google Display Ads: Broad Reach & Branding',
+                    description: 'Google Display Ads help build brand awareness and drive consideration across millions of websites, apps, and YouTube. We craft visually compelling banner ads and leverage demographic, interest, and remarketing targeting to reach your audience at scale.'
+                },
+                'google-shopping-ads': {
+                    title: 'Google Shopping Ads: E-Commerce Powerhouse',
+                    description: 'For e-commerce businesses, Google Shopping Ads are essential. We optimize your product feed and campaign structure to showcase your products directly in search results, driving highly qualified leads and sales for your online store.'
+                },
+                'google-youtube-ads': {
+                    title: 'Google YouTube Ads: Video Dominance',
+                    description: 'YouTube Ads allow us to reach your target audience through engaging video content. From skippable in-stream ads to Bumper Ads, we create campaigns that capture attention, build brand recall, and drive conversions across the world\'s largest video platform.'
+                },
+                'google-app-ads': {
+                    title: 'Google App Campaigns: Drive App Installs & Engagement',
+                    description: 'Google App Campaigns streamline the process of promoting your mobile app across Google Search, Play, YouTube, and the Display Network. We optimize campaigns to drive app installs, in-app actions, and re-engagement with existing users.'
+                },
+                'google-performance-max': {
+                    title: 'Google Performance Max: AI-Driven Full-Funnel',
+                    description: 'Performance Max is Google\'s automated, goal-based campaign type that allows advertisers to access all Google Ads inventory from a single campaign. We leverage its AI-driven optimization to find high-converting customers across all Google channels, maximizing your ROI.'
+                },
+                'google-demand-gen': {
+                    title: 'Google Demand Gen Campaigns: Inspire Action Across Google Feeds',
+                    description: 'Demand Gen campaigns allow you to connect with consumers across Google\'s most engaging surfaces – YouTube, Gmail, and Discover feeds – through compelling visuals and relevant messaging, driving demand and fostering new customer connections.'
+                },
+                'google-local-ads': {
+                    title: 'Google Local Ads: Drive Store Visits & Calls',
+                    description: 'Google Local Ads are designed to help local businesses attract nearby customers. We optimize your Google Business Profile and campaign settings to drive foot traffic to your physical locations, phone calls, and direction requests, bridging the gap between online and offline sales.'
+                },
+                'sem': {
+                    title: 'Search Engine Marketing (SEM) Strategy',
+                    description: 'SEM encompasses all paid efforts to improve your visibility on search engine results pages, including PPC campaigns and other paid strategies. We develop a holistic SEM strategy that integrates all relevant Google Ads formats to maximize your search presence and achieve your business objectives.'
+                }
+            };
+
+            function showToolDetail(toolId) {
+                const modal = document.getElementById('tool-detail-modal');
+                const titleElement = document.getElementById('modal-tool-title');
+                const descriptionElement = document.getElementById('modal-tool-description');
+
+                const detail = toolDetails[toolId];
+                if (detail) {
+                    titleElement.textContent = detail.title;
+                    descriptionElement.textContent = detail.description;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            window.showToolDetail = showToolDetail; // Make globally accessible
+
+            function hideToolDetail() {
+                const modal = document.getElementById('tool-detail-modal');
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            window.hideToolDetail = hideToolDetail; // Make globally accessible
+
+            document.getElementById('tool-detail-modal').addEventListener('click', function(event) {
+                if (event.target === this) {
+                    hideToolDetail();
+                }
+            });
+
+
+            // Generalized Ticker Controller Class
+            class TickerController {
+                constructor(containerId, initialSpeed = 0.5) {
+                    this.container = document.getElementById(containerId);
+                    if (!this.container) {
+                        console.error(`Container with ID "${containerId}" not found.`);
+                        return;
+                    }
+
+                    this.isDown = false;
+                    this.startX = 0;
+                    this.scrollLeftCurrent = 0;
+                    this.animationFrameId = null;
+                    this.speed = initialSpeed;
+
+                    this.handleMouseDown = this.handleMouseDown.bind(this);
+                    this.handleMouseLeave = this.handleMouseLeave.bind(this);
+                    this.handleMouseUp = this.handleMouseUp.bind(this);
+                    this.handleMouseMove = this.handleMouseMove.bind(this);
+
+                    this.addEventListeners();
+                    this.startAutoScroll();
+                }
+
+                addEventListeners() {
+                    this.container.addEventListener('mousedown', this.handleMouseDown);
+                    this.container.addEventListener('mouseleave', this.handleMouseLeave);
+                    this.container.addEventListener('mouseup', this.handleMouseUp);
+                    this.container.addEventListener('mousemove', this.handleMouseMove);
+                    this.container.addEventListener('touchstart', (e) => this.handleMouseDown(e.touches[0]));
+                    this.container.addEventListener('touchend', this.handleMouseUp);
+                    this.container.addEventListener('touchmove', (e) => this.handleMouseMove(e.touches[0]));
+                    this.container.addEventListener('touchcancel', this.handleMouseUp);
+                }
+
+                startAutoScroll() {
+                    if (this.animationFrameId !== null || this.isDown) {
+                        return;
+                    }
+
+                    const performScroll = () => {
+                        if (!this.container) {
+                            this.stopAutoScroll();
+                            return;
+                        }
+
+                        this.scrollLeftCurrent -= this.speed;
+
+                        const contentWidth = this.container.scrollWidth / 2;
+
+                        if (this.speed > 0) {
+                            if (Math.abs(this.scrollLeftCurrent) >= contentWidth) {
+                                this.scrollLeftCurrent = 0;
+                            }
+                        } else {
+                            if (this.scrollLeftCurrent >= 0) {
+                                this.scrollLeftCurrent = -contentWidth;
+                            }
+                        }
+
+                        this.container.style.transform = `translateX(${this.scrollLeftCurrent}px)`;
+                        this.animationFrameId = requestAnimationFrame(performScroll);
+                    };
+                    this.animationFrameId = requestAnimationFrame(performScroll);
+                }
+
+                stopAutoScroll() {
+                    if (this.animationFrameId !== null) {
+                        cancelAnimationFrame(this.animationFrameId);
+                        this.animationFrameId = null;
+                    }
+                }
+
+                handleMouseDown(e) {
+                    this.isDown = true;
+                    this.container.classList.add('dragging');
+                    this.stopAutoScroll();
+                    this.startX = e.pageX || e.clientX;
+                    
+                    const transformMatrix = window.getComputedStyle(this.container).getPropertyValue('transform');
+                    const matrixValues = transformMatrix.match(/matrix.*\((.+)\)/);
+                    this.scrollLeftCurrent = matrixValues && matrixValues[1] ? parseFloat(matrixValues[1].split(', ')[4]) : 0;
+                }
+
+                handleMouseLeave() {
+                    if (this.isDown) {
+                        this.isDown = false;
+                        this.container.classList.remove('dragging');
+                        this.startAutoScroll();
+                    }
+                }
+
+                handleMouseUp() {
+                    this.isDown = false;
+                    this.container.classList.remove('dragging');
+                    this.startAutoScroll();
+                }
+
+                handleMouseMove(e) {
+                    if (!this.isDown) return;
+                    e.preventDefault();
+                    
+                    const x = e.pageX || e.clientX;
+                    const dx = x - this.startX;
+                    this.scrollLeftCurrent += dx;
+                    this.startX = x;
+
+                    const contentWidth = this.container.scrollWidth / 2;
+
+                    if (this.scrollLeftCurrent < -contentWidth) {
+                        this.scrollLeftCurrent += contentWidth;
+                    } else if (this.scrollLeftCurrent > 0) {
+                        this.scrollLeftCurrent -= contentWidth;
+                    }
+                    
+                    this.container.style.transform = `translateX(${this.scrollLeftCurrent}px)`;
+                }
+            }
+
+
+            // Initialize Ticker Controllers when the window loads
+            new TickerController('digital-arsenal-scroll-container', 0.5);
+
+            // --- Voice AI Accessibility Integration ---
+            const voiceCommandBtn = document.getElementById('voiceCommandBtn');
+            const voiceStatus = document.getElementById('voiceStatus');
+            const sections = document.querySelectorAll('section'); // Get all sections
+
+            // Check for browser compatibility
+            if (!('webkitSpeechRecognition' in window) || !('speechSynthesis' in window)) {
+                voiceCommandBtn.textContent = "Voice commands not supported";
+                voiceCommandBtn.disabled = true;
+                voiceStatus.textContent = "Browser not supported.";
+                console.warn("Web Speech API not supported in this browser.");
+                return;
+            }
+
+            const SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.continuous = false; // Listen for a single phrase
+            recognition.lang = 'en-US'; // Set language
+            recognition.interimResults = false; // Don't show interim results
+            recognition.maxAlternatives = 1; // Get the most likely result
+
+            const synth = window.speechSynthesis;
+
+            // Mapping for voice commands to tool details (from your existing toolDetails object)
+            const voiceToolMap = {
+                "search ads": "google-search-ads",
+                "display ads": "google-display-ads",
+                "shopping ads": "google-shopping-ads",
+                "youtube ads": "google-youtube-ads",
+                "app campaigns": "google-app-ads",
+                "performance max": "google-performance-max",
+                "demand gen": "google-demand-gen",
+                "local ads": "google-local-ads",
+                "sem strategy": "sem",
+                // Add more mappings for other commands
+                "what is ppc": "faq-1", // Refer to accordion item index or custom ID
+                "how long results": "faq-2",
+                "good roi": "faq-3",
+                "what makes phantom different": "faq-4",
+                "contact us": "contact-section",
+                "scroll down": "scroll-down",
+                "scroll up": "scroll-up"
+            };
+
+            voiceCommandBtn.addEventListener('click', () => {
+                voiceStatus.textContent = "Listening...";
+                voiceCommandBtn.disabled = true;
+                recognition.start();
+            });
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript.toLowerCase();
+                console.log('You said:', transcript);
+                voiceStatus.textContent = `You said: "${transcript}"`;
+
+                let responseMessage = "I didn't understand that. Please try again or say a command like 'search ads' or 'contact us'.";
+                let actionPerformed = false;
+
+                // Check for tool details
+                for (const command in voiceToolMap) {
+                    if (transcript.includes(command)) {
+                        const toolId = voiceToolMap[command];
+                        if (toolId.startsWith("faq-")) {
+                            // Handle FAQ specific actions (e.g., open accordion)
+                            const faqIndex = parseInt(toolId.split('-')[1]) - 1; // 0-indexed
+                            const accordionItem = document.querySelectorAll('.accordion-item')[faqIndex];
+                            if (accordionItem) {
+                                const header = accordionItem.querySelector('.accordion-header');
+                                if (header && !header.nextElementSibling.classList.contains('active')) {
+                                    toggleAccordion(header);
+                                }
+                                responseMessage = `Showing information for ${command}.`;
+                                actionPerformed = true;
+                                break;
+                            }
+                        } else if (toolId === "contact-section") {
+                            // Find the contact section by checking text content or a specific ID if available
+                            let contactSectionFound = false;
+                            sections.forEach(section => {
+                                if (section.textContent.toLowerCase().includes('contact') || section.querySelector('a[href="contact-us.html"]')) {
+                                    section.scrollIntoView({ behavior: 'smooth' });
+                                    contactSectionFound = true;
+                                    responseMessage = "Scrolling to the contact section.";
+                                    actionPerformed = true;
+                                    return; // Break out of forEach
+                                }
+                            });
+                            if (!contactSectionFound) {
+                                responseMessage = "You can find our contact details at the bottom of the page or by clicking the contact link.";
+                                actionPerformed = true;
+                            }
+                            break;
+                        } else if (toolId === "scroll-down") {
+                            window.scrollBy({ top: window.innerHeight * 0.75, behavior: 'smooth' });
+                            responseMessage = "Scrolling down the page.";
+                            actionPerformed = true;
+                            break;
+                        } else if (toolId === "scroll-up") {
+                            window.scrollBy({ top: -window.innerHeight * 0.75, behavior: 'smooth' });
+                            responseMessage = "Scrolling up the page.";
+                            actionPerformed = true;
+                            break;
+                        }
+                        else {
+                            const detail = toolDetails[toolId];
+                            if (detail) {
+                                showToolDetail(toolId);
+                                responseMessage = `Yes, here is information about ${detail.title.replace('Google ', '').replace(':', '')}.`;
+                                actionPerformed = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                // If no specific action was performed, try to find a relevant section and scroll to it
+                if (!actionPerformed) {
+                    let bestMatchSection = null;
+                    let bestMatchScore = 0;
+
+                    sections.forEach(section => {
+                        const sectionText = section.textContent.toLowerCase();
+                        const keywords = transcript.split(' ').filter(word => word.length > 2); // Simple keyword extraction
+
+                        let currentScore = 0;
+                        keywords.forEach(keyword => {
+                            if (sectionText.includes(keyword)) {
+                                currentScore++;
+                            }
+                        });
+
+                        if (currentScore > bestMatchScore) {
+                            bestMatchScore = currentScore;
+                            bestMatchSection = section;
+                        }
+                    });
+
+                    if (bestMatchSection && bestMatchScore > 0) {
+                        bestMatchSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        responseMessage = `I found some information related to "${transcript}". Scrolling to it now.`;
+                        actionPerformed = true;
+                    }
+                }
+
+                speakResponse(responseMessage);
+            };
+
+            recognition.onspeechend = () => {
+                recognition.stop();
+                voiceCommandBtn.disabled = false;
+                voiceStatus.textContent = "Ready";
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Speech recognition error:', event.error);
+                voiceCommandBtn.disabled = false;
+                voiceStatus.textContent = "Error. Click to Speak";
+
+                if (event.error === 'not-allowed') {
+                    speakResponse("Microphone access was denied. Please ensure you allow microphone access and run this page from a web server or a secure HTTPS connection for voice commands to work.");
+                    voiceStatus.textContent = "Microphone access denied. Please allow and use HTTPS.";
+                } else if (event.error === 'no-speech') {
+                    speakResponse("No speech detected. Please try again.");
+                    voiceStatus.textContent = "No speech detected.";
+                } else if (event.error === 'aborted') {
+                    voiceStatus.textContent = "Voice command aborted.";
+                } else {
+                    speakResponse("Sorry, an unexpected error occurred with voice recognition. Please try again.");
+                    voiceStatus.textContent = `Error: ${event.error}.`;
+                }
+            };
+
+            function speakResponse(message) {
+                if (synth.speaking) {
+                    synth.cancel(); // Stop any ongoing speech
+                }
+                const utterThis = new SpeechSynthesisUtterance(message);
+                utterThis.onend = () => {
+                    console.log('SpeechSynthesisUtterance.onend');
+                };
+                utterThis.onerror = (event) => {
+                    console.error('SpeechSynthesisUtterance.onerror:', event);
+                };
+                synth.speak(utterThis);
+            }
+        });
+    </script>
+</body>
+</html>
