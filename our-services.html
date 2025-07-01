@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0c1321" />
+    <title>Phantom Marketing - Our Services</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS for Frosted Glass Effect and Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@300;400;600;700&family=Pacifico&display=swap');
+
+        /* Cosmic SaaS Theme Design System */
+        :root {
+            --background: 220 27% 6%; /* Very dark grey/black for background */
+            --foreground: 0 0% 98%;    /* Very light grey/off-white for foreground text */
+            --card: 220 27% 8%;
+            --card-foreground: 0 0% 98%;
+            --popover: 220 27% 8%;
+            --popover-foreground: 0 0% 98%;
+            --primary: 271 76% 53%;
+            --primary-foreground: 0 0% 98%;
+            --secondary: 220 27% 12%;
+            --secondary-foreground: 0 0% 98%;
+            --muted: 220 27% 12%;
+            --muted-foreground: 0 0% 65%;
+            --accent: 271 76% 53%;
+            --accent-foreground: 0 0% 98%;
+            --destructive: 0 84% 60%;
+            --destructive-foreground: 0 0% 98%;
+            --border: 220 27% 18%;
+            --input: 220 27% 18%;
+            --ring: 271 76% 53%;
+            --radius: 0.75rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            background-image: linear-gradient(to br, hsl(var(--background)) 0%, rgba(0, 0, 0, 1) 100%);
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding-bottom: 70px; /* Space for mobile footer */
+        }
+
+        .frosted-glass {
+            background-color: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .frosted-glass:hover {
+            box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-frosted {
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(147, 51, 234, 0.4), 0 0 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .heading-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .heading-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(to right, #a78bfa, #f472b6);
+            border-radius: 9999px;
+        }
+
+        /* Hollow button style with glow */
+        .btn-outline-glow {
+            border: 2px solid #a78bfa; /* Thicker border for prominence */
+            color: #fff; /* Text color is now white by default */
+            background-color: rgba(0, 0, 0, 0.5); /* Dark, slightly transparent background */
+            padding: 8px 24px; /* Reduced padding for smaller size */
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.95rem; /* Slightly smaller font size */
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
+            display: inline-flex; /* Use inline-flex for single-line alignment */
+            align-items: center; /* Vertically center items */
+            justify-content: center; /* Horizontally center if needed */
+            margin-top: 1.5rem; /* Added margin-top for spacing */
+        }
+        .btn-outline-glow:hover {
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly darker background on hover */
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.5); /* Enhanced glow on hover */
+            color: #fff; /* Text remains white on hover */
+        }
+        /* Style for icons within the button */
+        .btn-outline-glow i.fas, .btn-outline-glow svg {
+            margin-left: 0.5rem; /* Increased margin-left for spacing */
+            font-size: 1rem; /* Ensure icon size scales with button */
+            color: inherit; /* Icon color inherits from the button's text color */
+        }
+
+
+        /* Centered Nav Logo Specific Styles */
+        .header-main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .header-main-nav .logo-container {
+            flex-shrink: 0;
+            margin: 0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .header-main-nav .logo-container img {
+            width: auto;
+            height: 60px;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+        .header-main-nav .nav-links {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            width: auto;
+            padding: 0;
+        }
+
+        .header-main-nav .nav-links.nav-left {
+            justify-content: flex-start;
+        }
+
+        .header-main-nav .nav-links.nav-right {
+            justify-content: flex-end;
+        }
+
+        .header-main-nav .nav-links ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Mobile specific adjustments for header */
+        @media (max-width: 768px) {
+            .header-main-nav .nav-links {
+                display: none;
+            }
+            .header-main-nav .logo-container {
+                display: none;
+            }
+            .mobile-nav-menu,
+            #mobile-menu-button {
+                display: none;
+            }
+        }
+
+        /* Mobile Footer Navigation Styles */
+        .mobile-footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 0.5rem;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            border-radius: 1rem 1rem 0 0;
+        }
+
+        .mobile-footer-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            padding: 0.25rem;
+            flex: 1;
+        }
+
+        .mobile-footer-nav-item i {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+            transition: color 0.2s ease;
+        }
+
+        .mobile-footer-nav-item.active,
+        .mobile-footer-nav-item:hover {
+            color: #a78bfa;
+        }
+
+        .mobile-footer-nav-item.active i,
+        .mobile-footer-nav-item:hover i {
+            color: #a78bfa;
+        }
+
+        .mobile-footer-logo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #a78bfa, #f472b6);
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.6);
+            transform: translateY(-20px);
+            z-index: 101;
+            flex-shrink: 0;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mobile-footer-logo-container:hover {
+            transform: translateY(-22px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.8);
+        }
+
+        .mobile-footer-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            filter: brightness(1.2);
+        }
+
+        .services-submenu {
+            position: absolute;
+            bottom: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.83);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+            border-radius: 0.75rem;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            box-sizing: border-box;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: bottom center;
+            transform: translateX(-50%) translateY(10px) scale(0.9);
+            max-height: 240px;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .services-submenu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .services-submenu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+        
+        .services-submenu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .services-submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+        }
+
+        /* Desktop Submenu Styles */
+        .desktop-services-submenu {
+            position: absolute;
+            top: calc(100% + 10px); /* Position below the parent link */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.83);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+            border-radius: 0.75rem;
+            padding: 0.5rem 0;
+            min-width: 220px; /* Wider for desktop */
+            box-sizing: border-box;
+            z-index: 90; /* Below mobile footer's z-index */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: top center;
+            transform: translateX(-50%) translateY(-10px) scale(0.95);
+            max-height: 300px; /* Allow scrolling for many items */
+            overflow-y: auto;
+            -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+
+        .desktop-services-submenu::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+        }
+
+        .desktop-services-submenu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .desktop-services-submenu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .desktop-services-submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+        }
+
+
+        @media (max-width: 399px) {
+            .mobile-footer-nav-item {
+                font-size: 0.65rem;
+                padding: 0.15rem;
+                flex-basis: auto;
+            }
+            .mobile-footer-nav-item i {
+                font-size: 1.2rem;
+                margin-bottom: 0.15rem;
+            }
+            .mobile-footer-logo-container {
+                width: 50px;
+                height: 50px;
+                transform: translateY(-15px);
+                margin: 0 0.25rem;
+            }
+            .mobile-footer-logo {
+                width: 30px;
+                height: 30px;
+            }
+            .services-submenu {
+                bottom: 65px;
+                min-width: 150px;
+            }
+            .services-submenu a {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Styles for the large faded "PHANTOM" text in the background */
+        .background-phantom-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Pacifico', cursive;
+            font-size: 250px;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+            opacity: 0.05;
+            z-index: 0;
+            white-space: nowrap;
+            user-select: none;
+            pointer-events: none;
+            background: linear-gradient(137deg, rgba(255, 210, 106, 0.2), rgba(255, 86, 70, 0.2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 1024px) {
+            .background-phantom-text {
+                font-size: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .background-phantom-text {
+                font-size: 120px;
+                -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .background-phantom-text {
+                font-size: 70px;
+            }
+        }
+
+        /* Full-screen service sections */
+        .service-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax-like effect */
+            overflow: hidden;
+            text-align: center;
+            padding: 2rem; /* Add padding for smaller screens */
+        }
+
+        .service-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7); /* Dark overlay for text readability */
+            z-index: 1;
+        }
+
+        .service-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            background-color: rgba(0, 0, 0, 0.3); /* Slightly frosted background for content */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .service-content h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .service-content p {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #e2e8f0;
+        }
+
+        .service-content i {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: hsl(var(--primary));
+            text-shadow: 0 0 15px rgba(147, 51, 234, 0.6);
+        }
+
+        /* Specific background images for each service */
+        #seo-service { background-image: url('https://placehold.co/1920x1080/0d1a26/ffffff?text=SEO+Optimization'); }
+        #smm-service { background-image: url('https://placehold.co/1920x1080/1a0d26/ffffff?text=Social+Media+Marketing'); }
+        #web-development-service { background-image: url('https://placehold.co/1920x1080/260d1a/ffffff?text=Web+Development'); }
+        #web-design-service { background-image: url('https://placehold.co/1920x1080/0d261a/ffffff?text=Web+Design+UI/UX'); }
+        #branding-service { background-image: url('https://placehold.co/1920x1080/1a260d/ffffff?text=Branding'); }
+        #graphics-design-service { background-image: url('https://placehold.co/1920x1080/261a0d/ffffff?text=Graphics+Design'); }
+        #pr-marketing-service { background-image: url('https://placehold.co/1920x1080/0d1a26/ffffff?text=PR+Marketing'); }
+        #print-services-service { background-image: url('https://placehold.co/1920x1080/1a0d26/ffffff?text=Print+Services'); }
+        #ppc-service { background-image: url('https://placehold.co/1920x1080/260d1a/ffffff?text=PPC+Campaigns'); }
+        #animation-2d-service { background-image: url('https://placehold.co/1920x1080/0d261a/ffffff?text=2D+Animation'); }
+        #animation-3d-service { background-image: url('https://placehold.co/1920x1080/1a260d/ffffff?text=3D+Animation'); }
+
+        @media (max-width: 768px) {
+            .service-content h2 {
+                font-size: 2.5rem;
+            }
+            .service-content p {
+                font-size: 1rem;
+            }
+            .service-content i {
+                font-size: 3rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .service-content h2 {
+                font-size: 2rem;
+            }
+            .service-content p {
+                font-size: 0.9rem;
+            }
+            .service-content i {
+                font-size: 2.5rem;
+            }
+            .service-content {
+                padding: 1.5rem;
+            }
+        }
+        /* Footer specific styles */
+        .footer-desktop {
+            background-color: #0a0a0a; /* Darker background for the footer */
+            color: #a0a0a0; /* Lighter gray for general text */
+            font-size: 0.9rem;
+        }
+
+        .footer-desktop h3 {
+            color: #ffffff; /* White for headings */
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-desktop ul li a {
+            color: #a0a0a0;
+            transition: color 0.2s ease;
+        }
+
+        .footer-desktop ul li a:hover {
+            color: #ffffff;
+        }
+
+        .footer-desktop .social-icons a {
+            color: #a0a0a0;
+            transition: color 0.2s ease;
+        }
+
+        .footer-desktop .social-icons a:hover {
+            color: #ffffff;
+        }
+
+        .footer-desktop .btn-gradient {
+            background: linear-gradient(to right, #9333ea, #db2777);
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+
+        .footer-desktop .btn-gradient:hover {
+            background: linear-gradient(to right, #db2777, #9333ea);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+    </style>
+</head>
+<body class="text-white min-h-screen">
+
+    <!-- Header/Navigation -->
+    <header class="bg-gray-900 bg-opacity-70 header-frosted p-4 sticky top-0 z-50 rounded-full max-w-7xl mx-auto mt-4 hidden md:block">
+        <div class="flex items-center justify-between header-main-nav w-full px-4 relative">
+            <!-- Left Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-left flex-grow">
+                <ul class="flex space-x-6">
+                    <li><a href="about.html" class="hover:text-purple-400 transition duration-200">About</a></li>
+                    <!-- Services with Desktop Submenu -->
+                    <li class="relative group" id="desktop-services-item">
+                        <a href="services.html" class="hover:text-purple-400 transition duration-200 active">
+                            Services <i class="fas fa-chevron-down text-xs ml-1 transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="desktop-services-submenu" id="desktop-services-submenu">
+                            <a href="#seo-service">SEO</a>
+                            <a href="#smm-service">SMM</a>
+                            <a href="#web-development-service">Web Development</a>
+                            <a href="#web-design-service">Web Design UI/UX</a>
+                            <a href="#branding-service">Branding</a>
+                            <a href="#graphics-design-service">Graphics Design</a>
+                            <a href="#pr-marketing-service">PR Marketing</a>
+                            <a href="#print-services-service">Print Services</a>
+                            <a href="#ppc-service">PPC</a>
+                            <a href="#animation-2d-service">2D Animation</a>
+                            <a href="#animation-3d-service">3D Animation</a>
+                        </div>
+                    </li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Case Studies</a></li>
+                </ul>
+            </nav>
+
+            <!-- Centered Logo (Desktop Only) -->
+            <div class="logo-container mx-4 hidden md:flex">
+                <a href="index.html">
+                    <img src="https://phantommarketing.netlify.app/assets/img/logo/logo-white.gif" alt="Phantom Marketing Logo" class="h-12 w-auto">
+                </a>
+            </div>
+
+            <!-- Right Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-right flex-grow">
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Blogs</a></li>
+                    <li><a href="contact-us.html" class="hover:text-purple-400 transition duration-200">Contact</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Tools</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[50vh] flex items-center justify-center p-4 overflow-hidden text-center">
+        <div class="absolute inset-0 z-0 bg-gradient-to-br from-gray-950 to-black opacity-100"></div>
+        <div class="background-phantom-text">PHANTOM</div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 py-16">
+            <p class="text-lg text-gray-400 mb-4 inline-flex items-center frosted-glass rounded-full px-4 py-2 border border-gray-700 shadow-md">
+                <span class="w-2 h-2 bg-purple-400 rounded-full mr-2 animate-pulse"></span>
+                Unleash Your Brand's Potential
+            </p>
+
+            <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight">
+                Our <span class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">Spellbinding Services</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Phantom Marketing crafts digital strategies that elevate your brand, enchant your audience, and dominate your market. Scroll down to explore our comprehensive suite of services designed to conjure success.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
+                <a href="#seo-service" class="btn-outline-glow">
+                    Explore Services
+                    <i class="fas fa-chevron-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main class="relative z-10">
+        <!-- Service Section: SEO -->
+        <section id="seo-service" class="service-section">
+            <div class="service-content">
+                <i class="fas fa-chart-line"></i>
+                <h2 class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">Search Engine Optimization (SEO)</h2>
+                <p>Dominate search rankings and drive organic traffic with our expert SEO strategies, ensuring your brand is seen by those who matter most.</p>
+                <a href="#" class="btn-outline-glow">Explore SEO</a>
+            </div>
+        </section>
+
+        <!-- Service Section: SMM -->
+        <section id="smm-service" class="service-section">
+            <div class="service-content">
+                <i class="fas fa-share-alt"></i>
+                <h2 class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-green-500 to-teal-500">Social Media Marketing (SMM)</h2>
+                <p>Engage, convert, and build a loyal community across all major social platforms with our bespoke SMM campaigns.</p>
+                <a href="#" class="btn-outline-glow">Explore SMM</a>
+            </div>
+        </section>
+
+        <!-- Service Section: Web Development -->
+        <section id="web-development-service" class="service-section">
+            <div class="service-content">
+                <i class="fas fa-code"></i>
+                <h2 class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-orange-500 to-yellow-500">Web Development</h2>
+                <p>From robust e-commerce platforms to dynamic web applications, we build high-performing, scalable digital experiences tailored to your needs.</p>
+                <a href="#" class="btn-outline-glow">Explore Web Development</a>
+            </div>
+        </section>
+
+        <!-- Service Section: Web Design UI/UX -->
+        <section id="web-design-service" class="service-section">
+            <div class="service-content">
+                <i class="fas fa-palette"></i>
+                <h2 class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-cyan-500 to-blue-500">Web Design & UI/UX</h2>
+                <p>Crafting intuitive, visually stunning websites that offer seamless user experiences and captivate your audience from the first click.</p>
+                <a href="#" class="btn-outline-glow">Explore Web Design</a>
+            </div>
+        </section>
+
+        <!-- Service Section: Branding -->
+        <section id="branding-service" class="service-section">
+            <div class="service-content">
+                <i class="fas fa-lightbulb"></i>
+                <h2 class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500">Branding</h2>
+                <p>Forge a powerful and unforgettable brand identity that resonates deeply with your target audience and sets you apart in a crowded market.</p>
+                <a href="#" class="btn-outline-glow">Explore Branding</a>
+            </div>
+        </section>
+
+        <!-- Service Section: Graphics Design -->
+        <section id="graphics-design-service" class="service-section">
+            <div class="service-content">
+                <i class="fas fa-paint-brush"></i>
+                <h2 class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-red-500 to-pink-500">Graphics Design</h2>
+                <p>Visually communicate your message with compelling graphics for digital and print, from captivating logos to impactful marketing collateral.</p>
+                <a href="#" class="btn-outline-glow">Explore Graphics Design</a>
+            </div>
+        </section>
+
+        <!-- Service Section: PR Marketing -->
+        <section id="pr-marketing-service" class="service-section">
+            <div class="service-content">
+                <i class="fas fa-bullhorn"></i>
+                <h2 class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-lime-500 to-yellow-500">PR Marketing</h2>
+                <p>Shape public perception and build a strong, positive brand image through strategic public relations and media outreach campaigns.</p>
+                <a href="#" class="btn-outline-glow">Explore PR Marketing</a>
+            </div>
+        </section>
+
+        <!-- Service Section: Print Services -->
+        <section id="print-services-service" class="service-section">
+            <div class="service-content">
+                <i class="fas fa-print"></i>
+                <h2 class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-gray-400 via-slate-500 to-zinc-500">Print Services</h2>
+                <p>Bring your brand to life in the physical world with high-quality print designs, including professional brochures, eye-catching flyers, and custom business cards.</p>
+                <a href="#" class="btn-outline-glow">Explore Print Services</a>
+            </div>
+        </section>
+
+        <!-- Service Section: PPC -->
+        <section id="ppc-service" class="service-section">
+            <div class="service-content">
+                <i class="fas fa-money-bill-wave"></i>
+                <h2 class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-500 to-orange-500">Pay Per Click (PPC)</h2>
+                <p>Command immediate visibility and drive targeted traffic with our expert PPC campaigns, including:</p>
+                <ul class="list-disc list-inside text-gray-200 text-left mt-4 mx-auto max-w-md">
+                    <li>Google Ads</li>
+                    <li>Paid Social Media Ads</li>
+                    <li>SEM</li>
+                </ul>
+                <a href="#" class="btn-outline-glow">Explore PPC</a>
+            </div>
+        </section>
+
+        <!-- Service Section: 2D Animation -->
+        <section id="animation-2d-service" class="service-section">
+            <div class="service-content">
+                <i class="fas fa-film"></i>
+                <h2 class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-fuchsia-500 to-rose-500">2D Animation</h2>
+                <p>Tell your story dynamically with engaging 2D animated videos, perfect for explainers, marketing campaigns, and captivating entertainment.</p>
+                <a href="#" class="btn-outline-glow">Explore 2D Animation</a>
+            </div>
+        </section>
+
+        <!-- Service Section: 3D Animation -->
+        <section id="animation-3d-service" class="service-section">
+            <div class="service-content">
+                <i class="fas fa-cube"></i>
+                <h2 class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-red-500 to-orange-500">3D Animation</h2>
+                <p>Bring complex concepts to life with stunning 3D animations for product visualizations, architectural walkthroughs, and immersive experiences.</p>
+                <a href="#" class="btn-outline-glow">Explore 3D Animation</a>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="relative min-h-[50vh] flex items-center justify-center p-4 overflow-hidden text-center">
+            <div class="absolute inset-0 z-0 bg-gradient-to-br from-gray-950 to-black opacity-100"></div>
+            <div class="background-phantom-text">PHANTOM</div>
+
+            <div class="relative z-10 max-w-4xl mx-auto px-4 py-16">
+                <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline mx-auto">Ready to Transform Your Digital Presence?</h2>
+                <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                    Let Phantom Marketing be your guide. Contact us today for a personalized strategy that delivers real, measurable results.
+                </p>
+                <a href="contact-us.html" class="btn-outline-glow">
+                    LET'S CONJURE SUCCESS<i class="fa-solid fa-handshake"></i>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Desktop Footer -->
+    <footer class="footer-desktop bg-gray-950 text-gray-400 py-8 text-sm border-t border-gray-800 hidden md:block">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- About Us -->
+            <div>
+                <h3 class="text-white text-lg font-semibold mb-4">ABOUT US</h3>
+                <p class="text-gray-500 mb-2">Phantom Marketing is a Creative agency with digital plans, and promotional tools. Bringing your vision to life, we are on a mission to reshape the digital marketing landscape through brand recognition and creativity.</p>
+            </div>
+
+            <!-- Legal -->
+            <div>
+                <h3 class="text-white text-lg font-semibold mb-4">LEGAL</h3>
+                <ul>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Privacy Policy</a></li>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow, Like & Subscribe -->
+            <div class="text-center md:text-left">
+                <h3 class="text-white text-lg font-semibold mb-4">FOLLOW, LIKE & SUBSCRIBE</h3>
+                <div class="flex justify-center md:justify-start space-x-4 text-2xl mb-4 social-icons">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="text-gray-500 text-xs mt-2">SUBSCRIBE</p>
+            </div>
+
+            <!-- Newsletter - Using a placeholder for now as no input field visible in image -->
+            <div class="text-center md:text-left">
+                <h3 class="text-white text-lg font-semibold mb-4">Newsletter</h3>
+                <p class="text-gray-500 mb-2">Join our newsletter for exclusive updates and insights.</p>
+                <!-- Placeholder for actual input field if needed -->
+                <button class="btn-gradient text-white text-sm py-2 px-4 rounded-full mt-2">Sign Up</button>
+            </div>
+        </div>
+        <div class="text-center mt-8 border-t border-gray-800 pt-6">
+            <p>&copy; <span id="currentYearDesktop"></span> Phantom Marketing. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- Mobile Footer Navigation -->
+    <footer class="mobile-footer-nav md:hidden">
+        <a href="about.html" class="mobile-footer-nav-item">
+            <i class="fas fa-info-circle"></i>
+            <span>About</span>
+        </a>
+        <div class="mobile-footer-nav-item relative active" id="mobile-services-item">
+            <a href="#" id="services-toggle" class="flex flex-col items-center justify-center w-full h-full">
+                <i class="fas fa-cogs"></i>
+                <span>Services</span>
+            </a>
+            <div class="services-submenu" id="services-submenu">
+                <a href="#seo-service">SEO</a>
+                <a href="#smm-service">SMM</a>
+                <a href="#web-development-service">Web Development</a>
+                <a href="#web-design-service">Web Design UI/UX</a>
+                <a href="#branding-service">Branding</a>
+                <a href="#graphics-design-service">Graphics Design</a>
+                <a href="#pr-marketing-service">PR Marketing</a>
+                <a href="#print-services-service">Print Services</a>
+                <a href="#ppc-service">PPC</a>
+                <a href="#animation-2d-service">2D Animation</a>
+                <a href="#animation-3d-service">3D Animation</a>
+            </div>
+        </div>
+        <a href="#" class="mobile-footer-nav-item">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </a>
+        <!-- New central logo container -->
+        <div class="mobile-footer-logo-container">
+            <img src="https://i.ibb.co/C5gVjVS4/Untitled-design.gif" alt="Central Logo" class="mobile-footer-logo">
+        </div>
+        <a href="contact-us.html" class="mobile-footer-nav-item">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item">
+            <i class="fas fa-tools"></i>
+            <span>Tools</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </footer>
+
+    <script>
+        // Global variable to store the timeout ID for the submenu
+        var submenuCloseTimeoutId;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Helper Functions ---
+            function getElement(selector) {
+                return document.querySelector(selector);
+            }
+
+            function getAllElements(selector) {
+                return document.querySelectorAll(selector);
+            }
+
+            function addClass(element, className) {
+                element.classList.add(className);
+            }
+
+            function removeClass(element, className) {
+                element.classList.remove(className);
+            }
+
+            function hasClass(element, className) {
+                return element.classList.contains(className);
+            }
+
+            // --- Mobile Footer Navigation Logic ---
+            const mobileFooterNavItems = getAllElements('.mobile-footer-nav-item');
+            const servicesToggle = getElement('#services-toggle');
+            const servicesSubmenu = getElement('#services-submenu');
+            
+            // Set current year in footer
+            const currentYearElement = getElement('#currentYear');
+            if (currentYearElement) {
+                currentYearElement.textContent = new Date().getFullYear();
+            }
+            const currentYearDesktopElement = getElement('#currentYearDesktop');
+            if (currentYearDesktopElement) {
+                currentYearDesktopElement.textContent = new Date().getFullYear();
+            }
+
+            function setActiveNavItem(clickedElement) {
+                mobileFooterNavItems.forEach(item => {
+                    removeClass(item, 'active');
+                });
+                addClass(clickedElement, 'active');
+            }
+
+            function setSubmenuTimeout() {
+                clearTimeout(submenuCloseTimeoutId);
+                submenuCloseTimeoutId = setTimeout(() => {
+                    closeAllSubmenus();
+                }, 3000);
+            }
+
+            function closeAllSubmenus() {
+                clearTimeout(submenuCloseTimeoutId);
+                if (servicesSubmenu) {
+                    removeClass(servicesSubmenu, 'active');
+                }
+            }
+
+            function toggleServicesSubmenu(event) {
+                event.preventDefault();
+                event.stopPropagation(); // Prevent immediate closing by outside click handler
+
+                if (hasClass(servicesSubmenu, 'active')) {
+                    closeAllSubmenus();
+                } else {
+                    closeAllSubmenus(); // Ensure all submenus are closed first (though now only one)
+                    addClass(servicesSubmenu, 'active'); // Open primary submenu
+                    setActiveNavItem(servicesToggle.parentNode); // Set the main Services icon as active
+                    setSubmenuTimeout(); // Start the auto-close timer
+                }
+            }
+
+            // Event listeners for mobile footer navigation
+            mobileFooterNavItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (link && item.id !== 'mobile-services-item') { // Exclude the services item with special toggle
+                    link.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Prevent document click from immediately closing
+                        setActiveNavItem(item);
+                        closeAllSubmenus(); // Close any open submenus when another nav item is clicked
+                    });
+                }
+            });
+
+            if (servicesToggle) {
+                servicesToggle.addEventListener('click', toggleServicesSubmenu);
+            }
+
+            getAllElements('#services-submenu a').forEach(link => {
+                link.addEventListener('click', (event) => {
+                    removeClass(servicesSubmenu, 'active');
+                    clearTimeout(submenuCloseTimeoutId);
+                    
+                    // Smooth scroll to the target section
+                    const targetId = link.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        event.preventDefault(); // Prevent default jump
+                        const targetElement = getElement(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // General click outside handler for closing all submenus
+            document.addEventListener('click', (e) => {
+                const mobileServicesItem = getElement('#mobile-services-item');
+                if (mobileServicesItem && !mobileServicesItem.contains(e.target) && hasClass(servicesSubmenu, 'active')) {
+                    closeAllSubmenus();
+                }
+            });
+
+            // Set active class on page load
+            const currentPath = window.location.pathname.split('/').pop();
+            // Removed homeNavItem as Home is removed
+            // const homeNavItem = getElement('.mobile-footer-nav-item a[href="index.html"]');
+
+            if (currentPath === '' || currentPath === 'index.html') {
+                // No specific active item for home anymore, as it's removed from nav
+                // If you want index.html to highlight 'About' or another default, you'd add logic here.
+            } else {
+                const servicesLinks = getAllElements('#services-submenu a');
+                let foundActiveService = false;
+                servicesLinks.forEach(link => {
+                    const linkHref = link.getAttribute('href');
+                    if (linkHref.startsWith('#')) {
+                        // For anchor links, we don't set active on initial load based on hash
+                    } else {
+                        const linkPath = linkHref.split('/').pop();
+                        if (linkPath === currentPath) {
+                            addClass(link, 'active');
+                            const mobileServicesItem = getElement('#mobile-services-item');
+                            if (mobileServicesItem) {
+                                setActiveNavItem(mobileServicesItem);
+                                foundActiveService = true;
+                            }
+                        }
+                    }
+                });
+                if (!foundActiveService) {
+                    mobileFooterNavItems.forEach(item => {
+                        const link = item.querySelector('a');
+                        if (link && link.href.split('/').pop() === currentPath) {
+                            setActiveNavItem(item);
+                        }
+                    });
+                }
+            }
+
+            // --- Desktop Services Submenu Logic ---
+            const desktopServicesItem = getElement('#desktop-services-item');
+            const desktopServicesSubmenu = getElement('#desktop-services-submenu');
+            let desktopSubmenuTimeout;
+
+            if (desktopServicesItem && desktopServicesSubmenu) {
+                desktopServicesItem.addEventListener('mouseenter', () => {
+                    clearTimeout(desktopSubmenuTimeout);
+                    addClass(desktopServicesSubmenu, 'active');
+                });
+
+                desktopServicesItem.addEventListener('mouseleave', () => {
+                    desktopSubmenuTimeout = setTimeout(() => {
+                        removeClass(desktopServicesSubmenu, 'active');
+                    }, 200); // Small delay before hiding
+                });
+
+                // Keep submenu open if mouse enters it
+                desktopServicesSubmenu.addEventListener('mouseenter', () => {
+                    clearTimeout(desktopSubmenuTimeout);
+                });
+
+                desktopServicesSubmenu.addEventListener('mouseleave', () => {
+                    desktopSubmenuTimeout = setTimeout(() => {
+                        removeClass(desktopServicesSubmenu, 'active');
+                    }, 200);
+                });
+
+                // Smooth scroll for desktop submenu links
+                getAllElements('#desktop-services-submenu a').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        removeClass(desktopServicesSubmenu, 'active');
+                        const targetId = link.getAttribute('href');
+                        if (targetId.startsWith('#')) {
+                            event.preventDefault();
+                            const targetElement = getElement(targetId);
+                            if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
