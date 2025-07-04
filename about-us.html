@@ -1216,4 +1216,55 @@
         // Set current year in footer
         document.addEventListener('DOMContentLoaded', () => {
             const currentYearDesktopElement = document.getElementById('currentYearDesktop');
-           
+            if (currentYearDesktopElement) {
+                currentYearDesktopElement.textContent = new Date().getFullYear();
+            }
+
+            // Desktop Services Submenu Logic (copied from search-engine-optimization.html)
+            const desktopServicesItem = document.getElementById('desktop-services-item');
+            const desktopServicesSubmenu = document.getElementById('desktop-services-submenu');
+            let desktopSubmenuTimeout;
+
+            if (desktopServicesItem && desktopServicesSubmenu) {
+                desktopServicesItem.addEventListener('mouseenter', () => {
+                    clearTimeout(desktopSubmenuTimeout);
+                    desktopServicesSubmenu.classList.add('active');
+                });
+
+                desktopServicesItem.addEventListener('mouseleave', () => {
+                    desktopSubmenuTimeout = setTimeout(() => {
+                        desktopServicesSubmenu.classList.remove('active');
+                    }, 200); // Small delay before hiding
+                });
+
+                // Keep submenu open if mouse enters it
+                desktopServicesSubmenu.addEventListener('mouseenter', () => {
+                    clearTimeout(desktopSubmenuTimeout);
+                });
+
+                desktopServicesSubmenu.addEventListener('mouseleave', () => {
+                    desktopSubmenuTimeout = setTimeout(() => {
+                        desktopServicesSubmenu.classList.remove('active');
+                    }, 200);
+                });
+
+                // Smooth scroll for desktop submenu links (adjusting for external pages)
+                document.querySelectorAll('#desktop-services-submenu a').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        desktopServicesSubmenu.classList.remove('active');
+                        // If it's an internal anchor link, smooth scroll
+                        if (link.getAttribute('href').startsWith('#')) {
+                            event.preventDefault();
+                            const targetElement = document.querySelector(link.getAttribute('href'));
+                            if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+                        // If it's an external page link (like our-services.html#section), let default behavior handle it
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
