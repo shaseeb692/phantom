@@ -1,283 +1,884 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Our Journey & Logo Story | Phantom Marketing</title>        
-        <meta name="description" content="">
-		<meta name="keywords" content="">
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-        
-        <!-- Favicons -->
-        <link rel="shortcut icon" href="assets/img/favicon/logo-24x24.png">
-        <link rel="apple-touch-icon" href="assets/img/favicon/logo-32x32.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicon/logo-72x72.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicon/logo-114x114.png">
-        
-        <!-- Load Core CSS 
-        =====================================-->
-        <link rel="stylesheet" href="assets/css/core/bootstrap-3.3.7.min.css">
-        <link rel="stylesheet" href="assets/css/core/animate.min.css">
-        
-        <!-- Load Main CSS 
-        =====================================-->
-        <link rel="stylesheet" href="assets/css/main/main.css">
-        <link rel="stylesheet" href="assets/css/main/setting.css">
-        <link rel="stylesheet" href="assets/css/main/hover.css">
-		<link rel="stylesheet" href="assets/css/main/style.css">
-        
-        <!-- Load Magnific Popup CSS 
-        =====================================-->
-        <link rel="stylesheet" href="assets/css/magnific/magic.min.css">        
-        <link rel="stylesheet" href="assets/css/magnific/magnific-popup.css">              
-        <link rel="stylesheet" href="assets/css/magnific/magnific-popup-zoom-gallery.css">
-        
-        <!-- Load OWL Carousel CSS 
-        =====================================-->
-        <link rel="stylesheet" href="assets/css/owl-carousel/owl.carousel.css">
-        <link rel="stylesheet" href="assets/css/owl-carousel/owl.theme.css">
-        <link rel="stylesheet" href="assets/css/owl-carousel/owl.transitions.css">
-        
-        <!-- Load Color CSS - Please uncomment to apply the color.
-        =====================================-->
-        <link rel="stylesheet" href="assets/css/color/pasific.css">
-        
-        <!-- Load Fontbase Icons - Please Uncomment to use linea icons
-        =====================================--> 
-		<link rel="stylesheet" href="assets/css/icon/et-line-font.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-        
-    </head>
-    <body id="page-top" data-spy="scroll" data-target=".navbar" data-offset="100">
-        
-        <!-- Page Loader
-        ===================================== -->
-		<div id="pageloader" class="bg-grad-animation-1">
-			<div class="loader-item">
-                <img src="assets/img/other/oval.svg" alt="page loader">
-            </div>
-		</div>
-        
-        <a href="#page-top" class="go-to-top">
-            <i class="fa fa-long-arrow-up"></i>
-        </a>
-        
-        
-        <!-- Navigation Area
-        ===================================== -->        
-        <div class="container navbar-container">
-            <nav class="navbar navbar-pasific navbar-mp navbar-center navbar-sticky megamenu">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <a class="navbar-brand page-scroll" href="index.html">
-                            <img src="assets/img/logo/logo.gif" alt="logo" width="122" height="34">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0c1321" />
+    <title>Our Journey | Phantom Marketing</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Custom CSS for Frosted Glass Effect and Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@300;400;600;700&family=Pacifico&display=swap');
+
+        /* Cosmic SaaS Theme Design System */
+        :root {
+            --background: 220 27% 6%; /* Very dark grey/black for background */
+            --foreground: 0 0% 98%;    /* Very light grey/off-white for foreground text */
+            --card: 220 27% 8%;
+            --card-foreground: 0 0% 98%;
+            --popover: 220 27% 8%;
+            --popover-foreground: 0 0% 98%;
+            --primary: 271 76% 53%;
+            --primary-foreground: 0 0% 98%;
+            --secondary: 220 27% 12%;
+            --secondary-foreground: 0 0% 98%;
+            --muted: 220 27% 12%;
+            --muted-foreground: 0 0% 65%;
+            --accent: 271 76% 53%;
+            --accent-foreground: 0 0% 98%;
+            --destructive: 0 84% 60%;
+            --destructive-foreground: 0 0% 98%;
+            --border: 220 27% 18%;
+            --input: 220 27% 18%;
+            --ring: 271 76% 53%;
+            --radius: 0.75rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(139, 69, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 20, 147, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(20, 184, 255, 0.15) 0%, transparent 50%);
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding-bottom: 70px; /* Add space for fixed mobile footer */
+        }
+
+        .frosted-glass {
+            background-color: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .frosted-glass:hover {
+            box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-frosted {
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(147, 51, 234, 0.4), 0 0 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .heading-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .heading-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(to right, #a78bfa, #f472b6);
+            border-radius: 9999px;
+        }
+
+        .btn-gradient {
+            background: linear-gradient(to right, #9333ea, #db2777);
+            border-radius: 9999px;
+            padding: 12px 32px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #db2777, #9333ea);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        .btn-outline-glow {
+            border: 1px solid #a78bfa;
+            color: #a78bfa;
+            background: none;
+            padding: 12px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
+        }
+        .btn-outline-glow:hover {
+            background-color: rgba(147, 51, 234, 0.2);
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .text-5xl { font-size: 3rem; }
+            .lg\:text-7xl { font-size: 3.5rem; }
+            .text-4xl { font-size: 2.25rem; }
+            .text-xl { font-size: 1.125rem; }
+            .btn-gradient, .btn-outline-glow { width: 100%; max-width: 300px; }
+        }
+
+        /* Mobile Footer Navigation Styles */
+        .mobile-footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 0.5rem;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            border-radius: 1rem 1rem 0 0;
+        }
+
+        .mobile-footer-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1;
+            font-size: 0.75rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            padding: 0.25rem;
+            flex: 1;
+        }
+
+        .mobile-footer-nav-item i {
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+            transition: color 0.2s ease;
+        }
+
+        .mobile-footer-nav-item.active,
+        .mobile-footer-nav-item:hover {
+            color: #a78bfa;
+        }
+
+        .mobile-footer-nav-item.active i,
+        .mobile-footer-nav-item:hover i {
+            color: #a78bfa;
+        }
+
+        .mobile-footer-logo-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #a78bfa, #f472b6);
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.6);
+            transform: translateY(-20px);
+            z-index: 101;
+            flex-shrink: 0;
+            margin: 0 0.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mobile-footer-logo-container:hover {
+            transform: translateY(-22px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.8);
+        }
+
+        .mobile-footer-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            filter: brightness(1.2);
+        }
+
+        /* Mobile Services Submenu Styles */
+        .services-submenu {
+            position: absolute;
+            bottom: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.83);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+            border-radius: 0.75rem;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: bottom center;
+            transform: translateX(-50%) translateY(10px) scale(0.9);
+            max-height: 240px;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .services-submenu::-webkit-scrollbar { display: none; }
+        .services-submenu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+        .services-submenu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+        }
+        .services-submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+        }
+
+        /* Specific optimizations for screens below 400px width */
+        @media (max-width: 399px) {
+            .mobile-footer-nav-item { font-size: 0.65rem; padding: 0.15rem; }
+            .mobile-footer-nav-item i { font-size: 1.2rem; margin-bottom: 0.15rem; }
+            .mobile-footer-logo-container { width: 50px; height: 50px; transform: translateY(-15px); margin: 0 0.25rem; }
+            .mobile-footer-logo { width: 30px; height: 30px; }
+            .services-submenu { bottom: 65px; min-width: 150px; }
+            .services-submenu a { padding: 0.6rem 1rem; font-size: 0.8rem; }
+        }
+
+        /* Footer specific styles */
+        .footer-desktop {
+            background-color: #0a0a0a;
+            color: #a0a0a0;
+            font-size: 0.9rem;
+        }
+        .footer-desktop h3 {
+            color: #ffffff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .footer-desktop ul li a {
+            color: #a0a0a0;
+            transition: color 0.2s ease;
+        }
+        .footer-desktop ul li a:hover {
+            color: #ffffff;
+        }
+        .footer-desktop .social-icons a {
+            color: #a0a0a0;
+            transition: color 0.2s ease;
+        }
+        .footer-desktop .social-icons a .fa-facebook-f:hover { color: #1877F2; }
+        .footer-desktop .social-icons a .fa-x-twitter:hover { color: #1DA1F2; }
+        .footer-desktop .social-icons a .fa-instagram:hover {
+            background: radial-gradient(circle at 30% 110%, #f9ce34, #ee2a7b, #6228d7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .footer-desktop .social-icons a .fa-linkedin-in:hover { color: #0A66C2; }
+        .footer-desktop .social-icons a .fa-youtube:hover { color: #FF0000; }
+        .footer-desktop .social-icons a .fa-pinterest:hover { color: #E60023; }
+
+        .footer-desktop .btn-gradient {
+            background: linear-gradient(to right, #9333ea, #db2777);
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+        .footer-desktop .btn-gradient:hover {
+            background: linear-gradient(to right, #db2777, #9333ea);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        /* Desktop Submenu Styles */
+        .desktop-services-submenu {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.83);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+            border-radius: 0.75rem;
+            padding: 0.5rem 0;
+            min-width: 220px;
+            box-sizing: border-box;
+            z-index: 90;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: top center;
+            transform: translateX(-50%) translateY(-10px) scale(0.95);
+            max-height: 300px;
+            overflow-y: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .desktop-services-submenu::-webkit-scrollbar { display: none; }
+        .desktop-services-submenu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+        .desktop-services-submenu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+        }
+        .desktop-services-submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+        }
+
+        /* Centered Nav Logo Specific Styles */
+        .header-main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+        .header-main-nav .logo-container {
+            flex-shrink: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        .header-main-nav .logo-container img {
+            width: auto;
+            height: 60px;
+            max-height: 80px;
+            object-fit: contain;
+        }
+        .header-main-nav .nav-links {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            width: auto;
+            padding: 0;
+        }
+        .header-main-nav .nav-links.nav-left { justify-content: flex-start; }
+        .header-main-nav .nav-links.nav-right { justify-content: flex-end; }
+        .header-main-nav .nav-links ul { display: flex; margin: 0; padding: 0; }
+
+        /* Mobile specific adjustments for header */
+        @media (max-width: 768px) {
+            .header-main-nav .nav-links { display: none; }
+            .header-main-nav .logo-container { display: none; }
+            .mobile-nav-menu, #mobile-menu-button { display: none; }
+        }
+
+        /* Timeline specific styles */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #9333ea, #db2777);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .timeline-item:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+        .timeline-item-content {
+            width: calc(50% - 30px); /* Adjust for line width and dot */
+            padding: 20px;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5);
+            background-color: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease-in-out;
+        }
+        .timeline-item-content:hover {
+            box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        .timeline-item-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(to right, #a78bfa, #f472b6);
+            border-radius: 50%;
+            border: 3px solid hsl(var(--background));
+            z-index: 1;
+        }
+        .timeline-item-year {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #a78bfa;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(even) .timeline-item-year {
+            left: calc(50% + 40px);
+        }
+        .timeline-item:nth-child(odd) .timeline-item-year {
+            right: calc(50% + 40px);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+                transform: translateX(0);
+            }
+            .timeline-item {
+                flex-direction: column !important;
+                align-items: flex-start;
+                margin-left: 0;
+            }
+            .timeline-item-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+                margin-bottom: 20px;
+            }
+            .timeline-item-dot {
+                left: 20px;
+                transform: translate(-50%, -50%);
+                top: 20px; /* Adjust dot position for mobile */
+            }
+            .timeline-item-year {
+                position: relative;
+                left: 60px !important;
+                top: auto;
+                transform: none;
+                margin-bottom: 10px;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-950 to-black text-white min-h-screen">
+
+    <!-- Header/Navigation -->
+    <header class="bg-gray-900 bg-opacity-70 header-frosted p-4 sticky top-0 z-50 rounded-full max-w-7xl mx-auto mt-4 hidden md:block">
+        <div class="flex items-center justify-between header-main-nav w-full px-4 relative">
+            <!-- Left Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-left flex-grow">
+                <ul class="flex space-x-6">
+                    <li class="relative group">
+                        <a href="about.html" class="hover:text-purple-400 transition duration-200">About</a>
+                    </li>
+                    <!-- Services with Desktop Submenu -->
+                    <li class="relative group" id="desktop-services-item">
+                        <a href="our-services.html" class="hover:text-purple-400 transition duration-200">
+                            Services <i class="fas fa-chevron-down text-xs ml-1 transition-transform duration-200 group-hover:rotate-180"></i>
                         </a>
-                    </div>
-                    <div class="navbar-collapse collapse navbar-main-collapse">
-                        <ul class="nav navbar-nav">
-							<li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle color-light">About</a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="about.html"><i class="fas fa-lightbulb"></i>About Us</a></li>
-                                    <li><a href="our-journey.html"><i class="fas fa-route"></i>Our Journey</a></li>
-                                    <li><a href="testimonials.html"><i class="fa fa-comments"></i>Testimonials</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a data-toggle="dropdown" class="dropdown-toggle color-light">Services</a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="services.html"><i class="fa-brands fa-screenpal"></i>Our Services</a></li>
-                                    <li><a href="search-engine-optimization.html"><i class="fa-solid fa-chart-line"></i>Search Engine Optimazation</a></li>
-                                    <li><a href="social-media-marketing.html"><i class="fa fa-share-alt"></i>Social Media Marketing</a></li>
-                                    <li><a href="web-development-services.html"><i class="fa fa-code"></i>Web Development</a></li>
-                                    <li><a href="web-design-services.html"><i class="fa fa-desktop"></i>Web Designing</a></li>
-                                    <li><a href="graphics-design-services.html"><i class="fa fa-pencil"></i>Graphics Designing</a></li>
-                                    <li><a href="branding.html"><i class="fa fa-paint-brush"></i>Branding</a></li>
-                                    <li><a href="printing-services.html"><i class="fa fa-print"></i>Print Services</a></li>
-                                    <li><a href="pr-marketing.html"><i class="fa fa-newspaper"></i>PR Marketing</a></li>
-                                    <li class="dropdown-submenu">
-                                        <a href="pay-per-click.html"><i class="fa fa-coins"></i>Pay Per Click</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="search-engine-marketing.html"><i class="fa fa-search"></i>Search Engine Marketing</a></li>
-                                            <li><a href="social-media-paid-marketing.html"><i class="fa fa-bullhorn"></i>Social Media Paid Marketing</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown-submenu">
-                                        <a href="animation.html"><i class="fa fa-film"></i>Animation</a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="2d-animation.html"><i class="fa fa-play"></i>2D Animation</a></li>
-                                            <li><a href="3d-animation.html"><i class="fa fa-cube"></i>3D Animation</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-							<li><a href="case-studies.html">Case Studies</a></li>
-							<li><a href="blogs.html">Blogs</a></li>
-							<li><a href="contact-us.html">Contact</a></li>
-                        </ul>
-                    </div>
+                        <div class="desktop-services-submenu" id="desktop-services-submenu">
+                            <a href="our-services.html#seo-service">SEO</a>
+                            <a href="our-services.html#smm-service">SMM</a>
+                            <a href="our-services.html#web-development-service">Web Development</a>
+                            <a href="our-services.html#web-design-service">Web Design UI/UX</a>
+                            <a href="our-services.html#branding-service">Branding</a>
+                            <a href="our-services.html#graphics-design-service">Graphics Design</a>
+                            <a href="our-services.html#pr-marketing-service">PR Marketing</a>
+                            <a href="our-services.html#print-services-service">Print Services</a>
+                            <a href="our-services.html#ppc-service">PPC</a>
+                            <a href="our-services.html#animation-2d-service">2D Animation</a>
+                            <a href="our-services.html#animation-3d-service">3D Animation</a>
+                        </div>
+                    </li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Case Studies</a></li>
+                </ul>
+            </nav>
+
+            <!-- Centered Logo (Desktop Only) -->
+            <div class="logo-container mx-4 hidden md:flex">
+                <a href="index.html">
+                    <img src="https://phantommarketing.netlify.app/assets/img/logo/logo-white.gif" alt="Phantom Marketing Logo" class="h-12 w-auto">
+                </a>
+            </div>
+
+            <!-- Right Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-right flex-grow">
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Blogs</a></li>
+                    <li><a href="contact-us.html" class="hover:text-purple-400 transition duration-200">Contact</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Tools</a></li>
+                </ul>
             </nav>
         </div>
-        
-        
-        <!-- Feature Area
-        ===================================== -->
-        <div class="bg-grad-stellar pt100 pb75">
-            <div class="container">
-                <div class="row text-center mb35">
-                    <h1 class="color-light font-montserrat mt75">
-                        Embarking on a Quest
-                        <small class="color-light alpha8">Unveiling New Horizons</small>
-                    </h1>
-                </div>
-				<div class="row text-center mb35">
-                    <h2 class="color-light font-montserrat mt75">
-                        Beyond Boundaries
-                        <small class="color-light alpha8">An Extraordinary Journey into the Unexpected</small>
-                    </h2>
-                </div>
-                
-                <div class="row">
-				
-                    <div class="col-md-12 bg-light content-box-o-no-border mb30">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="assets/img/other/img-other-3.png" alt="features" class="img-responsive pull-left mr20">                        
-                            </div>
-                            <div class="col-md-8">
-                                <h3>
-                                    2021: Laying the Foundation
-                                    <small class="heading heading-solid"></small>
-                                </h3>
-                                <p>In 2021, Phantom Marketing was born from the shared vision of two industry experts — a <b>Digital Marketer</b> and a <b>Social Media Expert</b>. This marked the beginning of our journey as a digital marketing agency. During this foundational year, we focused on establishing our core values, refining our service offerings, and building a strong team of digital marketing professionals.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-12 bg-light content-box-o-no-border mb30">
-                        <div class="row">
-                            <div class="col-md-8 pl50">
-                                <h3>
-                                    2022: Growth and Milestones
-                                    <small class="heading heading-solid"></small>
-                                </h3>
-                                <p>As we entered 2022, our journey gained momentum. We experienced significant growth and celebrated several key milestones. Our client base expanded, and we had the privilege of working with a diverse range of businesses, from startups to established brands. Our team also grew, enabling us to enhance our capabilities and deliver exceptional results. Throughout the year, we fine-tuned our strategies, staying ahead of the curve and maximizing the value we provided to our clients.</p>
-                            </div>
-                            <div class="col-md-4">
-                                <img src="assets/img/other/img-other-7.jpg" alt="features" class="img-responsive pull-left mr20">                        
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-12 bg-light content-box-o-no-border mb30">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="assets/img/other/img-other-4.png" alt="features" class="img-responsive pull-left mr20">                        
-                            </div>
-                            <div class="col-md-8">
-                                <h3>
-                                    2023: Transforming Success
-                                    <small class="heading heading-solid"></small>
-                                </h3>
-                                <p>In 2023, our journey took a transformative turn. We continued to innovate and leverage the latest technologies and trends in the digital marketing landscape. This resulted in impactful campaigns that drove remarkable results for our clients. Our dedication to delivering outstanding outcomes solidified our reputation as a trusted and results-driven agency. We are proud to have played a part in the growth and success of the businesses we worked with, further establishing ourselves as industry leaders.</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-12 bg-light content-box-o-no-border mb30">
-                        <div class="row">
-                            <div class="col-md-8 pl50">
-                                <h3>
-                                    Future: Unleashing Possibilities
-                                    <small class="heading heading-solid"></small>
-                                </h3>
-                                <p>Looking ahead, the future holds exciting opportunities for Phantom Marketing. We are committed to continuously evolving alongside the ever-changing digital landscape. Our focus remains on pushing boundaries, embracing innovation, and adopting cutting-edge strategies to help our clients thrive. We will continue to prioritize growth, brand visibility, and achieving measurable results for the businesses we partner with. The journey of Phantom Marketing is far from over, and we are excited to make a lasting impact in the years to come.</p><br><p>At Phantom Marketing, we believe that every step of our journey has contributed to our expertise, passion, and ability to deliver exceptional digital marketing solutions. Join us as we continue to redefine success and help businesses achieve their goals in the dynamic digital world.</p>
-                            </div>
-                            <div class="col-md-4">
-                                <img src="assets/img/other/img-other-11.png" alt="features" class="img-responsive pull-left pr20 mt30">                        
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[70vh] flex items-center justify-center p-4 overflow-hidden text-center">
+        <!-- Abstract background pattern -->
+        <div class="absolute inset-0 opacity-20" style="background-image: url('https://placehold.co/1920x1080/0d0d0d/1a1a1a?text=Abstract+Digital+Lines'); background-size: cover; background-position: center;"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 py-16">
+            <p class="text-lg text-gray-400 mb-4 inline-flex items-center frosted-glass rounded-full px-4 py-2 border border-gray-700 shadow-md">
+                <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                Beyond Boundaries
+            </p>
+            <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight">
+                Our Journey: <span class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">Unveiling New Horizons</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                Embark on a quest with Phantom Marketing as we recount our extraordinary journey into the unexpected, redefining success one milestone at a time.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
+                <button class="btn-gradient text-white flex items-center justify-center">
+                    Explore Our Story
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+                <button class="btn-outline-glow text-purple-400 flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.064V9.336a1 1 0 011.555-.832l3.197 2.132a1 1 0 010 1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Our Vision
+                </button>
             </div>
         </div>
-    
-    
-       <!-- footer Area
-        ===================================== -->
-        <div id="footer" class="footer-two pt50 bg-grad-stellar" style="background-image: url('assets/img/bg/new-img-bg-14b.jpg');">
-			<div class="container-fluid bb-solid-1">
-				<div class="container pb35">
-					<div class="row">
-						<div class="col-md-6 col-sm-12 col-xs-12">
-							<span class="font-montserrat text-uppercase color-light">About Us</span><br><br>
-							<p class="color-light"><b>Phantom Marketing</b> is a Creative agency with unique ideas, transforming brands through advertising, digital plans, and promotional tools. Bringing your vision to life, we excel in brand recognition and creativity.</p>
-						</div>
-						<!-- footer menu three start -->
-                        <div class="col-md-2 col-sm-12 col-xs-12 text-center">
-                            <span class="font-montserrat text-uppercase color-light">Legal</span><br><br>
-                            <ul class="no-icon-list">
-                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                                <li><a href="terms-and-condition.html">Terms & Condition</a></li>
-                            </ul>
-                        </div>
-                        <!-- footer menu three end -->
-						<div class="col-md-4 col-sm-12 col-xs-12 pull-right text-center">
-							<div class="footer-logo" style="padding-bottom: 30px;">
-								<img src="assets/img/logo/logo-white.gif" alt="Logo" width="190" height="auto">
-							</div>
-							<span class="font-montserrat text-uppercase color-light">Follow, Like & Subscribe</span><br>
-							<div class="social social-two" style="display: flex; justify-content: center;">
-								<a href="https://www.facebook.com/phantommarketing"><i class="fa-brands fa-facebook-f" style="color: #fff;"></i></a>
-								<a href="https://www.instagram.com/phantommarketingz/"><i class="fa-brands fa-instagram" style="color: #fff;"></i></a>
-								<a href="https://twitter.com/phantommarketz"><i class="fa-brands fa-twitter" style="color: #fff;"></i></a>
-								<a href="https://www.linkedin.com/company/phantommarketing"><i class="fa-brands fa-linkedin" style="color: #fff;"></i></a>
-								<a href="https://www.pinterest.com/phantommarketing/"><i class="fa-brands fa-pinterest" style="color: #fff;"></i></a>
-								<a href="https://www.youtube.com/@phantommarketing292"><i class="fa-brands fa-youtube" style="color: #fff;"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+    </section>
 
-			<div class="container-fluid pt20">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 col-sm-12 col-xs-12">
-							<p class="color-light text-center">Copyright &copy;<span
-									id="currentYear"></span> <a href="index.html"><b>Phantom Marketing</b></a>. All rights
-								reserved.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    <main class="container mx-auto px-4 py-16 max-w-7xl">
 
-        
+        <!-- Section: Our Journey Timeline -->
+        <section id="journey-timeline" class="mb-20 frosted-glass p-8 rounded-xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Our Evolution</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Every step of our journey has contributed to our expertise, passion, and ability to deliver exceptional digital marketing solutions.
+                </p>
+            </div>
 
-        <!-- JQuery Core
-        =====================================-->
-        <script src="assets/js/core/jquery.min.js"></script>
-        <script src="assets/js/core/bootstrap-3.3.7.min.js"></script>
-        
-        <!-- Progress Bars
-        =====================================-->
-        <script src="assets/js/progress-bar/bootstrap-progressbar.min.js"></script>
-        <script src="assets/js/progress-bar/bootstrap-progressbar-main.js"></script>
-        
-        <!-- JQuery Main
-        =====================================-->
-        <script src="assets/js/main/jquery.appear.js"></script>
-        <script src="assets/js/main/isotope.pkgd.min.js"></script>
-        <script src="assets/js/main/parallax.min.js"></script>
-        <script src="assets/js/main/jquery.countTo.js"></script>
-        <script src="assets/js/main/owl.carousel.min.js"></script>
-        <script src="assets/js/main/jquery.sticky.js"></script>
-        <script src="assets/js/main/ion.rangeSlider.min.js"></script>
-        <script src="assets/js/main/imagesloaded.pkgd.min.js"></script>
-        <script src="assets/js/main/main.js"></script>
-        
-    </body>
+            <div class="timeline">
+                <!-- 2021: Laying the Foundation -->
+                <div class="timeline-item">
+                    <div class="timeline-item-year">2021</div>
+                    <div class="timeline-item-dot"></div>
+                    <div class="timeline-item-content">
+                        <h3 class="text-2xl font-semibold mb-2 text-purple-400">Laying the Foundation</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            In 2021, Phantom Marketing was born from the shared vision of two industry experts — a Digital Marketer and a Social Media Expert. This marked the beginning of our journey as a digital marketing agency. During this foundational year, we focused on establishing our core values, refining our service offerings, and building a strong team of digital marketing professionals.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2022: Growth and Milestones -->
+                <div class="timeline-item">
+                    <div class="timeline-item-year">2022</div>
+                    <div class="timeline-item-dot"></div>
+                    <div class="timeline-item-content">
+                        <h3 class="text-2xl font-semibold mb-2 text-pink-400">Growth and Milestones</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            As we entered 2022, our journey gained momentum. We experienced significant growth and celebrated several key milestones. Our client base expanded, and we had the privilege of working with a diverse range of businesses, from startups to established brands. Our team also grew, enabling us to enhance our capabilities and deliver exceptional results. Throughout the year, we fine-tuned our strategies, staying ahead of the curve and maximizing the value we provided to our clients.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2023: Transforming Success -->
+                <div class="timeline-item">
+                    <div class="timeline-item-year">2023</div>
+                    <div class="timeline-item-dot"></div>
+                    <div class="timeline-item-content">
+                        <h3 class="text-2xl font-semibold mb-2 text-purple-400">Transforming Success</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            In 2023, our journey took a transformative turn. We continued to innovate and leverage the latest technologies and trends in the digital marketing landscape. This resulted in impactful campaigns that drove remarkable results for our clients. Our dedication to delivering outstanding outcomes solidified our reputation as a trusted and results-driven agency. We are proud to have played a part in the growth and success of the businesses we worked with, further establishing ourselves as industry leaders.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2024: Expanding Horizons -->
+                <div class="timeline-item">
+                    <div class="timeline-item-year">2024</div>
+                    <div class="timeline-item-dot"></div>
+                    <div class="timeline-item-content">
+                        <h3 class="text-2xl font-semibold mb-2 text-pink-400">Expanding Horizons</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Building on the successes of previous years, 2024 was a period of significant expansion. We diversified our service portfolio, embracing new digital marketing avenues and technologies. Our focus shifted towards broader market reach and deeper client engagement, leading to a more robust and versatile agency capable of addressing evolving industry demands.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2025: Current Year's Focus -->
+                <div class="timeline-item">
+                    <div class="timeline-item-year">2025</div>
+                    <div class="timeline-item-dot"></div>
+                    <div class="timeline-item-content">
+                        <h3 class="text-2xl font-semibold mb-2 text-purple-400">Current Year's Focus: Innovation & Strategic Partnerships</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            As we navigate 2025, Phantom Marketing is doubling down on innovation, exploring cutting-edge AI-driven marketing solutions and forging strategic partnerships to enhance our capabilities. We are committed to future-proofing our clients' success by integrating the latest technological advancements and fostering even deeper collaborations. This year marks a period of significant strategic growth and an unwavering commitment to delivering even more profound impact.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Future: Unleashing Possibilities -->
+                <div class="timeline-item">
+                    <div class="timeline-item-year">Future</div>
+                    <div class="timeline-item-dot"></div>
+                    <div class="timeline-item-content">
+                        <h3 class="text-2xl font-semibold mb-2 text-pink-400">Unleashing Possibilities</h3>
+                        <p class="text-gray-300 leading-relaxed">
+                            Looking ahead, the future holds exciting opportunities for Phantom Marketing. We are committed to continuously evolving alongside the ever-changing digital landscape. Our focus remains on pushing boundaries, embracing innovation, and adopting cutting-edge strategies to help our clients thrive. We will continue to prioritize growth, brand visibility, and achieving measurable results for the businesses we partner with. The journey of Phantom Marketing is far from over, and we are excited to make a lasting impact in the years to come.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="text-center py-16 frosted-glass rounded-xl">
+            <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline mx-auto">Join Us on Our Next Chapter</h2>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                At Phantom Marketing, we believe that every step of our journey has contributed to our expertise, passion, and ability to deliver exceptional digital marketing solutions. Join us as we continue to redefine success and help businesses achieve their goals in the dynamic digital world.
+            </p>
+            <button class="btn-gradient text-white">
+                Let’s craft the next chapter <i class="fas fa-magic ml-3"></i>
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Desktop Footer -->
+    <footer class="footer-desktop bg-gray-950 text-gray-400 py-8 text-sm border-t border-gray-800 hidden md:block">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- About Us -->
+            <div>
+                <h3 class="text-white text-lg font-semibold mb-4">ABOUT US</h3>
+                <p class="text-gray-500 mb-2">Phantom Marketing is a Creative agency with digital plans, and promotional tools. Bringing your vision to life, we are on a mission to reshape the digital marketing landscape through brand recognition and creativity.</p>
+            </div>
+
+            <!-- Legal -->
+            <div>
+                <h3 class="text-white text-lg font-semibold mb-4">LEGAL</h3>
+                <ul>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Privacy Policy</a></li>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow, Like & Subscribe -->
+            <div class="text-center md:text-left">
+                <h3 class="text-white text-lg font-semibold mb-4">FOLLOW, LIKE & SUBSCRIBE</h3>
+                <div class="flex justify-center md:justify-start space-x-4 text-2xl mb-4 social-icons">
+                    <a href="#" class="text-gray-400"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" class="text-gray-400"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-gray-400"><i class="fab fa-pinterest"></i></a>
+                </div>
+                <p class="text-gray-500 text-xs mt-2">SUBSCRIBE</p>
+            </div>
+
+            <!-- Newsletter - Using a placeholder for now as no input field visible in image -->
+            <div class="text-center md:text-left">
+                <h3 class="text-white text-lg font-semibold mb-4">Newsletter</h3>
+                <p class="text-gray-500 mb-2">Join our newsletter for exclusive updates and insights.</p>
+                <button class="btn-gradient text-white text-sm py-2 px-4 rounded-full mt-2">Sign Up</button>
+            </div>
+        </div>
+        <div class="text-center mt-8 border-t border-gray-800 pt-6">
+            <p>&copy; <span id="currentYearDesktop"></span> Phantom Marketing. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- Mobile Footer Navigation -->
+    <footer class="mobile-footer-nav md:hidden">
+        <a href="index.html" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <div class="mobile-footer-nav-item relative active" id="mobile-services-item">
+            <a href="#" onclick="toggleServicesSubmenu(event, this.parentNode)" class="flex flex-col items-center justify-center w-full h-full">
+                <i class="fas fa-info-circle"></i>
+                <span>About</span>
+            </a>
+            <div class="services-submenu" id="services-submenu">
+                <a href="about.html#about-us-hero">Our Story</a>
+                <a href="our-journey.html">Our Journey</a>
+                <a href="about.html#purpose-vision">Our Purpose</a>
+                <a href="about.html#ceo-message">CEO Message</a>
+                <a href="about.html#our-team">Our Team</a>
+                <a href="about.html#core-beliefs">Our Beliefs</a>
+            </div>
+        </div>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </a>
+        <!-- New central logo container -->
+        <div class="mobile-footer-logo-container">
+            <img src="https://i.ibb.co/C5gVjVS4/Untitled-design.gif" alt="Central Logo" class="mobile-footer-logo">
+        </div>
+        <a href="contact-us.html" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-tools"></i>
+            <span>Tools</i>
+        </a>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </footer>
+
+    <script>
+        // Function to set the active navigation item in the mobile footer
+        function setActiveNavItem(clickedElement) {
+            const navItems = document.querySelectorAll('.mobile-footer-nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            clickedElement.classList.add('active');
+        }
+
+        let submenuCloseTimeoutId;
+
+        // Mobile Services Submenu Toggle
+        function toggleServicesSubmenu(event, parentElement) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const servicesSubmenu = document.getElementById('services-submenu');
+            clearTimeout(submenuCloseTimeoutId);
+
+            if (servicesSubmenu.classList.contains('active')) {
+                servicesSubmenu.classList.remove('active');
+            } else {
+                servicesSubmenu.classList.add('active');
+                submenuCloseTimeoutId = setTimeout(() => {
+                    servicesSubmenu.classList.remove('active');
+                }, 3000);
+
+                setActiveNavItem(parentElement);
+
+                document.addEventListener('click', function closeServicesMenu(e) {
+                    const mobileServicesItem = document.getElementById('mobile-services-item');
+                    if (!mobileServicesItem.contains(e.target) && servicesSubmenu.classList.contains('active')) {
+                        servicesSubmenu.classList.remove('active');
+                        clearTimeout(submenuCloseTimeoutId);
+                        document.removeEventListener('click', closeServicesMenu);
+                    }
+                }, { once: true });
+            }
+        }
+
+        // Add event listeners to submenu links to close the submenu and clear timeout if an item is selected
+        document.querySelectorAll('#services-submenu a').forEach(link => {
+            link.addEventListener('click', (event) => {
+                const servicesSubmenu = document.getElementById('services-submenu');
+                servicesSubmenu.classList.remove('active');
+                clearTimeout(submenuCloseTimeoutId);
+
+                // Smooth scroll only if it's an internal anchor on the same page
+                const targetId = link.getAttribute('href');
+                if (targetId.startsWith('#') && window.location.pathname.endsWith(link.pathname)) {
+                    event.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Set current year in footer
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentYearDesktopElement = document.getElementById('currentYearDesktop');
+            if (currentYearDesktopElement) {
+                currentYearDesktopElement.textContent = new Date().getFullYear();
+            }
+
+            // Desktop Services Submenu Logic
+            const desktopServicesItem = document.getElementById('desktop-services-item');
+            const desktopServicesSubmenu = document.getElementById('desktop-services-submenu');
+            let desktopSubmenuTimeout;
+
+            if (desktopServicesItem && desktopServicesSubmenu) {
+                desktopServicesItem.addEventListener('mouseenter', () => {
+                    clearTimeout(desktopSubmenuTimeout);
+                    desktopServicesSubmenu.classList.add('active');
+                });
+
+                desktopServicesItem.addEventListener('mouseleave', () => {
+                    desktopSubmenuTimeout = setTimeout(() => {
+                        desktopServicesSubmenu.classList.remove('active');
+                    }, 200);
+                });
+
+                desktopServicesSubmenu.addEventListener('mouseenter', () => {
+                    clearTimeout(desktopSubmenuTimeout);
+                });
+
+                desktopServicesSubmenu.addEventListener('mouseleave', () => {
+                    desktopSubmenuTimeout = setTimeout(() => {
+                        desktopServicesSubmenu.classList.remove('active');
+                    }, 200);
+                });
+
+                document.querySelectorAll('#desktop-services-submenu a').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        desktopServicesSubmenu.classList.remove('active');
+                        if (link.getAttribute('href').startsWith('#') && window.location.pathname.endsWith(link.pathname)) {
+                            event.preventDefault();
+                            const targetElement = document.querySelector(link.getAttribute('href'));
+                            if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
 </html>
