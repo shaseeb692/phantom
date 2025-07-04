@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0c1321" />
+    <title>About Us | Phantom Marketing</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom CSS for Frosted Glass Effect and Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        /* Import Montserrat for the footer's background text if needed, though Inter is primary */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@300;400;600;700&family=Pacifico&display=swap');
+
+
+        /* Cosmic SaaS Theme Design System */
+
+        /* Define CSS Variables for colors */
+        :root {
+            --background: 220 27% 6%; /* Very dark grey/black for background */
+            --foreground: 0 0% 98%;    /* Very light grey/off-white for foreground text */
+
+            --card: 220 27% 8%;
+            --card-foreground: 0 0% 98%;
+
+            --popover: 220 27% 8%;
+            --popover-foreground: 0 0% 98%;
+
+            --primary: 271 76% 53%;
+            --primary-foreground: 0 0% 98%;
+
+            --secondary: 220 27% 12%;
+            --secondary-foreground: 0 0% 98%;
+
+            --muted: 220 27% 12%;
+            --muted-foreground: 0 0% 65%;
+
+            --accent: 271 76% 53%;
+            --accent-foreground: 0 0% 98%;
+
+            --destructive: 0 84% 60%;
+            --destructive-foreground: 0 0% 98%;
+
+            --border: 220 27% 18%;
+            --input: 220 27% 18%;
+            --ring: 271 76% 53%;
+
+            --radius: 0.75rem;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Applying colors from CSS variables */
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(139, 69, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 20, 147, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(20, 184, 255, 0.15) 0%, transparent 50%);
+            background-attachment: fixed; /* Keep background fixed while scrolling */
+            position: relative;
+            overflow-x: hidden; /* Prevent horizontal scroll from background elements */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            padding-bottom: 70px; /* Add space for fixed mobile footer */
+        }
+
+        .frosted-glass {
+            background-color: rgba(255, 255, 255, 0.02); /* Even more subtle */
+            backdrop-filter: blur(12px) saturate(180%); /* Slightly more blur, retain saturation */
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.05); /* Lighter border */
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .frosted-glass:hover {
+            box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Specific frosted-glass style for header */
+        .header-frosted {
+            background-color: rgba(0, 0, 0, 0.6); /* More opaque black for the header */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+
+        .text-glow {
+            text-shadow: 0 0 8px rgba(147, 51, 234, 0.4), 0 0 15px rgba(236, 72, 153, 0.3); /* Purple and Pink glow */
+        }
+
+        /* Custom underline for headings */
+        .heading-underline {
+            position: relative;
+            display: inline-block;
+        }
+
+        .heading-underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px; /* Adjust based on desired distance from text */
+            width: 60%; /* Shorter line */
+            height: 3px;
+            background: linear-gradient(to right, #a78bfa, #f472b6); /* Purple to pink gradient */
+            border-radius: 9999px; /* Rounded ends */
+        }
+
+        /* Custom button style */
+        .btn-gradient {
+            background: linear-gradient(to right, #9333ea, #db2777); /* Purple to pink */
+            border-radius: 9999px;
+            padding: 12px 32px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #db2777, #9333ea); /* Reverse gradient on hover */
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        .btn-outline-glow {
+            border: 1px solid #a78bfa; /* Purple border */
+            color: #a78bfa;
+            background: none;
+            padding: 12px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
+        }
+        .btn-outline-glow:hover {
+            background-color: rgba(147, 51, 234, 0.2);
+            box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+        }
+
+        /* Client Logos specific styles */
+        .client-logo-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            min-width: 200px; /* Consistent width for each logo item */
+            height: 100px; /* Height to contain the image */
+            padding: 0 10px; /* Removed vertical padding, kept horizontal */
+            box-sizing: border-box; /* Include padding in the width calculation */
+            transition: none; /* Remove transitions/hover effects */
+        }
+
+        .client-logo-item img {
+            width: 150px; /* Fixed width for the image */
+            height: 75px; /* Fixed height for the image */
+            object-fit: contain; /* Ensures the image fits without distortion */
+            opacity: 1; /* Always full opacity */
+            transition: none; /* Remove transitions/hover effects */
+        }
+
+        /* Responsive adjustments for ticker sections */
+        @media (max-width: 768px) {
+            .digital-arsenal-ticker .relative,
+            .client-logo-ticker .relative {
+                padding-left: 1rem; /* Reduce padding for smaller screens */
+                padding-right: 1rem;
+            }
+            /* Adjust columns for smaller screens in grid layouts */
+            .grid-cols-1-md-2-lg-3 {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+            .md\:grid-cols-2 {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+            .lg\:grid-cols-3 {
+                grid-template-columns: 1fr; /* Single column on mobile */
+            }
+            /* Adjust text sizes for smaller screens */
+            .text-5xl {
+                font-size: 3rem; /* Smaller H1 on mobile */
+            }
+            .lg\:text-7xl {
+                font-size: 3.5rem; /* Smaller H1 on mobile */
+            }
+            .text-4xl {
+                font-size: 2.25rem; /* Smaller H2 on mobile */
+            }
+            .text-xl {
+                font-size: 1.125rem; /* Slightly smaller for paragraphs */
+            }
+            .btn-gradient, .btn-outline-glow {
+                width: 100%; /* Full width buttons on mobile */
+                max-width: 300px; /* Max width for buttons */
+            }
+        }
+
+        /* Mobile Footer Navigation Styles */
+        .mobile-footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px; /* Adjust height as needed */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
+            background-color: rgba(0, 0, 0, 0.6); /* Frosted black background */
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.8);
+            z-index: 100; /* Ensure it stays on top */
+            border-radius: 1rem 1rem 0 0; /* Rounded top corners */
+        }
+
+        .mobile-footer-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1; /* Gray text */
+            font-size: 0.75rem; /* Small text */
+            font-weight: 500;
+            transition: color 0.2s ease;
+            text-decoration: none;
+            position: relative;
+            padding: 0.25rem; /* Add some padding */
+            flex: 1; /* Distribute space evenly */
+        }
+
+        .mobile-footer-nav-item i {
+            font-size: 1.5rem; /* Icon size */
+            margin-bottom: 0.25rem; /* Space between icon and text */
+            transition: color 0.2s ease;
+        }
+
+        .mobile-footer-nav-item.active,
+        .mobile-footer-nav-item:hover {
+            color: #a78bfa; /* Purple on active/hover for text */
+        }
+
+        .mobile-footer-nav-item.active i,
+        .mobile-footer-nav-item:hover i {
+            color: #a78bfa; /* Purple on active/hover for icon */
+        }
+
+        /* New styles for the central circular logo */
+        .mobile-footer-logo-container {
+            position: relative; /* Allows precise positioning of the logo within the nav */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 60px; /* Size of the circular container */
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #a78bfa, #f472b6); /* Gradient background for the circle */
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.6); /* Glow effect */
+            transform: translateY(-20px); /* Lift it up above the nav bar */
+            z-index: 101; /* Ensure it's above other nav items */
+            flex-shrink: 0; /* Prevent shrinking when space is limited */
+            margin: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .mobile-footer-logo-container:hover {
+            transform: translateY(-22px) scale(1.05); /* Slight lift and scale on hover */
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.8);
+        }
+
+        .mobile-footer-logo {
+            width: 40px; /* Size of the logo inside the circle */
+            height: 40px;
+            object-fit: contain;
+            filter: brightness(1.2); /* Slightly brighter for visibility */
+        }
+
+        /* Mobile Services Submenu Styles */
+        .services-submenu {
+            position: absolute;
+            bottom: 75px; /* Position above the footer nav item */
+            left: 50%;
+            transform: translateX(-50%);
+            /* Applying even more "super frosted" properties */
+            background-color: rgba(0, 0, 0, 0.83); /* Changed to 83% opacity */
+            backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
+            -webkit-backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Kept consistent */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8); /* Kept consistent */
+
+            border-radius: 0.75rem;
+            padding: 0.5rem 0;
+            min-width: 180px;
+            z-index: 99; /* Below the central logo, but above other content */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: bottom center; /* Scale from bottom */
+            /* Initial state for transition */
+            transform: translateX(-50%) translateY(10px) scale(0.9);
+            max-height: 240px; /* Max height for scrollable submenu */
+            overflow-y: auto; /* Enable vertical scrolling */
+            -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+            scrollbar-width: none;  /* Hide scrollbar for Firefox */
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .services-submenu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .services-submenu.active {
+            opacity: 1;
+            visibility: visible;
+            /* Final state for transition */
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .services-submenu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        .services-submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+        }
+
+        /* Specific optimizations for screens below 400px width (e.g., foldable phones) */
+        @media (max-width: 399px) {
+            .mobile-footer-nav-item {
+                font-size: 0.65rem; /* Slightly smaller text for very narrow screens */
+                padding: 0.15rem; /* Reduce padding slightly */
+            }
+            .mobile-footer-nav-item i {
+                font-size: 1.2rem; /* Smaller icon size */
+                margin-bottom: 0.15rem; /* Adjust space accordingly */
+            }
+            .mobile-footer-logo-container {
+                width: 50px; /* Slightly smaller logo container */
+                height: 50px;
+                transform: translateY(-15px); /* Adjust lift */
+                margin: 0 0.25rem; /* Reduce horizontal margin further */
+            }
+            .mobile-footer-logo {
+                width: 30px; /* Slightly smaller logo image */
+                height: 30px;
+            }
+            .services-submenu {
+                bottom: 65px; /* Adjust submenu position if footer height changes or logo lift changes */
+                min-width: 150px; /* Slightly smaller submenu width */
+            }
+            .services-submenu a {
+                padding: 0.6rem 1rem; /* Slightly smaller padding for submenu items */
+                font-size: 0.8rem; /* Slightly smaller font for submenu items */
+            }
+        }
+
+        /* Team Card Specific Styles (adapted for ticker) */
+        .team-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem; /* rounded-xl */
+            background-color: rgba(255, 255, 255, 0.02); /* frosted-glass base */
+            border: 1px solid rgba(255, 255, 255, 0.05); /* frosted-glass border */
+            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5); /* frosted-glass shadow */
+            flex-shrink: 0; /* Prevent cards from shrinking */
+            width: 280px; /* Fixed width for each card */
+            height: 350px; /* Fixed height for each card */
+            margin-right: 2rem; /* Space between cards */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
+        }
+
+        .team-card-image-container {
+            width: 100%;
+            height: 100%; /* Take full height of the card */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .team-card:hover .team-card-image {
+            transform: scale(1.05);
+        }
+
+        .team-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, rgba(0, 0, 0, 0) 100%);
+            opacity: 1; /* Always visible */
+            transition: opacity 0.4s ease;
+        }
+
+        .team-card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem; /* p-6 */
+            color: white;
+            z-index: 10; /* Ensure text is above overlay */
+        }
+
+        .team-card-name {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 0.25rem; /* mb-1 */
+        }
+
+        .team-card-role {
+            font-size: 1.125rem; /* text-lg */
+            color: #a78bfa; /* text-purple-400 */
+        }
+
+        /* Ticker specific styles */
+        .team-ticker-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .team-ticker-wrapper {
+            display: flex;
+            white-space: nowrap; /* Keep items in a single line */
+            animation: scroll-left var(--scroll-speed, 30s) linear infinite;
+            padding-bottom: 1rem; /* Add some padding at the bottom */
+            padding-top: 1rem; /* Add some padding at the top */
+        }
+
+        /* Pause animation on hover */
+        .team-ticker-wrapper:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%); /* Scroll half the width to create infinite loop */
+            }
+        }
+
+        /* Footer specific styles (copied from our-services.html) */
+        .footer-desktop {
+            background-color: #0a0a0a; /* Darker background for the footer */
+            color: #a0a0a0; /* Lighter gray for general text */
+            font-size: 0.9rem;
+        }
+
+        .footer-desktop h3 {
+            color: #ffffff; /* White for headings */
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .footer-desktop ul li a {
+            color: #a0a0a0;
+            transition: color 0.2s ease;
+        }
+
+        .footer-desktop ul li a:hover {
+            color: #ffffff;
+        }
+
+        .footer-desktop .social-icons a {
+            color: #a0a0a0;
+            transition: color 0.2s ease;
+        }
+
+        .footer-desktop .social-icons a:hover {
+            color: #ffffff;
+        }
+
+        .footer-desktop .btn-gradient {
+            background: linear-gradient(to right, #9333ea, #db2777);
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+
+        .footer-desktop .btn-gradient:hover {
+            background: linear-gradient(to right, #db2777, #9333ea);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        /* Desktop Submenu Styles (copied from search-engine-optimization.html) */
+        .desktop-services-submenu {
+            position: absolute;
+            top: calc(100% + 10px); /* Position below the parent link */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.83);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+            border-radius: 0.75rem;
+            padding: 0.5rem 0;
+            min-width: 220px; /* Wider for desktop */
+            box-sizing: border-box;
+            z-index: 90; /* Below mobile footer's z-index */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: top center;
+            transform: translateX(-50%) translateY(-10px) scale(0.95);
+            max-height: 300px; /* Allow scrolling for many items */
+            overflow-y: auto;
+            -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+        }
+
+        .desktop-services-submenu::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+        }
+
+        .desktop-services-submenu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .desktop-services-submenu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .desktop-services-submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+        }
+
+        /* Centered Nav Logo Specific Styles - Adjusting for new layout */
+        .header-main-nav {
+            display: flex;
+            justify-content: space-between; /* Distribute items with space between */
+            align-items: center;
+            width: 100%;
+            padding: 0 1.5rem; /* Add padding for full width header */
+            position: relative; /* Needed for mobile menu positioning */
+        }
+
+        .header-main-nav .logo-container {
+            /* For desktop, logo is centered */
+            flex-shrink: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .header-main-nav .logo-container img {
+            width: auto;
+            height: 60px;
+            max-height: 80px;
+            object-fit: contain;
+        }
+
+
+        .header-main-nav .nav-links {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            width: auto;
+            padding: 0;
+        }
+
+        .header-main-nav .nav-links.nav-left {
+            justify-content: flex-start;
+        }
+
+        .header-main-nav .nav-links.nav-right {
+            justify-content: flex-end;
+        }
+
+        .header-main-nav .nav-links ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Mobile specific adjustments for header */
+        @media (max-width: 768px) {
+            .header-main-nav .nav-links {
+                display: none; /* Hide desktop nav links on mobile */
+            }
+            .header-main-nav .logo-container {
+                display: none; /* Hide logo from header on mobile */
+            }
+            /* Ensure mobile menu toggle and menu are hidden as per previous request */
+            .mobile-nav-menu,
+            #mobile-menu-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-950 to-black text-white min-h-screen">
+
+    <!-- Header/Navigation -->
+    <header class="bg-gray-900 bg-opacity-70 header-frosted p-4 sticky top-0 z-50 rounded-full max-w-7xl mx-auto mt-4 hidden md:block">
+        <div class="flex items-center justify-between header-main-nav w-full px-4 relative">
+            <!-- Left Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-left flex-grow">
+                <ul class="flex space-x-6">
+                    <li class="relative group">
+                        <a href="about.html" class="hover:text-purple-400 transition duration-200 active">About</a>
+                    </li>
+                    <!-- Services with Desktop Submenu -->
+                    <li class="relative group" id="desktop-services-item">
+                        <a href="our-services.html" class="hover:text-purple-400 transition duration-200">
+                            Services <i class="fas fa-chevron-down text-xs ml-1 transition-transform duration-200 group-hover:rotate-180"></i>
+                        </a>
+                        <div class="desktop-services-submenu" id="desktop-services-submenu">
+                            <a href="our-services.html#seo-service">SEO</a>
+                            <a href="our-services.html#smm-service">SMM</a>
+                            <a href="our-services.html#web-development-service">Web Development</a>
+                            <a href="our-services.html#web-design-service">Web Design UI/UX</a>
+                            <a href="our-services.html#branding-service">Branding</a>
+                            <a href="our-services.html#graphics-design-service">Graphics Design</a>
+                            <a href="our-services.html#pr-marketing-service">PR Marketing</a>
+                            <a href="our-services.html#print-services-service">Print Services</a>
+                            <a href="our-services.html#ppc-service">PPC</a>
+                            <a href="our-services.html#animation-2d-service">2D Animation</a>
+                            <a href="our-services.html#animation-3d-service">3D Animation</a>
+                        </div>
+                    </li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Case Studies</a></li>
+                </ul>
+            </nav>
+
+            <!-- Centered Logo (Desktop Only) -->
+            <div class="logo-container mx-4 hidden md:flex">
+                <a href="index.html">
+                    <!-- Using the provided GIF logo -->
+                    <img src="https://phantommarketing.netlify.app/assets/img/logo/logo-white.gif" alt="Phantom Marketing Logo" class="h-12 w-auto">
+                </a>
+            </div>
+
+            <!-- Right Navigation Links (Desktop Only) -->
+            <nav class="hidden md:flex nav-links nav-right flex-grow">
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Blogs</a></li>
+                    <li><a href="contact-us.html" class="hover:text-purple-400 transition duration-200">Contact</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Tools</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[70vh] flex items-center justify-center p-4 overflow-hidden text-center">
+        <!-- Abstract background pattern -->
+        <div class="absolute inset-0 opacity-20" style="background-image: url('https://placehold.co/1920x1080/0d0d0d/1a1a1a?text=Abstract+Digital+Lines'); background-size: cover; background-position: center;"></div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-4 py-16">
+            <!-- Small tagline above H1 -->
+            <p class="text-lg text-gray-400 mb-4 inline-flex items-center frosted-glass rounded-full px-4 py-2 border border-gray-700 shadow-md">
+                <span class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+                Transforming Possibilities
+            </p>
+
+            <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 leading-tight">
+                About Our Company: <span class="text-glow bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">The Shadow Behind Your Spotlight</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                We aren't just another digital agency. We're the force behind brands that went from invisible to unforgettable, growing from frustration with average results and lazy strategies.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
+                <button class="btn-gradient text-white flex items-center justify-center">
+                    Get Started Now
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+                <button class="btn-outline-glow text-purple-400 flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.064V9.336a1 1 0 011.555-.832l3.197 2.132a1 1 0 010 1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Learn More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-16 max-w-7xl">
+
+        <!-- Section: From Shadows to Spotlight: The Rise of a Digital Revolution -->
+        <section class="mb-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="frosted-glass p-8 rounded-xl order-2 md:order-1">
+                <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline">From Shadows to Spotlight: The Rise of a Digital Revolution</h2>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    We aren't just another digital agency. We're the shadow behind your spotlight. Phantom Marketing was born not to follow trends but to distort them, bend them, and craft new paths that others fear to walk.
+                </p>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    We didn't rise to fame or funding. We grew from frustration. Frustration with average results. With lazy strategies. With brands being ghosted by agencies that promised the moon and delivered a dust cloud. So, we set out to change the game, one haunted algorithm at a time.
+                </p>
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    Today, we're the force behind brands that went from invisible to unforgettable. From startups hiding in search shadows to global enterprises ruling their niche, our impact is felt where it matters: visibility, leads, and ROI.
+                </p>
+                <p class="text-gray-300 leading-relaxed">
+                    Whether you're a fresh flame in Thailand, an empire in Dubai, or a bold voice in Pakistan, our sorcery scales with your ambition. We don’t do marketing for the sake of it. We do it to transform businesses, shake industries, and give power back to the brand. Because with Phantom, it’s never just a campaign. It’s a conquest.
+                </p>
+            </div>
+            <div class="order-1 md:order-2 flex justify-center items-center">
+                <img src="https://placehold.co/600x400/1a1a1a/cccccc?text=Digital+Revolution+Graphic" alt="Digital Revolution Graphic" class="rounded-xl shadow-lg w-full max-w-lg transform hover:scale-105 transition duration-300">
+            </div>
+        </section>
+
+        <!-- Section: Our Purpose & Vision -->
+        <section class="mb-20 frosted-glass p-8 rounded-xl">
+            <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline">Our Purpose & Vision</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start mb-10">
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-purple-400">Transforming Lives: Our Mission</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        We're not here to sell services. We're here to spark transformations. At Phantom Marketing, our mission is supernatural but straightforward: To empower brands to rise from digital obscurity and become unforgettable forces online.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        We do this by crafting effective strategies that move hearts, drive decisions, and dominate algorithms. Our goal isn't traffic or likes. It's loyalty, impact, and growth that haunts competitors. We're obsessed with outcomes, not impressions, but influence. Not reach, but real results.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-4 text-pink-400">Empowering Change Together: Our Vision</h3>
+                    <p class="text-gray-300 leading-relaxed mb-4">
+                        We envision a world where businesses not only exist online but also thrive in the physical world. They possess their place. Our vision is to lead a new era of digital sorcery, where data meets emotion, and creativity casts spells that elevate brands into icons.
+                    </p>
+                    <ul class="list-disc list-inside text-gray-400 space-y-2">
+                        <li>Every small business can scale globally without being swallowed by the big fish.</li>
+                        <li>Every entrepreneur has a shot at greatness powered by strategy, not guesswork.</li>
+                        <li>Every brand becomes unignorable, unforgettable, and unstoppable.</li>
+                    </ul>
+                    <p class="text-gray-300 leading-relaxed mt-4">
+                        With every click, every campaign, and every conversion, we're not just growing businesses; we're building lasting relationships. We're rewriting destinies.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Our Core Beliefs | What Guides Phantom -->
+        <section class="mb-20 frosted-glass p-8 rounded-xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Our Core Beliefs</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    What Guides Phantom
+                </p>
+            </div>
+            <p class="text-lg text-gray-300 leading-relaxed mb-4">
+                At Phantom, we believe that marketing should never settle for being safe. It should shake the ground, stir emotions, and spark movement.
+            </p>
+            <p class="text-lg text-gray-300 leading-relaxed mb-4">
+                We don't chase trends. We challenge them. We believe in bold ideas powered by strategy and sharpened by insight. Numbers guide us, but instinct drives us because real impact lives where data meets intuition.
+            </p>
+            <p class="text-lg text-gray-300 leading-relaxed mb-4">
+                Our clients aren't just customers. They're partners in transformation. We succeed when they rise, when their brand becomes unforgettable, and when their goals are shattered and rebuilt as new ambitions.
+            </p>
+            <p class="text-lg text-gray-300 leading-relaxed mb-4">
+                We don't hide behind vanity metrics. We focus on what matters: outcomes, influence, and revenue that actually move the needle.
+            </p>
+            <p class="text-lg text-gray-300 leading-relaxed">
+                And above all, we believe in transparency. No smoke, no mirrors, just relentless effort, creative fire, and the kind of clarity that builds trust. This isn't just what we believe; it's what we stand for. It's who we are. It’s the Phantom way.
+            </p>
+        </section>
+
+        <!-- Section: CEO Message -->
+        <section class="mb-20 frosted-glass p-8 rounded-xl text-center">
+            <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline mx-auto">Leading Tomorrow Together</h2>
+            <p class="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-4">
+                In a world of noise, being heard is no longer enough. You have to echo. When I founded Phantom Marketing, I didn't want to build just another agency. I wanted to build a movement, one that empowers brands to stop chasing attention and start commanding it.
+            </p>
+            <p class="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto mb-4">
+                We live in a time where trends fade in hours and algorithms shift overnight. However, one thing remains constant: the power of clarity, creativity, and connection. At Phantom, we don’t believe in safe strategies. We believe in bold spells. In haunted scrolls. In marketing, that lingers long after the screen fades to black.
+            </p>
+            <p class="text-lg md:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
+                Whether you're a startup whispering into the void or a global brand seeking your next surge, we're here to light the fire, craft the spell, and push you into Tomorrow. Because Tomorrow doesn't wait. And neither should your brand. Let’s lead it together.
+            </p>
+            <p class="text-xl md:text-2xl font-bold text-purple-400 mt-8">
+                — Syed Haseeb Ur Rahman
+            </p>
+            <p class="text-lg text-gray-400">Founder & CEO, Phantom Marketing</p>
+        </section>
+
+        <!-- Section: Trailblazers Redefining Boundaries | Meet Our Creative Minds (Ticker) -->
+        <section class="mb-20 frosted-glass p-8 rounded-xl">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Trailblazers Redefining Boundaries</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Meet Our Creative Minds
+                </p>
+            </div>
+            <p class="text-lg text-gray-300 leading-relaxed mb-4">
+                Behind every hauntingly successful campaign is a team of misfits, magicians, and marketing sorcerers, strategists who see patterns others don't, creatives who shape trends before they exist, and engineers who breathe life into ideas.
+            </p>
+            <p class="text-lg text-gray-300 leading-relaxed mb-4">
+                At Phantom, we don't believe in staying in line. We draw new ones. We challenge norms, question the obvious, and build what others are too afraid to try. A singular obsession drives each mind here: To take your brand somewhere it's never been but always belonged.
+            </p>
+            <p class="text-lg text-gray-300 leading-relaxed mb-8">
+                Meet the minds behind the magic. The ones redefining what's possible daily.
+            </p>
+
+            <!-- Team Ticker Container -->
+            <div class="team-ticker-container">
+                <div class="team-ticker-wrapper">
+                    <!-- Duplicate the team members twice to ensure continuous loop -->
+                    <!-- Team Member 1 -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=Jane+Doe" alt="Jane Doe" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">Jane Doe</h3>
+                            <p class="team-card-role">Lead Strategist</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=John+Smith" alt="John Smith" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">John Smith</h3>
+                            <p class="team-card-role">Creative Director</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=Emily+White" alt="Emily White" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">Emily White</h3>
+                            <p class="team-card-role">SEO Engineer</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 4 -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=Michael+Brown" alt="Michael Brown" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">Michael Brown</h3>
+                            <p class="team-card-role">PPC Specialist</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 5 -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=Sarah+Green" alt="Sarah Green" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">Sarah Green</h3>
+                            <p class="team-card-role">Content Strategist</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 6 -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=David+Lee" alt="David Lee" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">David Lee</h3>
+                            <p class="team-card-role">Data Analyst</p>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate set of team members for seamless looping -->
+                    <!-- Team Member 1 (Duplicate) -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=Jane+Doe" alt="Jane Doe" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">Jane Doe</h3>
+                            <p class="team-card-role">Lead Strategist</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 2 (Duplicate) -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=John+Smith" alt="John Smith" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">John Smith</h3>
+                            <p class="team-card-role">Creative Director</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 3 (Duplicate) -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=Emily+White" alt="Emily White" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">Emily White</h3>
+                            <p class="team-card-role">SEO Engineer</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 4 (Duplicate) -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=Michael+Brown" alt="Michael Brown" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">Michael Brown</h3>
+                            <p class="team-card-role">PPC Specialist</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 5 (Duplicate) -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=Sarah+Green" alt="Sarah Green" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">Sarah Green</h3>
+                            <p class="team-card-role">Content Strategist</p>
+                        </div>
+                    </div>
+
+                    <!-- Team Member 6 (Duplicate) -->
+                    <div class="team-card">
+                        <div class="team-card-image-container">
+                            <img src="https://placehold.co/600x600/333333/666666?text=David+Lee" alt="David Lee" class="team-card-image">
+                            <div class="team-card-overlay"></div>
+                        </div>
+                        <div class="team-card-content">
+                            <h3 class="team-card-name">David Lee</h3>
+                            <p class="team-card-role">Data Analyst</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Statistics/Counters -->
+        <section class="mb-20 py-16 bg-gray-900 rounded-xl shadow-inner border border-gray-800">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 text-gray-200 heading-underline mx-auto">Our Spectral Impact</h2>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    Numbers don't lie. See the tangible results we've conjured for our clients. More traffic. More leads. More revenue. Every strategy we implement is backed by data to convert clicks into conversions.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center px-4">
+                <div class="p-6 frosted-glass rounded-xl">
+                    <p class="text-4xl md:text-6xl font-extrabold text-purple-400 mb-2" data-target="500">+</p>
+                    <p class="text-lg text-gray-300">Happy Clients</p>
+                </div>
+                <div class="p-6 frosted-glass rounded-xl">
+                    <p class="text-4xl md:text-6xl font-extrabold text-pink-400 mb-2" data-target="1000000">+</p>
+                    <p class="text-lg text-gray-300">Keywords Ranked</p>
+                </div>
+                <div class="p-6 frosted-glass rounded-xl">
+                    <p class="text-4xl md:text-6xl font-extrabold text-red-400 mb-2" data-target="95">%</p>
+                    <p class="text-lg text-gray-300">Client Retention</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="text-center py-16 frosted-glass rounded-xl">
+            <h2 class="text-4xl font-bold mb-6 text-gray-200 heading-underline mx-auto">Ready to Write the Next Chapter With Us?</h2>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                This isn’t just a service. It’s a transformation waiting to happen. Whether you're an ambitious startup ready to take off or a legacy brand seeking reinvention, Phantom is your partner in pushing limits, capturing attention, and building something unforgettable.
+            </p>
+            <button class="btn-gradient text-white">
+                Let’s craft the next chapter <i class="fas fa-magic ml-3"></i>
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Desktop Footer (copied from our-services.html) -->
+    <footer class="footer-desktop bg-gray-950 text-gray-400 py-8 text-sm border-t border-gray-800 hidden md:block">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- About Us -->
+            <div>
+                <h3 class="text-white text-lg font-semibold mb-4">ABOUT US</h3>
+                <p class="text-gray-500 mb-2">Phantom Marketing is a Creative agency with digital plans, and promotional tools. Bringing your vision to life, we are on a mission to reshape the digital marketing landscape through brand recognition and creativity.</p>
+            </div>
+
+            <!-- Legal -->
+            <div>
+                <h3 class="text-white text-lg font-semibold mb-4">LEGAL</h3>
+                <ul>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Privacy Policy</a></li>
+                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <!-- Follow, Like & Subscribe -->
+            <div class="text-center md:text-left">
+                <h3 class="text-white text-lg font-semibold mb-4">FOLLOW, LIKE & SUBSCRIBE</h3>
+                <div class="flex justify-center md:justify-start space-x-4 text-2xl mb-4 social-icons">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="text-gray-500 text-xs mt-2">SUBSCRIBE</p>
+            </div>
+
+            <!-- Newsletter - Using a placeholder for now as no input field visible in image -->
+            <div class="text-center md:text-left">
+                <h3 class="text-white text-lg font-semibold mb-4">Newsletter</h3>
+                <p class="text-gray-500 mb-2">Join our newsletter for exclusive updates and insights.</p>
+                <!-- Placeholder for actual input field if needed -->
+                <button class="btn-gradient text-white text-sm py-2 px-4 rounded-full mt-2">Sign Up</button>
+            </div>
+        </div>
+        <div class="text-center mt-8 border-t border-gray-800 pt-6">
+            <p>&copy; <span id="currentYearDesktop"></span> Phantom Marketing. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <!-- Mobile Footer Navigation -->
+    <footer class="mobile-footer-nav md:hidden">
+        <a href="index.html" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <div class="mobile-footer-nav-item relative active" id="mobile-services-item">
+            <a href="#" onclick="toggleServicesSubmenu(event, this.parentNode)" class="flex flex-col items-center justify-center w-full h-full">
+                <i class="fas fa-info-circle"></i>
+                <span>About</span>
+            </a>
+            <div class="services-submenu" id="services-submenu">
+                <a href="#about-us-hero">Our Story</a>
+                <a href="#purpose-vision">Our Purpose</a>
+                <a href="#ceo-message">CEO Message</a>
+                <a href="#our-team">Our Team</a>
+                <a href="#core-beliefs">Our Beliefs</a>
+            </div>
+        </div>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </a>
+        <!-- New central logo container -->
+        <div class="mobile-footer-logo-container">
+            <img src="https://i.ibb.co/C5gVjVS4/Untitled-design.gif" alt="Central Logo" class="mobile-footer-logo">
+        </div>
+        <a href="contact-us.html" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-tools"></i>
+            <span>Tools</span>
+        </a>
+        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </footer>
+
+    <script>
+        // JavaScript for simple counter animation
+        function animateCounters() {
+            document.querySelectorAll('[data-target]').forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 200; // Adjust speed
+
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current) + (counter.getAttribute('data-target').includes('%') ? '%' : '+');
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target + (counter.getAttribute('data-target').includes('%') ? '%' : '+');
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        // Trigger counter animation when section is in view
+        const statsSection = document.querySelector('section.py-16.bg-gray-900');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Function to set the active navigation item in the mobile footer
+        function setActiveNavItem(clickedElement) {
+            // Get all mobile footer navigation items
+            const navItems = document.querySelectorAll('.mobile-footer-nav-item');
+            
+            // Remove 'active' class from all items
+            navItems.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add 'active' class to the clicked element
+            clickedElement.classList.add('active');
+        }
+
+        // Global variable to store the timeout ID for the submenu
+        let submenuCloseTimeoutId;
+
+        // Mobile Services Submenu Toggle (adapted for About Us)
+        function toggleServicesSubmenu(event, parentElement) {
+            event.preventDefault(); // Prevent default link behavior
+            event.stopPropagation(); // Stop event bubbling to close other submenus/modals
+
+            const servicesSubmenu = document.getElementById('services-submenu');
+            
+            // Clear any existing timeout when toggling the menu
+            clearTimeout(submenuCloseTimeoutId);
+
+            if (servicesSubmenu.classList.contains('active')) {
+                // If currently active, close it
+                servicesSubmenu.classList.remove('active');
+                // No need to set timeout if it's explicitly closed
+            } else {
+                // If not active, open it
+                servicesSubmenu.classList.add('active');
+                // Set a timeout to close the submenu after 3 seconds
+                submenuCloseTimeoutId = setTimeout(() => {
+                    servicesSubmenu.classList.remove('active');
+                }, 3000); // 3000 milliseconds = 3 seconds
+
+                // Set the parent "About" item as active
+                setActiveNavItem(parentElement);
+
+                // Close submenu if clicked outside
+                // Re-attach this listener each time the submenu is opened to ensure it works correctly
+                document.addEventListener('click', function closeServicesMenu(e) {
+                    const mobileServicesItem = document.getElementById('mobile-services-item');
+                    if (!mobileServicesItem.contains(e.target) && servicesSubmenu.classList.contains('active')) {
+                        servicesSubmenu.classList.remove('active');
+                        clearTimeout(submenuCloseTimeoutId); // Clear timeout if closed manually
+                        document.removeEventListener('click', closeServicesMenu); // Remove this specific listener
+                    }
+                }, { once: true }); // Use { once: true } to automatically remove after one execution
+            }
+        }
+
+        // Add event listeners to submenu links to close the submenu and clear timeout if an item is selected
+        document.querySelectorAll('#services-submenu a').forEach(link => {
+            link.addEventListener('click', (event) => {
+                const servicesSubmenu = document.getElementById('services-submenu');
+                servicesSubmenu.classList.remove('active');
+                clearTimeout(submenuCloseTimeoutId); // Clear timeout when a submenu item is clicked
+
+                // Smooth scroll to the target section
+                const targetId = link.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    event.preventDefault(); // Prevent default jump
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Set current year in footer
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentYearDesktopElement = document.getElementById('currentYearDesktop');
+            if (currentYearDesktopElement) {
+                currentYearDesktopElement.textContent = new Date().getFullYear();
+            }
+
+            // Desktop Services Submenu Logic (copied from search-engine-optimization.html)
+            const desktopServicesItem = document.getElementById('desktop-services-item');
+            const desktopServicesSubmenu = document.getElementById('desktop-services-submenu');
+            let desktopSubmenuTimeout;
+
+            if (desktopServicesItem && desktopServicesSubmenu) {
+                desktopServicesItem.addEventListener('mouseenter', () => {
+                    clearTimeout(desktopSubmenuTimeout);
+                    desktopServicesSubmenu.classList.add('active');
+                });
+
+                desktopServicesItem.addEventListener('mouseleave', () => {
+                    desktopSubmenuTimeout = setTimeout(() => {
+                        desktopServicesSubmenu.classList.remove('active');
+                    }, 200); // Small delay before hiding
+                });
+
+                // Keep submenu open if mouse enters it
+                desktopServicesSubmenu.addEventListener('mouseenter', () => {
+                    clearTimeout(desktopSubmenuTimeout);
+                });
+
+                desktopServicesSubmenu.addEventListener('mouseleave', () => {
+                    desktopSubmenuTimeout = setTimeout(() => {
+                        desktopServicesSubmenu.classList.remove('active');
+                    }, 200);
+                });
+
+                // Smooth scroll for desktop submenu links (adjusting for external pages)
+                document.querySelectorAll('#desktop-services-submenu a').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        desktopServicesSubmenu.classList.remove('active');
+                        // If it's an internal anchor link, smooth scroll
+                        if (link.getAttribute('href').startsWith('#')) {
+                            event.preventDefault();
+                            const targetElement = document.querySelector(link.getAttribute('href'));
+                            if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+                        // If it's an external page link (like our-services.html#section), let default behavior handle it
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
