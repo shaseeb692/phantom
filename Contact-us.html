@@ -191,7 +191,11 @@
             text-decoration: none;
             position: relative;
             padding: 0.25rem; /* Add some padding */
-            flex: 1; /* Distribute space evenly */
+            flex-grow: 1; /* Allow to grow */
+            flex-shrink: 0; /* Prevent shrinking below initial size */
+            flex-basis: 1px; /* Allow items to shrink very small if needed, but grow */
+            min-width: 0; /* Important for flex items to shrink */
+            overflow: hidden; /* Hide any content that tries to overflow the item */
         }
 
         .mobile-footer-nav-item i {
@@ -208,6 +212,18 @@
         .mobile-footer-nav-item.active i,
         .mobile-footer-nav-item:hover i {
             color: #a78bfa; /* Purple on active/hover for icon */
+        }
+
+        /* Span inside mobile footer nav item for text labels - MODIFIED FOR SINGLE LINE WITH ELLIPSIS */
+        .mobile-footer-nav-item span {
+            white-space: nowrap; /* Force text onto a single line */
+            overflow: hidden; /* Hide overflowing content */
+            text-overflow: ellipsis; /* Show ellipsis for clipped text */
+            text-align: center; /* Center text within the span */
+            line-height: 1.3; /* Adjust line height for wrapped text */
+            width: 100%; /* Ensure it takes full width of its parent flex item */
+            flex-shrink: 0; /* Prevent shrinking its own content (text) */
+            min-width: 0; /* Allow the actual text content to respect its container's min-width */
         }
 
         /* New styles for the central circular logo */
@@ -245,8 +261,8 @@
         .services-submenu {
             position: absolute;
             bottom: 75px; /* Position above the footer nav item */
-            left: 50%;
-            transform: translateX(-50%);
+            left: 50%; /* Centered using translateX */
+            transform: translateX(-50%); /* Adjust for true centering */
             background-color: rgba(0, 0, 0, 0.83); /* Changed to 83% opacity */
             backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
             -webkit-backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
@@ -256,6 +272,7 @@
             border-radius: 0.75rem;
             padding: 0.5rem 0;
             min-width: 180px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
             z-index: 99; /* Below the central logo, but above other content */
             opacity: 0;
             visibility: hidden;
@@ -263,6 +280,16 @@
             transform-origin: bottom center; /* Scale from bottom */
             /* Initial state for transition */
             transform: translateX(-50%) translateY(10px) scale(0.9);
+
+            /* Scrolling properties re-added */
+            max-height: 240px; /* Approximately 5 items * (1.5rem line-height + 2 * 0.75rem padding) */
+            overflow-y: auto; /* Enable vertical scrolling */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .services-submenu::-webkit-scrollbar {
+            display: none;
         }
 
         .services-submenu.active {
@@ -271,7 +298,7 @@
             /* Final state for transition */
             transform: translateX(-50%) translateY(0) scale(1);
         }
-
+        
         .services-submenu a {
             display: block;
             padding: 0.75rem 1.25rem;
@@ -291,6 +318,7 @@
             .mobile-footer-nav-item {
                 font-size: 0.65rem; /* Slightly smaller text for very narrow screens */
                 padding: 0.15rem; /* Reduce padding slightly */
+                flex-basis: auto; /* Let content dictate base size before growing/shrinking */
             }
             .mobile-footer-nav-item i {
                 font-size: 1.2rem; /* Smaller icon size */
@@ -308,7 +336,7 @@
             }
             .services-submenu {
                 bottom: 65px; /* Adjust submenu position if footer height changes or logo lift changes */
-                min-width: 150px; /* Slightly smaller submenu width */
+                min-width: 150px;
             }
             .services-submenu a {
                 padding: 0.6rem 1rem; /* Slightly smaller padding for submenu items */
@@ -374,6 +402,48 @@
         .gme-generated-link {
             display: none !important;
         }
+
+        /* Desktop Services Submenu Styles */
+        .desktop-services-submenu {
+            position: absolute;
+            top: 100%; /* Position below the parent link */
+            left: 50%; /* Center horizontally relative to parent link */
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.83);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+            border-radius: 0.75rem;
+            padding: 0.5rem 0;
+            min-width: 200px;
+            z-index: 90; /* Below the header, above other content */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transform-origin: top center; /* Scale from top */
+            transform: translateX(-50%) translateY(-10px) scale(0.9); /* Initial state for transition */
+        }
+
+        .desktop-services-submenu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1); /* Final state for transition */
+        }
+
+        .desktop-services-submenu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .desktop-services-submenu a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-gray-950 to-black text-white min-h-screen">
@@ -385,26 +455,41 @@
             <nav class="hidden md:flex nav-links nav-left flex-grow">
                 <ul class="flex space-x-6">
                     <li><a href="index.html" class="hover:text-purple-400 transition duration-200">Home</a></li>
-                    <li><a href="#" class="hover:text-purple-400 transition duration-200">About</a></li>
-                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Services</a></li>
+                    <li><a href="about.html" class="hover:text-purple-400 transition duration-200">About</a></li>
+                    <li class="relative" id="desktop-services-item">
+                        <a href="our-services.html" class="hover:text-purple-400 transition duration-200" id="desktop-services-link">Services <i class="fas fa-chevron-down text-xs ml-1"></i></a>
+                        <div class="desktop-services-submenu" id="desktop-services-submenu">
+                            <a href="search-engine-optimization.html">Search Engine Optimization</a>
+                            <a href="social-media-marketing.html">Social Media Marketing</a>
+                            <a href="web-development-services.html">Web Development</a>
+                            <a href="web-design-services.html">Web Designing</a>
+                            <a href="graphics-design-services.html">Graphics Designing</a>
+                            <a href="branding-services.html">Branding</a>
+                            <a href="print-services.html">Print Services</a>
+                            <a href="pr-marketing.html">PR Marketing</a>
+                            <a href="pay-per-click.html">Pay Per Click (SEM)</a>
+                            <a href="paid-smm.html">Paid SMM</a>
+                            <a href="animation-2d.html">Animation (2D)</a>
+                            <a href="animation-3d.html">Animation (3D)</a>
+                        </div>
+                    </li>
                 </ul>
             </nav>
 
             <!-- Centered Logo (Desktop Only) -->
             <div class="logo-container mx-4 hidden md:flex">
-                <a href="#">
+                <a href="index.html">
                     <!-- Using the provided GIF logo -->
                     <img src="https://phantommarketing.netlify.app/assets/img/logo/logo-white.gif" alt="Phantom Marketing Logo" class="h-12 w-auto">
                 </a>
             </div>
 
             <!-- Right Navigation Links (Desktop Only) -->
-            <nav class="hidden md:flex nav-links nav-right flex-grow">
+            <nav class="hidden md:flex nav-links nav-right flex-grow justify-end">
                 <ul class="flex space-x-6">
-                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Search</a></li>
-                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Contact</a></li>
-                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Cart</a></li>
-                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Profile</a></li>
+                    <li><a href="case-studies.html" class="hover:text-purple-400 transition duration-200">Case Studies</a></li>
+                    <li><a href="blogs.html" class="hover:text-purple-400 transition duration-200">Blogs</a></li>
+                    <li><a href="contact-us.html" class="hover:text-purple-400 transition duration-200">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -541,111 +626,237 @@
 
     <!-- Mobile Footer Navigation -->
     <footer class="mobile-footer-nav md:hidden">
-        <a href="index.html" class="mobile-footer-nav-item active" onclick="setActiveNavItem(this)">
+        <a href="index.html" class="mobile-footer-nav-item" id="mobile-home-item">
             <i class="fas fa-home"></i>
             <span>Home</span>
         </a>
         <div class="mobile-footer-nav-item relative" id="mobile-services-item">
-            <a href="#" onclick="toggleServicesSubmenu(event, this.parentNode)" class="flex flex-col items-center justify-center w-full h-full">
+            <a href="#" id="services-toggle" class="flex flex-col items-center justify-center w-full h-full">
                 <i class="fas fa-cogs"></i>
                 <span>Services</span>
             </a>
             <div class="services-submenu" id="services-submenu">
                 <a href="search-engine-optimization.html">Search Engine Optimization</a>
-                <a href="#">On-Page Optimization</a>
-                <a href="#">Off-Page Optimization</a>
-                <a href="#">Technical SEO</a>
-                <a href="#">Content Marketing</a>
-                <a href="#">Local SEO</a>
-                <a href="#">E-Commerce SEO</a>
-                <a href="#">App Store Optimization</a>
+                <a href="social-media-marketing.html">Social Media Marketing</a>
+                <a href="web-development-services.html">Web Development</a>
+                <a href="web-design-services.html">Web Designing</a>
+                <a href="graphics-design-services.html">Graphics Designing</a>
+                <a href="branding-services.html">Branding</a>
+                <a href="print-services.html">Print Services</a>
+                <a href="pr-marketing.html">PR Marketing</a>
+                <a href="pay-per-click.html">Pay Per Click (SEM)</a>
+                <a href="paid-smm.html">Paid SMM</a>
+                <a href="animation-2d.html">Animation (2D)</a>
+                <a href="animation-3d.html">Animation (3D)</a>
             </div>
         </div>
-        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+        <a href="case-studies.html" class="mobile-footer-nav-item" id="mobile-case-studies-item">
             <i class="fas fa-search"></i>
-            <span>Search</span>
+            <span>Case Studies</span>
         </a>
         <!-- New central logo container -->
         <div class="mobile-footer-logo-container">
             <img src="https://i.ibb.co/C5gVjVS4/Untitled-design.gif" alt="Central Logo" class="mobile-footer-logo">
         </div>
-        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+        <a href="contact-us.html" class="mobile-footer-nav-item" id="mobile-contact-item">
             <i class="fas fa-envelope"></i>
             <span>Contact</span>
         </a>
-        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
-            <i class="fas fa-shopping-cart"></i>
-            <span>Cart</span>
+        <a href="blogs.html" class="mobile-footer-nav-item" id="mobile-blogs-item">
+            <i class="fas fa-newspaper"></i>
+            <span>Blogs</span>
         </a>
-        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
+        <a href="#" class="mobile-footer-nav-item" id="mobile-profile-item">
             <i class="fas fa-user"></i>
             <span>Profile</span>
         </a>
     </footer>
 
     <script>
-        // Function to set the active navigation item in the mobile footer
-        function setActiveNavItem(clickedElement) {
-            // Get all mobile footer navigation items
-            const navItems = document.querySelectorAll('.mobile-footer-nav-item');
-            
-            // Remove 'active' class from all items
-            navItems.forEach(item => {
-                item.classList.remove('active');
-            });
-
-            // Add 'active' class to the clicked element
-            clickedElement.classList.add('active');
-        }
-
-        // Global variable to store the timeout ID for the submenu
-        let submenuCloseTimeoutId;
-
-        // Mobile Services Submenu Toggle
-        function toggleServicesSubmenu(event, parentElement) {
-            event.preventDefault(); // Prevent default link behavior
-            event.stopPropagation(); // Stop event bubbling to close other submenus/modals
-
-            const servicesSubmenu = document.getElementById('services-submenu');
-            
-            // Clear any existing timeout when toggling the menu
-            clearTimeout(submenuCloseTimeoutId);
-
-            if (servicesSubmenu.classList.contains('active')) {
-                // If currently active, close it
-                servicesSubmenu.classList.remove('active');
-                // No need to set timeout if it's explicitly closed
-            } else {
-                // If not active, open it
-                servicesSubmenu.classList.add('active');
-                // Set a timeout to close the submenu after 3 seconds
-                submenuCloseTimeoutId = setTimeout(() => {
-                    servicesSubmenu.classList.remove('active');
-                }, 3000); // 3000 milliseconds = 3 seconds
-
-                // Set the parent "Services" item as active
-                setActiveNavItem(parentElement);
-
-                // Close submenu if clicked outside
-                // Re-attach this listener each time the submenu is opened to ensure it works correctly
-                document.addEventListener('click', function closeServicesMenu(e) {
-                    const mobileServicesItem = document.getElementById('mobile-services-item');
-                    if (!mobileServicesItem.contains(e.target) && servicesSubmenu.classList.contains('active')) {
-                        servicesSubmenu.classList.remove('active');
-                        clearTimeout(submenuCloseTimeoutId); // Clear timeout if closed manually
-                        document.removeEventListener('click', closeServicesMenu); // Remove this specific listener
-                    }
-                }, { once: true }); // Use { once: true } to automatically remove after one execution
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Helper Functions ---
+            function getElement(selector) {
+                return document.querySelector(selector);
             }
-        }
 
-        // Add event listeners to submenu links to close the submenu and clear timeout if an item is selected
-        document.querySelectorAll('#services-submenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                const servicesSubmenu = document.getElementById('services-submenu');
-                servicesSubmenu.classList.remove('active');
-                clearTimeout(submenuCloseTimeoutId); // Clear timeout when a submenu item is clicked
+            function getAllElements(selector) {
+                return document.querySelectorAll(selector);
+            }
+
+            function addClass(element, className) {
+                if (element) element.classList.add(className);
+            }
+
+            function removeClass(element, className) {
+                if (element) element.classList.remove(className);
+            }
+
+            function hasClass(element, className) {
+                return element && element.classList.contains(className);
+            }
+
+            // --- Mobile Footer Navigation Logic ---
+            const mobileFooterNavItems = getAllElements('.mobile-footer-nav-item');
+            const servicesToggle = getElement('#services-toggle');
+            const servicesSubmenu = getElement('#services-submenu');
+            let mobileSubmenuCloseTimeoutId;
+
+            function setActiveNavItem(clickedElement) {
+                mobileFooterNavItems.forEach(item => {
+                    removeClass(item, 'active');
+                });
+                addClass(clickedElement, 'active');
+            }
+
+            function setMobileSubmenuTimeout() {
+                clearTimeout(mobileSubmenuCloseTimeoutId);
+                mobileSubmenuCloseTimeoutId = setTimeout(() => {
+                    closeAllMobileSubmenus();
+                }, 3000); // Auto-close after 3 seconds
+            }
+
+            function closeAllMobileSubmenus() {
+                clearTimeout(mobileSubmenuCloseTimeoutId);
+                if (servicesSubmenu) {
+                    removeClass(servicesSubmenu, 'active');
+                }
+            }
+
+            function toggleServicesSubmenu(event) {
+                event.preventDefault();
+                event.stopPropagation(); // Prevent immediate closing by outside click handler
+
+                if (hasClass(servicesSubmenu, 'active')) {
+                    closeAllMobileSubmenus();
+                } else {
+                    closeAllMobileSubmenus(); // Ensure any other open submenus are closed first
+                    addClass(servicesSubmenu, 'active'); // Open services submenu
+                    setActiveNavItem(servicesToggle.parentNode); // Set the main Services icon as active
+                    setMobileSubmenuTimeout(); // Start the auto-close timer
+                }
+            }
+
+            // Event listeners for mobile footer navigation
+            mobileFooterNavItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (link && item.id !== 'mobile-services-item') { // Exclude the services item with special toggle
+                    link.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Prevent document click from immediately closing
+                        setActiveNavItem(item);
+                        closeAllMobileSubmenus(); // Close any open submenus when another nav item is clicked
+                    });
+                }
             });
+
+            if (servicesToggle) {
+                servicesToggle.addEventListener('click', toggleServicesSubmenu);
+            }
+
+            getAllElements('#services-submenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    removeClass(servicesSubmenu, 'active');
+                    clearTimeout(mobileSubmenuCloseTimeoutId);
+                });
+            });
+
+            // General click outside handler for closing all mobile submenus
+            document.addEventListener('click', (e) => {
+                const mobileServicesItem = getElement('#mobile-services-item');
+                if (mobileServicesItem && !mobileServicesItem.contains(e.target) && hasClass(servicesSubmenu, 'active')) {
+                    closeAllMobileSubmenus();
+                }
+            });
+
+            // Set active class on page load for mobile footer
+            const currentPath = window.location.pathname.split('/').pop();
+            const mobileHomeItem = getElement('#mobile-home-item');
+            const mobileContactItem = getElement('#mobile-contact-item');
+            const mobileCaseStudiesItem = getElement('#mobile-case-studies-item');
+            const mobileBlogsItem = getElement('#mobile-blogs-item');
+            const mobileProfileItem = getElement('#mobile-profile-item');
+
+            if (currentPath === '' || currentPath === 'index.html') {
+                if (mobileHomeItem) setActiveNavItem(mobileHomeItem);
+            } else if (currentPath === 'contact-us.html') {
+                if (mobileContactItem) setActiveNavItem(mobileContactItem);
+            } else if (currentPath === 'case-studies.html') {
+                if (mobileCaseStudiesItem) setActiveNavItem(mobileCaseStudiesItem);
+            } else if (currentPath === 'blogs.html') {
+                if (mobileBlogsItem) setActiveNavItem(mobileBlogsItem);
+            } else if (currentPath === 'profile.html') { // Assuming a profile page exists
+                if (mobileProfileItem) setActiveNavItem(mobileProfileItem);
+            } else {
+                // Check if it's a services sub-page
+                const servicesLinks = getAllElements('#services-submenu a');
+                let foundActiveService = false;
+                servicesLinks.forEach(link => {
+                    const linkPath = link.href.split('/').pop();
+                    if (linkPath === currentPath) {
+                        addClass(link, 'active'); // Highlight the specific service link in the submenu
+                        const mobileServicesItem = getElement('#mobile-services-item');
+                        if (mobileServicesItem) {
+                            setActiveNavItem(mobileServicesItem); // Set the main Services icon as active
+                            foundActiveService = true;
+                        }
+                    }
+                });
+                // If no specific service page matched, and not on home/contact, etc., ensure no item is active
+                if (!foundActiveService) {
+                    mobileFooterNavItems.forEach(item => removeClass(item, 'active'));
+                }
+            }
+
+
+            // --- Desktop Services Submenu Logic ---
+            const desktopServicesItem = getElement('#desktop-services-item');
+            const desktopServicesLink = getElement('#desktop-services-link');
+            const desktopServicesSubmenu = getElement('#desktop-services-submenu');
+            let desktopSubmenuTimeout;
+
+            if (desktopServicesItem && desktopServicesLink && desktopServicesSubmenu) {
+                // Show submenu on mouse enter
+                desktopServicesItem.addEventListener('mouseenter', () => {
+                    clearTimeout(desktopSubmenuTimeout);
+                    addClass(desktopServicesSubmenu, 'active');
+                });
+
+                // Hide submenu on mouse leave from the main item (with a slight delay)
+                desktopServicesItem.addEventListener('mouseleave', () => {
+                    desktopSubmenuTimeout = setTimeout(() => {
+                        removeClass(desktopServicesSubmenu, 'active');
+                    }, 200); // Small delay before hiding
+                });
+
+                // Keep submenu open if mouse enters it
+                desktopServicesSubmenu.addEventListener('mouseenter', () => {
+                    clearTimeout(desktopSubmenuTimeout);
+                });
+
+                // Hide submenu if mouse leaves it (with a slight delay)
+                desktopServicesSubmenu.addEventListener('mouseleave', () => {
+                    desktopSubmenuTimeout = setTimeout(() => {
+                        removeClass(desktopServicesSubmenu, 'active');
+                    }, 200);
+                });
+
+                // Smooth scroll for desktop submenu links (if they are anchor links on the same page)
+                // Assuming these links will navigate to different pages, so no smooth scroll here.
+                getAllElements('#desktop-services-submenu a').forEach(link => {
+                    link.addEventListener('click', (event) => {
+                        // If it's an internal anchor link, prevent default and scroll
+                        if (link.getAttribute('href').startsWith('#')) {
+                            event.preventDefault();
+                            const targetId = link.getAttribute('href');
+                            const targetElement = getElement(targetId);
+                            if (targetElement) {
+                                targetElement.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+                        // Always close the submenu when a link is clicked
+                        removeClass(desktopServicesSubmenu, 'active');
+                    });
+                });
+            }
         });
     </script>
 </body>
