@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0c1321" />
+    <title id="page-title">404 - Page Not Found | Phantom Marketing</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Custom CSS for Frosted Glass Effect and Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@300;400;600;700&family=Pacifico&display=swap');
+
+        /* Cosmic SaaS Theme Design System */
+        :root {
+            --background: 220 27% 6%; /* Very dark grey/black for background */
+            --foreground: 0 0% 98%;    /* Very light grey/off-white for foreground text */
+            --primary: 271 76% 53%;
+            --primary-foreground: 0 0% 98%;
+            --accent: 271 76% 53%;
+            --accent-foreground: 0 0% 98%;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+            overflow: hidden; /* Hide overflow for video background */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column; /* Arrange content vertically */
+            justify-content: space-between; /* Push content to top and bottom */
+            align-items: center; /* Center horizontally */
+            position: relative;
+            padding-top: 2rem; /* Add some padding to the top */
+            padding-bottom: 2rem; /* Add some padding to the bottom */
+        }
+
+        /* Video Background Styling */
+        #video-background {
+            position: fixed; /* Use fixed to cover the entire viewport */
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1; /* Place behind content */
+            background-size: cover; /* Ensure video covers the area */
+            object-fit: cover; /* Crop video to fit container while maintaining aspect ratio */
+        }
+
+        /* Overlay for video to improve text readability */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Slightly darker overlay */
+            z-index: -1; /* Between video and content */
+        }
+
+        /* Enhanced text-glow for better visibility */
+        .text-glow {
+            text-shadow: 0 0 10px rgba(147, 51, 234, 0.6), /* Stronger purple glow */
+                         0 0 20px rgba(236, 72, 153, 0.5), /* Stronger pink glow */
+                         0 0 30px rgba(147, 51, 234, 0.3); /* Wider purple glow */
+        }
+
+        .btn-gradient {
+            background: linear-gradient(to right, #9333ea, #db2777);
+            border-radius: 9999px;
+            padding: 12px 32px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+        }
+
+        .btn-gradient:hover {
+            background: linear-gradient(to right, #db2777, #9333ea);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+        }
+
+        /* Content Animations */
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .delay-1 { animation-delay: 0.3s; }
+        .delay-2 { animation-delay: 0.6s; }
+        .delay-3 { animation-delay: 0.9s; }
+
+        /* Custom font size for error code to be even larger on larger screens */
+        .text-custom-error-code {
+            font-size: 10rem; /* Default for smaller screens, equivalent to text-9xl */
+        }
+
+        @media (min-width: 768px) { /* md breakpoint */
+            .text-custom-error-code {
+                font-size: 12rem; /* Larger on medium screens and up */
+            }
+        }
+
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .text-custom-error-code {
+                font-size: 14rem; /* Even larger on large screens and up */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Background -->
+    <video autoplay loop muted playsinline id="video-background">
+        <source src="https://phantommarketing.netlify.app/master/home/hero-banner.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <!-- Video Overlay for readability -->
+    <div class="video-overlay"></div>
+
+    <!-- Top content for error code -->
+    <div class="relative z-10 text-center p-4 pt-16">
+        <h1 id="error-code" class="text-custom-error-code font-extrabold text-white opacity-90 mb-4 text-glow fade-in-up">404</h1>
+    </div>
+
+    <!-- Middle section is intentionally empty to reveal video/logo -->
+    <div class="flex-grow"></div>
+
+    <!-- Bottom content for error message and button -->
+    <div class="relative z-10 text-center p-4 pb-16">
+        <h2 id="error-message-title" class="text-5xl md:text-6xl font-bold mb-4 text-glow fade-in-up delay-1">Page Not Found</h2>
+        <p id="error-message-description" class="text-lg md:text-xl text-gray-300 mb-8 max-w-xl mx-auto fade-in-up delay-2">
+            Oops! The digital path you've chosen leads to uncharted territory. It seems the page you're looking for has vanished into the ether.
+        </p>
+        <a href="index.html" class="btn-gradient text-white flex items-center justify-center mx-auto max-w-xs fade-in-up delay-3">
+            <i class="fas fa-arrow-left mr-2"></i> Back to Homepage
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get elements to update
+            const pageTitle = document.getElementById('page-title');
+            const errorCodeElement = document.getElementById('error-code');
+            const errorMessageTitleElement = document.getElementById('error-message-title');
+            const errorMessageDescriptionElement = document.getElementById('error-message-description');
+
+            // Function to get URL parameters
+            const getUrlParameter = (name) => {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                const results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            };
+
+            // Get error code and message from URL parameters
+            const errorCode = getUrlParameter('code');
+            const errorMessage = getUrlParameter('message');
+
+            // Default values if parameters are not provided
+            const defaultErrorCode = '404';
+            const defaultErrorMessageTitle = 'Page Not Found';
+            const defaultErrorMessageDescription = 'Oops! The digital path you\'ve chosen leads to uncharted territory. It seems the page you\'re looking for has vanished into the ether.';
+
+            // Update content based on URL parameters or defaults
+            const finalErrorCode = errorCode || defaultErrorCode;
+            const finalErrorMessageTitle = errorMessage || defaultErrorMessageTitle;
+            let finalErrorMessageDescription = defaultErrorMessageDescription;
+
+            // Customize description for specific error codes
+            switch (finalErrorCode) {
+                case '403':
+                    finalErrorMessageDescription = 'Access to this resource is forbidden. You do not have the necessary permissions.';
+                    break;
+                case '409':
+                    finalErrorMessageDescription = 'The request could not be completed due to a conflict with the current state of the resource.';
+                    break;
+                case '410':
+                    finalErrorMessageDescription = 'The resource you were looking for is no longer available. It has been permanently removed.';
+                    break;
+                case '500':
+                    finalErrorMessageDescription = 'Something went wrong on our end. We are working to fix it!';
+                    break;
+                case '503':
+                    finalErrorMessageDescription = 'Our service is temporarily unavailable. Please try again later.';
+                    break;
+                // Add more cases for other error codes as needed
+                default:
+                    // Use default description if no specific case matches
+                    finalErrorMessageDescription = defaultErrorMessageDescription;
+                    break;
+            }
+
+            // Apply updates to the page
+            pageTitle.textContent = `${finalErrorCode} - ${finalErrorMessageTitle} | Phantom Marketing`;
+            errorCodeElement.textContent = finalErrorCode;
+            errorMessageTitleElement.textContent = finalErrorMessageTitle;
+            errorMessageDescriptionElement.textContent = finalErrorMessageDescription;
+        });
+    </script>
+</body>
+</html>
