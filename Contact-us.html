@@ -349,21 +349,30 @@
             box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
         }
 
-        /* Specific styles for map placeholder */
-        .map-placeholder {
-            background-color: #333; /* Dark grey to mimic map background */
-            color: #eee;
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border-radius: 1rem;
-            font-size: 1.25rem;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5); /* Inner shadow for depth */
-            margin-top: 4rem; /* Space from form */
+        /* Custom styles for map container - now full width */
+        .mapouter {
+            position: relative;
+            text-align: right;
+            width: 100%; /* Full width */
+            height: 450px; /* Fixed height for consistency */
+        }
+
+        .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            width: 100%; /* Full width */
+            height: 450px; /* Fixed height for consistency */
+        }
+
+        .gmap_canvas iframe {
+            width: 100%; /* Make iframe fill its parent gmap_canvas */
+            height: 100%; /* Make iframe fill its parent gmap_canvas */
+            border: 0;
+        }
+
+        /* Hide the generated link from the map embed service */
+        .gme-generated-link {
+            display: none !important;
         }
     </style>
 </head>
@@ -473,14 +482,14 @@
             </form>
         </section>
 
-        <!-- Map Section (Placeholder) -->
+        <!-- Google Map Section (Full Width) -->
         <section class="mb-16">
-            <div class="map-placeholder frosted-glass">
-                <i class="fas fa-exclamation-triangle text-red-500 text-4xl mb-4"></i>
-                <p class="text-red-300 font-semibold mb-2">This page can't load Google Maps correctly.</p>
-                <p class="text-gray-400 text-base">Do you own this website?</p>
-                <button class="mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition duration-200">OK</button>
-                <p class="text-gray-500 text-xs mt-4">For development purposes only</p>
+            <div class="mapouter w-full h-[450px] rounded-xl shadow-lg overflow-hidden">
+                <div class="gmap_canvas w-full h-full">
+                    <iframe width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?q=syed%20haseeb%20ur%20rahman&key=AIzaSyDBaAMXXj9LXB8YlUmdfYzlAwepg8jxkpU"></iframe>
+                </div>
+                <!-- The "Embed Map on Website for Free" link is hidden via CSS -->
+                <a href="https://norsumediagroup.com/embed-google-map-website-free" target="_blank" rel="noopener noreferrer" class="gme-generated-link">Embed Map on Website for Free</a>
             </div>
         </section>
 
