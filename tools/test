@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand-Controlled Three.js Particle System</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000000; }
+        #webcam-video { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            visibility: hidden; /* Hide the video element but keep it running for MediaPipe */
+        }
+        #gesture-canvas {
+            display: block;
+        }
+        #controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: Arial, sans-serif;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gesture-canvas"></canvas>
+    
+    <video id="webcam-video" autoplay playsinline></video>
+
+    <div id="controls">
+        <h2>Particle Control</h2>
+        <p>Current Template: <span id="template-name">fireworks</span></p>
+        <p>Pinch Distance (Size/Spread): <span id="pinch-value">0.00</span></p>
+        <p>Gesture: <span id="gesture-state">No Hand</span></p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1646424915/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1646424915/camera_utils.js"></script>
+
+    <script>
+        // --- 1. CONFIGURATION AND GLOBAL STATE ---
+        const PARTICLE_COUNT = 30000; // Large number for visual impact
+        let scene, camera, renderer, particleSystem;
+        let particlesData = [];
+        let currentTemplate = 'fireworks';
+        const TEMPLATES = ['fireworks', 'hearts', 'saturn', 'flowers', 'spiral'];
+        let templateIndex = 0;
+
+        // Gesture data state
+        let gestureData = {
+            pinchDistance: 0,
+            openHand: false,
+            fist: false,
+            lastSwitchTime: 0
+        };
+
+        // --- 2. GLSL SHADER CODE ---
+        // Vertex Shader: Handles position, size, and passes color/lifetime to fragment shader
+        const vertexShader = `
+            uniform float uSize;
+            attribute float size;
+            attribute float life; // 0.0 to 1.0
+            varying vec3 vColor;
+            varying float vLife;
+
+            void main() {
+                vColor = color;
+                vLife = life;
+                
+                // Calculate position
+                vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+
+                // Set particle size based on calculated size and camera distance
+                gl_PointSize = size * (uSize / -mvPosition.z);
+                
+                gl_Position = projectionMatrix * mvPosition;
+            }
+        `;
+
+        // Fragment Shader: Handles the final color and fading effect
+        const fragmentShader = `
+            uniform sampler2D pointTexture;
+            varying vec3 vColor;
+            varying float vLife;
+
+            void main() {
+                // Circular shape and feathering (texture required for complex shapes)
+                // Use a standard circle based on gl_PointCoord
+                vec2 center = gl_PointCoord - 0.5;
+                float dist = dot(center, center);
+
+                // Fade out the particle based on life (vLife approaches 0 at death)
+                float opacity = smoothstep(0.0, 0.2, vLife) * smoothstep(1.0, 0.8, vLife);
+                
+                if (dist > 0.25 || opacity < 0.001) discard; // Discard non-circular pixels
+
+                // Final color is the calculated color with applied opacity
+                gl_FragColor = vec4(vColor, opacity * 2.0); // Multiply opacity for additive blending effect
+            }
+        `;
+
+        // --- 3. THREE.JS INITIALIZATION ---
+
+        function initThree() {
+            const canvas = document.getElementById('gesture-canvas');
+            renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            scene = new THREE.Scene();
+
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.z = 8;
+            camera.lookAt(scene.position);
+
+            createParticleSystem(currentTemplate);
+
+            window.addEventListener('resize', onWindowResize, false);
+            animate();
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function createParticleSystem(templateName) {
+            currentTemplate = templateName;
+            if (particleSystem) {
+                scene.remove(particleSystem);
+                particleSystem.geometry.dispose();
+                particleSystem.material.dispose();
+            }
+            
+            particlesData = [];
+            const positions = [];
+            const colors = [];
+            const sizes = [];
+            const life = []; // Custom attribute for particle life (0.0 to 1.0)
+            
+            const baseColor = new THREE.Color();
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                // Initial random position near center
+                positions.push(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1);
+                
+                // Initial color (will be overwritten in update)
+                baseColor.setHSL(Math.random(), 1.0, 0.5);
+                colors.push(baseColor.r, baseColor.g, baseColor.b); 
+
+                sizes.push(1.0 + Math.random() * 0.5); 
+                life.push(Math.random()); 
+
+                // Custom data for physics/motion
+                particlesData.push({
+                    velocity: new THREE.Vector3(0, 0, 0),
+                    age: Math.random() * 5,
+                    maxAge: Math.random() * 5 + 5,
+                    template: templateName,
+                    initialPosition: new THREE.Vector3(positions[i * 3], positions[i * 3 + 1], positions[i * 3 + 2])
+                });
+            }
+
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+            geometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1));
+            geometry.setAttribute('life', new THREE.Float32BufferAttribute(life, 1));
+
+            const material = new THREE.ShaderMaterial({
+                uniforms: {
+                    uSize: { value: 200.0 },
+                    pointTexture: { value: new THREE.TextureLoader().load('') } // Placeholder texture
+                },
+                vertexShader: vertexShader,
+                fragmentShader: fragmentShader,
+                transparent: true,
+                blending: THREE.AdditiveBlending,
+                depthWrite: false,
+                vertexColors: true
+            });
+
+            particleSystem = new THREE.Points(geometry, material);
+            scene.add(particleSystem);
+            document.getElementById('template-name').textContent = templateName;
+        }
+
+        // --- 4. GESTURE TRACKING (MEDIAPIPE) ---
+
+        function getDistance(p1, p2) {
+            return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
+        }
+
+        function onResults(results) {
+            const now = Date.now();
+            
+            // UI Update
+            document.getElementById('gesture-state').textContent = "No Hand";
+
+            if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
+                const handLandmarks = results.multiHandLandmarks[0];
+                
+                // 1. Calculate Pinch Distance (Thumb Tip: 4, Index Finger Tip: 8)
+                const thumbTip = handLandmarks[4];
+                const indexTip = handLandmarks[8];
+                
+                // Normalized distance scaled up
+                gestureData.pinchDistance = getDistance(thumbTip, indexTip) * 10.0; 
+                
+                // 2. Simple Fist/Open Hand Detection
+                // Distance between wrist (0) and middle finger tip (12)
+                const wrist = handLandmarks[0];
+                const middleTip = handLandmarks[12];
+                const wristToTipDist = getDistance(wrist, middleTip);
+
+                gestureData.openHand = wristToTipDist > 0.4;
+                gestureData.fist = wristToTipDist < 0.15;
+                
+                // Update UI based on detection
+                document.getElementById('gesture-state').textContent = gestureData.openHand ? 'Open Hand (Color Switch)' : (gestureData.fist ? 'Fist (Size Multiplier)' : 'Pinching (Spread)');
+                document.getElementById('pinch-value').textContent = gestureData.pinchDistance.toFixed(2);
+
+
+                // 3. Template Switching Logic (Triggered by a quick open/close)
+                if (gestureData.openHand && (now - gestureData.lastSwitchTime > 1500)) { // Debounce switch
+                     templateIndex = (templateIndex + 1) % TEMPLATES.length;
+                     createParticleSystem(TEMPLATES[templateIndex]);
+                     gestureData.lastSwitchTime = now;
+                }
+
+            } else {
+                gestureData.pinchDistance = 0;
+                gestureData.openHand = false;
+                gestureData.fist = false;
+            }
+        }
+
+        const videoElement = document.getElementById('webcam-video');
+        const hands = new Hands({locateFile: (file) => {
+          return `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1646424915/${file}`;
+        }});
+
+        hands.setOptions({
+          maxNumHands: 1,
+          modelComplexity: 1,
+          minDetectionConfidence: 0.7,
+          minTrackingConfidence: 0.7
+        });
+
+        hands.onResults(onResults);
+
+        // Setup camera to start streaming
+        const cameraFeed = new Camera(videoElement, {
+          onFrame: async () => {
+            await hands.send({image: videoElement});
+          },
+          // Important: Use facingMode: 'user' for front camera
+          facingMode: 'user', 
+          width: 640,
+          height: 480
+        });
+
+        cameraFeed.start().then(() => {
+            console.log("Webcam started.");
+        });
+
+
+        // --- 5. ANIMATION AND PARTICLE UPDATE LOOP ---
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Retrieve particle attributes
+            const positions = particleSystem.geometry.attributes.position.array;
+            const colors = particleSystem.geometry.attributes.color.array;
+            const sizes = particleSystem.geometry.attributes.size.array;
+            const life = particleSystem.geometry.attributes.life.array;
+            
+            // Control parameters from gesture data, smoothed for visual effect
+            const spreadFactor = THREE.MathUtils.lerp(0.0, 0.5, gestureData.pinchDistance * 0.1); // Pinch controls initial velocity/spread
+            const colorMix = gestureData.openHand ? 1.0 : 0.0; // Open hand controls color transition
+            const baseSize = gestureData.fist ? 10.0 : 3.0; // Fist controls overall size
+
+            const baseColorA = new THREE.Color(0.2, 0.8, 1.0); // Cyan/White
+            const baseColorB = new THREE.Color(1.0, 0.2, 0.8); // Magenta/Pink
+
+            for (let i = 0; i < PARTICLE_COUNT; i++) {
+                const i3 = i * 3;
+                const data = particlesData[i];
+                
+                // Calculate life attribute (0 to 1)
+                life[i] = (data.maxAge - data.age) / data.maxAge;
+
+                // --- 1. Physics/Motion ---
+                
+                // Apply drag/gravity and update position
+                data.velocity.multiplyScalar(0.97); // Simple drag
+
+                // Apply template-specific forces
+                switch (data.template) {
+                    case 'fireworks':
+                        // If near birth, apply spread velocity controlled by pinch
+                        if (data.age < 0.1) {
+                            data.velocity.x = (Math.random() - 0.5) * spreadFactor * 5;
+                            data.velocity.y = (Math.random() - 0.5) * spreadFactor * 5;
+                            data.velocity.z = (Math.random() - 0.5) * spreadFactor * 5;
+                        }
+                        data.velocity.y -= 0.005; // Light gravity effect
+                        break;
+                    case 'hearts':
+                         // Simple upward spiral motion
+                        const angle = data.age * 2.0;
+                        const radius = 1.0;
+                        data.velocity.x += Math.sin(angle) * 0.005;
+                        data.velocity.z += Math.cos(angle) * 0.005;
+                        data.velocity.y += 0.005; // Always rising
+                        break;
+                    case 'saturn':
+                        // Pull towards a ring shape on the XZ plane
+                        const r = Math.sqrt(positions[i3] * positions[i3] + positions[i3 + 2] * positions[i3 + 2]);
+                        const targetR = 2.5;
+                        const pullStrength = 0.005;
+                        
+                        if (r > 0.01) {
+                            const nx = positions[i3] / r;
+                            const nz = positions[i3 + 2] / r;
+                            data.velocity.x += nx * (targetR - r) * pullStrength;
+                            data.velocity.z += nz * (targetR - r) * pullStrength;
+                            data.velocity.y *= 0.9; // Flatten Y motion
+                        }
+                        break;
+                    case 'flowers':
+                        // Particles oscillate around a fixed point
+                        const oscillation = Math.sin(data.age) * 0.05;
+                        data.velocity.copy(data.initialPosition).multiplyScalar(0.005 * oscillation);
+                        break;
+                    case 'spiral':
+                        // Tight spiral/vortex motion around Y axis
+                        const vortexAngle = data.age * 5.0;
+                        const vortexR = 1.0;
+                        data.velocity.x = Math.cos(vortexAngle) * vortexR * 0.01;
+                        data.velocity.z = Math.sin(vortexAngle) * vortexR * 0.01;
+                        data.velocity.y += 0.005;
+                        break;
+                }
+
+                // Update position
+                positions[i3] += data.velocity.x;
+                positions[i3 + 1] += data.velocity.y;
+                positions[i3 + 2] += data.velocity.z;
+
+                // --- 2. Color/Size/Life Cycle ---
+
+                // Interpolate color based on gesture
+                baseColorA.lerp(baseColorB, colorMix);
+                
+                // Apply particle color
+                colors[i3] = baseColorA.r;
+                colors[i3 + 1] = baseColorA.g;
+                colors[i3 + 2] = baseColorA.b;
+                
+                // Apply size based on life and gesture
+                sizes[i] = baseSize * Math.pow(life[i], 0.5); // Fade size
+                
+                // --- 3. Life Cycle ---
+                data.age += 0.05;
+                
+                // If particle dies, respawn it at the center
+                if (data.age > data.maxAge) {
+                    data.age = 0;
+                    data.maxAge = Math.random() * 5 + 5;
+                    // Reset position to a central origin (explosion point)
+                    positions[i3] = 0;
+                    positions[i3 + 1] = 0;
+                    positions[i3 + 2] = 0;
+                    data.velocity.set(0, 0, 0);
+                }
+            }
+
+            // Mark attributes as needing update
+            particleSystem.geometry.attributes.position.needsUpdate = true;
+            particleSystem.geometry.attributes.color.needsUpdate = true;
+            particleSystem.geometry.attributes.size.needsUpdate = true;
+            particleSystem.geometry.attributes.life.needsUpdate = true;
+
+            renderer.render(scene, camera);
+        }
+
+        // --- 6. START APPLICATION ---
+        initThree();
+    </script>
+</body>
+</html>
