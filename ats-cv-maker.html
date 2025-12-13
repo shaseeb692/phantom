@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>ATS Cv Maker</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Resume Editor</title>
+    
+    <!-- Tailwind Configuration (Left for compatibility, but primary-accent usage is minimized) -->
+    <script>
+        tailwind = {
+            config: {
+                theme: {
+                    extend: {
+                        colors: {
+                            // Define for static compilation, but dynamic color relies on custom CSS classes below
+                            'primary-accent': 'var(--primary-color)', 
+                            'secondary-text': '#1f2937', 
+                            'list-dot': 'var(--primary-color)',
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Load Lucide Icons -->
+    <script type="module">
+        import { createIcons, Search, Mail, Phone, Linkedin, Briefcase, GraduationCap, CheckCircle, Target, Printer, Edit, Palette, Save, List, X } from 'https://cdn.jsdelivr.net/npm/lucide-esm@latest/dist/lucide-esm.js';
+        
+        // Expose icons globally for use in dynamic rendering
+        window.lucideIcons = { Search, Mail, Phone, Phone, Linkedin, Briefcase, GraduationCap, CheckCircle, Target, Printer, Edit, Palette, Save, List, X };
+        
+        // Function to create icons that can be called repeatedly
+        window.initLucideIcons = () => {
+             createIcons({ icons: window.lucideIcons });
+        };
+
+        // Call once for initial static HTML
+        window.initLucideIcons();
+    </script>
+    
+    <style>
+        /* Default theme variables */
+        :root {
+            --primary-color: #10b981; /* Default Emerald 500 */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            min-height: 10vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Custom utility classes to ensure dynamic color change works */
+        .text-accent-var {
+            color: var(--primary-color) !important;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+        }
+        .bg-accent-var {
+            background-color: var(--primary-color) !important;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+        }
+
+        /* Container for screen view */
+        .resume-container {
+            max-width: 800px;
+            /* Adjust top margin to account for fixed header on mobile */
+            margin: 2rem auto; 
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            transition: border 0.3s;
+        }
+        
+        /* Mobile adjustment for resume container margin when controls are on top */
+        @media (max-width: 639px) { /* Tailind 'sm' breakpoint max */
+            .resume-container {
+                margin-top: 10rem; /* Increased top margin to clear the fixed control panel */
+                padding: 1rem;
+            }
+        }
+        
+        /* Edit Mode Outline */
+        .edit-mode .resume-editable {
+            border: 1px dashed var(--primary-color) !important;
+            padding: 0.25rem;
+            margin: -0.25rem;
+            outline: none;
+            cursor: text;
+        }
+        .edit-mode .resume-editable:focus {
+             background-color: #fffbeb; /* Light yellow background when focused to emphasize editing */
+        }
+        
+        /* Hide skill chips in edit mode, show raw input */
+        .edit-mode #skills-chips {
+            display: none !important;
+        }
+        .edit-mode #skills-raw {
+            display: block !important;
+        }
+        #skills-raw {
+            display: none; /* Hide raw input by default (view mode) */
+        }
+
+
+        /* Consistent Styling */
+        .section-header {
+            border-bottom: 2px solid var(--primary-color); /* Uses variable */
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-text);
+        }
+        .job-title-pill {
+            background-color: var(--primary-color); /* Uses variable */
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+        }
+        
+        /* Skills background color fix */
+        .skill-chip {
+            background-color: #e5e7eb; /* Gray 200 */
+            color: #1f2937;
+            padding: 0.3rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+            margin-right: 0.5rem; 
+            margin-bottom: 0.5rem;
+        }
+
+        /* List Styling for print/screen consistency */
+        .custom-list {
+            padding-left: 0; 
+            margin-left: 0;
+            list-style-type: none;
+        }
+        .custom-list li {
+            position: relative;
+            font-size: 0.875rem;
+            color: #374151;
+            line-height: 1.4;
+            margin-bottom: 0.35rem;
+            padding-left: 1.25rem;
+        }
+        .custom-list li::before {
+            content: '';
+            position: absolute;
+            left: 0; 
+            top: 0.4rem; 
+            width: 5px; 
+            height: 5px; 
+            border-radius: 9999px; 
+            background-color: var(--primary-color); /* Uses variable */
+            -webkit-print-color-adjust: exact;
+            color-adjust: exact;
+        }
+        
+        /* Work Experience left border styling */
+        .job-entry {
+            border-left: 4px solid #e5e7eb; /* Gray 200 default */
+            padding-left: 1rem;
+        }
+        .job-entry:first-of-type {
+            border-color: var(--primary-color); /* Uses variable */
+        }
+        
+        /* ========================================= */
+        /* === CRITICAL PRINT MEDIA STYLES (PDF) === */
+        /* ========================================= */
+        @media print {
+            /* 1. Define A4 page dimensions and margins */
+            @page {
+                size: A4;
+                margin: 0.7cm; 
+            }
+
+            /* 2. Reset body/container styles for print */
+            body {
+                background: none;
+                margin: 0;
+                padding: 0;
+                display: block;
+                width: 100%;
+            }
+            .resume-container {
+                max-width: 100%;
+                margin: 0;
+                box-shadow: none;
+                padding: 0.2cm 0.7cm;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            /* 3. Multi-Page Flow Fixes */
+            section {
+                break-inside: auto;
+                margin-bottom: 1.0rem !important;
+            }
+            .job-entry {
+                break-inside: avoid;
+                margin-bottom: 0.8rem;
+            }
+            .job-entry:first-of-type {
+                margin-top: 0 !important;
+            }
+
+            .download-section, .editor-controls, .formatting-guide {
+                display: none;
+            }
+            .edit-mode .resume-editable {
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                background-color: transparent !important;
+            }
+            
+            /* Print Font Sizing (Slightly reduced for optimization) */
+            .text-xl, h2 { font-size: 13pt !important; }
+            .text-lg, h3 { font-size: 11pt !important; }
+            .text-base, p { font-size: 9.5pt !important; }
+            .text-sm, .custom-list li { font-size: 8.5pt !important; }
+            .section-header {
+                margin-bottom: 1.0rem !important;
+            }
+        }
+    </style>
+
+    <script>
+        // Default data structure
+        let resumeData = {
+            color: '#10b981', // Default green
+            name: 'SYED HASEEB UR RAHMAN',
+            title: 'SEO Manager & Digital Marketing Professional',
+            contact: {
+                phone: '+92 348 834 4825',
+                email: 'shaseeb692@gmail.com',
+                linkedin: 'linkedin.com/in/shaseeb692'
+            },
+            summary: 'SEO Manager & Digital Marketing Professional with 7+ years of experience leading SEO departments, digital marketing teams, and high-impact campaigns across fintech, real estate, healthcare, retail, and agency sectors. Expert in SEO strategy, technical audits, content optimization, keyword research, and link building. Proven record of driving <b>30-70% traffic growth</b>, boosting sales and lead conversions, and consistently delivering <b>95%+ campaign success rate</b>. Skilled in team leadership, cross-functional collaboration, and ROI-driven campaign execution.',
+            skills: [
+                'SEO Strategy', 'Technical SEO', 'On-page Optimization', 'Off-page SEO', 'Keyword Research', 
+                'Content Optimization', 'Link Building', 'Local SEO', 'PPC Campaigns', 'Google Ads', 'GA4', 
+                'GSC', 'SEMRush', 'Ahrefs', 'Social Media Marketing', 'Moz', 'Screaming Frog', 
+                'Leadership & Team Management', 'Conversion Rate Optimization (CRO)', 'Yoast', 'RankMath', 
+                'Elementor', 'WordPress', 'Canva', 'Adobe Photoshop', 'Adobe Illustrator', 
+                'Google Tag Manager', 'Reporting & KPI Tracking'
+            ],
+            experience: [
+                {
+                    role: 'SEO Manager',
+                    subtitle: '(Head of Department)',
+                    company: 'AssanPay, Pakistan (Fintech)',
+                    period: '2025 - Present',
+                    bullets: [
+                        'Led SEO strategy for fintech payment gateway, building frameworks, KPIs, and dashboards.',
+                        '<b>Increased organic visibility by 45%</b> within the first quarter and ranked 8+ fintech keywords in Top 20 results.',
+                        'Led and mentored 6 Team Members, ensuring consistent high-quality campaign delivery.',
+                        'Collaborated with product and dev teams, integrating SEO requirements into sprints, reducing rework by 30%.',
+                    ]
+                },
+                {
+                    role: 'SEO Manager',
+                    subtitle: '',
+                    company: 'The SMM Experts, USA (Agency)',
+                    period: '2024 - Present',
+                    bullets: [
+                        '<b>Increased client organic traffic by 65% average</b> within 6 months across multiple industries.',
+                        'Secured Top 5 rankings for competitive digital marketing industry keywords in the US market.',
+                        'Managed and trained 8-member SEO & content team, streamlining workflows and reporting standards.',
+                    ]
+                },
+                {
+                    role: 'Assistant Manager SEO',
+                    subtitle: '',
+                    company: 'AMG Digital Solution LLC',
+                    period: '2024',
+                    bullets: [
+                        'Implemented enterprise-level SEO campaigns, boosting rankings and domain authority for clients.',
+                        'Resolved technical SEO issues, <b>improving site health score by 35%</b>.',
+                        'Reported insights that contributed to <b>25% increase in qualified leads</b>.',
+                    ]
+                },
+                {
+                    role: 'Digital Marketing Team Lead / Managed Creative',
+                    subtitle: '',
+                    company: 'Multi-sector (Real Estate, Healthcare, E-commerce)',
+                    period: '2019 - 2022',
+                    bullets: [
+                        'Led SEO and PPC campaigns across real estate, healthcare, retail, and e-commerce sectors.',
+                        'Managed 9-12 member team of SEO, designers, and writers for integrated campaigns.',
+                        '<b>Achieved 60% average increase in organic traffic</b> across client accounts.',
+                    ]
+                },
+                {
+                    role: 'Digital Marketing Executive',
+                    subtitle: '',
+                    company: 'Dr. Ziauddin Hospital, Pakistan (Healthcare)',
+                    period: '2018 - 2019',
+                    bullets: [
+                        'Directed hospital-wide campaigns, <b>achieving 300% increase in patient bookings</b>.',
+                        'Optimized healthcare content and local SEO, significantly improving visibility for high-demand medical services.',
+                    ]
+                },
+            ],
+            achievements: [
+                'Delivered <b>95%+ campaign success rate</b> across fintech, healthcare, real estate, and retail clients.',
+                'Ranked <b>20+ high-intent keywords in Top 3 positions</b> across competitive niches.',
+                'Achieved <b>30-70% organic traffic growth</b> within 6 months for multiple brands.',
+                'Developed SEO frameworks, dashboards, and workflows adopted company-wide.',
+                'Resolved technical SEO issues, <b>improving site health score by 35%</b>.',
+                'Recognized for consistent performance, resulting in leadership promotions.',
+            ],
+            projects: [
+                '<b>Elan Real Estate:</b> Directed SEO campaigns ranking 30+ property keywords in Top 10-15 results.',
+                '<b>Lavish Salon:</b> Achieved <b>400% sales growth</b> using Meta Ads + SEO, optimizing GMB and reviews.',
+                '<b>Whyte Bespoke (UAE):</b> Increased inquiries for luxury brand by <b>120%</b> via localized SEO.',
+                '<b>Dr. Ziauddin Hospital:</b> Directed campaigns, <b>achieving 300% increase in patient bookings</b>.',
+                '<b>Buck or Two (Canada):</b> Lifted online sales by <b>45%</b> with comprehensive SEO strategies.',
+                '<b>GAMEIN (Dubai):</b> Delivered <b>50% increase in organic traffic</b> for gaming/entertainment platform.',
+                '<b>Midas Safety (USA):</b> Enhanced B2B corporate leads through targeted SEO campaigns.',
+                '<b>AutoStore QA (Qatar):</b> Achieved first-page rankings for competitive automotive keywords.',
+            ],
+            education: [
+                { title: 'Intermediate in Commerce', institution: 'Board of Intermediate Education Karachi' },
+                { title: 'Matriculation in Electronics (RTV)', institution: 'Texas Technical High School' }
+            ],
+            certifications: [
+                'Google Ads Certified',
+                'Google Analytics Certified',
+                'SEMRush SEO Toolkit Certification',
+                'Woorank Expert Certification'
+            ]
+        };
+
+        const LOCAL_STORAGE_KEY = 'haseebResumeData';
+        const RESUME_ID = 'resumeContent';
+        let isEditMode = false;
+        let notificationTimeout; // Variable to hold the timeout ID
+        
+        /**
+         * Safely loads data from localStorage, falling back to default data.
+         */
+        function loadData() {
+            const storedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+            if (storedData) {
+                try {
+                    const parsedData = JSON.parse(storedData);
+                    // Merge to ensure new fields are included if the schema changes
+                    resumeData = { ...resumeData, ...parsedData };
+                } catch (e) {
+                    console.error("Could not parse stored data, using default.", e);
+                }
+            }
+            
+            // Apply color immediately and update the new hex input field and preview
+            document.documentElement.style.setProperty('--primary-color', resumeData.color);
+            const hexInput = document.getElementById('hexInput');
+            const colorPreview = document.getElementById('colorPreview');
+
+            if (hexInput) hexInput.value = resumeData.color;
+            if (colorPreview) colorPreview.style.backgroundColor = resumeData.color;
+
+            renderResume();
+        }
+
+        /**
+         * Renders the entire resume content based on the current resumeData object.
+         */
+        function renderResume() {
+            const container = document.getElementById(RESUME_ID);
+            if (!container) return;
+
+            // Helper to determine contenteditable status
+            const editable = isEditMode ? 'contenteditable="true" class="resume-editable"' : '';
+
+            // 1. Header & Contact
+            const contactHtml = `
+                <p class="flex items-center whitespace-nowrap">
+                    <i data-lucide="phone" class="w-4 h-4 mr-1 text-accent-var"></i> 
+                    <span id="contact-phone" ${editable}>${resumeData.contact.phone}</span>
+                </p>
+                <span class="text-gray-400 hidden sm:inline-block">|</span>
+                <p class="flex items-center whitespace-nowrap">
+                    <i data-lucide="mail" class="w-4 h-4 mr-1 text-accent-var"></i> 
+                    <a href="mailto:${resumeData.contact.email}" target="_blank" class="hover:text-accent-var" id="contact-email-link">
+                        <span id="contact-email" ${editable}>${resumeData.contact.email}</span>
+                    </a>
+                </p>
+                <span class="text-gray-400 hidden sm:inline-block">|</span>
+                <p class="flex items-center whitespace-nowrap">
+                    <i data-lucide="linkedin" class="w-4 h-4 mr-1 text-accent-var"></i> 
+                    <a href="https://${resumeData.contact.linkedin}" target="_blank" class="hover:text-accent-var" id="contact-linkedin-link">
+                        <span id="contact-linkedin" ${editable}>${resumeData.contact.linkedin}</span>
+                    </a>
+                </p>
+            `;
+
+            // 2. Work Experience
+            const experienceHtml = resumeData.experience.map((job, index) => `
+                <div class="mb-6 job-entry ${index === 0 ? 'print:mt-0' : ''}">
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-1">
+                        <!-- Job Title reduced to text-lg for better hierarchy -->
+                        <h3 class="text-lg font-bold text-gray-800 flex items-center flex-wrap">
+                            <span id="exp-${index}-role" ${editable}>${job.role}</span>
+                            ${job.subtitle ? `<span class="job-title-pill ml-0 mt-1 sm:ml-3 sm:mt-0" id="exp-${index}-subtitle" ${editable}>${job.subtitle}</span>` : ''}
+                        </h3>
+                        <span class="text-sm font-semibold text-gray-500 whitespace-nowrap mt-1 sm:mt-0" id="exp-${index}-period" ${editable}>${job.period}</span>
+                    </div>
+                    <!-- Company Name reduced to text-base for better hierarchy -->
+                    <p class="text-base font-semibold text-accent-var mb-2" id="exp-${index}-company" ${editable}>${job.company}</p>
+                    <ul class="custom-list space-y-1">
+                        ${job.bullets.map((bullet, bulletIndex) => 
+                            `<li><span id="exp-${index}-bullet-${bulletIndex}" contenteditable="true" class="resume-editable">${bullet}</span></li>`
+                        ).join('')}
+                        ${isEditMode ? `
+                            <li class="add-item-placeholder list-none mt-2">
+                                <button onclick="addExperienceBullet(${index})" class="text-xs font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
+                                    <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add Bullet
+                                </button>
+                                <button onclick="removeExperienceBullet(${index})" class="text-xs font-medium text-red-500 hover:text-red-700 p-1 rounded transition ml-2">
+                                    <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last
+                                </button>
+                            </li>
+                        ` : ''}
+                    </ul>
+                </div>
+            `).join('');
+
+            // 3. Skills
+            const skillsHtml = resumeData.skills.map(skill => 
+                `<span class="skill-chip">${skill}</span>`
+            ).join('');
+
+            // 4. Achievements & Projects (Using simple list rendering for editing simplicity)
+            const achievementsHtml = `
+                <ul class="custom-list">
+                    ${resumeData.achievements.map((item, index) => 
+                        `<li><span id="ach-${index}" contenteditable="true" class="resume-editable">${item}</span></li>`
+                    ).join('')}
+                    ${isEditMode ? `
+                        <li class="add-item-placeholder list-none mt-2 flex flex-wrap gap-2">
+                             <button onclick="addAchievement()" class="text-xs font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
+                                <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add Achievement
+                            </button>
+                             <button onclick="removeAchievement()" class="text-xs font-medium text-red-500 hover:text-red-700 p-1 rounded transition">
+                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last
+                            </button>
+                        </li>` : ''}
+                </ul>
+            `;
+            const projectsHtml = `
+                <ul class="custom-list">
+                    ${resumeData.projects.map((item, index) => 
+                        `<li><span id="proj-${index}" contenteditable="true" class="resume-editable">${item}</span></li>`
+                    ).join('')}
+                    ${isEditMode ? `
+                        <li class="add-item-placeholder list-none mt-2 flex flex-wrap gap-2">
+                            <button onclick="addProject()" class="text-xs font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
+                                <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add Project
+                            </button>
+                            <button onclick="removeProject()" class="text-xs font-medium text-red-500 hover:text-red-700 p-1 rounded transition">
+                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last
+                            </button>
+                        </li>` : ''}
+                </ul>
+            `;
+
+            // 5. Education
+            const educationHtml = resumeData.education.map((item, index) => `
+                <div class="text-base mb-1">
+                    <p class="font-semibold text-gray-800" id="edu-${index}-title" ${editable}>${item.title}</p>
+                    <p class="text-gray-700" id="edu-${index}-institution" ${editable}>${item.institution}</p>
+                </div>
+            `).join('');
+
+            // 6. Certifications
+            const certificationsHtml = `
+                <ul class="custom-list">
+                    ${resumeData.certifications.map((item, index) => 
+                        `<li><span id="cert-${index}" contenteditable="true" class="resume-editable">${item}</span></li>`
+                    ).join('')}
+                    ${isEditMode ? `
+                        <li class="add-item-placeholder list-none mt-2 flex flex-wrap gap-2">
+                            <button onclick="addCertification()" class="text-xs font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
+                                <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add Certification
+                            </button>
+                             <button onclick="removeCertification()" class="text-xs font-medium text-red-500 hover:text-red-700 p-1 rounded transition">
+                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last
+                            </button>
+                        </li>` : ''}
+                </ul>
+            `;
+
+            // Combine all HTML sections
+            container.innerHTML = `
+                <!-- Header Section -->
+                <header class="mb-6 pb-4 border-b-4 border-gray-100 text-center flex-shrink-0">
+                    <h1 class="text-4xl font-extrabold text-gray-900 mb-1">
+                        <span id="header-name" ${editable}>${resumeData.name}</span>
+                    </h1>
+                    <p class="text-xl font-semibold text-accent-var mb-4">
+                        <span id="header-title" ${editable}>${resumeData.title}</span>
+                    </p>
+                    
+                    <div class="flex flex-wrap justify-center items-center text-sm font-medium text-gray-700 space-x-2 sm:space-x-4">
+                        ${contactHtml}
+                    </div>
+                </header>
+
+                <!-- Professional Summary -->
+                <section class="mb-6 flex-shrink-0">
+                    <h2 class="text-2xl font-bold section-header flex items-center">
+                        <i data-lucide="briefcase" class="w-6 h-6 mr-2 text-accent-var"></i> Professional Summary
+                    </h2>
+                    <p class="text-gray-700 leading-relaxed text-base">
+                        <span id="summary" contenteditable="true" class="resume-editable">${resumeData.summary}</span>
+                    </p>
+                </section>
+
+                <!-- Core Skills & Tools -->
+                <section class="mb-6 flex-shrink-0">
+                    <h2 class="text-2xl font-bold section-header flex items-center">
+                        <i data-lucide="search" class="w-6 h-6 mr-2 text-accent-var"></i> Core Skills & Tools
+                    </h2>
+                    <!-- Raw text input for skills (Visible only in edit mode) -->
+                    <p class="text-sm text-gray-500 mb-2" id="skills-raw" contenteditable="true" class="resume-editable">
+                        ${resumeData.skills.join(', ')}
+                    </p>
+                    <!-- Skill Chips (Visible only in view mode) -->
+                    <div class="flex flex-wrap" id="skills-chips">
+                        ${skillsHtml}
+                    </div>
+                </section>
+
+                <!-- Work Experience -->
+                <section class="mb-8">
+                    <h2 class="text-2xl font-bold section-header flex items-center">
+                        <i data-lucide="briefcase" class="w-6 h-6 mr-2 text-accent-var"></i> Work Experience
+                    </h2 >
+                    ${experienceHtml}
+                    ${isEditMode ? `
+                        <div class="text-left mt-4 flex flex-wrap gap-2">
+                             <button onclick="addExperience()" class="text-sm font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
+                                <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add New Job
+                             </button>
+                             <button onclick="removeExperience()" class="text-sm font-medium text-red-500 hover:text-red-700 p-1 rounded transition">
+                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last Job
+                             </button>
+                        </div>
+                    ` : ''}
+                </section>
+
+                <!-- Achievements & Projects (Grid Layout) -->
+                <!-- Use grid-cols-1 on mobile, grid-cols-2 on medium screens and up -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <!-- Key Achievements -->
+                    <section class="break-inside-avoid">
+                        <h2 class="text-2xl font-bold section-header flex items-center">
+                            <i data-lucide="check-circle" class="w-6 h-6 mr-2 text-accent-var"></i> Key Achievements
+                        </h2>
+                        ${achievementsHtml}
+                    </section>
+
+                    <!-- Key Projects -->
+                    <section class="break-inside-avoid">
+                        <h2 class="text-2xl font-bold section-header flex items-center">
+                            <i data-lucide="target" class="w-6 h-6 mr-2 text-accent-var"></i> Key Projects Highlights
+                        </h2 >
+                        ${projectsHtml}
+                    </section>
+                </div>
+
+                <!-- Separate Education Section -->
+                <section class="mb-8 break-inside-avoid">
+                    <h2 class="text-2xl font-bold section-header flex items-center">
+                        <i data-lucide="graduation-cap" class="w-6 h-6 mr-2 text-accent-var"></i> Education
+                    </h2>
+                    ${educationHtml}
+                    ${isEditMode ? `
+                        <div class="text-left mt-2 flex flex-wrap gap-2">
+                             <button onclick="addEducation()" class="text-sm font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
+                                <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add Education
+                             </button>
+                             <button onclick="removeEducation()" class="text-sm font-medium text-red-500 hover:text-red-700 p-1 rounded transition">
+                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last Education
+                             </button>
+                        </div>
+                    ` : ''}
+                </section>
+
+                <!-- Separate Certifications Section -->
+                <section class="mb-4 break-inside-avoid">
+                    <h2 class="text-2xl font-bold section-header flex items-center">
+                        <i data-lucide="check-circle" class="w-6 h-6 mr-2 text-accent-var"></i> Certifications
+                    </h2>
+                    ${certificationsHtml}
+                </section>
+            `;
+
+            // Re-initialize Lucide icons for dynamically added HTML
+            if (typeof window.initLucideIcons !== 'undefined') {
+                window.initLucideIcons();
+            }
+
+            // Update links based on content changes
+            const emailSpan = document.getElementById('contact-email');
+            const linkedinSpan = document.getElementById('contact-linkedin');
+            if (document.getElementById('contact-email-link') && emailSpan) {
+                document.getElementById('contact-email-link').href = `mailto:${emailSpan.textContent}`;
+            }
+            if (document.getElementById('contact-linkedin-link') && linkedinSpan) {
+                document.getElementById('contact-linkedin-link').href = `https://${linkedinSpan.textContent}`;
+            }
+        }
+        
+        /**
+         * Converts the content of all editable fields between HTML (for rendering)
+         * and raw text (for seeing and editing the tags).
+         * @param {boolean} toRawText - If true, converts HTML tags to visible text entities (&lt;).
+         */
+        function convertEditableContent(toRawText) {
+            const editableElements = document.querySelectorAll('.resume-editable');
+            editableElements.forEach(el => {
+                // Skip the raw skills input during this process as it handles its own formatting state
+                if (el.id === 'skills-raw') return;
+                
+                let content = el.innerHTML;
+                if (toRawText) {
+                    // Entering Edit Mode: Convert HTML tags to visible text
+                    content = content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                } else {
+                    // Exiting Edit Mode: Convert visible text back to HTML tags
+                    content = content.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+                }
+                el.innerHTML = content;
+            });
+        }
+        
+        /**
+         * Updates the appearance of the editor controls based on the current mode.
+         */
+        function updateControlPanelUI(mode) {
+            const editBtn = document.getElementById('editToggle');
+            const saveBtn = document.getElementById('saveButton');
+            const guide = document.getElementById('formattingGuide');
+
+            if (mode) { // Edit Mode
+                // Using custom class for background color
+                editBtn.classList.add('bg-accent-var', 'text-white');
+                editBtn.classList.remove('bg-gray-200', 'text-gray-700');
+                editBtn.innerHTML = '<i data-lucide="X" class="w-4 h-4 mr-1"></i> Exit Edit Mode';
+                saveBtn.style.display = 'inline-flex';
+                guide.style.display = 'block'; 
+            } else { // View Mode
+                editBtn.classList.remove('bg-accent-var', 'text-white');
+                editBtn.classList.add('bg-gray-200', 'text-gray-700');
+                editBtn.innerHTML = '<i data-lucide="Edit" class="w-4 h-4 mr-1"></i> Edit Content';
+                saveBtn.style.display = 'none';
+                guide.style.display = 'none'; 
+            }
+            // Re-initialize Lucide icons just for the controls
+            if (typeof window.initLucideIcons !== 'undefined') {
+                window.initLucideIcons();
+            }
+        }
+
+
+        /**
+         * Collects content from editable fields and updates resumeData.
+         * @param {boolean} shouldRerender - If true, forces a re-render of the resume content 
+         * (used for structural changes like Add/Remove).
+         */
+        function collectDataFromDOM(shouldRerender = false) {
+            if (isEditMode) {
+                updateControlPanelUI(true); 
+            }
+            
+            // Header
+            resumeData.name = document.getElementById('header-name').innerHTML.trim();
+            resumeData.title = document.getElementById('header-title').innerHTML.trim();
+            
+            // Contact
+            resumeData.contact.phone = document.getElementById('contact-phone').innerHTML.trim();
+            resumeData.contact.email = document.getElementById('contact-email').innerHTML.trim();
+            resumeData.contact.linkedin = document.getElementById('contact-linkedin').innerHTML.trim();
+
+            // Summary
+            resumeData.summary = document.getElementById('summary').innerHTML.trim();
+
+            // Skills (simple comma-separated input)
+            const skillsRaw = document.getElementById('skills-raw').innerHTML.trim();
+            resumeData.skills = skillsRaw.split(',').map(s => s.trim()).filter(s => s.length > 0);
+
+            // Experience - Rebuild the structure from the DOM
+            const experience = [];
+            document.querySelectorAll('.job-entry').forEach((jobEl, index) => {
+                const roleEl = document.getElementById(`exp-${index}-role`);
+                if (!roleEl) return; // Stop if element is removed
+
+                const newJob = {
+                    role: roleEl.innerHTML.trim(),
+                    subtitle: document.getElementById(`exp-${index}-subtitle`)?.innerHTML.trim() || '',
+                    company: document.getElementById(`exp-${index}-company`).innerHTML.trim(),
+                    period: document.getElementById(`exp-${index}-period`).innerHTML.trim(),
+                    bullets: []
+                };
+
+                // Collect bullets
+                let bulletIndex = 0;
+                while (document.getElementById(`exp-${index}-bullet-${bulletIndex}`)) {
+                    newJob.bullets.push(document.getElementById(`exp-${index}-bullet-${bulletIndex}`).innerHTML.trim());
+                    bulletIndex++;
+                }
+                experience.push(newJob);
+            });
+            resumeData.experience = experience;
+
+
+            // Achievements and Projects
+            resumeData.achievements = [];
+            let achIndex = 0;
+            while (document.getElementById(`ach-${achIndex}`)) {
+                resumeData.achievements.push(document.getElementById(`ach-${achIndex}`).innerHTML.trim());
+                achIndex++;
+            }
+            
+            resumeData.projects = [];
+            let projIndex = 0;
+            while (document.getElementById(`proj-${projIndex}`)) {
+                resumeData.projects.push(document.getElementById(`proj-${projIndex}`).innerHTML.trim());
+                projIndex++;
+            }
+
+            // Education
+            resumeData.education = [];
+            let eduIndex = 0;
+            while (document.getElementById(`edu-${eduIndex}-title`)) {
+                resumeData.education.push({
+                    title: document.getElementById(`edu-${eduIndex}-title`).innerHTML.trim(),
+                    institution: document.getElementById(`edu-${eduIndex}-institution`).innerHTML.trim()
+                });
+                eduIndex++;
+            }
+            
+            // Certifications
+            resumeData.certifications = [];
+            let certIndex = 0;
+            while (document.getElementById(`cert-${certIndex}`)) {
+                resumeData.certifications.push(document.getElementById(`cert-${certIndex}`).innerHTML.trim());
+                certIndex++;
+            }
+
+            // Final save to storage and notify
+            saveData();
+            
+            // If it was a structural change (Add/Remove), re-render and re-apply edit mode formatting
+            if (isEditMode && shouldRerender) {
+                // Rerender (which creates new DOM elements)
+                renderResume();
+                // Re-apply raw text conversion to the new elements
+                convertEditableContent(true);
+            }
+        }
+
+        /**
+         * Saves the current resumeData state to localStorage.
+         */
+        function saveData() {
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(resumeData));
+            showNotification('Content saved successfully!', 'green');
+        }
+
+        /**
+         * Toggles the edit mode on/off, handling the raw tag visibility and skills view.
+         */
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            const container = document.getElementById('resume-container');
+
+            if (isEditMode) {
+                // 1. Collect current data (in case changes were made without saving)
+                collectDataFromDOM(false); 
+                
+                // 2. Set UI for edit mode
+                container.classList.add('edit-mode');
+                updateControlPanelUI(true); 
+                
+                // 3. Render resume with contenteditable=true (including the raw skills input)
+                renderResume(); 
+                
+                // 4. IMPORTANT: Convert all rendered HTML content to raw visible tags
+                convertEditableContent(true);
+
+            } else {
+                // 1. IMPORTANT: Convert visible raw tags back to actual HTML tags
+                convertEditableContent(false);
+
+                // 2. Collect and save the final edited HTML content (this rebuilds skills from raw input)
+                collectDataFromDOM(false);
+                
+                // 3. Set UI for view mode
+                container.classList.remove('edit-mode');
+                updateControlPanelUI(false); 
+                
+                // 4. Final render (now in view mode, hiding the raw skills input)
+                renderResume();
+            }
+        }
+
+        /**
+         * Validates and sets the new accent color, saving it to data.
+         * @param {string} color - The HEX code string (with or without #).
+         */
+        function setAndSaveColor(color) {
+            let normalizedColor = color.trim().toUpperCase();
+            if (!normalizedColor.startsWith('#')) {
+                normalizedColor = '#' + normalizedColor;
+            }
+
+            // Validate against a 3- or 6-character hex code pattern
+            if (!/^#([0-9A-F]{3}){1,2}$/i.test(normalizedColor)) {
+                showNotification('Invalid HEX code. Please use format #RRGGBB or RRGGBB.', 'red');
+                return false;
+            }
+            
+            // 1. Update the data model
+            resumeData.color = normalizedColor;
+            
+            // 2. Update the root CSS variable (this is the actual fix)
+            document.documentElement.style.setProperty('--primary-color', normalizedColor);
+            
+            // 3. Update the UI controls
+            const hexInput = document.getElementById('hexInput');
+            const colorPreview = document.getElementById('colorPreview');
+            if(hexInput) hexInput.value = normalizedColor;
+            if(colorPreview) colorPreview.style.backgroundColor = normalizedColor;
+
+            // 4. Save and re-render the resume structure 
+            saveData();
+            
+            // Rerender the DOM. This is crucial for applying color to dynamic elements.
+            renderResume();
+            
+            // === FIX: If in edit mode, re-apply the edit mode state/formatting ===
+            if (isEditMode) {
+                // We need to re-apply the editable container class for dashed borders
+                document.getElementById('resume-container').classList.add('edit-mode');
+                // We need to re-convert content to show raw HTML tags again
+                convertEditableContent(true); 
+            }
+            // ====================================================================
+
+            return true;
+        }
+
+        /**
+         * Function to preview color as the user types (oninput)
+         */
+        function liveUpdateColor(event) {
+            let inputColor = event.target.value.trim().toUpperCase();
+            if (!inputColor.startsWith('#')) {
+                inputColor = '#' + inputColor;
+            }
+            
+            const colorPreview = document.getElementById('colorPreview');
+            if (!colorPreview) return;
+
+            // Only update preview if it looks like a valid partial or full HEX
+            if (/^#([0-9A-F]{0,6})$/i.test(inputColor)) {
+                colorPreview.style.backgroundColor = inputColor || '#ccc'; 
+            } else {
+                 colorPreview.style.backgroundColor = 'lightgray'; 
+            }
+        }
+
+        /**
+         * Function to apply and save the color when the button is clicked
+         */
+        function applyColor() {
+            const hexInput = document.getElementById('hexInput');
+            setAndSaveColor(hexInput.value);
+        }
+
+        /**
+         * Notification system (replacing alert())
+         */
+        function showNotification(message, color) {
+            const notification = document.getElementById('notification');
+            
+            if (notificationTimeout) {
+                clearTimeout(notificationTimeout);
+            }
+            
+            notification.textContent = message;
+            // Ensure full visibility/hiding with opacity and translation
+            notification.className = `fixed bottom-4 right-4 p-3 rounded-lg shadow-xl text-white transition-all duration-300 transform ${color === 'green' ? 'bg-green-600' : 'bg-red-600'}`;
+            
+            // SHOW: remove translation and opacity
+            notification.classList.remove('translate-y-full', 'opacity-0');
+            
+            notificationTimeout = setTimeout(() => {
+                // HIDE: add translation and opacity
+                notification.classList.add('translate-y-full', 'opacity-0');
+            }, 2400); 
+        }
+        
+        // --- Add/Remove List Item Functions (Simplified) ---
+
+        function addExperience() {
+            collectDataFromDOM(true);
+            resumeData.experience.push({
+                role: 'New Job Title',
+                subtitle: '',
+                company: 'New Company, Location',
+                period: 'YYYY - Present',
+                bullets: ['New responsibility 1. Use &lt;b&gt;bold&lt;/b&gt; for metrics.']
+            });
+            collectDataFromDOM(true);
+        }
+        function removeExperience() {
+             collectDataFromDOM(true);
+             if (resumeData.experience.length > 0) {
+                 resumeData.experience.pop();
+                 collectDataFromDOM(true);
+             } else { showNotification('No more jobs to remove.', 'red'); }
+        }
+
+        function addExperienceBullet(expIndex) {
+            collectDataFromDOM(true);
+            resumeData.experience[expIndex].bullets.push('New specific achievement or task. Use &lt;b&gt;bold&lt;/b&gt; for metrics.');
+            collectDataFromDOM(true);
+        }
+        function removeExperienceBullet(expIndex) {
+            collectDataFromDOM(true);
+            if (resumeData.experience[expIndex].bullets.length > 0) {
+                resumeData.experience[expIndex].bullets.pop();
+                collectDataFromDOM(true);
+            } else { showNotification('No more bullets to remove.', 'red'); }
+        }
+
+
+        function addAchievement() {
+            collectDataFromDOM(true);
+            resumeData.achievements.push('New key achievement bullet. Use &lt;b&gt;bold&lt;/b&gt; for metrics.');
+            collectDataFromDOM(true);
+        }
+        function removeAchievement() {
+             collectDataFromDOM(true);
+             if (resumeData.achievements.length > 0) {
+                 resumeData.achievements.pop();
+                 collectDataFromDOM(true);
+             } else { showNotification('No more achievements to remove.', 'red'); }
+        }
+
+
+        function addProject() {
+            collectDataFromDOM(true);
+            resumeData.projects.push('<b>New Project Name:</b> Description of the project highlight. Use &lt;b&gt;bold&lt;/b&gt; for metrics.');
+            collectDataFromDOM(true);
+        }
+        function removeProject() {
+             collectDataFromDOM(true);
+             if (resumeData.projects.length > 0) {
+                 resumeData.projects.pop();
+                 collectDataFromDOM(true);
+             } else { showNotification('No more projects to remove.', 'red'); }
+        }
+
+        function addEducation() {
+            collectDataFromDOM(true);
+            resumeData.education.push({
+                title: 'New Degree/Certificate', 
+                institution: 'New Institution Name'
+            });
+            collectDataFromDOM(true);
+        }
+        function removeEducation() {
+             collectDataFromDOM(true);
+             if (resumeData.education.length > 0) {
+                 resumeData.education.pop();
+                 collectDataFromDOM(true);
+             } else { showNotification('No more education items to remove.', 'red'); }
+        }
+        
+        function addCertification() {
+            collectDataFromDOM(true);
+            resumeData.certifications.push('New Certification Title');
+            collectDataFromDOM(true);
+        }
+        function removeCertification() {
+             collectDataFromDOM(true);
+             if (resumeData.certifications.length > 0) {
+                 resumeData.certifications.pop();
+                 collectDataFromDOM(true);
+             } else { showNotification('No more certifications to remove.', 'red'); }
+        }
+
+        // --- Initialization ---
+        window.onload = loadData;
+    </script>
+</head>
+<body>
+    <!-- Floating Editor Controls -->
+    <div class="editor-controls fixed top-0 left-0 w-full sm:w-auto sm:top-4 sm:right-4 z-10 flex flex-col space-y-2 p-3 bg-white rounded-none sm:rounded-xl shadow-lg border border-gray-100">
+        <!-- Control Row 1: Color & Save -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
+            <!-- Hex Input and Preview -->
+            <div class="flex items-center space-x-2 p-2 sm:p-0 bg-gray-50 sm:bg-transparent rounded-lg justify-between sm:justify-start">
+                <label for="hexInput" class="text-sm font-medium text-gray-700 flex items-center">
+                    <i data-lucide="palette" class="w-4 h-4 mr-1 text-gray-500"></i> Accent Color:
+                </label>
+                <div class="flex items-center space-x-2">
+                    <input type="text" id="hexInput" placeholder="#10b981" maxlength="7" 
+                           class="w-24 p-1 text-center border rounded-lg font-mono text-xs uppercase focus:ring-accent-var focus:border-accent-var" 
+                           value="#10b981" oninput="liveUpdateColor(event)">
+                    <div id="colorPreview" class="w-6 h-6 rounded-md border-2 border-gray-300 shadow" style="background-color: var(--primary-color);"></div>
+                    <!-- Apply button uses custom variable class for aesthetics -->
+                    <button onclick="applyColor()" class="text-xs font-medium text-white bg-accent-var rounded-lg px-2 py-1 hover:opacity-90 transition h-8">Apply</button>
+                </div>
+            </div>
+             <!-- Save Button (Hidden until Edit Mode is active) -->
+            <button id="saveButton" onclick="collectDataFromDOM(false)" style="display: none;" class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition duration-150 text-white bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">
+                <i data-lucide="Save" class="w-4 h-4 mr-1"></i> Save
+            </button>
+        </div>
+        
+        <!-- Control Row 2: Edit Toggle - Full width -->
+        <div class="flex">
+            <!-- Toggle button now uses the custom variable class in JS updateControlPanelUI -->
+            <button id="editToggle" onclick="toggleEditMode()" class="flex flex-1 items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition duration-150 bg-gray-200 text-gray-700 hover:bg-gray-300">
+                <i data-lucide="Edit" class="w-4 h-4 mr-1"></i> Edit Content
+            </button>
+        </div>
+
+        <!-- Formatting Guide (Visible only in Edit Mode) -->
+        <div id="formattingGuide" class="formatting-guide p-3 bg-yellow-50 border border-yellow-200 rounded-lg text-xs text-gray-700" style="display: none;">
+            <p class="font-bold mb-1">Formatting Guide (Type Tags Directly):</p>
+            <ul class="list-disc list-inside space-y-0.5 ml-2">
+                <li>For <b>Bold</b>: <code>&lt;b&gt;text&lt;/b&gt;</code></li>
+                <li>For <i>Italic</i>: <code>&lt;i&gt;text&lt;/i&gt;</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Resume Content Container -->
+    <div id="resume-container" class="resume-container rounded-xl">
+        <div id="resumeContent">
+            <!-- Resume content will be rendered here by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Notification Message -->
+    <div id="notification" class="fixed bottom-4 right-4 p-3 rounded-lg shadow-xl text-white transition-all duration-300 transform translate-y-full opacity-0">
+        <!-- Notification text goes here -->
+    </div>
+
+    <!-- Print Button -->
+    <footer class="download-section w-full max-w-4xl text-center py-6">
+        <button 
+            onclick="window.print()"
+            class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-emerald-600 hover:bg-emerald-700 shadow-lg transition duration-150 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-emerald-500 focus:ring-opacity-50"
+        >
+            <i data-lucide="printer" class="w-5 h-5 mr-2"></i>
+            Click Here to Open Print Dialog to Save as Multi-Page PDF
+        </button>
+    </footer>
+
+</body>
+</html>
+    
+  </body>
+  
+</html>
