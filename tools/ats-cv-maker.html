@@ -16,7 +16,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Resume Editor</title>
     
-    <!-- Tailwind Configuration (Left for compatibility, but primary-accent usage is minimized) -->
     <script>
         tailwind = {
             config: {
@@ -33,12 +32,11 @@
             }
         };
     </script>
-    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Load Lucide Icons -->
     <script type="module">
-        import { createIcons, Search, Mail, Phone, Linkedin, Briefcase, GraduationCap, CheckCircle, Target, Printer, Edit, Palette, Save, List, X, Home } from 'https://cdn.jsdelivr.net/npm/lucide-esm@latest/dist/lucide-esm.js';
+        // FIX: Changed the import path for Lucide icons to a reliable CDN URL
+        import { createIcons, Search, Mail, Phone, Linkedin, Briefcase, GraduationCap, CheckCircle, Target, Printer, Edit, Palette, Save, List, X, Home } from 'https://unpkg.com/lucide@latest/dist/esm/lucide.js';
         
         // Expose icons globally for use in dynamic rendering
         window.lucideIcons = { Search, Mail, Phone, Phone, Linkedin, Briefcase, GraduationCap, CheckCircle, Target, Printer, Edit, Palette, Save, List, X, Home };
@@ -81,19 +79,49 @@
         /* Container for screen view */
         .resume-container {
             max-width: 800px;
-            /* Adjust top margin to account for fixed header on mobile */
             margin: 2rem auto; 
             background-color: white;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             padding: 2rem;
-            transition: border 0.3s;
+            transition: margin-top 0.3s; /* Added transition for smooth effect */
         }
         
         /* Mobile adjustment for resume container margin when controls are on top */
         @media (max-width: 639px) { /* Tailind 'sm' breakpoint max */
             .resume-container {
-                margin-top: 10rem; /* Increased top margin to clear the fixed control panel */
+                /* Base margin for view mode (or when controls are short) */
+                margin-top: 5rem; 
                 padding: 1rem;
+            }
+            /* NEW RULE: Increased margin-top for edit mode (when guide is visible on mobile) */
+            .edit-mode.resume-container {
+                 margin-top: 9rem; /* Increased space to clear the tall control panel */
+            }
+        }
+
+        /* Desktop Control Panel and Resume Layout Changes */
+        @media (min-width: 640px) {
+            
+            /* EDIT MODE WIDTH (15%) - Floating panel style */
+            .editor-controls.edit-mode-panel {
+                width: 15%; 
+                min-width: 250px; 
+                height: auto; 
+                align-items: flex-start; 
+                padding: 1rem;
+                
+                /* Override to top-left corner, floating */
+                left: 1rem !important;
+                top: 1rem !important;
+                transform: none !important;
+                border-radius: 0.5rem !important; 
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+                border-right: none; 
+                
+                /* Ensure it's a column layout to stack button-row and guide */
+                flex-direction: column !important; 
+                justify-content: flex-start;
+                align-items: flex-start;
             }
         }
         
@@ -229,7 +257,7 @@
                 margin-top: 0 !important;
             }
 
-            .download-section, .editor-controls, .formatting-guide {
+            .download-section, .editor-controls, .formatting-guide, #colorModal {
                 display: none;
             }
             .edit-mode .resume-editable {
@@ -325,7 +353,7 @@
                 '<b>Project ABC (E-commerce):</b> Directed a large-scale site migration without traffic loss.',
                 '<b>Project XYZ (SaaS):</b> Developed a content hub that drove <b>70% of new organic signups</b>.',
                 '<b>Client 123 (Local Service):</b> Optimized GMB profile and local citations to dominate the local pack.',
-                '<b>Internal Tool (Automation):</b> Built a reporting script that reduced manual reporting time by 5 hours/week.',
+                '<b>Internal Tool (Automation):):</b> Built a reporting script that reduced manual reporting time by 5 hours/week.',
             ],
             education: [
                 { title: 'Master of Business Administration (MBA)', institution: 'University of Example' },
@@ -358,15 +386,17 @@
                 }
             }
             
-            // Apply color immediately and update the new hex input field and preview
+            // Apply color immediately
             document.documentElement.style.setProperty('--primary-color', resumeData.color);
-            const hexInput = document.getElementById('hexInput');
-            const colorPreview = document.getElementById('colorPreview');
-
-            if (hexInput) hexInput.value = resumeData.color;
-            if (colorPreview) colorPreview.style.backgroundColor = resumeData.color;
 
             renderResume();
+            
+            // Set initial color in the modal input field if it exists
+            const modalHexInput = document.getElementById('modalHexInput');
+            if (modalHexInput) modalHexInput.value = resumeData.color;
+
+            // Ensure Control Panel UI is correctly initialized (guide hidden)
+            updateControlPanelUI(isEditMode); 
         }
 
         /**
@@ -405,14 +435,12 @@
             const experienceHtml = resumeData.experience.map((job, index) => `
                 <div class="mb-6 job-entry ${index === 0 ? 'print:mt-0' : ''}">
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-1">
-                        <!-- Job Title reduced to text-lg for better hierarchy -->
                         <h3 class="text-lg font-bold text-gray-800 flex items-center flex-wrap">
                             <span id="exp-${index}-role" ${editable}>${job.role}</span>
                             ${job.subtitle ? `<span class="job-title-pill ml-0 mt-1 sm:ml-3 sm:mt-0" id="exp-${index}-subtitle" ${editable}>${job.subtitle}</span>` : ''}
                         </h3>
                         <span class="text-sm font-semibold text-gray-500 whitespace-nowrap mt-1 sm:mt-0" id="exp-${index}-period" ${editable}>${job.period}</span>
                     </div>
-                    <!-- Company Name reduced to text-base for better hierarchy -->
                     <p class="text-base font-semibold text-accent-var mb-2" id="exp-${index}-company" ${editable}>${job.company}</p>
                     <ul class="custom-list space-y-1">
                         ${job.bullets.map((bullet, bulletIndex) => 
@@ -491,15 +519,14 @@
                                 <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add Certification
                             </button>
                              <button onclick="removeCertification()" class="text-xs font-medium text-red-500 hover:text-red-700 p-1 rounded transition">
-                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last
-                            </button>
+                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last Certification
+                             </button>
                         </li>` : ''}
                 </ul>
             `;
 
             // Combine all HTML sections
             container.innerHTML = `
-                <!-- Header Section -->
                 <header class="mb-6 pb-4 border-b-4 border-gray-100 text-center flex-shrink-0">
                     <h1 class="text-4xl font-extrabold text-gray-900 mb-1">
                         <span id="header-name" ${editable}>${resumeData.name}</span>
@@ -513,7 +540,6 @@
                     </div>
                 </header>
 
-                <!-- Professional Summary -->
                 <section class="mb-6 flex-shrink-0">
                     <h2 class="text-2xl font-bold section-header flex items-center">
                         <i data-lucide="briefcase" class="w-6 h-6 mr-2 text-accent-var"></i> Professional Summary
@@ -523,22 +549,18 @@
                     </p>
                 </section>
 
-                <!-- Core Skills & Tools -->
                 <section class="mb-6 flex-shrink-0">
                     <h2 class="text-2xl font-bold section-header flex items-center">
                         <i data-lucide="search" class="w-6 h-6 mr-2 text-accent-var"></i> Core Skills & Tools
                     </h2>
-                    <!-- Raw text input for skills (Visible only in edit mode) -->
                     <p class="text-sm text-gray-500 mb-2" id="skills-raw" contenteditable="true" class="resume-editable">
                         ${resumeData.skills.join(', ')}
                     </p>
-                    <!-- Skill Chips (Visible only in view mode) -->
                     <div class="flex flex-wrap" id="skills-chips">
                         ${skillsHtml}
                     </div>
                 </section>
 
-                <!-- Work Experience -->
                 <section class="mb-8">
                     <h2 class="text-2xl font-bold section-header flex items-center">
                         <i data-lucide="briefcase" class="w-6 h-6 mr-2 text-accent-var"></i> Work Experience
@@ -556,10 +578,7 @@
                     ` : ''}
                 </section>
 
-                <!-- Achievements & Projects (Grid Layout) -->
-                <!-- Use grid-cols-1 on mobile, grid-cols-2 on medium screens and up -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                    <!-- Key Achievements -->
                     <section class="break-inside-avoid">
                         <h2 class="text-2xl font-bold section-header flex items-center">
                             <i data-lucide="check-circle" class="w-6 h-6 mr-2 text-accent-var"></i> Key Achievements
@@ -567,7 +586,6 @@
                         ${achievementsHtml}
                     </section>
 
-                    <!-- Key Projects -->
                     <section class="break-inside-avoid">
                         <h2 class="text-2xl font-bold section-header flex items-center">
                             <i data-lucide="target" class="w-6 h-6 mr-2 text-accent-var"></i> Key Projects Highlights
@@ -576,7 +594,6 @@
                     </section>
                 </div>
 
-                <!-- Separate Education Section -->
                 <section class="mb-8 break-inside-avoid">
                     <h2 class="text-2xl font-bold section-header flex items-center">
                         <i data-lucide="graduation-cap" class="w-6 h-6 mr-2 text-accent-var"></i> Education
@@ -594,7 +611,6 @@
                     ` : ''}
                 </section>
 
-                <!-- Separate Certifications Section -->
                 <section class="mb-4 break-inside-avoid">
                     <h2 class="text-2xl font-bold section-header flex items-center">
                         <i data-lucide="check-circle" class="w-6 h-6 mr-2 text-accent-var"></i> Certifications
@@ -654,15 +670,32 @@
                 // Using custom class for background color
                 editBtn.classList.add('bg-accent-var', 'text-white');
                 editBtn.classList.remove('bg-gray-200', 'text-gray-700');
-                editBtn.innerHTML = '<i data-lucide="X" class="w-4 h-4 mr-1"></i> Exit Edit Mode';
-                saveBtn.style.display = 'inline-flex';
-                guide.style.display = 'block'; 
+                
+                // ICON ONLY + TOOLTIP
+                editBtn.innerHTML = '<i data-lucide="X" class="w-5 h-5"></i>';
+                editBtn.title = 'Exit Edit Mode';
+                
+                // Show save button
+                saveBtn.style.display = 'flex'; 
+                // ICON ONLY + TOOLTIP
+                saveBtn.innerHTML = '<i data-lucide="Save" class="w-5 h-5"></i>';
+                saveBtn.title = 'Save Changes';
+                
+                // Explicitly show guide in edit mode
+                if (guide) guide.style.display = 'block'; 
             } else { // View Mode
                 editBtn.classList.remove('bg-accent-var', 'text-white');
                 editBtn.classList.add('bg-gray-200', 'text-gray-700');
-                editBtn.innerHTML = '<i data-lucide="Edit" class="w-4 h-4 mr-1"></i> Edit Content';
+                 
+                // ICON ONLY + TOOLTIP
+                editBtn.innerHTML = '<i data-lucide="Edit" class="w-5 h-5"></i>';
+                editBtn.title = 'Enter Edit Mode';
+
+                // Hide save button
                 saveBtn.style.display = 'none';
-                guide.style.display = 'none'; 
+                saveBtn.title = '';
+                // Explicitly hide guide in view mode
+                if (guide) guide.style.display = 'none'; 
             }
             // Re-initialize Lucide icons just for the controls
             if (typeof window.initLucideIcons !== 'undefined') {
@@ -675,27 +708,37 @@
          * Collects content from editable fields and updates resumeData.
          * @param {boolean} shouldRerender - If true, forces a re-render of the resume content 
          * (used for structural changes like Add/Remove).
+         * @param {boolean} isManualSave - If true, shows a save notification after collection.
          */
-        function collectDataFromDOM(shouldRerender = false) {
+        function collectDataFromDOM(shouldRerender = false, isManualSave = false) {
             if (isEditMode) {
                 updateControlPanelUI(true); 
             }
             
             // Header
-            resumeData.name = document.getElementById('header-name').innerHTML.trim();
-            resumeData.title = document.getElementById('header-title').innerHTML.trim();
+            const headerNameEl = document.getElementById('header-name');
+            if (headerNameEl) resumeData.name = headerNameEl.innerHTML.trim();
+            const headerTitleEl = document.getElementById('header-title');
+            if (headerTitleEl) resumeData.title = headerTitleEl.innerHTML.trim();
             
             // Contact
-            resumeData.contact.phone = document.getElementById('contact-phone').innerHTML.trim();
-            resumeData.contact.email = document.getElementById('contact-email').innerHTML.trim();
-            resumeData.contact.linkedin = document.getElementById('contact-linkedin').innerHTML.trim();
+            const contactPhoneEl = document.getElementById('contact-phone');
+            if (contactPhoneEl) resumeData.contact.phone = contactPhoneEl.innerHTML.trim();
+            const contactEmailEl = document.getElementById('contact-email');
+            if (contactEmailEl) resumeData.contact.email = contactEmailEl.innerHTML.trim();
+            const contactLinkedinEl = document.getElementById('contact-linkedin');
+            if (contactLinkedinEl) resumeData.contact.linkedin = contactLinkedinEl.innerHTML.trim();
 
             // Summary
-            resumeData.summary = document.getElementById('summary').innerHTML.trim();
+            const summaryEl = document.getElementById('summary');
+            if (summaryEl) resumeData.summary = summaryEl.innerHTML.trim();
 
             // Skills (simple comma-separated input)
-            const skillsRaw = document.getElementById('skills-raw').innerHTML.trim();
-            resumeData.skills = skillsRaw.split(',').map(s => s.trim()).filter(s => s.length > 0);
+            const skillsRawEl = document.getElementById('skills-raw');
+            if (skillsRawEl) {
+                const skillsRaw = skillsRawEl.innerHTML.trim();
+                resumeData.skills = skillsRaw.split(',').map(s => s.trim()).filter(s => s.length > 0);
+            }
 
             // Experience - Rebuild the structure from the DOM
             const experience = [];
@@ -706,8 +749,8 @@
                 const newJob = {
                     role: roleEl.innerHTML.trim(),
                     subtitle: document.getElementById(`exp-${index}-subtitle`)?.innerHTML.trim() || '',
-                    company: document.getElementById(`exp-${index}-company`).innerHTML.trim(),
-                    period: document.getElementById(`exp-${index}-period`).innerHTML.trim(),
+                    company: document.getElementById(`exp-${index}-company`)?.innerHTML.trim() || '',
+                    period: document.getElementById(`exp-${index}-period`)?.innerHTML.trim() || '',
                     bullets: []
                 };
 
@@ -757,7 +800,16 @@
             }
 
             // Final save to storage and notify
-            saveData();
+            const saveSuccessful = saveData();
+
+            // NEW LOGIC: Only show save notification if it was manually triggered
+            if (isManualSave) {
+                if (saveSuccessful) {
+                    showNotification('Content saved successfully!', 'success');
+                } else {
+                    showNotification('Error: Could not save content.', 'error');
+                }
+            }
             
             // If it was a structural change (Add/Remove), re-render and re-apply edit mode formatting
             if (isEditMode && shouldRerender) {
@@ -770,10 +822,16 @@
 
         /**
          * Saves the current resumeData state to localStorage.
+         * MODIFIED: Returns status instead of showing notification.
          */
         function saveData() {
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(resumeData));
-            showNotification('Content saved successfully!', 'green');
+            try {
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(resumeData));
+                return true; // Indicate success
+            } catch (e) {
+                console.error("Error saving to local storage:", e);
+                return false; // Indicate failure
+            }
         }
 
         /**
@@ -782,13 +840,27 @@
         function toggleEditMode() {
             isEditMode = !isEditMode;
             const container = document.getElementById('resume-container');
+            const controlPanel = document.getElementById('controlPanel'); 
+            const buttonWrapper = document.getElementById('controlButtonWrapper');
 
             if (isEditMode) {
-                // 1. Collect current data (in case changes were made without saving)
-                collectDataFromDOM(false); 
+                // 1. Collect current data (in case changes were made without saving) - DON'T notify save
+                collectDataFromDOM(false, false); 
                 
                 // 2. Set UI for edit mode
                 container.classList.add('edit-mode');
+                
+                // Set wide panel class (CSS handles 15% width, floating, and height: auto)
+                if (controlPanel) controlPanel.classList.add('edit-mode-panel'); 
+                
+                // Force button row for desktop edit mode
+                if (buttonWrapper) {
+                     // Remove desktop vertical stack class
+                    buttonWrapper.classList.remove('sm:flex-col', 'sm:space-x-0', 'sm:space-y-2');
+                    // Add classes that override to horizontal (row is the mobile default, but we force it)
+                    buttonWrapper.classList.add('flex-row', 'space-x-2'); 
+                }
+
                 updateControlPanelUI(true); 
                 
                 // 3. Render resume with contenteditable=true (including the raw skills input)
@@ -796,79 +868,80 @@
                 
                 // 4. IMPORTANT: Convert all rendered HTML content to raw visible tags
                 convertEditableContent(true);
+                
+                // NEW: Notify mode change
+                showNotification('Edit Mode Enabled!', 'success');
+
 
             } else {
                 // 1. IMPORTANT: Convert visible raw tags back to actual HTML tags
                 convertEditableContent(false);
 
-                // 2. Collect and save the final edited HTML content (this rebuilds skills from raw input)
-                collectDataFromDOM(false);
+                // 2. Collect and save the final edited HTML content (this rebuilds skills from raw input) - DON'T notify save
+                collectDataFromDOM(false, false);
                 
                 // 3. Set UI for view mode
                 container.classList.remove('edit-mode');
+                
+                // Remove wide panel class
+                if (controlPanel) controlPanel.classList.remove('edit-mode-panel');
+                
+                // Revert button wrapper to desktop vertical stack for View Mode
+                if (buttonWrapper) {
+                    // Re-apply desktop vertical stack class
+                    buttonWrapper.classList.add('sm:flex-col', 'sm:space-x-0', 'sm:space-y-2');
+                    // Remove forced row classes
+                    buttonWrapper.classList.remove('flex-row', 'space-x-2');
+                }
+
                 updateControlPanelUI(false); 
                 
                 // 4. Final render (now in view mode, hiding the raw skills input)
                 renderResume();
+                
+                // NEW: Notify mode change
+                showNotification('Edit Mode Closed!', 'success');
             }
         }
 
+
+        // =======================================================
+        // ACCENT COLOR MODAL LOGIC (New/Updated Functions)
+        // =======================================================
+
         /**
-         * Validates and sets the new accent color, saving it to data.
-         * @param {string} color - The HEX code string (with or without #).
+         * Opens the color selection modal and initializes its input/preview.
          */
-        function setAndSaveColor(color) {
-            let normalizedColor = color.trim().toUpperCase();
-            if (!normalizedColor.startsWith('#')) {
-                normalizedColor = '#' + normalizedColor;
-            }
+        function openColorModal() {
+            const modal = document.getElementById('colorModal');
+            const modalHexInput = document.getElementById('modalHexInput');
+            const modalColorPreview = document.getElementById('modalColorPreview');
 
-            // Validate against a 3- or 6-character hex code pattern
-            if (!/^#([0-9A-F]{3}){1,2}$/i.test(normalizedColor)) {
-                showNotification('Invalid HEX code. Please use format #RRGGBB or RRGGBB.', 'red');
-                return false;
-            }
+            // Initialize input/preview with current saved color
+            if (modalHexInput) modalHexInput.value = resumeData.color;
+            if (modalColorPreview) modalColorPreview.style.backgroundColor = resumeData.color;
             
-            // 1. Update the data model
-            resumeData.color = normalizedColor;
-            
-            // 2. Update the root CSS variable (this is the actual fix)
-            document.documentElement.style.setProperty('--primary-color', normalizedColor);
-            
-            // 3. Update the UI controls
-            const hexInput = document.getElementById('hexInput');
-            const colorPreview = document.getElementById('colorPreview');
-            if(hexInput) hexInput.value = normalizedColor;
-            if(colorPreview) colorPreview.style.backgroundColor = normalizedColor;
-
-            // 4. Save and re-render the resume structure 
-            saveData();
-            
-            // Rerender the DOM. This is crucial for applying color to dynamic elements.
-            renderResume();
-            
-            // === FIX: If in edit mode, re-apply the edit mode state/formatting ===
-            if (isEditMode) {
-                // We need to re-apply the editable container class for dashed borders
-                document.getElementById('resume-container').classList.add('edit-mode');
-                // We need to re-convert content to show raw HTML tags again
-                convertEditableContent(true); 
-            }
-            // ====================================================================
-
-            return true;
+            if (modal) modal.classList.remove('hidden');
         }
 
         /**
-         * Function to preview color as the user types (oninput)
+         * Closes the color selection modal.
          */
-        function liveUpdateColor(event) {
+        function closeColorModal() {
+             const modal = document.getElementById('colorModal');
+             if (modal) modal.classList.add('hidden');
+        }
+
+        /**
+         * Function to preview color as the user types in the modal.
+         */
+        function liveUpdateColorInModal(event) {
             let inputColor = event.target.value.trim().toUpperCase();
             if (!inputColor.startsWith('#')) {
                 inputColor = '#' + inputColor;
             }
             
-            const colorPreview = document.getElementById('colorPreview');
+            const colorPreview = document.getElementById('modalColorPreview');
             if (!colorPreview) return;
 
             // Only update preview if it looks like a valid partial or full HEX
@@ -880,26 +953,92 @@
         }
 
         /**
-         * Function to apply and save the color when the button is clicked
+         * Validates and sets the new accent color, saves it, and closes the modal.
          */
-        function applyColor() {
-            const hexInput = document.getElementById('hexInput');
-            setAndSaveColor(hexInput.value);
+        function saveColorAndClose() {
+            const modalHexInput = document.getElementById('modalHexInput');
+            if (!modalHexInput) return;
+
+            const color = modalHexInput.value;
+            
+            let normalizedColor = color.trim().toUpperCase();
+            if (!normalizedColor.startsWith('#')) {
+                normalizedColor = '#' + normalizedColor;
+            }
+
+            // Validate against a 3- or 6-character hex code pattern
+            if (!/^#([0-9A-F]{3}){1,2}$/i.test(normalizedColor)) {
+                showNotification('Invalid HEX code. Please use format #RRGGBB or RRGGBB.', 'error');
+                return false;
+            }
+            
+            // 1. Update the data model
+            resumeData.color = normalizedColor;
+            
+            // 2. Update the root CSS variable
+            document.documentElement.style.setProperty('--primary-color', normalizedColor);
+            
+            // 3. Save and re-render the resume structure 
+            const saved = saveData(); // Simply save, collectDataFromDOM isn't needed here for rendering/saving
+            
+            // Rerender the DOM. This is crucial for applying color to dynamic elements.
+            renderResume();
+            
+            // If in edit mode, re-apply the edit mode state/formatting
+            if (isEditMode) {
+                const container = document.getElementById('resume-container');
+                if (container) container.classList.add('edit-mode');
+                convertEditableContent(true); 
+            }
+            
+            // 4. Close the modal and notify
+            closeColorModal();
+            if (saved) {
+                showNotification('Accent color updated and saved!', 'success');
+            } else {
+                 showNotification('Error: Could not save color change.', 'error');
+            }
+
+            // Re-initialize Lucide icons for the control panel, as the color of the palette icon changes
+            if (typeof window.initLucideIcons !== 'undefined') {
+                window.initLucideIcons();
+            }
+
+            return true;
         }
+
+        // =======================================================
+        // END ACCENT COLOR MODAL LOGIC
+        // =======================================================
+
 
         /**
          * Notification system (replacing alert())
+         * UPDATED: Success uses accent color, Error uses red bold text.
          */
-        function showNotification(message, color) {
+        function showNotification(message, type) {
             const notification = document.getElementById('notification');
-            
+            if (!notification) return;
+
             if (notificationTimeout) {
                 clearTimeout(notificationTimeout);
             }
             
-            notification.textContent = message;
-            // Ensure full visibility/hiding with opacity and translation
-            notification.className = `fixed bottom-4 right-4 p-3 rounded-lg shadow-xl text-white transition-all duration-300 transform ${color === 'green' ? 'bg-green-600' : 'bg-red-600'}`;
+            let colorClass = '';
+            let content = message;
+
+            if (type === 'error') {
+                // Error notification: standard red background and bold text
+                colorClass = 'bg-red-600 font-bold'; 
+            } else {
+                // Success/Default notification: uses accent color
+                colorClass = 'bg-accent-var'; 
+            }
+            
+            notification.textContent = content;
+
+            // Apply class including the background color
+            notification.className = `fixed bottom-4 right-4 p-3 rounded-lg shadow-xl text-white transition-all duration-300 transform ${colorClass}`;
             
             // SHOW: remove translation and opacity
             notification.classList.remove('translate-y-full', 'opacity-0');
@@ -911,9 +1050,11 @@
         }
         
         // --- Add/Remove List Item Functions (Simplified) ---
+        // Note: All structural change functions now call collectDataFromDOM(true, false) to re-render
+        // and save without showing a "saved" notification.
 
         function addExperience() {
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
             resumeData.experience.push({
                 role: 'New Placeholder Job Title',
                 subtitle: '(Role Subtitle)',
@@ -921,84 +1062,84 @@
                 period: '2024 - Present',
                 bullets: ['New responsibility 1. Use &lt;b&gt;bold&lt;/b&gt; for metrics.']
             });
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
         }
         function removeExperience() {
-             collectDataFromDOM(true);
+             collectDataFromDOM(true, false);
              if (resumeData.experience.length > 0) {
                  resumeData.experience.pop();
-                 collectDataFromDOM(true);
-             } else { showNotification('No more jobs to remove.', 'red'); }
+                 collectDataFromDOM(true, false);
+             } else { showNotification('No more jobs to remove.', 'error'); }
         }
 
         function addExperienceBullet(expIndex) {
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
             resumeData.experience[expIndex].bullets.push('New specific achievement or task. Use &lt;b&gt;bold&lt;/b&gt; for metrics.');
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
         }
         function removeExperienceBullet(expIndex) {
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
             if (resumeData.experience[expIndex].bullets.length > 0) {
                 resumeData.experience[expIndex].bullets.pop();
-                collectDataFromDOM(true);
-            } else { showNotification('No more bullets to remove.', 'red'); }
+                collectDataFromDOM(true, false);
+            } else { showNotification('No more bullets to remove.', 'error'); }
         }
 
 
         function addAchievement() {
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
             resumeData.achievements.push('New key achievement bullet. Use &lt;b&gt;bold&lt;/b&gt; for metrics.');
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
         }
         function removeAchievement() {
-             collectDataFromDOM(true);
+             collectDataFromDOM(true, false);
              if (resumeData.achievements.length > 0) {
                  resumeData.achievements.pop();
-                 collectDataFromDOM(true);
-             } else { showNotification('No more achievements to remove.', 'red'); }
+                 collectDataFromDOM(true, false);
+             } else { showNotification('No more achievements to remove.', 'error'); }
         }
 
 
         function addProject() {
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
             resumeData.projects.push('<b>Project New:</b> Description of the project highlight. Use &lt;b&gt;bold&lt;/b&gt; for metrics.');
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
         }
         function removeProject() {
-             collectDataFromDOM(true);
+             collectDataFromDOM(true, false);
              if (resumeData.projects.length > 0) {
                  resumeData.projects.pop();
-                 collectDataFromDOM(true);
-             } else { showNotification('No more projects to remove.', 'red'); }
+                 collectDataFromDOM(true, false);
+             } else { showNotification('No more projects to remove.', 'error'); }
         }
 
         function addEducation() {
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
             resumeData.education.push({
                 title: 'New Degree/Certificate Title', 
                 institution: 'New Institution Name, City'
             });
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
         }
         function removeEducation() {
-             collectDataFromDOM(true);
+             collectDataFromDOM(true, false);
              if (resumeData.education.length > 0) {
                  resumeData.education.pop();
-                 collectDataFromDOM(true);
-             } else { showNotification('No more education items to remove.', 'red'); }
+                 collectDataFromDOM(true, false);
+             } else { showNotification('No more education items to remove.', 'error'); }
         }
         
         function addCertification() {
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
             resumeData.certifications.push('New Professional Certification Title');
-            collectDataFromDOM(true);
+            collectDataFromDOM(true, false);
         }
         function removeCertification() {
-             collectDataFromDOM(true);
+             collectDataFromDOM(true, false);
              if (resumeData.certifications.length > 0) {
                  resumeData.certifications.pop();
-                 collectDataFromDOM(true);
-             } else { showNotification('No more certifications to remove.', 'red'); }
+                 collectDataFromDOM(true, false);
+             } else { showNotification('No more certifications to remove.', 'error'); }
         }
 
         // --- Initialization ---
@@ -1006,65 +1147,67 @@
     </script>
 </head>
 <body>
-    <!-- Floating Editor Controls -->
-    <div class="editor-controls fixed top-0 left-0 w-full sm:w-auto sm:top-4 sm:right-4 z-10 flex flex-col space-y-2 p-3 bg-white rounded-none sm:rounded-xl shadow-lg border border-gray-100">
-        <!-- Control Row 1: Color & Save -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
-            <!-- Hex Input and Preview -->
-            <div class="flex items-center space-x-2 p-2 sm:p-0 bg-gray-50 sm:bg-transparent rounded-lg justify-between sm:justify-start">
-                <label for="hexInput" class="text-sm font-medium text-gray-700 flex items-center">
-                    <i data-lucide="palette" class="w-4 h-4 mr-1 text-gray-500"></i> Accent Color:
-                </label>
-                <div class="flex items-center space-x-2">
-                    <input type="text" id="hexInput" placeholder="#10b981" maxlength="7" 
-                           class="w-24 p-1 text-center border rounded-lg font-mono text-xs uppercase focus:ring-accent-var focus:border-accent-var" 
-                           value="#10b981" oninput="liveUpdateColor(event)">
-                    <div id="colorPreview" class="w-6 h-6 rounded-md border-2 border-gray-300 shadow" style="background-color: var(--primary-color);"></div>
-                    <!-- Apply button uses custom variable class for aesthetics -->
-                    <button onclick="applyColor()" class="text-xs font-medium text-white bg-accent-var rounded-lg px-2 py-1 hover:opacity-90 transition h-8">Apply</button>
-                </div>
-            </div>
-             <!-- Save Button (Hidden until Edit Mode is active) -->
-            <button id="saveButton" onclick="collectDataFromDOM(false)" style="display: none;" class="flex items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition duration-150 text-white bg-blue-600 hover:bg-blue-700 w-full sm:w-auto">
-                <i data-lucide="Save" class="w-4 h-4 mr-1"></i> Save
-            </button>
-        </div>
+    <div id="controlPanel" class="editor-controls fixed top-0 left-0 w-full z-10 p-3 sm:p-2 bg-white rounded-none shadow-lg border border-gray-100 
+                sm:w-16 sm:left-8 sm:top-1/2 sm:-translate-y-1/2 sm:rounded-xl sm:shadow-xl sm:border-none">
         
-        <!-- Control Row 2: Edit Toggle - Full width -->
-        <div class="flex">
-            <!-- Toggle button now uses the custom variable class in JS updateControlPanelUI -->
-            <button id="editToggle" onclick="toggleEditMode()" class="flex flex-1 items-center justify-center px-4 py-2 text-sm font-medium rounded-lg transition duration-150 bg-gray-200 text-gray-700 hover:bg-gray-300">
-                <i data-lucide="Edit" class="w-4 h-4 mr-1"></i> Edit Content
+        <div id="controlButtonWrapper" class="flex flex-row sm:flex-col space-x-2 sm:space-x-0 sm:space-y-2 w-full"> 
+            
+            <button id="colorModalOpen" onclick="openColorModal()" title="Change Accent Color" class="flex-1 flex items-center justify-center p-2 text-lg font-medium rounded-lg transition duration-150 text-gray-700 bg-gray-100 hover:bg-gray-200">
+                <i data-lucide="palette" class="w-5 h-5 text-accent-var"></i> 
+            </button>
+
+            <button id="saveButton" onclick="collectDataFromDOM(false, true)" style="display: none;" title="Save Changes" class="flex-1 flex items-center justify-center p-2 text-lg font-medium rounded-lg transition duration-150 text-white bg-blue-600 hover:bg-blue-700">
+                <i data-lucide="Save" class="w-5 h-5"></i> 
+            </button>
+            
+            <button id="editToggle" onclick="toggleEditMode()" title="Enter Edit Mode" class="flex-1 flex items-center justify-center p-2 text-lg font-medium rounded-lg transition duration-150 bg-gray-200 text-gray-700 hover:bg-gray-300">
+                <i data-lucide="Edit" class="w-5 h-5"></i>
             </button>
         </div>
 
-        <!-- Formatting Guide (Visible only in Edit Mode) -->
-        <div id="formattingGuide" class="formatting-guide p-3 bg-yellow-50 border border-yellow-200 rounded-lg text-xs text-gray-700" style="display: none;">
-            <p class="font-bold mb-1">Formatting Guide (Type Tags Directly):</p>
+        <div id="formattingGuide" class="formatting-guide w-full p-3 bg-yellow-50 border border-yellow-200 rounded-lg text-xs text-gray-700 hidden mt-2">
+            <p class="font-bold mb-1 text-center sm:text-left">Tags:</p>
             <ul class="list-disc list-inside space-y-0.5 ml-2">
-                <li>For <b>Bold</b>: <code>&lt;b&gt;text&lt;/b&gt;</code></li>
-                <li>For <i>Italic</i>: <code>&lt;i&gt;text&lt;/i&gt;</code></li>
+                <li><b>Bold</b>: <code>&lt;b&gt;...&lt;/b&gt;</code></li>
+                <li><i>Italic</i>: <code>&lt;i&gt;...&lt;/i&gt;</code></li>
             </ul>
         </div>
     </div>
 
-    <!-- Resume Content Container -->
     <div id="resume-container" class="resume-container rounded-xl">
         <div id="resumeContent">
-            <!-- Resume content will be rendered here by JavaScript -->
+            </div>
+    </div>
+
+    <div id="notification" class="fixed bottom-4 right-4 p-3 rounded-lg shadow-xl text-white transition-all duration-300 transform translate-y-full opacity-0">
+        </div>
+    
+    <div id="colorModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 z-50 hidden transition-opacity duration-300 flex justify-center items-center">
+        <div class="bg-white p-6 rounded-xl shadow-2xl w-full max-w-sm transform scale-100 transition-transform duration-300">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-gray-800">Set Accent Color</h3>
+                <button onclick="closeColorModal()" class="text-gray-400 hover:text-gray-600" title="Close">
+                     <i data-lucide="X" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="mb-4">
+                <label for="modalHexInput" class="block text-sm font-medium text-gray-700 mb-2">Enter HEX Code (e.g., #10b981)</label>
+                <div class="flex items-center space-x-3">
+                    <input type="text" id="modalHexInput" placeholder="#10b981" maxlength="7" 
+                           class="flex-1 p-2 text-lg text-center border border-gray-300 rounded-lg font-mono uppercase focus:ring-accent-var focus:border-accent-var" 
+                           oninput="liveUpdateColorInModal(event)">
+                    <div id="modalColorPreview" class="w-10 h-10 rounded-full border-4 border-gray-300 shadow-md flex-shrink-0" style="background-color: var(--primary-color);"></div>
+                </div>
+            </div>
+            <button onclick="saveColorAndClose()" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-accent-var hover:opacity-90 transition duration-150 ease-in-out mt-4">
+                <i data-lucide="Save" class="w-4 h-4 mr-2"></i> Save and Exit
+            </button>
         </div>
     </div>
 
-    <!-- Notification Message -->
-    <div id="notification" class="fixed bottom-4 right-4 p-3 rounded-lg shadow-xl text-white transition-all duration-300 transform translate-y-full opacity-0">
-        <!-- Notification text goes here -->
-    </div>
-
-    <!-- Print and Home Buttons -->
     <footer class="download-section w-full max-w-4xl text-center py-6">
         <div class="flex justify-center space-x-4">
-            <!-- Back to Home Button -->
-             <a 
+            <a 
                 href="/index.html"
                 class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-gray-700 bg-gray-200 hover:bg-gray-300 shadow-lg transition duration-150 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-opacity-50"
             >
@@ -1072,10 +1215,9 @@
                 Back to Home
             </a>
             
-            <!-- Print Button -->
             <button 
                 onclick="window.print()"
-                class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-emerald-600 hover:bg-emerald-700 shadow-lg transition duration-150 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-emerald-500 focus:ring-opacity-50"
+                class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-accent-var hover:opacity-90 shadow-lg transition duration-150 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-accent-var focus:ring-opacity-50"
             >
                 <i data-lucide="printer" class="w-5 h-5 mr-2"></i>
                 Save as Multi-Page PDF
