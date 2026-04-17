@@ -34,21 +34,14 @@
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <script type="module">
-        // FIX: Changed the import path for Lucide icons to a reliable CDN URL
-        import { createIcons, Search, Mail, Phone, Linkedin, Briefcase, GraduationCap, CheckCircle, Target, Printer, Edit, Palette, Save, List, X, Home } from 'https://unpkg.com/lucide@latest/dist/esm/lucide.js';
-        
-        // Expose icons globally for use in dynamic rendering
-        window.lucideIcons = { Search, Mail, Phone, Phone, Linkedin, Briefcase, GraduationCap, CheckCircle, Target, Printer, Edit, Palette, Save, List, X, Home };
-        
-        // Function to create icons that can be called repeatedly
-        window.initLucideIcons = () => {
-             createIcons({ icons: window.lucideIcons });
-        };
-
-        // Call once for initial static HTML
-        window.initLucideIcons();
-    </script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  window.initLucideIcons = () => {
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  };
+</script>
     
     <style>
         /* Default theme variables */
@@ -424,7 +417,9 @@
                 </p>
                 <span class="text-gray-400 hidden sm:inline-block">|</span>
                 <p class="flex items-center whitespace-nowrap">
-                    <i data-lucide="linkedin" class="w-4 h-4 mr-1 text-accent-var"></i> 
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 mr-1 text-accent-var">
+    <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19ZM8.34 17V9.5H5.85V17H8.34ZM7.1 8.46A1.44 1.44 0 1 0 7.1 5.58A1.44 1.44 0 0 0 7.1 8.46ZM18.15 17V12.88C18.15 10.67 16.97 9.34 15.13 9.34C13.65 9.34 12.99 10.15 12.62 10.72V9.5H10.13C10.16 10.31 10.13 17 10.13 17H12.62V12.81C12.62 12.59 12.64 12.37 12.7 12.21C12.87 11.77 13.26 11.31 13.92 11.31C14.79 11.31 15.14 11.97 15.14 12.94V17H18.15Z"/>
+  </svg> 
                     <a href="https://${resumeData.contact.linkedin}" target="_blank" class="hover:text-accent-var" id="contact-linkedin-link">
                         <span id="contact-linkedin" ${editable}>${resumeData.contact.linkedin}</span>
                     </a>
@@ -449,10 +444,10 @@
                         ${isEditMode ? `
                             <li class="add-item-placeholder list-none mt-2">
                                 <button onclick="addExperienceBullet(${index})" class="text-xs font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
-                                    <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add Bullet
+                                    <i data-lucide="list" class="w-4 h-4 inline-block mr-1"></i> Add Bullet
                                 </button>
                                 <button onclick="removeExperienceBullet(${index})" class="text-xs font-medium text-red-500 hover:text-red-700 p-1 rounded transition ml-2">
-                                    <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last
+                                    <i data-lucide="x" class="w-4 h-4 inline-block mr-1"></i> Remove Last
                                 </button>
                             </li>
                         ` : ''}
@@ -474,10 +469,10 @@
                     ${isEditMode ? `
                         <li class="add-item-placeholder list-none mt-2 flex flex-wrap gap-2">
                              <button onclick="addAchievement()" class="text-xs font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
-                                <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add Achievement
+                                <i data-lucide="list" class="w-4 h-4 inline-block mr-1"></i> Add Achievement
                             </button>
                              <button onclick="removeAchievement()" class="text-xs font-medium text-red-500 hover:text-red-700 p-1 rounded transition">
-                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last
+                                <i data-lucide="x" class="w-4 h-4 inline-block mr-1"></i> Remove Last
                             </button>
                         </li>` : ''}
                 </ul>
@@ -490,10 +485,10 @@
                     ${isEditMode ? `
                         <li class="add-item-placeholder list-none mt-2 flex flex-wrap gap-2">
                             <button onclick="addProject()" class="text-xs font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
-                                <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add Project
+                                <i data-lucide="list" class="w-4 h-4 inline-block mr-1"></i> Add Project
                             </button>
                             <button onclick="removeProject()" class="text-xs font-medium text-red-500 hover:text-red-700 p-1 rounded transition">
-                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last
+                                <i data-lucide="x" class="w-4 h-4 inline-block mr-1"></i> Remove Last
                             </button>
                         </li>` : ''}
                 </ul>
@@ -516,10 +511,10 @@
                     ${isEditMode ? `
                         <li class="add-item-placeholder list-none mt-2 flex flex-wrap gap-2">
                             <button onclick="addCertification()" class="text-xs font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
-                                <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add Certification
+                                <i data-lucide="list" class="w-4 h-4 inline-block mr-1"></i> Add Certification
                             </button>
                              <button onclick="removeCertification()" class="text-xs font-medium text-red-500 hover:text-red-700 p-1 rounded transition">
-                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last Certification
+                                <i data-lucide="x" class="w-4 h-4 inline-block mr-1"></i> Remove Last Certification
                              </button>
                         </li>` : ''}
                 </ul>
@@ -527,7 +522,7 @@
 
             // Combine all HTML sections
             container.innerHTML = `
-                <header class="mb-6 pb-4 border-b-4 border-gray-100 text-center flex-shrink-0">
+                <header class="mb-6 pb-4 text-center">
                     <h1 class="text-4xl font-extrabold text-gray-900 mb-1">
                         <span id="header-name" ${editable}>${resumeData.name}</span>
                     </h1>
@@ -569,10 +564,10 @@
                     ${isEditMode ? `
                         <div class="text-left mt-4 flex flex-wrap gap-2">
                              <button onclick="addExperience()" class="text-sm font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
-                                <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add New Job
+                                <i data-lucide="list" class="w-4 h-4 inline-block mr-1"></i> Add New Job
                              </button>
                              <button onclick="removeExperience()" class="text-sm font-medium text-red-500 hover:text-red-700 p-1 rounded transition">
-                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last Job
+                                <i data-lucide="x" class="w-4 h-4 inline-block mr-1"></i> Remove Last Job
                              </button>
                         </div>
                     ` : ''}
@@ -602,10 +597,10 @@
                     ${isEditMode ? `
                         <div class="text-left mt-2 flex flex-wrap gap-2">
                              <button onclick="addEducation()" class="text-sm font-medium text-accent-var hover:text-secondary-text p-1 rounded transition">
-                                <i data-lucide="List" class="w-4 h-4 inline-block mr-1"></i> Add Education
+                                <i data-lucide="list" class="w-4 h-4 inline-block mr-1"></i> Add Education
                              </button>
                              <button onclick="removeEducation()" class="text-sm font-medium text-red-500 hover:text-red-700 p-1 rounded transition">
-                                <i data-lucide="X" class="w-4 h-4 inline-block mr-1"></i> Remove Last Education
+                                <i data-lucide="x" class="w-4 h-4 inline-block mr-1"></i> Remove Last Education
                              </button>
                         </div>
                     ` : ''}
@@ -672,13 +667,13 @@
                 editBtn.classList.remove('bg-gray-200', 'text-gray-700');
                 
                 // ICON ONLY + TOOLTIP
-                editBtn.innerHTML = '<i data-lucide="X" class="w-5 h-5"></i>';
+                editBtn.innerHTML = '<i data-lucide="x" class="w-5 h-5"></i>';
                 editBtn.title = 'Exit Edit Mode';
                 
                 // Show save button
                 saveBtn.style.display = 'flex'; 
                 // ICON ONLY + TOOLTIP
-                saveBtn.innerHTML = '<i data-lucide="Save" class="w-5 h-5"></i>';
+                saveBtn.innerHTML = '<i data-lucide="save" class="w-5 h-5"></i>';
                 saveBtn.title = 'Save Changes';
                 
                 // Explicitly show guide in edit mode
@@ -688,7 +683,7 @@
                 editBtn.classList.add('bg-gray-200', 'text-gray-700');
                  
                 // ICON ONLY + TOOLTIP
-                editBtn.innerHTML = '<i data-lucide="Edit" class="w-5 h-5"></i>';
+                editBtn.innerHTML = '<i data-lucide="square-pen" class="w-5 h-5"></i>';
                 editBtn.title = 'Enter Edit Mode';
 
                 // Hide save button
@@ -1053,94 +1048,119 @@
         // Note: All structural change functions now call collectDataFromDOM(true, false) to re-render
         // and save without showing a "saved" notification.
 
-        function addExperience() {
-            collectDataFromDOM(true, false);
-            resumeData.experience.push({
-                role: 'New Placeholder Job Title',
-                subtitle: '(Role Subtitle)',
-                company: 'Placeholder Corp, Location XYZ',
-                period: '2024 - Present',
-                bullets: ['New responsibility 1. Use &lt;b&gt;bold&lt;/b&gt; for metrics.']
-            });
-            collectDataFromDOM(true, false);
-        }
-        function removeExperience() {
-             collectDataFromDOM(true, false);
-             if (resumeData.experience.length > 0) {
-                 resumeData.experience.pop();
-                 collectDataFromDOM(true, false);
-             } else { showNotification('No more jobs to remove.', 'error'); }
-        }
+        /* ===== FIXED ADD / REMOVE FUNCTIONS ===== */
 
-        function addExperienceBullet(expIndex) {
-            collectDataFromDOM(true, false);
-            resumeData.experience[expIndex].bullets.push('New specific achievement or task. Use &lt;b&gt;bold&lt;/b&gt; for metrics.');
-            collectDataFromDOM(true, false);
-        }
-        function removeExperienceBullet(expIndex) {
-            collectDataFromDOM(true, false);
-            if (resumeData.experience[expIndex].bullets.length > 0) {
-                resumeData.experience[expIndex].bullets.pop();
-                collectDataFromDOM(true, false);
-            } else { showNotification('No more bullets to remove.', 'error'); }
-        }
+/* EXPERIENCE */
+function addExperience() {
+    collectDataFromDOM(false, false);
+    resumeData.experience.push({
+        role: 'New Job Title',
+        subtitle: '',
+        company: 'Company Name',
+        period: 'Year - Year',
+        bullets: ['New responsibility or achievement']
+    });
+    renderResume();
+    if (isEditMode) convertEditableContent(true);
+}
 
+function removeExperience() {
+    collectDataFromDOM(false, false);
+    if (resumeData.experience.length > 0) {
+        resumeData.experience.pop();
+        renderResume();
+        if (isEditMode) convertEditableContent(true);
+    }
+}
 
-        function addAchievement() {
-            collectDataFromDOM(true, false);
-            resumeData.achievements.push('New key achievement bullet. Use &lt;b&gt;bold&lt;/b&gt; for metrics.');
-            collectDataFromDOM(true, false);
-        }
-        function removeAchievement() {
-             collectDataFromDOM(true, false);
-             if (resumeData.achievements.length > 0) {
-                 resumeData.achievements.pop();
-                 collectDataFromDOM(true, false);
-             } else { showNotification('No more achievements to remove.', 'error'); }
-        }
+/* EXPERIENCE BULLETS */
+function addExperienceBullet(expIndex) {
+    collectDataFromDOM(false, false);
+    resumeData.experience[expIndex].bullets.push('New bullet point');
+    renderResume();
+    if (isEditMode) convertEditableContent(true);
+}
 
+function removeExperienceBullet(expIndex) {
+    collectDataFromDOM(false, false);
+    if (resumeData.experience[expIndex].bullets.length > 0) {
+        resumeData.experience[expIndex].bullets.pop();
+        renderResume();
+        if (isEditMode) convertEditableContent(true);
+    }
+}
 
-        function addProject() {
-            collectDataFromDOM(true, false);
-            resumeData.projects.push('<b>Project New:</b> Description of the project highlight. Use &lt;b&gt;bold&lt;/b&gt; for metrics.');
-            collectDataFromDOM(true, false);
-        }
-        function removeProject() {
-             collectDataFromDOM(true, false);
-             if (resumeData.projects.length > 0) {
-                 resumeData.projects.pop();
-                 collectDataFromDOM(true, false);
-             } else { showNotification('No more projects to remove.', 'error'); }
-        }
+/* ACHIEVEMENTS */
+function addAchievement() {
+    collectDataFromDOM(false, false);
+    resumeData.achievements.push('New achievement');
+    renderResume();
+    if (isEditMode) convertEditableContent(true);
+}
 
-        function addEducation() {
-            collectDataFromDOM(true, false);
-            resumeData.education.push({
-                title: 'New Degree/Certificate Title', 
-                institution: 'New Institution Name, City'
-            });
-            collectDataFromDOM(true, false);
-        }
-        function removeEducation() {
-             collectDataFromDOM(true, false);
-             if (resumeData.education.length > 0) {
-                 resumeData.education.pop();
-                 collectDataFromDOM(true, false);
-             } else { showNotification('No more education items to remove.', 'error'); }
-        }
-        
-        function addCertification() {
-            collectDataFromDOM(true, false);
-            resumeData.certifications.push('New Professional Certification Title');
-            collectDataFromDOM(true, false);
-        }
-        function removeCertification() {
-             collectDataFromDOM(true, false);
-             if (resumeData.certifications.length > 0) {
-                 resumeData.certifications.pop();
-                 collectDataFromDOM(true, false);
-             } else { showNotification('No more certifications to remove.', 'error'); }
-        }
+function removeAchievement() {
+    collectDataFromDOM(false, false);
+    if (resumeData.achievements.length > 0) {
+        resumeData.achievements.pop();
+        renderResume();
+        if (isEditMode) convertEditableContent(true);
+    }
+}
+
+/* PROJECTS */
+function addProject() {
+    collectDataFromDOM(false, false);
+    resumeData.projects.push('New project description');
+    renderResume();
+    if (isEditMode) convertEditableContent(true);
+}
+
+function removeProject() {
+    collectDataFromDOM(false, false);
+    if (resumeData.projects.length > 0) {
+        resumeData.projects.pop();
+        renderResume();
+        if (isEditMode) convertEditableContent(true);
+    }
+}
+
+/* EDUCATION */
+function addEducation() {
+    collectDataFromDOM(false, false);
+    resumeData.education.push({
+        title: 'New Degree',
+        institution: 'Institute Name'
+    });
+    renderResume();
+    if (isEditMode) convertEditableContent(true);
+}
+
+function removeEducation() {
+    collectDataFromDOM(false, false);
+    if (resumeData.education.length > 0) {
+        resumeData.education.pop();
+        renderResume();
+        if (isEditMode) convertEditableContent(true);
+    }
+}
+
+/* CERTIFICATIONS */
+function addCertification() {
+    collectDataFromDOM(false, false);
+    resumeData.certifications.push('New Certification');
+    renderResume();
+    if (isEditMode) convertEditableContent(true);
+}
+
+function removeCertification() {
+    collectDataFromDOM(false, false);
+    if (resumeData.certifications.length > 0) {
+        resumeData.certifications.pop();
+        renderResume();
+        if (isEditMode) convertEditableContent(true);
+    }
+}
+
 
         // --- Initialization ---
         window.onload = loadData;
@@ -1157,11 +1177,11 @@
             </button>
 
             <button id="saveButton" onclick="collectDataFromDOM(false, true)" style="display: none;" title="Save Changes" class="flex-1 flex items-center justify-center p-2 text-lg font-medium rounded-lg transition duration-150 text-white bg-blue-600 hover:bg-blue-700">
-                <i data-lucide="Save" class="w-5 h-5"></i> 
+                <i data-lucide="save" class="w-5 h-5"></i> 
             </button>
             
             <button id="editToggle" onclick="toggleEditMode()" title="Enter Edit Mode" class="flex-1 flex items-center justify-center p-2 text-lg font-medium rounded-lg transition duration-150 bg-gray-200 text-gray-700 hover:bg-gray-300">
-                <i data-lucide="Edit" class="w-5 h-5"></i>
+                <i data-lucide="square-pen" class="w-5 h-5"></i>
             </button>
         </div>
 
@@ -1187,7 +1207,7 @@
             <div class="flex justify-between items-center mb-4">
                 <h3 class="text-lg font-bold text-gray-800">Set Accent Color</h3>
                 <button onclick="closeColorModal()" class="text-gray-400 hover:text-gray-600" title="Close">
-                     <i data-lucide="X" class="w-5 h-5"></i>
+                     <i data-lucide="x" class="w-5 h-5"></i>
                 </button>
             </div>
             <div class="mb-4">
@@ -1200,7 +1220,7 @@
                 </div>
             </div>
             <button onclick="saveColorAndClose()" class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-accent-var hover:opacity-90 transition duration-150 ease-in-out mt-4">
-                <i data-lucide="Save" class="w-4 h-4 mr-2"></i> Save and Exit
+                <i data-lucide="save" class="w-4 h-4 mr-2"></i> Save and Exit
             </button>
         </div>
     </div>
@@ -1211,7 +1231,7 @@
                 href="/index.html"
                 class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-gray-700 bg-gray-200 hover:bg-gray-300 shadow-lg transition duration-150 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-4 focus:ring-gray-400 focus:ring-opacity-50"
             >
-                <i data-lucide="home" class="w-5 h-5 mr-2"></i>
+                <i data-lucide="house" class="w-5 h-5 mr-2"></i>
                 Back to Home
             </a>
             
