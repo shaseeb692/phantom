@@ -1,979 +1,1306 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0c1321" />
     <title>Meta Tags Optimizer | Phantom Marketing</title>
-    <meta name="description" content="Optimize your page titles and meta descriptions with Phantom Marketing's Google SERP snippet optimization tool.">
+    <meta
+      name="description"
+      content="Optimize your page titles and meta descriptions with Phantom Marketing's Google SERP snippet optimization tool."
+    />
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome CDN for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <style>
-        /* Custom CSS for Frosted Glass Effect and Font */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+      /* Custom CSS for Frosted Glass Effect and Font */
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
 
-        /* Cosmic SaaS Theme Design System */
+      /* Cosmic SaaS Theme Design System */
 
-        /* Define CSS Variables for colors */
-        :root {
-            --background: 220 27% 6%; /* Very dark grey/black for background */
-            --foreground: 0 0% 98%;    /* Very light grey/off-white for foreground text */
+      /* Define CSS Variables for colors */
+      :root {
+        --background: 220 27% 6%; /* Very dark grey/black for background */
+        --foreground: 0 0% 98%; /* Very light grey/off-white for foreground text */
 
-            --card: 220 27% 8%;
-            --card-foreground: 0 0% 98%;
+        --card: 220 27% 8%;
+        --card-foreground: 0 0% 98%;
 
-            --popover: 220 27% 8%;
-            --popover-foreground: 0 0% 98%;
+        --popover: 220 27% 8%;
+        --popover-foreground: 0 0% 98%;
 
-            --primary: 271 76% 53%;
-            --primary-foreground: 0 0% 98%;
+        --primary: 271 76% 53%;
+        --primary-foreground: 0 0% 98%;
 
-            --secondary: 220 27% 12%;
-            --secondary-foreground: 0 0% 98%;
+        --secondary: 220 27% 12%;
+        --secondary-foreground: 0 0% 98%;
 
-            --muted: 220 27% 12%;
-            --muted-foreground: 0 0% 65%;
+        --muted: 220 27% 12%;
+        --muted-foreground: 0 0% 65%;
 
-            --accent: 271 76% 53%;
-            --accent-foreground: 0 0% 98%;
+        --accent: 271 76% 53%;
+        --accent-foreground: 0 0% 98%;
 
-            --destructive: 0 84% 60%;
-            --destructive-foreground: 0 0% 98%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 98%;
 
-            --border: 220 27% 18%;
-            --input: 220 27% 18%;
-            --ring: 271 76% 53%;
+        --border: 220 27% 18%;
+        --input: 220 27% 18%;
+        --ring: 271 76% 53%;
 
-            --radius: 0.75rem;
+        --radius: 0.75rem;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        /* Applying colors from CSS variables */
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+        background-image:
+          radial-gradient(
+            circle at 20% 50%,
+            rgba(139, 69, 255, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 20, 147, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 80%,
+            rgba(20, 184, 255, 0.15) 0%,
+            transparent 50%
+          );
+        background-attachment: fixed; /* Keep background fixed while scrolling */
+        position: relative;
+        overflow-x: hidden; /* Prevent horizontal scroll from background elements */
+        min-height: 100vh; /* Ensure body takes full viewport height */
+        padding-bottom: 70px; /* Add space for fixed mobile footer */
+      }
+
+      .frosted-glass {
+        background-color: rgba(255, 255, 255, 0.02); /* Even more subtle */
+        backdrop-filter: blur(12px) saturate(180%); /* Slightly more blur, retain saturation */
+        -webkit-backdrop-filter: blur(12px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.05); /* Lighter border */
+        box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
+        transition: all 0.3s ease-in-out;
+      }
+
+      .frosted-glass:hover {
+        box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* Specific frosted-glass style for header */
+      .header-frosted {
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.6
+        ); /* More opaque black for the header */
+        backdrop-filter: blur(15px) saturate(180%);
+        -webkit-backdrop-filter: blur(15px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+      }
+
+      .text-glow {
+        text-shadow:
+          0 0 8px rgba(147, 51, 234, 0.4),
+          0 0 15px rgba(236, 72, 153, 0.3); /* Purple and Pink glow */
+      }
+
+      /* Custom underline for headings */
+      .heading-underline {
+        position: relative;
+        display: inline-block;
+      }
+
+      .heading-underline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px; /* Adjust based on desired distance from text */
+        width: 60%; /* Shorter line */
+        height: 3px;
+        background: linear-gradient(
+          to right,
+          #a78bfa,
+          #f472b6
+        ); /* Purple to pink gradient */
+        border-radius: 9999px; /* Rounded ends */
+      }
+
+      /* Custom button style */
+      .btn-gradient {
+        background: linear-gradient(
+          to right,
+          #9333ea,
+          #db2777
+        ); /* Purple to pink */
+        border-radius: 9999px;
+        padding: 12px 32px;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
+      }
+
+      .btn-gradient:hover {
+        background: linear-gradient(
+          to right,
+          #db2777,
+          #9333ea
+        ); /* Reverse gradient on hover */
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+      }
+
+      .btn-outline-glow {
+        border: 1px solid #a78bfa; /* Purple border */
+        color: #a78bfa;
+        background: none;
+        padding: 12px 32px;
+        border-radius: 9999px;
+        font-weight: 600;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
+      }
+      .btn-outline-glow:hover {
+        background-color: rgba(147, 51, 234, 0.2);
+        box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+      }
+
+      /* Responsive adjustments for overall layout */
+      @media (max-width: 768px) {
+        .text-5xl {
+          font-size: 3rem; /* Smaller H1 on mobile */
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            /* Applying colors from CSS variables */
-            background-color: hsl(var(--background));
-            color: hsl(var(--foreground));
-            background-image:
-                radial-gradient(circle at 20% 50%, rgba(139, 69, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 20, 147, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(20, 184, 255, 0.15) 0%, transparent 50%);
-            background-attachment: fixed; /* Keep background fixed while scrolling */
-            position: relative;
-            overflow-x: hidden; /* Prevent horizontal scroll from background elements */
-            min-height: 100vh; /* Ensure body takes full viewport height */
-            padding-bottom: 70px; /* Add space for fixed mobile footer */
+        .lg\:text-7xl {
+          font-size: 3.5rem; /* Smaller H1 on mobile */
         }
-
-        .frosted-glass {
-            background-color: rgba(255, 255, 255, 0.02); /* Even more subtle */
-            backdrop-filter: blur(12px) saturate(180%); /* Slightly more blur, retain saturation */
-            -webkit-backdrop-filter: blur(12px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.05); /* Lighter border */
-            box-shadow: 0 4px 25px 0 rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
-            transition: all 0.3s ease-in-out;
+        .text-4xl {
+          font-size: 2.25rem; /* Smaller H2 on mobile */
         }
-
-        .frosted-glass:hover {
-            box-shadow: 0 8px 50px 0 rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .text-xl {
+          font-size: 1.125rem; /* Slightly smaller for paragraphs */
         }
-
-        /* Specific frosted-glass style for header */
-        .header-frosted {
-            background-color: rgba(0, 0, 0, 0.6); /* More opaque black for the header */
-            backdrop-filter: blur(15px) saturate(180%);
-            -webkit-backdrop-filter: blur(15px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
-        }
-
-        .text-glow {
-            text-shadow: 0 0 8px rgba(147, 51, 234, 0.4), 0 0 15px rgba(236, 72, 153, 0.3); /* Purple and Pink glow */
-        }
-
-        /* Custom underline for headings */
-        .heading-underline {
-            position: relative;
-            display: inline-block;
-        }
-
-        .heading-underline::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px; /* Adjust based on desired distance from text */
-            width: 60%; /* Shorter line */
-            height: 3px;
-            background: linear-gradient(to right, #a78bfa, #f472b6); /* Purple to pink gradient */
-            border-radius: 9999px; /* Rounded ends */
-        }
-
-        /* Custom button style */
-        .btn-gradient {
-            background: linear-gradient(to right, #9333ea, #db2777); /* Purple to pink */
-            border-radius: 9999px;
-            padding: 12px 32px;
-            font-weight: 600;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.4);
-        }
-
-        .btn-gradient:hover {
-            background: linear-gradient(to right, #db2777, #9333ea); /* Reverse gradient on hover */
-            transform: translateY(-2px) scale(1.02);
-            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
-        }
-
+        .btn-gradient,
         .btn-outline-glow {
-            border: 1px solid #a78bfa; /* Purple border */
-            color: #a78bfa;
-            background: none;
-            padding: 12px 32px;
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 0 10px rgba(147, 51, 234, 0.2);
+          width: 100%; /* Full width buttons on mobile */
+          max-width: 300px; /* Max width for buttons */
         }
-        .btn-outline-glow:hover {
-            background-color: rgba(147, 51, 234, 0.2);
-            box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
-        }
+      }
 
-        /* Responsive adjustments for overall layout */
-        @media (max-width: 768px) {
-            .text-5xl {
-                font-size: 3rem; /* Smaller H1 on mobile */
-            }
-            .lg\:text-7xl {
-                font-size: 3.5rem; /* Smaller H1 on mobile */
-            }
-            .text-4xl {
-                font-size: 2.25rem; /* Smaller H2 on mobile */
-            }
-            .text-xl {
-                font-size: 1.125rem; /* Slightly smaller for paragraphs */
-            }
-            .btn-gradient, .btn-outline-glow {
-                width: 100%; /* Full width buttons on mobile */
-                max-width: 300px; /* Max width for buttons */
-            }
-        }
+      /* Mobile Footer Navigation Styles */
+      .mobile-footer-nav {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px; /* Adjust height as needed */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
+        background-color: rgba(0, 0, 0, 0.6); /* Frosted black background */
+        backdrop-filter: blur(15px) saturate(180%);
+        -webkit-backdrop-filter: blur(15px) saturate(180%);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.8);
+        z-index: 100; /* Ensure it stays on top */
+        border-radius: 1rem 1rem 0 0; /* Rounded top corners */
+      }
 
-        /* Mobile Footer Navigation Styles */
-        .mobile-footer-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 70px; /* Adjust height as needed */
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
-            background-color: rgba(0, 0, 0, 0.6); /* Frosted black background */
-            backdrop-filter: blur(15px) saturate(180%);
-            -webkit-backdrop-filter: blur(15px) saturate(180%);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.8);
-            z-index: 100; /* Ensure it stays on top */
-            border-radius: 1rem 1rem 0 0; /* Rounded top corners */
-        }
+      .mobile-footer-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #cbd5e1; /* Gray text */
+        font-size: 0.75rem; /* Small text */
+        font-weight: 500;
+        transition: color 0.2s ease;
+        text-decoration: none;
+        position: relative;
+        padding: 0.25rem; /* Add some padding */
+        flex: 1; /* Distribute space evenly */
+        min-width: 0; /* Allow flex item to shrink below content size */
+      }
 
+      .mobile-footer-nav-item i {
+        font-size: 1.5rem; /* Icon size */
+        margin-bottom: 0.25rem; /* Space between icon and text */
+        transition: color 0.2s ease;
+      }
+
+      .mobile-footer-nav-item.active,
+      .mobile-footer-nav-item:hover {
+        color: #a78bfa; /* Purple on active/hover for text */
+      }
+
+      .mobile-footer-nav-item.active i,
+      .mobile-footer-nav-item:hover i {
+        color: #a78bfa; /* Purple on active/hover for icon */
+      }
+
+      /* Span inside mobile footer nav item for text labels */
+      .mobile-footer-nav-item span {
+        white-space: normal; /* Allow text to wrap */
+        overflow-wrap: break-word; /* Break long words */
+        word-break: break-all; /* More aggressive word breaking */
+        text-align: center; /* Center text within the span */
+        line-height: 1.3; /* Adjust line height for wrapped text */
+        flex-shrink: 1; /* Allow the text content to shrink */
+      }
+
+      /* New styles for the central circular logo */
+      .mobile-footer-logo-container {
+        position: relative; /* Allows precise positioning of the logo within the nav */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 60px; /* Size of the circular container */
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(
+          45deg,
+          #a78bfa,
+          #f472b6
+        ); /* Gradient background for the circle */
+        box-shadow: 0 4px 15px rgba(147, 51, 234, 0.6); /* Glow effect */
+        transform: translateY(-20px); /* Lift it up above the nav bar */
+        z-index: 101; /* Ensure it's above other nav items */
+        flex-shrink: 0; /* Prevent shrinking when space is limited */
+        margin: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
+        cursor: pointer;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .mobile-footer-logo-container:hover {
+        transform: translateY(-22px) scale(1.05); /* Slight lift and scale on hover */
+        box-shadow: 0 6px 20px rgba(147, 51, 234, 0.8);
+      }
+
+      .mobile-footer-logo {
+        width: 40px; /* Size of the logo inside the circle */
+        height: 40px;
+        object-fit: contain;
+        filter: brightness(1.2); /* Slightly brighter for visibility */
+      }
+
+      /* Mobile Services Submenu Styles */
+      .services-submenu {
+        position: absolute;
+        bottom: 75px; /* Position above the footer nav item */
+        left: 50px; /* Reverted to 50% for centering */
+        transform: translateX(-50%); /* Adjust for true centering */
+        background-color: rgba(0, 0, 0, 0.83); /* Changed to 83% opacity */
+        backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
+        -webkit-backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
+        border: 1px solid rgba(255, 255, 255, 0.1); /* Kept consistent */
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8); /* Kept consistent */
+
+        border-radius: 0.75rem;
+        padding: 0.5rem 0;
+        min-width: 180px;
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        z-index: 99; /* Below the central logo, but above other content */
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.3s ease,
+          transform 0.3s ease,
+          visibility 0.3s ease;
+        transform-origin: bottom center; /* Scale from bottom */
+        /* Initial state for transition */
+        transform: translateX(-50%) translateY(10px) scale(0.9);
+
+        /* Re-added: max-height and overflow for scrolling */
+        max-height: 240px; /* Approximately 5 items * (1.5rem line-height + 2 * 0.75rem padding) */
+        overflow-y: auto; /* Enable vertical scrolling */
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+      /* Re-added: Hide scrollbar for Chrome, Safari and Opera */
+      .services-submenu::-webkit-scrollbar {
+        display: none;
+      }
+
+      .services-submenu.active {
+        opacity: 1;
+        visibility: visible;
+        /* Final state for transition */
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+
+      /* Removed: .services-submenu.hidden-left rule */
+
+      .services-submenu a {
+        display: block;
+        padding: 0.75rem 1.25rem;
+        color: #cbd5e1;
+        font-size: 0.9rem;
+        transition:
+          background-color 0.2s ease,
+          color 0.2s ease;
+        white-space: nowrap; /* Prevent text wrapping */
+      }
+
+      .services-submenu a:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: #a78bfa;
+      }
+
+      /* Removed: New styles for the nested animation submenu */
+      /* Removed: .animation-submenu.active rule */
+      /* Removed: .animation-submenu a rule */
+      /* Removed: .animation-submenu a:hover rule */
+
+      /* Specific optimizations for screens below 400px width (e.g., foldable phones) */
+      @media (max-width: 399px) {
         .mobile-footer-nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #cbd5e1; /* Gray text */
-            font-size: 0.75rem; /* Small text */
-            font-weight: 500;
-            transition: color 0.2s ease;
-            text-decoration: none;
-            position: relative;
-            padding: 0.25rem; /* Add some padding */
-            flex: 1; /* Distribute space evenly */
-            min-width: 0; /* Allow flex item to shrink below content size */
+          font-size: 0.65rem; /* Slightly smaller text for very narrow screens */
+          padding: 0.15rem; /* Reduce padding slightly */
         }
-
         .mobile-footer-nav-item i {
-            font-size: 1.5rem; /* Icon size */
-            margin-bottom: 0.25rem; /* Space between icon and text */
-            transition: color 0.2s ease;
+          font-size: 1.2rem; /* Smaller icon size */
+          margin-bottom: 0.15rem; /* Adjust space accordingly */
         }
-
-        .mobile-footer-nav-item.active,
-        .mobile-footer-nav-item:hover {
-            color: #a78bfa; /* Purple on active/hover for text */
-        }
-
-        .mobile-footer-nav-item.active i,
-        .mobile-footer-nav-item:hover i {
-            color: #a78bfa; /* Purple on active/hover for icon */
-        }
-
-        /* Span inside mobile footer nav item for text labels */
-        .mobile-footer-nav-item span {
-            white-space: normal; /* Allow text to wrap */
-            overflow-wrap: break-word; /* Break long words */
-            word-break: break-all; /* More aggressive word breaking */
-            text-align: center; /* Center text within the span */
-            line-height: 1.3; /* Adjust line height for wrapped text */
-            flex-shrink: 1; /* Allow the text content to shrink */
-        }
-
-        /* New styles for the central circular logo */
         .mobile-footer-logo-container {
-            position: relative; /* Allows precise positioning of the logo within the nav */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 60px; /* Size of the circular container */
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #a78bfa, #f472b6); /* Gradient background for the circle */
-            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.6); /* Glow effect */
-            transform: translateY(-20px); /* Lift it up above the nav bar */
-            z-index: 101; /* Ensure it's above other nav items */
-            flex-shrink: 0; /* Prevent shrinking when space is limited */
-            margin: 0 0.5rem; /* Adjusted from 1rem to 0.5rem for narrower screens */
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          width: 50px; /* Slightly smaller logo container */
+          height: 50px;
+          transform: translateY(-15px); /* Adjust lift */
+          margin: 0 0.25rem; /* Reduce horizontal margin further */
         }
-
-        .mobile-footer-logo-container:hover {
-            transform: translateY(-22px) scale(1.05); /* Slight lift and scale on hover */
-            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.8);
-        }
-
         .mobile-footer-logo {
-            width: 40px; /* Size of the logo inside the circle */
-            height: 40px;
-            object-fit: contain;
-            filter: brightness(1.2); /* Slightly brighter for visibility */
+          width: 30px; /* Slightly smaller logo image */
+          height: 30px;
         }
-
-        /* Mobile Services Submenu Styles */
         .services-submenu {
-            position: absolute;
-            bottom: 75px; /* Position above the footer nav item */
-            left: 50px; /* Reverted to 50% for centering */
-            transform: translateX(-50%); /* Adjust for true centering */
-            background-color: rgba(0, 0, 0, 0.83); /* Changed to 83% opacity */
-            backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
-            -webkit-backdrop-filter: blur(20px) saturate(180%); /* Increased blur */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Kept consistent */
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8); /* Kept consistent */
-            
-            border-radius: 0.75rem;
-            padding: 0.5rem 0;
-            min-width: 180px;
-            box-sizing: border-box; /* Include padding and border in the element's total width and height */
-            z-index: 99; /* Below the central logo, but above other content */
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-            transform-origin: bottom center; /* Scale from bottom */
-            /* Initial state for transition */
-            transform: translateX(-50%) translateY(10px) scale(0.9);
-
-            /* Re-added: max-height and overflow for scrolling */
-            max-height: 240px; /* Approximately 5 items * (1.5rem line-height + 2 * 0.75rem padding) */
-            overflow-y: auto; /* Enable vertical scrolling */
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+          bottom: 65px; /* Adjust submenu position if footer height changes or logo lift changes */
+          min-width: 150px;
         }
-        /* Re-added: Hide scrollbar for Chrome, Safari and Opera */
-        .services-submenu::-webkit-scrollbar {
-            display: none;
-        }
-
-        .services-submenu.active {
-            opacity: 1;
-            visibility: visible;
-            /* Final state for transition */
-            transform: translateX(-50%) translateY(0) scale(1);
-        }
-        
-        /* Removed: .services-submenu.hidden-left rule */
-
         .services-submenu a {
-            display: block;
-            padding: 0.75rem 1.25rem;
-            color: #cbd5e1;
-            font-size: 0.9rem;
-            transition: background-color 0.2s ease, color 0.2s ease;
-            white-space: nowrap; /* Prevent text wrapping */
+          padding: 0.6rem 1rem; /* Slightly smaller padding for submenu items */
+          font-size: 0.8rem; /* Slightly smaller font for submenu items */
         }
+      }
 
-        .services-submenu a:hover {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: #a78bfa;
-        }
+      /* SERP Tool Specific Styles */
+      .tool-input {
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem;
+        color: white;
+        width: 100%;
+        outline: none;
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+        /* Default font styling for all inputs if not overridden */
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        overflow-wrap: break-word; /* Added for responsive wrapping of long unbroken words */
+      }
 
-        /* Removed: New styles for the nested animation submenu */
-        /* Removed: .animation-submenu.active rule */
-        /* Removed: .animation-submenu a rule */
-        /* Removed: .animation-submenu a:hover rule */
+      /* Specific font sizes for Page Title and Meta Description inputs */
+      .pagetitle {
+        font-size: 18.65px; /* Set to 18.65px for title input field */
+      }
 
-        /* Specific optimizations for screens below 400px width (e.g., foldable phones) */
-        @media (max-width: 399px) {
-            .mobile-footer-nav-item {
-                font-size: 0.65rem; /* Slightly smaller text for very narrow screens */
-                padding: 0.15rem; /* Reduce padding slightly */
-            }
-            .mobile-footer-nav-item i {
-                font-size: 1.2rem; /* Smaller icon size */
-                margin-bottom: 0.15rem; /* Adjust space accordingly */
-            }
-            .mobile-footer-logo-container {
-                width: 50px; /* Slightly smaller logo container */
-                height: 50px;
-                transform: translateY(-15px); /* Adjust lift */
-                margin: 0 0.25rem; /* Reduce horizontal margin further */
-            }
-            .mobile-footer-logo {
-                width: 30px; /* Slightly smaller logo image */
-                height: 30px;
-            }
-            .services-submenu {
-                bottom: 65px; /* Adjust submenu position if footer height changes or logo lift changes */
-                min-width: 150px;
-            }
-            .services-submenu a {
-                padding: 0.6rem 1rem; /* Slightly smaller padding for submenu items */
-                font-size: 0.8rem; /* Slightly smaller font for submenu items */
-            }
-        }
+      .websitename {
+        font-size: 14px; /* Set to 14px for URL input field to match snippet */
+      }
 
-        /* SERP Tool Specific Styles */
-        .tool-input {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.5rem;
-            padding: 0.75rem 1rem;
-            color: white;
-            width: 100%;
-            outline: none;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            /* Default font styling for all inputs if not overridden */
-            font-family: 'Inter', sans-serif;
-            font-weight: 400; 
-            overflow-wrap: break-word; /* Added for responsive wrapping of long unbroken words */
-        }
+      .descriptionchar {
+        font-size: 13.67px; /* Set to 13.67px for description input field */
+      }
 
-        /* Specific font sizes for Page Title and Meta Description inputs */
-        .pagetitle {
-            font-size: 18.65px; /* Set to 18.65px for title input field */
-        }
+      .tool-input:focus {
+        border-color: #a78bfa; /* Purple glow on focus */
+        box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
+      }
 
-        .websitename {
-            font-size: 14px; /* Set to 14px for URL input field to match snippet */
-        }
+      .snippet-box {
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        text-align: left;
+        margin-top: 2rem;
+        min-height: 200px; /* Ensure space for content */
+      }
 
-        .descriptionchar {
-            font-size: 13.67px; /* Set to 13.67px for description input field */
-        }
+      /* Updated font sizes for snippet previews */
+      .snippet-url {
+        color: #8ab4f8; /* Google blue link color */
+        font-size: 13.67px; /* Set to 13.67px */
+        margin-bottom: 0.25rem;
+        width: 100%; /* Explicitly set width to 100% to ensure ellipsis works */
+        white-space: nowrap; /* Prevent URL from wrapping */
+        overflow: hidden; /* Hide overflowing content */
+        text-overflow: ellipsis; /* Show ellipsis for clipped text */
+        min-width: 0; /* Allow shrinking in flex context */
+      }
 
-        .tool-input:focus {
-            border-color: #a78bfa; /* Purple glow on focus */
-            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.3);
-        }
+      .snippet-title {
+        color: #a78bfa; /* Purple title */
+        font-size: 18.65px; /* Set to 18.65px */
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+        white-space: nowrap; /* Enforce single line */
+        overflow: hidden; /* Hide overflow */
+        text-overflow: ellipsis; /* Add ellipsis */
+        min-width: 0; /* Ensure it can shrink */
+      }
 
-        .snippet-box {
-            background-color: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.75rem;
-            padding: 1.5rem;
-            text-align: left;
-            margin-top: 2rem;
-            min-height: 200px; /* Ensure space for content */
-        }
+      .snippet-description {
+        color: #bdc1c6; /* Gray text color */
+        font-size: 13.67px; /* Set to 13.67px */
+        line-height: 1.4;
+        white-space: nowrap; /* Enforce single line */
+        overflow: hidden; /* Hide overflow */
+        text-overflow: ellipsis; /* Add ellipsis */
+        min-width: 0; /* Ensure it can shrink */
+      }
 
-        /* Updated font sizes for snippet previews */
-        .snippet-url {
-            color: #8ab4f8; /* Google blue link color */
-            font-size: 13.67px; /* Set to 13.67px */
-            margin-bottom: 0.25rem;
-            width: 100%; /* Explicitly set width to 100% to ensure ellipsis works */
-            white-space: nowrap; /* Prevent URL from wrapping */
-            overflow: hidden; /* Hide overflowing content */
-            text-overflow: ellipsis; /* Show ellipsis for clipped text */
-            min-width: 0; /* Allow shrinking in flex context */
-        }
+      .badge-status {
+        display: inline-flex; /* Changed to inline-flex for better alignment control */
+        align-items: center;
+        background-color: transparent;
+        border: 2px solid;
+        border-radius: 9999px; /* Fully rounded */
+        font-weight: bold;
+        font-size: 0.875rem; /* Default font size */
+        padding: 0.5rem 1rem; /* Adjust padding for desired sizing */
+        vertical-align: middle; /* Ensures vertical alignment with adjacent text */
+        /* Removed margin-left to allow stacking on mobile */
+        flex-shrink: 0; /* Prevent shrinking too much */
+        white-space: nowrap; /* Default: Prevent text wrapping in badges */
+        text-align: center; /* Center text horizontally within the badge */
+        justify-content: center; /* Center content for inline-flex */
+      }
 
-        .snippet-title {
-            color: #a78bfa; /* Purple title */
-            font-size: 18.65px; /* Set to 18.65px */
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            white-space: nowrap; /* Enforce single line */
-            overflow: hidden; /* Hide overflow */
-            text-overflow: ellipsis; /* Add ellipsis */
-            min-width: 0; /* Ensure it can shrink */
-        }
+      /* New status colors */
+      .badge-status.status-cyan {
+        border-color: #06b6d4;
+        color: #06b6d4;
+      } /* Cyan */
+      .badge-status.status-orange {
+        border-color: #f97316;
+        color: #f97316;
+      } /* Orange */
+      .badge-status.status-red {
+        border-color: #ef4444;
+        color: #ef4444;
+      } /* Red */
+      .badge-status.status-default {
+        border-color: #9ca3af;
+        color: #9ca3af;
+      } /* Gray for 'Status' */
 
-        .snippet-description {
-            color: #bdc1c6; /* Gray text color */
-            font-size: 13.67px; /* Set to 13.67px */
-            line-height: 1.4;
-            white-space: nowrap; /* Enforce single line */
-            overflow: hidden; /* Hide overflow */
-            text-overflow: ellipsis; /* Add ellipsis */
-            min-width: 0; /* Ensure it can shrink */
-        }
-
+      /* Responsive adjustments for badge status on smaller screens */
+      @media (max-width: 768px) {
         .badge-status {
-            display: inline-flex; /* Changed to inline-flex for better alignment control */
-            align-items: center;
-            background-color: transparent;
-            border: 2px solid;
-            border-radius: 9999px; /* Fully rounded */
-            font-weight: bold;
-            font-size: 0.875rem; /* Default font size */
-            padding: 0.5rem 1rem; /* Adjust padding for desired sizing */
-            vertical-align: middle; /* Ensures vertical alignment with adjacent text */
-            /* Removed margin-left to allow stacking on mobile */
-            flex-shrink: 0; /* Prevent shrinking too much */
-            white-space: nowrap; /* Default: Prevent text wrapping in badges */
-            text-align: center; /* Center text horizontally within the badge */
-            justify-content: center; /* Center content for inline-flex */
+          white-space: normal; /* Allow text to wrap */
+          max-width: 150px; /* Max-width to force wrapping within the badge */
+          padding: 0.3rem 0.7rem; /* Slightly reduced padding */
+          font-size: 0.8rem; /* Slightly smaller font size for mobile badges */
         }
-
-        /* New status colors */
-        .badge-status.status-cyan { border-color: #06b6d4; color: #06b6d4; } /* Cyan */
-        .badge-status.status-orange { border-color: #f97316; color: #f97316; } /* Orange */
-        .badge-status.status-red { border-color: #ef4444; color: #ef4444; } /* Red */
-        .badge-status.status-default { border-color: #9ca3af; color: #9ca3af; } /* Gray for 'Status' */
-
-        /* Responsive adjustments for badge status on smaller screens */
-        @media (max-width: 768px) {
-            .badge-status {
-                white-space: normal; /* Allow text to wrap */
-                max-width: 150px; /* Max-width to force wrapping within the badge */
-                padding: 0.3rem 0.7rem; /* Slightly reduced padding */
-                font-size: 0.8rem; /* Slightly smaller font size for mobile badges */
-            }
-        }
+      }
     </style>
-</head>
-<body class="bg-gradient-to-br from-gray-950 to-black text-white min-h-screen">
-
+  </head>
+  <body
+    class="bg-gradient-to-br from-gray-950 to-black text-white min-h-screen"
+  >
     <!-- Header/Navigation -->
-    <header class="bg-gray-900 bg-opacity-70 header-frosted p-4 sticky top-0 z-50 rounded-full max-w-7xl mx-auto mt-4 hidden md:block">
-        <div class="flex items-center justify-between header-main-nav w-full px-4 relative">
-            <!-- Left Navigation Links (Desktop Only) -->
-            <nav class="hidden md:flex nav-links nav-left flex-grow">
-                <ul class="flex space-x-6">
-                    <li><a href="index.html" class="hover:text-purple-400 transition duration-200">Home</a></li>
-                    <li><a href="#" class="hover:text-purple-400 transition duration-200">About</a></li>
-                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Services</a></li>
-                </ul>
-            </nav>
+    <header
+      class="bg-gray-900 bg-opacity-70 header-frosted p-4 sticky top-0 z-50 rounded-full max-w-7xl mx-auto mt-4 hidden md:block"
+    >
+      <div
+        class="flex items-center justify-between header-main-nav w-full px-4 relative"
+      >
+        <!-- Left Navigation Links (Desktop Only) -->
+        <nav class="hidden md:flex nav-links nav-left flex-grow">
+          <ul class="flex space-x-6">
+            <li>
+              <a
+                href="index.html"
+                class="hover:text-purple-400 transition duration-200"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-purple-400 transition duration-200"
+                >About</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-purple-400 transition duration-200"
+                >Services</a
+              >
+            </li>
+          </ul>
+        </nav>
 
-            <!-- Centered Logo (Desktop Only) -->
-            <div class="logo-container mx-4 hidden md:flex">
-                <a href="#">
-                    <!-- Using the provided GIF logo -->
-                    <img src="https://phantommarketing.netlify.app/assets/img/logo/logo-white.gif" alt="Phantom Marketing Logo" class="h-12 w-auto">
-                </a>
-            </div>
-
-            <!-- Right Navigation Links (Desktop Only) -->
-            <nav class="hidden md:flex nav-links nav-right flex-grow">
-                <ul class="flex space-x-6">
-                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Search</a></li>
-                    <li><a href="contact-us.html" class="hover:text-purple-400 transition duration-200">Contact</a></li>
-                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Cart</a></li>
-                    <li><a href="#" class="hover:text-purple-400 transition duration-200">Profile</a></li>
-                </ul>
-            </nav>
+        <!-- Centered Logo (Desktop Only) -->
+        <div class="logo-container mx-4 hidden md:flex">
+          <a href="#">
+            <!-- Using the provided GIF logo -->
+            <img
+              src="https://phantommarketing.netlify.app/assets/img/logo/logo-white.gif"
+              alt="Phantom Marketing Logo"
+              class="h-12 w-auto"
+            />
+          </a>
         </div>
+
+        <!-- Right Navigation Links (Desktop Only) -->
+        <nav class="hidden md:flex nav-links nav-right flex-grow">
+          <ul class="flex space-x-6">
+            <li>
+              <a href="#" class="hover:text-purple-400 transition duration-200"
+                >Search</a
+              >
+            </li>
+            <li>
+              <a
+                href="contact-us.html"
+                class="hover:text-purple-400 transition duration-200"
+                >Contact</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-purple-400 transition duration-200"
+                >Cart</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-purple-400 transition duration-200"
+                >Profile</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
     <main class="container mx-auto px-4 py-16 max-w-7xl">
+      <!-- Tool Area -->
+      <section
+        id="toolarea"
+        class="frosted-glass p-8 rounded-xl text-center mb-16"
+      >
+        <h1
+          class="text-4xl lg:text-5xl font-extrabold mb-4 leading-tight text-glow"
+        >
+          Phantom Marketing's Google SERP Preview Tool
+        </h1>
+        <p class="text-lg md:text-xl text-gray-300 mb-8">
+          Increase your organic CTR by optimizing your Page Title & Meta
+          Description Length
+        </p>
 
-        <!-- Tool Area -->
-        <section id="toolarea" class="frosted-glass p-8 rounded-xl text-center mb-16">
-            <h1 class="text-4xl lg:text-5xl font-extrabold mb-4 leading-tight text-glow">
-                Phantom Marketing's Google SERP Preview Tool
-            </h1>
-            <p class="text-lg md:text-xl text-gray-300 mb-8">
-                Increase your organic CTR by optimizing your Page Title & Meta Description Length
+        <div id="google-snippet" class="snippet-box mb-8">
+          <p id="google-snippet-url" class="snippet-url">
+            https://www.example.com
+          </p>
+          <h3 id="google-snippet-title" class="snippet-title">
+            For Example: #1 Digital Marketing Company - Example.com
+          </h3>
+          <p id="google-snippet-description" class="snippet-description">
+            This is a meta description example for the Google SERP preview tool.
+            It should be compelling and concise.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-8">
+          <div>
+            <label
+              for="pagetitle"
+              class="block text-gray-400 text-sm font-semibold mb-2"
+              >PAGE TITLE</label
+            >
+            <input
+              type="text"
+              id="pagetitle"
+              class="tool-input pagetitle"
+              onkeyup="
+                pageTitle();
+                titlewithpx(this.value);
+              "
+            />
+            <!-- Updated p tag for responsive stacking -->
+            <p
+              class="text-xs text-gray-500 mt-2 flex flex-col md:flex-row md:items-center items-start"
+            >
+              <span
+                ><span class="titlelen text-purple-400 font-bold">0</span>
+                Characters |</span
+              >
+              <span
+                ><span class="titlepx text-purple-400 font-bold">0</span>
+                Pixels</span
+              >
+              <span
+                id="titlesignal"
+                class="badge-status status-default mt-2 md:mt-0 md:ml-3"
+                >Status</span
+              >
             </p>
+          </div>
+          <div>
+            <label
+              for="websitename"
+              class="block text-gray-400 text-sm font-semibold mb-2"
+              >WEBSITE URLs</label
+            >
+            <input
+              type="text"
+              id="websitename"
+              class="tool-input websitename"
+              onkeyup="websiteName()"
+            />
+            <!-- Updated p tag for responsive stacking -->
+            <p
+              class="text-xs text-gray-500 mt-2 flex flex-col md:flex-row md:items-center items-start"
+            >
+              <span
+                ><span class="websitelen text-purple-400 font-bold">0</span>
+                Characters |</span
+              >
+              <span
+                ><span class="urlpx text-purple-400 font-bold">0</span>
+                Pixels</span
+              >
+              <span
+                id="urlsignal"
+                class="badge-status status-default mt-2 md:mt-0 md:ml-3"
+                >Status</span
+              >
+            </p>
+          </div>
+          <div class="md:col-span-2">
+            <label
+              for="seodescription"
+              class="block text-gray-400 text-sm font-semibold mb-2"
+              >META DESCRIPTION</label
+            >
+            <textarea
+              id="seodescription"
+              class="tool-input descriptionchar resize-y"
+              rows="4"
+              onkeyup="
+                metaDescription();
+                descriptionwithpx(this.value);
+              "
+            ></textarea>
+            <!-- Updated p tag for responsive stacking -->
+            <p
+              class="text-xs text-gray-500 mt-2 flex flex-col md:flex-row md:items-center items-start"
+            >
+              <span
+                ><span class="descriptionlen text-purple-400 font-bold">0</span>
+                Characters |</span
+              >
+              <span
+                ><span class="descriptionpx text-purple-400 font-bold">0</span>
+                Pixels</span
+              >
+              <span
+                id="descriptioninfobar"
+                class="badge-status status-default mt-2 md:mt-0 md:ml-3"
+                >Status</span
+              >
+            </p>
+          </div>
+        </div>
 
-            <div id="google-snippet" class="snippet-box mb-8">
-                <p id="google-snippet-url" class="snippet-url">https://www.example.com</p>
-                <h3 id="google-snippet-title" class="snippet-title">For Example: #1 Digital Marketing Company - Example.com</h3>
-                <p id="google-snippet-description" class="snippet-description">This is a meta description example for the Google SERP preview tool. It should be compelling and concise.</p>
-            </div>
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <button
+            id="uppercase-btn"
+            class="btn-outline-glow px-6 py-2 uppercase-btn"
+          >
+            Uppercase
+          </button>
+          <button
+            id="lowercase-btn"
+            class="btn-outline-glow px-6 py-2 lowercase-btn"
+          >
+            Lowercase
+          </button>
+          <button
+            id="titlecase-btn"
+            class="btn-outline-glow px-6 py-2 titlecase-btn"
+          >
+            Title Case
+          </button>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left mb-8">
-                <div>
-                    <label for="pagetitle" class="block text-gray-400 text-sm font-semibold mb-2">PAGE TITLE</label>
-                    <input type="text" id="pagetitle" class="tool-input pagetitle" onkeyup="pageTitle(); titlewithpx(this.value);">
-                    <!-- Updated p tag for responsive stacking -->
-                    <p class="text-xs text-gray-500 mt-2 flex flex-col md:flex-row md:items-center items-start">
-                        <span><span class="titlelen text-purple-400 font-bold">0</span> Characters |</span>
-                        <span><span class="titlepx text-purple-400 font-bold">0</span> Pixels</span>
-                        <span id="titlesignal" class="badge-status status-default mt-2 md:mt-0 md:ml-3">Status</span>
-                    </p>
-                </div>
-                <div>
-                    <label for="websitename" class="block text-gray-400 text-sm font-semibold mb-2">WEBSITE NAME</label>
-                    <input type="text" id="websitename" class="tool-input websitename" onkeyup="websiteName();">
-                    <!-- Updated p tag for responsive stacking -->
-                    <p class="text-xs text-gray-500 mt-2 flex flex-col md:flex-row md:items-center items-start">
-                        <span><span class="websitelen text-purple-400 font-bold">0</span> Characters |</span>
-                        <span><span class="urlpx text-purple-400 font-bold">0</span> Pixels</span>
-                        <span id="urlsignal" class="badge-status status-default mt-2 md:mt-0 md:ml-3">Status</span>
-                    </p>
-                </div>
-                <div class="md:col-span-2">
-                    <label for="seodescription" class="block text-gray-400 text-sm font-semibold mb-2">META DESCRIPTION</label>
-                    <textarea id="seodescription" class="tool-input descriptionchar resize-y" rows="4" onkeyup="metaDescription(); descriptionwithpx(this.value);"></textarea>
-                    <!-- Updated p tag for responsive stacking -->
-                    <p class="text-xs text-gray-500 mt-2 flex flex-col md:flex-row md:items-center items-start">
-                        <span><span class="descriptionlen text-purple-400 font-bold">0</span> Characters |</span>
-                        <span><span class="descriptionpx text-purple-400 font-bold">0</span> Pixels</span>
-                        <span id="descriptioninfobar" class="badge-status status-default mt-2 md:mt-0 md:ml-3">Status</span>
-                    </p>
-                </div>
-            </div>
+        <!-- Additional Information Sections -->
+        <div class="text-left space-y-8">
+          <div class="frosted-glass p-6 rounded-lg">
+            <h2 class="text-2xl font-bold mb-4 heading-underline">
+              Why Pixel Width Matters More Than Character Count
+            </h2>
+            <p class="text-gray-300 leading-relaxed">
+              Google measures the display width of meta tags based on
+              <strong class="text-purple-300">PIXELS ONLY!!!</strong>, not just
+              the number of characters. A wide letter like “W” takes up more
+              space than a slim one like “i”, which is why pixel-based checking
+              is critical. Phantom Marketing’s tool calculates both characters
+              and pixels for
+              <strong class="text-purple-300">maximum precision</strong>.
+            </p>
+          </div>
 
-            <!-- Action Buttons -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button id="uppercase-btn" class="btn-outline-glow px-6 py-2 uppercase-btn">Uppercase</button>
-                <button id="lowercase-btn" class="btn-outline-glow px-6 py-2 lowercase-btn">Lowercase</button>
-                <button id="titlecase-btn" class="btn-outline-glow px-6 py-2 titlecase-btn">Title Case</button>
-            </div>
-
-            <!-- Additional Information Sections -->
-            <div class="text-left space-y-8">
-                <div class="frosted-glass p-6 rounded-lg">
-                    <h2 class="text-2xl font-bold mb-4 heading-underline">Why Pixel Width Matters More Than Character Count</h2>
-                    <p class="text-gray-300 leading-relaxed">
-                        Google measures the display width of meta tags based on <strong class="text-purple-300">PIXELS ONLY!!!</strong>, not just the number of characters. A wide letter like “W” takes up more space than a slim one like “i”, which is why pixel-based checking is critical. Phantom Marketing’s tool calculates both characters and pixels for <strong class="text-purple-300">maximum precision</strong>.
-                    </p>
-                </div>
-
-                <div class="frosted-glass p-6 rounded-lg">
-                    <h2 class="text-2xl font-bold mb-4 heading-underline">Create Google-Optimized Meta Tags That Stand Out</h2>
-                    <p class="text-gray-300 leading-relaxed">
-                        At Phantom Marketing, we designed this tool to make writing effective meta tags effortless. Whether you're launching a service page, writing blog content, or refining your homepage SEO, this tool helps ensure your tags are fully optimized and clearly visible on Google.
-                    </p>
-                    <p class="text-gray-300 leading-relaxed mt-4">
-                        <strong class="text-purple-300">No logins. No spam. Just fast, accurate, free SEO support.</strong>
-                    </p>
-                    <p class="text-purple-400 hover:text-purple-500 font-semibold mt-4">
-                        <a href="#" class="inline-flex items-center">
-                            👉 Use Phantom Marketing’s Meta Tags Length Checker now
-                            <svg class="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </section>
-
+          <div class="frosted-glass p-6 rounded-lg">
+            <h2 class="text-2xl font-bold mb-4 heading-underline">
+              Create Google-Optimized Meta Tags That Stand Out
+            </h2>
+            <p class="text-gray-300 leading-relaxed">
+              At Phantom Marketing, we designed this tool to make writing
+              effective meta tags effortless. Whether you're launching a service
+              page, writing blog content, or refining your homepage SEO, this
+              tool helps ensure your tags are fully optimized and clearly
+              visible on Google.
+            </p>
+            <p class="text-gray-300 leading-relaxed mt-4">
+              <strong class="text-purple-300"
+                >No logins. No spam. Just fast, accurate, free SEO
+                support.</strong
+              >
+            </p>
+            <p class="text-purple-400 hover:text-purple-500 font-semibold mt-4">
+              <a href="#" class="inline-flex items-center">
+                👉 Use Phantom Marketing’s Meta Tags Length Checker now
+                <svg
+                  class="w-4 h-4 ml-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <!-- Desktop Footer -->
-    <footer class="bg-gray-950 text-gray-400 py-8 text-sm border-t border-gray-800">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-            <!-- About Us -->
-            <div>
-                <h3 class="text-white text-lg font-semibold mb-4">ABOUT US</h3>
-                <p class="text-gray-500 mb-2">Phantom Marketing is a Creative agency with digital plans, and promotional tools. Bringing your vision to life, we are on a mission to reshape the digital marketing landscape through brand recognition and creativity.</p>
-            </div>
-
-            <!-- Legal -->
-            <div>
-                <h3 class="text-white text-lg font-semibold mb-4">LEGAL</h3>
-                <ul>
-                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Privacy Policy</a></li>
-                    <li class="mb-2"><a href="#" class="hover:text-white transition duration-200">Terms & Conditions</a></li>
-                </ul>
-            </div>
-
-            <!-- Follow, Like & Subscribe -->
-            <div class="text-center md:text-left">
-                <h3 class="text-white text-lg font-semibold mb-4">FOLLOW, LIKE & SUBSCRIBE</h3>
-                <div class="flex justify-center md:justify-start space-x-4 text-2xl mb-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-200"><i class="fab fa-youtube"></i></a>
-                </div>
-                <p class="text-gray-500 text-xs mt-2">SUBSCRIBE</p>
-            </div>
-
-            <!-- Newsletter - Using a placeholder for now as no input field visible in image -->
-            <div class="text-center md:text-left">
-                <h3 class="text-white text-lg font-semibold mb-4">Newsletter</h3>
-                <p class="text-gray-500 mb-2">Join our newsletter for exclusive updates and insights.</p>
-                <!-- Placeholder for actual input field if needed -->
-                <button class="btn-gradient text-white text-sm py-2 px-4 rounded-full mt-2">Sign Up</button>
-            </div>
+    <footer
+      class="bg-gray-950 text-gray-400 py-8 text-sm border-t border-gray-800"
+    >
+      <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+        <!-- About Us -->
+        <div>
+          <h3 class="text-white text-lg font-semibold mb-4">ABOUT US</h3>
+          <p class="text-gray-500 mb-2">
+            Phantom Marketing is a Creative agency with digital plans, and
+            promotional tools. Bringing your vision to life, we are on a mission
+            to reshape the digital marketing landscape through brand recognition
+            and creativity.
+          </p>
         </div>
-        <div class="text-center mt-8 border-t border-gray-800 pt-6">
-            <p>&copy; 2023 Phantom Marketing. All rights reserved.</p>
+
+        <!-- Legal -->
+        <div>
+          <h3 class="text-white text-lg font-semibold mb-4">LEGAL</h3>
+          <ul>
+            <li class="mb-2">
+              <a href="#" class="hover:text-white transition duration-200"
+                >Privacy Policy</a
+              >
+            </li>
+            <li class="mb-2">
+              <a href="#" class="hover:text-white transition duration-200"
+                >Terms & Conditions</a
+              >
+            </li>
+          </ul>
         </div>
+
+        <!-- Follow, Like & Subscribe -->
+        <div class="text-center md:text-left">
+          <h3 class="text-white text-lg font-semibold mb-4">
+            FOLLOW, LIKE & SUBSCRIBE
+          </h3>
+          <div
+            class="flex justify-center md:justify-start space-x-4 text-2xl mb-4"
+          >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition duration-200"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition duration-200"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition duration-200"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition duration-200"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white transition duration-200"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+          <p class="text-gray-500 text-xs mt-2">SUBSCRIBE</p>
+        </div>
+
+        <!-- Newsletter - Using a placeholder for now as no input field visible in image -->
+        <div class="text-center md:text-left">
+          <h3 class="text-white text-lg font-semibold mb-4">Newsletter</h3>
+          <p class="text-gray-500 mb-2">
+            Join our newsletter for exclusive updates and insights.
+          </p>
+          <!-- Placeholder for actual input field if needed -->
+          <button
+            class="btn-gradient text-white text-sm py-2 px-4 rounded-full mt-2"
+          >
+            Sign Up
+          </button>
+        </div>
+      </div>
+      <div class="text-center mt-8 border-t border-gray-800 pt-6">
+        <p>&copy; 2023 Phantom Marketing. All rights reserved.</p>
+      </div>
     </footer>
 
     <!-- Mobile Footer Navigation -->
     <footer class="mobile-footer-nav md:hidden">
-        <a href="index.html" class="mobile-footer-nav-item active" onclick="setActiveNavItem(this)">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
+      <a
+        href="index.html"
+        class="mobile-footer-nav-item active"
+        onclick="setActiveNavItem(this)"
+      >
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+      <div class="mobile-footer-nav-item relative" id="mobile-services-item">
+        <a
+          href="#"
+          onclick="toggleServicesSubmenu(event, this.parentNode)"
+          class="flex flex-col items-center justify-center w-full h-full"
+        >
+          <i class="fas fa-cogs"></i>
+          <span>Services</span>
         </a>
-        <div class="mobile-footer-nav-item relative" id="mobile-services-item">
-            <a href="#" onclick="toggleServicesSubmenu(event, this.parentNode)" class="flex flex-col items-center justify-center w-full h-full">
-                <i class="fas fa-cogs"></i>
-                <span>Services</span>
-            </a>
-            <div class="services-submenu" id="services-submenu">
-                <a href="search-engine-optimization.html">Search Engine Optimization</a>
-                <a href="#">Social Media Marketing</a>
-                <a href="#">Web Development</a>
-                <a href="#">Web Designing</a>
-                <a href="#">Graphics Designing</a>
-                <a href="#">Branding</a>
-                <a href="#">Print Services</a>
-                <a href="#">PR Marketing</a>
-            </div>
+        <div class="services-submenu" id="services-submenu">
+          <a href="search-engine-optimization.html"
+            >Search Engine Optimization</a
+          >
+          <a href="#">Social Media Marketing</a>
+          <a href="#">Web Development</a>
+          <a href="#">Web Designing</a>
+          <a href="#">Graphics Designing</a>
+          <a href="#">Branding</a>
+          <a href="#">Print Services</a>
+          <a href="#">PR Marketing</a>
         </div>
-        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
-            <i class="fas fa-search"></i>
-            <span>Search</span>
-        </a>
-        <!-- New central logo container -->
-        <div class="mobile-footer-logo-container">
-            <img src="https://i.ibb.co/C5gVjVS4/Untitled-design.gif" alt="Central Logo" class="mobile-footer-logo">
-        </div>
-        <a href="contact-us.html" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
-            <i class="fas fa-envelope"></i>
-            <span>Contact</span>
-        </a>
-        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
-            <i class="fas fa-shopping-cart"></i>
-            <span>Cart</span>
-        </a>
-        <a href="#" class="mobile-footer-nav-item" onclick="setActiveNavItem(this)">
-            <i class="fas fa-user"></i>
-            <span>Profile</span>
-        </a>
+      </div>
+      <a
+        href="#"
+        class="mobile-footer-nav-item"
+        onclick="setActiveNavItem(this)"
+      >
+        <i class="fas fa-search"></i>
+        <span>Search</span>
+      </a>
+      <!-- New central logo container -->
+      <div class="mobile-footer-logo-container">
+        <img
+          src="https://i.ibb.co/C5gVjVS4/Untitled-design.gif"
+          alt="Central Logo"
+          class="mobile-footer-logo"
+        />
+      </div>
+      <a
+        href="contact-us.html"
+        class="mobile-footer-nav-item"
+        onclick="setActiveNavItem(this)"
+      >
+        <i class="fas fa-envelope"></i>
+        <span>Contact</span>
+      </a>
+      <a
+        href="#"
+        class="mobile-footer-nav-item"
+        onclick="setActiveNavItem(this)"
+      >
+        <i class="fas fa-shopping-cart"></i>
+        <span>Cart</span>
+      </a>
+      <a
+        href="#"
+        class="mobile-footer-nav-item"
+        onclick="setActiveNavItem(this)"
+      >
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
     </footer>
 
-    <canvas id="titleCanvas" style="display:none;"></canvas>
-    <canvas id="descriptionCanvas" style="display:none;"></canvas>
-    <canvas id="urlCanvas" style="display:none;"></canvas>
+    <canvas id="titleCanvas" style="display: none"></canvas>
+    <canvas id="descriptionCanvas" style="display: none"></canvas>
+    <canvas id="urlCanvas" style="display: none"></canvas>
 
     <script>
-        // Function to set the active navigation item in the mobile footer
-        function setActiveNavItem(clickedElement) {
-            // Get all mobile footer navigation items
-            const navItems = document.querySelectorAll('.mobile-footer-nav-item');
-            
-            // Remove 'active' class from all items
-            navItems.forEach(item => {
-                item.classList.remove('active');
-            });
+      // Function to set the active navigation item in the mobile footer
+      function setActiveNavItem(clickedElement) {
+        // Get all mobile footer navigation items
+        const navItems = document.querySelectorAll(".mobile-footer-nav-item");
 
-            // Add 'active' class to the clicked element
-            clickedElement.classList.add('active');
-        }
-
-        // Global variable to store the timeout ID for the submenu
-        let submenuCloseTimeoutId;
-
-        // Get references to the submenu elements
-        const servicesSubmenu = document.getElementById('services-submenu');
-        // Removed: animationSubmenu, animationServiceLink, backToServicesLink
-
-        // Function to set or reset the submenu auto-close timeout
-        function setSubmenuTimeout() {
-            clearTimeout(submenuCloseTimeoutId); // Clear any existing timeout
-            submenuCloseTimeoutId = setTimeout(() => {
-                closeAllSubmenus(); // Close all submenus after 3 seconds
-            }, 3000); // 3000 milliseconds = 3 seconds
-        }
-
-        // Function to close all submenus and reset their states
-        function closeAllSubmenus() {
-            clearTimeout(submenuCloseTimeoutId); // Clear any pending timeout
-            servicesSubmenu.classList.remove('active'); // Only remove active from primary
-        }
-
-        // Function to toggle the primary Services submenu
-        function toggleServicesSubmenu(event, parentElement) {
-            event.preventDefault();
-            event.stopPropagation(); // Stop propagation to prevent immediate closing by outside click handler
-
-            // Simplified logic: If the primary submenu is active, close it. Otherwise, open it.
-            if (servicesSubmenu.classList.contains('active')) {
-                closeAllSubmenus();
-            } else {
-                closeAllSubmenus(); // Ensure all submenus are closed first (though now only one)
-                servicesSubmenu.classList.add('active'); // Open primary submenu
-                setActiveNavItem(parentElement); // Set the main Services icon as active
-                setSubmenuTimeout(); // Start the auto-close timer
-            }
-        }
-
-        // Removed: Event listener for clicking the 'Animation' link
-        // Removed: Event listener for clicking the 'Back to Services' link
-
-        // General click outside handler for closing all submenus
-        document.addEventListener('click', function(e) {
-            const mobileServicesItem = document.getElementById('mobile-services-item');
-            // If the click is outside the main 'Services' item (which contains the submenu)
-            // and the submenu is currently active, close it.
-            if (mobileServicesItem && !mobileServicesItem.contains(e.target) && servicesSubmenu.classList.contains('active')) {
-                closeAllSubmenus();
-            }
+        // Remove 'active' class from all items
+        navItems.forEach((item) => {
+          item.classList.remove("active");
         });
 
-        // Event listeners for submenu links to close the submenu and clear timeout if an item is selected
-        document.querySelectorAll('#services-submenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                closeAllSubmenus();
-            });
+        // Add 'active' class to the clicked element
+        clickedElement.classList.add("active");
+      }
+
+      // Global variable to store the timeout ID for the submenu
+      let submenuCloseTimeoutId;
+
+      // Get references to the submenu elements
+      const servicesSubmenu = document.getElementById("services-submenu");
+      // Removed: animationSubmenu, animationServiceLink, backToServicesLink
+
+      // Function to set or reset the submenu auto-close timeout
+      function setSubmenuTimeout() {
+        clearTimeout(submenuCloseTimeoutId); // Clear any existing timeout
+        submenuCloseTimeoutId = setTimeout(() => {
+          closeAllSubmenus(); // Close all submenus after 3 seconds
+        }, 3000); // 3000 milliseconds = 3 seconds
+      }
+
+      // Function to close all submenus and reset their states
+      function closeAllSubmenus() {
+        clearTimeout(submenuCloseTimeoutId); // Clear any pending timeout
+        servicesSubmenu.classList.remove("active"); // Only remove active from primary
+      }
+
+      // Function to toggle the primary Services submenu
+      function toggleServicesSubmenu(event, parentElement) {
+        event.preventDefault();
+        event.stopPropagation(); // Stop propagation to prevent immediate closing by outside click handler
+
+        // Simplified logic: If the primary submenu is active, close it. Otherwise, open it.
+        if (servicesSubmenu.classList.contains("active")) {
+          closeAllSubmenus();
+        } else {
+          closeAllSubmenus(); // Ensure all submenus are closed first (though now only one)
+          servicesSubmenu.classList.add("active"); // Open primary submenu
+          setActiveNavItem(parentElement); // Set the main Services icon as active
+          setSubmenuTimeout(); // Start the auto-close timer
+        }
+      }
+
+      // Removed: Event listener for clicking the 'Animation' link
+      // Removed: Event listener for clicking the 'Back to Services' link
+
+      // General click outside handler for closing all submenus
+      document.addEventListener("click", function (e) {
+        const mobileServicesItem = document.getElementById(
+          "mobile-services-item",
+        );
+        // If the click is outside the main 'Services' item (which contains the submenu)
+        // and the submenu is currently active, close it.
+        if (
+          mobileServicesItem &&
+          !mobileServicesItem.contains(e.target) &&
+          servicesSubmenu.classList.contains("active")
+        ) {
+          closeAllSubmenus();
+        }
+      });
+
+      // Event listeners for submenu links to close the submenu and clear timeout if an item is selected
+      document.querySelectorAll("#services-submenu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          closeAllSubmenus();
         });
+      });
 
-        // --- SERP Tool Logic (Existing, no changes needed for submenu task) ---
+      // --- SERP Tool Logic (Existing, no changes needed for submenu task) ---
 
-        // Helper function to remove all status classes
-        function removeAllStatusClasses(element) {
-            element.classList.remove('status-cyan', 'status-orange', 'status-red', 'status-default');
+      // Helper function to remove all status classes
+      function removeAllStatusClasses(element) {
+        element.classList.remove(
+          "status-cyan",
+          "status-orange",
+          "status-red",
+          "status-default",
+        );
+      }
+
+      // Page Title Logic
+      function pageTitle() {
+        const pagetitleInput = document.getElementById("pagetitle");
+        const pagetitleLength = pagetitleInput.value.length;
+        const snippetTitle = document.getElementById("google-snippet-title");
+        const titlelenSpan = document.querySelector(".titlelen");
+        const titlesignalSpan = document.getElementById("titlesignal"); // This is the badge element
+
+        titlelenSpan.textContent = pagetitleLength;
+
+        if (pagetitleLength < 1) {
+          snippetTitle.textContent =
+            "For Example: #1 Digital Marketing Company - Example.com";
+          removeAllStatusClasses(titlesignalSpan);
+          titlesignalSpan.classList.add("status-default");
+          titlesignalSpan.textContent = "Status";
+        }
+        // titlewithpx will be called on keyup and handle setting snippet text and badge status
+      }
+
+      // Pixel Width Calculation for Title
+      function titlewithpx(text) {
+        const titlecanvas = document.getElementById("titleCanvas");
+        const context = titlecanvas.getContext("2d");
+
+        // Set font to match the snippet-title's font-size (17.55px)
+        context.font =
+          "600 17.55px Inter"; /* Adjusted font to match snippet. Inter font chosen. */
+
+        const metrics = context.measureText(text);
+        const width = Math.round(metrics.width);
+        const titlepxSpan = document.querySelector(".titlepx");
+        const titlesignalSpan = document.getElementById("titlesignal");
+        const pagetitle = document.getElementById("pagetitle").value;
+
+        titlepxSpan.textContent = width;
+
+        removeAllStatusClasses(titlesignalSpan); // Remove all previous status classes
+
+        if (width < 1) {
+          titlesignalSpan.textContent = "Status";
+          titlesignalSpan.classList.add("status-default");
+        } else if (width < 200) {
+          // Below 200 pixels: "Too short" (Orange)
+          titlesignalSpan.classList.add("status-orange");
+          titlesignalSpan.textContent = "Too short";
+        } else if (width >= 200 && width <= 561) {
+          // Between 200 and 561 pixels: "Excellent" (Cyan)
+          titlesignalSpan.classList.add("status-cyan");
+          titlesignalSpan.textContent = "Excellent";
+        } else {
+          // Exceeds 561 pixels: "Too long" (Red)
+          titlesignalSpan.classList.add("status-red");
+          titlesignalSpan.textContent = "Too long";
         }
 
-        // Page Title Logic
-        function pageTitle() {
-            const pagetitleInput = document.getElementById('pagetitle');
-            const pagetitleLength = pagetitleInput.value.length;
-            const snippetTitle = document.getElementById('google-snippet-title');
-            const titlelenSpan = document.querySelector('.titlelen');
-            const titlesignalSpan = document.getElementById('titlesignal'); // This is the badge element
+        // The CSS `text-overflow: ellipsis` will handle the actual truncation visually
+        // for the snippet title if the calculated width is still too large.
+        document.getElementById("google-snippet-title").textContent = pagetitle;
 
-            titlelenSpan.textContent = pagetitleLength;
+        if (width < 1) {
+          document.getElementById("google-snippet-title").textContent =
+            "For Example: #1 Digital Marketing Company - Example.com";
+        }
+      }
 
-            if (pagetitleLength < 1) {
-                snippetTitle.textContent = "For Example: #1 Digital Marketing Company - Example.com";
-                removeAllStatusClasses(titlesignalSpan);
-                titlesignalSpan.classList.add('status-default');
-                titlesignalSpan.textContent = 'Status';
-            }
-            // titlewithpx will be called on keyup and handle setting snippet text and badge status
+      // Website Url Logic (pixel calculation and status added for URL)
+      function websiteName() {
+        const websitenameInput = document.getElementById("websitename");
+        let websitenameValue = websitenameInput.value.trim(); // Use trimmed value
+        const websitenameLength = websitenameInput.value.length;
+        const snippetUrl = document.getElementById("google-snippet-url");
+        const websitelenSpan = document.querySelector(".websitelen");
+        const urlpxSpan = document.querySelector(".urlpx"); // New span for URL pixels
+        const urlsignalSpan = document.getElementById("urlsignal"); // New span for URL status
+
+        websitelenSpan.textContent = websitenameLength;
+
+        // Prepend https:// if not already present for visual consistency
+        if (
+          websitenameValue !== "" &&
+          !websitenameValue.startsWith("http://") &&
+          !websitenameValue.startsWith("https://")
+        ) {
+          websitenameValue = `https://${websitenameValue}`;
+        } else if (websitenameValue === "") {
+          websitenameValue = "https://www.example.com"; // Reset to default if empty
         }
 
-        // Pixel Width Calculation for Title
-        function titlewithpx(text) {
-            const titlecanvas = document.getElementById('titleCanvas');
-            const context = titlecanvas.getContext('2d');
-            
-            // Set font to match the snippet-title's font-size (18.65px)
-            context.font = '600 18.65px Inter'; /* Adjusted font to match snippet. Inter font chosen. */
-            
-            const metrics = context.measureText(text);
-            const width = Math.round(metrics.width);
-            const titlepxSpan = document.querySelector('.titlepx');
-            const titlesignalSpan = document.getElementById('titlesignal');
-            const pagetitle = document.getElementById('pagetitle').value;
+        // Update snippet URL content
+        snippetUrl.textContent = websitenameValue;
 
-            titlepxSpan.textContent = width;
+        // URL pixel calculation (on the new content of snippetUrl)
+        const urlCanvas = document.getElementById("urlCanvas");
+        const urlContext = urlCanvas.getContext("2d");
+        // Set font to match snippet-url's font-size (13.57px)
+        urlContext.font =
+          "normal normal 13.57px Arial"; /* Using Arial as it's common for URLs */
 
-            removeAllStatusClasses(titlesignalSpan); // Remove all previous status classes
+        let urlWidth = 0; // Initialize urlWidth to 0
 
-            if (width < 1) {
-                titlesignalSpan.textContent = 'Status';
-                titlesignalSpan.classList.add('status-default');
-            } else if (width < 200) { // Below 200 pixels: "Too short" (Orange)
-                titlesignalSpan.classList.add('status-orange');
-                titlesignalSpan.textContent = 'Too short';
-            } else if (width >= 200 && width <= 561) { // Between 200 and 561 pixels: "Excellent" (Cyan)
-                titlesignalSpan.classList.add('status-cyan');
-                titlesignalSpan.textContent = 'Excellent';
-            } else { // Exceeds 561 pixels: "Too long" (Red)
-                titlesignalSpan.classList.add('status-red');
-                titlesignalSpan.textContent = 'Too long';
-            }
+        if (websitenameLength > 0) {
+          // Only calculate pixel width if there's actual input
+          const urlMetrics = urlContext.measureText(websitenameValue);
+          urlWidth = Math.round(urlMetrics.width);
+        }
+        urlpxSpan.textContent = urlWidth; // Set the pixel count
 
-            // The CSS `text-overflow: ellipsis` will handle the actual truncation visually
-            // for the snippet title if the calculated width is still too large.
-            document.getElementById('google-snippet-title').textContent = pagetitle;
-            
-            if (width < 1) {
-                document.getElementById('google-snippet-title').textContent = "For Example: #1 Digital Marketing Company - Example.com";
-            }
+        removeAllStatusClasses(urlsignalSpan); // Remove existing classes
+
+        if (urlWidth < 1) {
+          urlsignalSpan.textContent = "Status";
+          urlsignalSpan.classList.add("status-default");
+        } else if (urlWidth <= 280) {
+          urlsignalSpan.classList.add("status-cyan");
+          urlsignalSpan.textContent = "Excellent";
+        } else if (urlWidth > 280 && urlWidth <= 300) {
+          urlsignalSpan.classList.add("status-orange");
+          urlsignalSpan.textContent = "Not optimized for mobile";
+        } else {
+          urlsignalSpan.classList.add("status-red");
+          urlsignalSpan.textContent = "Too Long (Bad)";
+        }
+      }
+
+      // Meta Description Logic
+      function metaDescription() {
+        const descriptionInput = document.getElementById("seodescription");
+        const descriptionLength = descriptionInput.value.length;
+        const descriptionlenSpan = document.querySelector(".descriptionlen");
+
+        descriptionlenSpan.textContent = descriptionLength;
+
+        // descriptionwithpx will be called on keyup and handle setting snippet text and badge status
+      }
+
+      // Pixel Width Calculation for Description
+      function descriptionwithpx(text) {
+        const descriptioncanvas = document.getElementById("descriptionCanvas");
+        const descriptioncontext = descriptioncanvas.getContext("2d");
+
+        // Set font to match snippet-description's font-size (13.71px)
+        descriptioncontext.font =
+          "normal normal 13.71px Arial"; /* Adjusted font to match snippet */
+
+        const descriptionmetrics = descriptioncontext.measureText(text);
+        const descriptionwidth = Math.round(descriptionmetrics.width);
+        const descriptionpxSpan = document.querySelector(".descriptionpx");
+        const descriptioninfobarSpan =
+          document.getElementById("descriptioninfobar");
+        const snippetDescription = document.getElementById(
+          "google-snippet-description",
+        );
+        const descriptionchar = document.getElementById("seodescription").value;
+
+        descriptionpxSpan.textContent = descriptionwidth;
+
+        removeAllStatusClasses(descriptioninfobarSpan); // Remove all previous status classes
+
+        if (descriptionwidth < 1) {
+          descriptioninfobarSpan.textContent = "Status";
+          descriptioninfobarSpan.classList.add("status-default");
+        } else if (descriptionwidth < 400) {
+          // Below 400 pixels: "Too short" (Orange)
+          descriptioninfobarSpan.classList.add("status-orange");
+          descriptioninfobarSpan.textContent = "Too short";
+        } else if (descriptionwidth >= 400 && descriptionwidth <= 985) {
+          // Between 400 and 985 pixels: "Excellent" (Cyan)
+          descriptioninfobarSpan.classList.add("status-cyan");
+          descriptioninfobarSpan.textContent = "Excellent";
+        } else {
+          // Exceeds 985 pixels: "Too long" (Red)
+          descriptioninfobarSpan.classList.add("status-red");
+          descriptioninfobarSpan.textContent = "Too long";
         }
 
-        // Website Name Logic (pixel calculation and status added for URL)
-        function websiteName() {
-            const websitenameInput = document.getElementById('websitename');
-            let websitenameValue = websitenameInput.value.trim(); // Use trimmed value
-            const websitenameLength = websitenameInput.value.length;
-            const snippetUrl = document.getElementById('google-snippet-url');
-            const websitelenSpan = document.querySelector('.websitelen');
-            const urlpxSpan = document.querySelector('.urlpx'); // New span for URL pixels
-            const urlsignalSpan = document.getElementById('urlsignal'); // New span for URL status
+        // The CSS `text-overflow: ellipsis` will handle the actual truncation visually
+        // for the snippet description if the calculated width is still too large.
+        snippetDescription.textContent = descriptionchar;
 
-            websitelenSpan.textContent = websitenameLength;
-
-            // Prepend https:// if not already present for visual consistency
-            if (websitenameValue !== "" && !websitenameValue.startsWith('http://') && !websitenameValue.startsWith('https://')) {
-                websitenameValue = `https://${websitenameValue}`;
-            } else if (websitenameValue === "") {
-                websitenameValue = "https://www.example.com"; // Reset to default if empty
-            }
-
-            // Update snippet URL content
-            snippetUrl.textContent = websitenameValue;
-
-            // URL pixel calculation (on the new content of snippetUrl)
-            const urlCanvas = document.getElementById('urlCanvas');
-            const urlContext = urlCanvas.getContext('2d');
-            // Set font to match snippet-url's font-size (13.67px)
-            urlContext.font = 'normal normal 13.67px Arial'; /* Using Arial as it's common for URLs */
-            
-            let urlWidth = 0; // Initialize urlWidth to 0
-
-            if (websitenameLength > 0) { // Only calculate pixel width if there's actual input
-                const urlMetrics = urlContext.measureText(websitenameValue);
-                urlWidth = Math.round(urlMetrics.width);
-            }
-            urlpxSpan.textContent = urlWidth; // Set the pixel count
-
-            removeAllStatusClasses(urlsignalSpan); // Remove existing classes
-
-            if (websitenameLength < 1) {
-                urlsignalSpan.textContent = 'Status';
-                urlsignalSpan.classList.add('status-default');
-            } else if (websitenameLength < 57) { // Under 57 characters: "Excellent" (Cyan)
-                urlsignalSpan.classList.add('status-cyan');
-                urlsignalSpan.textContent = 'Excellent';
-            } else if (websitenameLength >= 57 && websitenameLength < 101) { // 57-100 characters: "Not optimized for mobile" (Orange)
-                urlsignalSpan.classList.add('status-orange');
-                urlsignalSpan.textContent = 'Not optimized for mobile';
-            } else { // 101+ characters: "Too Long (Bad)" (Red)
-                urlsignalSpan.classList.add('status-red');
-                urlsignalSpan.textContent = 'Too Long (Bad)';
-            }
+        if (descriptionwidth < 1) {
+          snippetDescription.innerHTML =
+            "Write your meta description to tell the Google users that you are the best in your industry!<br><strong>Tip: Use natural language rather than keyword stuffing.</strong>";
         }
+      }
 
-        // Meta Description Logic
-        function metaDescription() {
-            const descriptionInput = document.getElementById('seodescription');
-            const descriptionLength = descriptionInput.value.length;
-            const descriptionlenSpan = document.querySelector('.descriptionlen');
-
-            descriptionlenSpan.textContent = descriptionLength;
-
-            // descriptionwithpx will be called on keyup and handle setting snippet text and badge status
-        }
-
-        // Pixel Width Calculation for Description
-        function descriptionwithpx(text) {
-            const descriptioncanvas = document.getElementById('descriptionCanvas');
-            const descriptioncontext = descriptioncanvas.getContext('2d');
-            
-            // Set font to match snippet-description's font-size (13.67px)
-            descriptioncontext.font = 'normal normal 13.67px Arial'; /* Adjusted font to match snippet */
-            
-            const descriptionmetrics = descriptioncontext.measureText(text);
-            const descriptionwidth = Math.round(descriptionmetrics.width);
-            const descriptionpxSpan = document.querySelector('.descriptionpx');
-            const descriptioninfobarSpan = document.getElementById('descriptioninfobar');
-            const snippetDescription = document.getElementById('google-snippet-description');
-            const descriptionchar = document.getElementById('seodescription').value;
-
-            descriptionpxSpan.textContent = descriptionwidth;
-
-            removeAllStatusClasses(descriptioninfobarSpan); // Remove all previous status classes
-
-            if (descriptionwidth < 1) {
-                descriptioninfobarSpan.textContent = 'Status';
-                descriptioninfobarSpan.classList.add('status-default');
-            }
-            else if (descriptionwidth < 400) { // Below 400 pixels: "Too short" (Orange)
-                descriptioninfobarSpan.classList.add('status-orange');
-                descriptioninfobarSpan.textContent = 'Too short';
-            }
-            else if (descriptionwidth >= 400 && descriptionwidth <= 985) { // Between 400 and 985 pixels: "Excellent" (Cyan)
-                descriptioninfobarSpan.classList.add('status-cyan');
-                descriptioninfobarSpan.textContent = 'Excellent';
-            }
-            else { // Exceeds 985 pixels: "Too long" (Red)
-                descriptioninfobarSpan.classList.add('status-red');
-                descriptioninfobarSpan.textContent = 'Too long';
-            }
-
-            // The CSS `text-overflow: ellipsis` will handle the actual truncation visually
-            // for the snippet description if the calculated width is still too large.
-            snippetDescription.textContent = descriptionchar;
-
-            if (descriptionwidth < 1) {
-                snippetDescription.innerHTML = "Write your meta description to tell the Google users that you are the best in your industry!<br><strong>Tip: Use natural language rather than keyword stuffing.</strong>";
-            }
-        }
-
-        // --- Text Case Transformation Functions (Existing, no changes needed) ---
-        function toTitleCase(str) {
-            return str.replace(
-                /\w\S*/g,
-                function(txt) {
-                    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-                }
-            );
-        }
-
-        document.getElementById('uppercase-btn').addEventListener('click', () => {
-            const pagetitleInput = document.getElementById('pagetitle');
-            pagetitleInput.value = pagetitleInput.value.toUpperCase();
-            pageTitle();
-            titlewithpx(pagetitleInput.value);
+      // --- Text Case Transformation Functions (Existing, no changes needed) ---
+      function toTitleCase(str) {
+        return str.replace(/\w\S*/g, function (txt) {
+          return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
+      }
 
-        document.getElementById('lowercase-btn').addEventListener('click', () => {
-            const pagetitleInput = document.getElementById('pagetitle');
-            pagetitleInput.value = pagetitleInput.value.toLowerCase();
-            pageTitle();
-            titlewithpx(pagetitleInput.value);
-        });
+      document.getElementById("uppercase-btn").addEventListener("click", () => {
+        const pagetitleInput = document.getElementById("pagetitle");
+        pagetitleInput.value = pagetitleInput.value.toUpperCase();
+        pageTitle();
+        titlewithpx(pagetitleInput.value);
+      });
 
-        document.getElementById('titlecase-btn').addEventListener('click', () => {
-            const pagetitleInput = document.getElementById('pagetitle');
-            pagetitleInput.value = toTitleCase(pagetitleInput.value);
-            pageTitle();
-            titlewithpx(pagetitleInput.value);
-        });
+      document.getElementById("lowercase-btn").addEventListener("click", () => {
+        const pagetitleInput = document.getElementById("pagetitle");
+        pagetitleInput.value = pagetitleInput.value.toLowerCase();
+        pageTitle();
+        titlewithpx(pagetitleInput.value);
+      });
 
-        // Initial calls to populate the snippet and counts on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Initialize canvas dimensions
-            const titleCanvas = document.getElementById('titleCanvas');
-            titleCanvas.width = 1000;
-            titleCanvas.height = 50;
+      document.getElementById("titlecase-btn").addEventListener("click", () => {
+        const pagetitleInput = document.getElementById("pagetitle");
+        pagetitleInput.value = toTitleCase(pagetitleInput.value);
+        pageTitle();
+        titlewithpx(pagetitleInput.value);
+      });
 
-            const descriptionCanvas = document.getElementById('descriptionCanvas');
-            descriptionCanvas.width = 1000;
-            descriptionCanvas.height = 50;
+      // Initial calls to populate the snippet and counts on page load
+      document.addEventListener("DOMContentLoaded", () => {
+        // Initialize canvas dimensions
+        const titleCanvas = document.getElementById("titleCanvas");
+        titleCanvas.width = 1000;
+        titleCanvas.height = 50;
 
-            const urlCanvas = document.getElementById('urlCanvas'); // Initialize URL canvas
-            urlCanvas.width = 1000;
-            urlCanvas.height = 50;
+        const descriptionCanvas = document.getElementById("descriptionCanvas");
+        descriptionCanvas.width = 1000;
+        descriptionCanvas.height = 50;
 
-            pageTitle();
-            websiteName(); 
-            metaDescription();
-            titlewithpx(document.getElementById('pagetitle').value);
-            descriptionwithpx(document.getElementById('seodescription').value);
+        const urlCanvas = document.getElementById("urlCanvas"); // Initialize URL canvas
+        urlCanvas.width = 1000;
+        urlCanvas.height = 50;
 
-            // Add event listener for window resize to update URL truncation for mobile/desktop
-            window.addEventListener('resize', websiteName);
-        });
+        pageTitle();
+        websiteName();
+        metaDescription();
+        titlewithpx(document.getElementById("pagetitle").value);
+        descriptionwithpx(document.getElementById("seodescription").value);
+
+        // Add event listener for window resize to update URL truncation for mobile/desktop
+        window.addEventListener("resize", websiteName);
+      });
     </script>
-</body>
+  </body>
 </html>
