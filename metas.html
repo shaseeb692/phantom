@@ -1,71 +1,473 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8"> <!-- Character encoding for the document -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport settings for responsive web design -->
-  
-  <!-- Page Title -->
-  <title>Your Page Title</title>
-  
-  <!-- Meta Description -->
-  <meta name="description" content="Your page description. This will be displayed in search engine results.">
 
-  <!-- Keywords (Not used by all search engines) -->
-  <meta name="keywords" content="your, keywords, here">
+<!-- ================================================= -->
+<!-- BASIC HTML SETTINGS -->
+<!-- ================================================= -->
 
-  <!-- Author -->
-  <meta name="author" content="Your Name">
+<meta charset="UTF-8">
 
-  <!-- Prevent Search Engines from Indexing -->
-  <meta name="robots" content="index, follow"> <!-- Allows search engine indexing and following links -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Revisit After (Not always followed by search engines) -->
-  <meta name="revisit-after" content="7 days"> <!-- Suggests the search engine crawler revisit the page after 7 days -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <!-- Distribution (Not commonly used) -->
-  <meta name="distribution" content="global"> <!-- Indicates the global distribution scope of your website content -->
 
-  <!-- Application Name (For web applications) -->
-  <meta name="application-name" content="Your App Name"> <!-- Specifies the name of your web application if applicable -->
+<!-- ================================================= -->
+<!-- WEBSITE TITLE & DESCRIPTION -->
+<!-- ================================================= -->
 
-  <!-- Auto Refresh (Redirects the page after 30 seconds) -->
-  <meta http-equiv="refresh" content="30">
+<title>YOUR_PAGE_TITLE | YOUR_BRAND_NAME</title>
 
-  <!-- X-UA-Compatible (For Internet Explorer) -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Ensures the page is rendered in the highest available mode in IE -->
+<meta name="description" content="YOUR_META_DESCRIPTION">
 
-  <!-- Open Graph Protocol (OGP) -->
-  <meta property="og:title" content="Your Page Title"> <!-- Title for social media shares -->
-  <meta property="og:description" content="Your page description for social media shares."> <!-- Description for social media shares -->
-  <meta property="og:image" content="your_image_url"> <!-- Featured image URL for social media shares -->
-  <meta property="og:image:secure_url" content="your_image_url"> <!-- Secure URL of the featured image -->
-  <meta property="og:image:type" content="image/jpeg"> <!-- MIME type of the featured image -->
-  <meta property="og:image:width" content="1200"> <!-- Width of the featured image -->
-  <meta property="og:image:height" content="630"> <!-- Height of the featured image -->
-  <meta property="og:url" content="https://www.your-website-url.com"> <!-- URL of the web page -->
-  <meta property="og:type" content="website"> <!-- Type of content (e.g., website, article, etc.) -->
+<meta name="keywords" content="keyword one, keyword two, keyword three">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image"> <!-- Twitter card type -->
-  <meta name="twitter:title" content="Your Page Title"> <!-- Title for Twitter shares -->
-  <meta name="twitter:description" content="Your page description for Twitter shares."> <!-- Description for Twitter shares -->
-  <meta name="twitter:image" content="your_image_url"> <!-- Featured image URL for Twitter shares -->
+<meta name="author" content="YOUR_BRAND_NAME">
 
-  <!-- Structured Data (JSON-LD) -->
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Your Organization Name", <!-- Organization name -->
-      "url": "https://www.your-website-url.com", <!-- URL of the organization -->
-      "logo": "your_logo_url", <!-- URL of the organization's logo -->
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+1-555-123-4567", <!-- Contact telephone number -->
-        "contactType": "customer service" <!-- Contact type -->
-      }
-    }
-  </script>
+<meta name="publisher" content="YOUR_BRAND_NAME">
+
+<meta name="copyright" content="YOUR_BRAND_NAME">
+
+
+
+<!-- ================================================= -->
+<!-- ROBOTS SEO CONTROL -->
+<!-- ================================================= -->
+
+<!-- Normal SEO Page -->
+<meta name="robots" content="index, follow">
+
+
+<!-- Other Options (use only one when required)
+
+<meta name="robots" content="noindex, follow">
+
+<meta name="robots" content="index, nofollow">
+
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="robots" content="none">
+
+<meta name="robots" content="noarchive">
+
+<meta name="robots" content="nosnippet">
+
+<meta name="robots" content="noimageindex">
+
+<meta name="robots" content="notranslate">
+
+<meta name="robots" content="max-snippet:-1">
+
+<meta name="robots" content="max-image-preview:large">
+
+<meta name="robots" content="max-video-preview:-1">
+
+<meta name="robots" content="unavailable_after: 25-Sep-2026 00:00:00">
+
+-->
+
+
+<!-- Google Specific -->
+
+<meta name="googlebot" content="
+index,
+follow,
+max-snippet:-1,
+max-image-preview:large,
+max-video-preview:-1
+">
+
+
+<!-- Bing Specific -->
+
+<meta name="bingbot" content="
+index,
+follow
+">
+
+
+
+<!-- ================================================= -->
+<!-- AI SEARCH ENGINE CRAWLERS -->
+<!-- ================================================= -->
+
+<meta name="GPTBot" content="index, follow">
+
+<meta name="Google-Extended" content="index, follow">
+
+<meta name="CCBot" content="index, follow">
+
+<meta name="ClaudeBot" content="index, follow">
+
+<meta name="anthropic-ai" content="index, follow">
+
+<meta name="PerplexityBot" content="index, follow">
+
+
+
+<!-- ================================================= -->
+<!-- CANONICAL URL -->
+<!-- ================================================= -->
+
+<link rel="canonical" href="https://YOUR_DOMAIN.com/YOUR_PAGE">
+
+
+
+<!-- ================================================= -->
+<!-- MULTI LANGUAGE SEO -->
+<!-- ================================================= -->
+
+<link rel="alternate"
+hreflang="en"
+href="https://YOUR_DOMAIN.com/en">
+
+
+<link rel="alternate"
+hreflang="x-default"
+href="https://YOUR_DOMAIN.com">
+
+
+
+<!-- ================================================= -->
+<!-- OPEN GRAPH FACEBOOK / LINKEDIN -->
+<!-- ================================================= -->
+
+<meta property="og:title"
+content="YOUR_PAGE_TITLE">
+
+
+<meta property="og:description"
+content="YOUR_SOCIAL_DESCRIPTION">
+
+
+<meta property="og:type"
+content="website">
+
+
+<meta property="og:url"
+content="https://YOUR_DOMAIN.com">
+
+
+<meta property="og:site_name"
+content="YOUR_BRAND_NAME">
+
+
+<meta property="og:image"
+content="https://YOUR_DOMAIN.com/image.jpg">
+
+
+<meta property="og:image:secure_url"
+content="https://YOUR_DOMAIN.com/image.jpg">
+
+
+<meta property="og:image:type"
+content="image/jpeg">
+
+
+<meta property="og:image:width"
+content="1200">
+
+
+<meta property="og:image:height"
+content="630">
+
+
+<meta property="og:locale"
+content="en_US">
+
+
+
+<!-- ================================================= -->
+<!-- TWITTER / X CARD -->
+<!-- ================================================= -->
+
+<meta name="twitter:card"
+content="summary_large_image">
+
+
+<meta name="twitter:title"
+content="YOUR_PAGE_TITLE">
+
+
+<meta name="twitter:description"
+content="YOUR_DESCRIPTION">
+
+
+<meta name="twitter:image"
+content="https://YOUR_DOMAIN.com/image.jpg">
+
+
+<meta name="twitter:site"
+content="@YOUR_USERNAME">
+
+
+<meta name="twitter:creator"
+content="@YOUR_USERNAME">
+
+
+
+<!-- ================================================= -->
+<!-- SEARCH ENGINE VERIFICATION -->
+<!-- ================================================= -->
+
+<meta name="google-site-verification"
+content="YOUR_GOOGLE_CODE">
+
+
+<meta name="msvalidate.01"
+content="YOUR_BING_CODE">
+
+
+
+<!-- ================================================= -->
+<!-- GEO LOCAL SEO -->
+<!-- ================================================= -->
+
+<meta name="language"
+content="English">
+
+
+<meta name="geo.region"
+content="YOUR_COUNTRY_REGION">
+
+
+<meta name="geo.placename"
+content="YOUR_CITY">
+
+
+<meta name="geo.position"
+content="LATITUDE;LONGITUDE">
+
+
+<meta name="ICBM"
+content="LATITUDE,LONGITUDE">
+
+
+
+<!-- ================================================= -->
+<!-- FAVICONS -->
+<!-- ================================================= -->
+
+<link rel="icon"
+href="/favicon.ico">
+
+
+<link rel="icon"
+type="image/png"
+sizes="32x32"
+href="/favicon-32x32.png">
+
+
+<link rel="icon"
+type="image/png"
+sizes="16x16"
+href="/favicon-16x16.png">
+
+
+<link rel="apple-touch-icon"
+href="/apple-touch-icon.png">
+
+
+
+<!-- ================================================= -->
+<!-- MOBILE / THEME -->
+<!-- ================================================= -->
+
+<meta name="theme-color"
+content="#ffffff">
+
+
+<meta name="mobile-web-app-capable"
+content="yes">
+
+
+<meta name="apple-mobile-web-app-capable"
+content="yes">
+
+
+<meta name="apple-mobile-web-app-status-bar-style"
+content="default">
+
+
+
+<!-- ================================================= -->
+<!-- PERFORMANCE OPTIMIZATION -->
+<!-- ================================================= -->
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+
+<link rel="dns-prefetch"
+href="//www.google-analytics.com">
+
+
+<link rel="preload"
+href="/YOUR_IMPORTANT_IMAGE.webp"
+as="image">
+
+
+
+<!-- ================================================= -->
+<!-- CSS -->
+<!-- ================================================= -->
+
+<link rel="stylesheet"
+href="/style.css">
+
+
+
+<!-- ================================================= -->
+<!-- RSS FEED -->
+<!-- ================================================= -->
+
+<link rel="alternate"
+type="application/rss+xml"
+title="RSS Feed"
+href="/feed.xml">
+
+
+
+<!-- ================================================= -->
+<!-- PWA -->
+<!-- ================================================= -->
+
+<link rel="manifest"
+href="/manifest.json">
+
+
+
+<!-- ================================================= -->
+<!-- SECURITY -->
+<!-- ================================================= -->
+
+<meta http-equiv="Content-Security-Policy"
+content="upgrade-insecure-requests">
+
+
+<meta http-equiv="Referrer-Policy"
+content="strict-origin-when-cross-origin">
+
+
+<meta http-equiv="Permissions-Policy"
+content="
+geolocation=(),
+microphone=(),
+camera=()
+">
+
+
+
+<!-- ================================================= -->
+<!-- STRUCTURED DATA : ORGANIZATION -->
+<!-- ================================================= -->
+
+
+<script type="application/ld+json">
+
+{
+"@context":"https://schema.org",
+
+"@type":"Organization",
+
+"name":"YOUR_BRAND_NAME",
+
+"url":"https://YOUR_DOMAIN.com",
+
+"logo":"https://YOUR_DOMAIN.com/logo.png",
+
+"sameAs":[
+"https://facebook.com/YOUR_PAGE",
+"https://instagram.com/YOUR_PAGE",
+"https://linkedin.com/company/YOUR_PAGE"
+],
+
+"contactPoint":{
+"@type":"ContactPoint",
+"telephone":"YOUR_PHONE",
+"contactType":"customer service"
+}
+
+}
+
+</script>
+
+
+
+<!-- ================================================= -->
+<!-- STRUCTURED DATA : WEBSITE SEARCH -->
+<!-- ================================================= -->
+
+
+<script type="application/ld+json">
+
+{
+"@context":"https://schema.org",
+
+"@type":"WebSite",
+
+"name":"YOUR_BRAND_NAME",
+
+"url":"https://YOUR_DOMAIN.com",
+
+"potentialAction":{
+
+"@type":"SearchAction",
+
+"target":
+"https://YOUR_DOMAIN.com/search?q={search_term_string}",
+
+"query-input":
+"required name=search_term_string"
+
+}
+
+}
+
+</script>
+
+
+
+<!-- ================================================= -->
+<!-- GOOGLE ANALYTICS -->
+<!-- ================================================= -->
+
+
+<script async
+src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID">
+</script>
+
+
+<script>
+
+window.dataLayer = window.dataLayer || [];
+
+function gtag(){
+dataLayer.push(arguments);
+}
+
+gtag('js', new Date());
+
+gtag('config','YOUR_GA_ID');
+
+</script>
+
+<!-- ================================= -->
+<!-- AUTO REDIRECT SCRIPT -->
+<!-- ================================= -->
+
+  <script>
+setTimeout(function(){
+window.location.href="/";
+},5000);
+</script>
+
 </head>
 <body>
   <!-- Your page content here -->
