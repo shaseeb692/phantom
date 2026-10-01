@@ -1,8 +1,26 @@
 "use client";
 import Link from "next/link";
-import {useEffect,useRef,useState,type CSSProperties} from "react";
+import {useEffect,useRef,useState} from "react";
 import "./phantom-service.css";
+import {imageAsset} from "@/lib/image-manifest";
 export type ServiceData={title:string;eyebrow:string;hero:string;introTitle:string;intro:string;services:string[];failures:string[];process:string[];arsenal:string[];faqs:[string,string][];markets?:string[];marketsTitle?:string;marketsIntro?:string;industries?:string[];counterLabels?:string[];valueTitle?:string;valueIntro?:string;valueBullets?:string[];choiceTitle?:string;choiceCopy?:string;choiceButton?:string};
+
+function serviceImageKey(title:string){
+  const t=title.toLowerCase();
+  if(t.includes("answer engine")||t.includes("generative engine")||t.includes("llm")||t.includes("ai search")) return "services/ai-search";
+  if(t.includes("search engine optimization")||t==="seo"||t.includes("search engine marketing")) return "services/search";
+  if(t.includes("google ads")||t.includes("meta ads")||t.includes("linkedin paid")||t.includes("tiktok")||t.includes("pinterest")||t.includes("snapchat")||t.includes("line app")||t.includes("paid marketing")||t.includes("pay per click")) return "services/paid-media";
+  if(t.includes("social media")) return "services/social-media";
+  if(t.includes("web development")) return "services/web-development";
+  if(t.includes("web designing")||t.includes("web design")) return "services/web-design";
+  if(t.includes("branding")) return "services/branding";
+  if(t.includes("graphic")) return "services/creative";
+  if(t.includes("animation")) return "services/animation";
+  if(t.includes("pr marketing")) return "services/pr-marketing";
+  if(t.includes("print")) return "services/print-services";
+  return "services/creative";
+}
+
 const DEFAULT_INDUSTRIES=['Real Estate','Healthcare','E-Commerce','SaaS','Finance & Legal','Home Services'];
 function Counter({to,suffix,label}:{to:number;suffix:string;label:string}){const [n,setN]=useState(0);const ref=useRef<HTMLDivElement>(null);useEffect(()=>{const el=ref.current;if(!el)return;let done=false;const ob=new IntersectionObserver(([e])=>{if(!e.isIntersecting||done)return;done=true;const start=performance.now(),dur=1200;const tick=(t:number)=>{const q=Math.min(1,(t-start)/dur);setN(Math.round(to*(1-Math.pow(1-q,3))));if(q<1)requestAnimationFrame(tick)};requestAnimationFrame(tick)},{threshold:.35});ob.observe(el);return()=>ob.disconnect()},[to]);return <div ref={ref} className="svc-counter"><strong>{n}{suffix}</strong><span>{label}</span></div>}
 
@@ -16,14 +34,18 @@ const TOOL_META:Record<string,{logo:string;title:string;description:string;color
   "Rank Math":{logo:"https://cdn.simpleicons.org/rankmath",title:"Rank Math: WordPress SEO Control",description:"We use Rank Math where appropriate for metadata, schema and on-page implementation while keeping the strategy focused on the site itself rather than depending on a plugin score."},
   "Bing Webmaster":{logo:"https://cdn.simpleicons.org/microsoftbing",title:"Bing Webmaster Tools: Search Visibility Beyond Google",description:"We use Bing Webmaster Tools for indexing, crawl and search performance insights across Microsoft search properties and to broaden technical search visibility."},
   "Google Search Console":{logo:"https://cdn.simpleicons.org/googlesearchconsole",title:"Google Search Console: Organic Search Intelligence",description:"Search Console gives us first-party visibility into queries, pages, indexing and search performance so technical and content decisions can be tied to real search behavior."},
+  "Google Analytics 4":{logo:"https://cdn.simpleicons.org/googleanalytics",title:"Google Analytics 4: Journey & Conversion Measurement",description:"GA4 helps us understand acquisition, engagement and conversion behavior so channel activity can be connected to what visitors actually do after arriving."},
   "Google Tag Manager":{logo:"https://cdn.simpleicons.org/googletagmanager",title:"Google Tag Manager: Measurement Infrastructure",description:"We use GTM to manage marketing and analytics tags in a controlled way, helping validate events and conversion measurement across campaigns and websites."},
   "Google Ads":{logo:"https://cdn.simpleicons.org/googleads",title:"Google Ads: High-Intent Paid Acquisition",description:"We use Google Ads to capture relevant demand across suitable Google inventory, with campaign structure, query control, conversion tracking and budget optimization aligned to business goals."},
   "Meta Ads":{logo:"https://cdn.simpleicons.org/meta",title:"Meta Ads: Paid Social Acquisition",description:"Meta Ads supports audience-led acquisition across Facebook and Instagram. We combine targeting, creative testing, retargeting and measurement to improve campaign efficiency."},
   "Meta Business Suite":{logo:"https://cdn.simpleicons.org/meta",title:"Meta Business Suite: Social Operations",description:"We use Meta's business tools to coordinate Facebook and Instagram publishing, account management, audience activity and campaign workflows."},
   "LinkedIn":{logo:"https://cdn.simpleicons.org/linkedin",title:"LinkedIn: Professional Audience Reach",description:"LinkedIn helps us reach professional and B2B audiences using company, role and professional context while aligning campaigns and content with longer consideration journeys."},
   "LinkedIn Campaign Manager":{logo:"https://cdn.simpleicons.org/linkedin",title:"LinkedIn Campaign Manager: B2B Paid Media",description:"We use Campaign Manager to structure LinkedIn advertising, professional audience targeting, lead generation and campaign measurement for B2B objectives."},
+  "TikTok Ads":{logo:"https://cdn.simpleicons.org/tiktok",title:"TikTok Ads: Native-First Paid Creative",description:"TikTok Ads is used for vertical, native-feeling campaigns where rapid creative testing, audience signals and mobile-first conversion journeys are essential."},
   "TikTok":{logo:"https://cdn.simpleicons.org/tiktok",title:"TikTok: Short-Form Discovery",description:"We use TikTok's native content language to develop short-form creative that earns attention rather than feeling transplanted from another platform."},
+  "Pinterest Ads":{logo:"https://cdn.simpleicons.org/pinterest",title:"Pinterest Ads: Visual Discovery Advertising",description:"Pinterest Ads helps brands reach people while they are actively planning and discovering ideas, products and future purchases through visual intent."},
   "Pinterest":{logo:"https://cdn.simpleicons.org/pinterest",title:"Pinterest: Visual Discovery",description:"Pinterest is useful for evergreen visual discovery and planning-led journeys, connecting searchable creative with products, ideas and inspiration."},
+  "Snapchat Ads":{logo:"https://cdn.simpleicons.org/snapchat",title:"Snapchat Ads: Mobile-First Reach",description:"Snapchat Ads supports vertical creative and audience targeting for mobile-first campaigns designed around fast attention and direct action."},
   "Snapchat":{logo:"https://cdn.simpleicons.org/snapchat",title:"Snapchat: Camera-First Social",description:"Snapchat gives brands access to a camera-first environment where vertical storytelling and platform-native creative matter."},
   "LINE Ads":{logo:"https://cdn.simpleicons.org/line",title:"LINE Ads: Market-Specific Messaging Reach",description:"LINE advertising is planned around markets where LINE has meaningful adoption. We align audience, creative and measurement with the local role the platform plays."},
   "LINE":{logo:"https://cdn.simpleicons.org/line",title:"LINE: Messaging-Led Digital Ecosystem",description:"LINE is especially relevant in selected Asian markets. We use it only where audience adoption and the local customer journey justify the channel."},
@@ -36,9 +58,9 @@ const TOOL_META:Record<string,{logo:string;title:string;description:string;color
   "Adobe Illustrator":{logo:"https://cdn.simpleicons.org/adobeillustrator",title:"Adobe Illustrator: Vector Design",description:"Illustrator is used for scalable vector artwork, identity systems, icons, print assets and brand graphics."},
   "After Effects":{logo:"https://cdn.simpleicons.org/adobeaftereffects",title:"After Effects: Motion Design",description:"After Effects powers motion graphics, compositing, animated brand assets and campaign visuals."},
   "Blender":{logo:"https://cdn.simpleicons.org/blender",title:"Blender: 3D Creation Suite",description:"Blender supports modeling, materials, lighting, animation and rendering for 3D product and campaign work."},
+  "Looker Studio":{logo:"https://cdn.simpleicons.org/looker",title:"Looker Studio: Performance Reporting",description:"We use reporting dashboards to bring channel and business signals together so stakeholders can see what is changing and why."},
   "ChatGPT":{logo:"https://cdn.simpleicons.org/openai",title:"ChatGPT: LLM Research & Workflow Support",description:"We use LLM tools carefully for research support, ideation and workflow acceleration while keeping strategy, factual validation and original expertise human-led."},
 
-  "Google Analytics 4":{logo:"https://cdn.simpleicons.org/googleanalytics",title:"Google Analytics 4",description:"GA4 supports acquisition, engagement and conversion measurement where analytics is relevant to the service.",color:"#F9AB00",color2:"#E37400"},
   "GA4":{logo:"https://cdn.simpleicons.org/googleanalytics",title:"Google Analytics 4",description:"GA4 supports acquisition, engagement and conversion measurement where analytics is relevant to the service.",color:"#F9AB00",color2:"#E37400"},
   "GTM":{logo:"https://cdn.simpleicons.org/googletagmanager",title:"Google Tag Manager",description:"Google Tag Manager supports controlled event and conversion-tag implementation when the campaign requires it.",color:"#4285F4",color2:"#8AB4F8"},
   "Meta":{logo:"https://cdn.simpleicons.org/meta",title:"Meta",description:"Meta's ecosystem supports Facebook and Instagram publishing, community and advertising workflows.",color:"#0866FF",color2:"#00C6FF"},
@@ -59,9 +81,6 @@ const TOOL_META:Record<string,{logo:string;title:string;description:string;color
   "Talk Head View":{logo:"https://cdn.simpleicons.org/line",title:"Talk Head View",description:"Talk Head View is a high-impact LINE ad format designed for prominent attention within eligible LINE inventory.",color:"#06C755",color2:"#84CC16"},
   "LinkedIn Ads":{logo:"https://cdn.simpleicons.org/linkedin",title:"LinkedIn Ads",description:"LinkedIn advertising reaches professional audiences using role, company and business context.",color:"#0A66C2",color2:"#38BDF8"},
   "Insight Tag":{logo:"https://cdn.simpleicons.org/linkedin",title:"LinkedIn Insight Tag",description:"The Insight Tag supports website conversion measurement, retargeting and audience insights for LinkedIn campaigns.",color:"#0A66C2",color2:"#60A5FA"},
-  "TikTok Ads":{logo:"https://cdn.simpleicons.org/tiktok",title:"TikTok Ads",description:"TikTok Ads supports native vertical paid campaigns built around creative testing and mobile-first behavior.",color:"#25F4EE",color2:"#FE2C55"},
-  "Pinterest Ads":{logo:"https://cdn.simpleicons.org/pinterest",title:"Pinterest Ads",description:"Pinterest Ads reaches users during visual discovery and planning-led journeys.",color:"#E60023",color2:"#FF5A73"},
-  "Snapchat Ads":{logo:"https://cdn.simpleicons.org/snapchat",title:"Snapchat Ads",description:"Snapchat Ads supports camera-first, vertical advertising for mobile audiences.",color:"#FFFC00",color2:"#FFFFFF"},
   "Search Ads":{logo:"https://cdn.simpleicons.org/googleads",title:"Google Search Ads",description:"Search campaigns capture active demand around relevant queries and commercial intent.",color:"#4285F4",color2:"#34A853"},
   "Display Ads":{logo:"https://cdn.simpleicons.org/googleads",title:"Google Display Ads",description:"Display campaigns use visual inventory for reach, remarketing and audience-led advertising.",color:"#4285F4",color2:"#FBBC04"},
   "Shopping Ads":{logo:"https://cdn.simpleicons.org/googleads",title:"Google Shopping Ads",description:"Shopping campaigns connect product feeds with commercial searches and product discovery.",color:"#34A853",color2:"#FBBC04"},
@@ -69,7 +88,6 @@ const TOOL_META:Record<string,{logo:string;title:string;description:string;color
   "Performance Max":{logo:"https://cdn.simpleicons.org/googleads",title:"Performance Max",description:"Performance Max coordinates eligible Google inventory around goals, creative assets and conversion signals.",color:"#4285F4",color2:"#EA4335"},
   "Keyword Planner":{logo:"https://cdn.simpleicons.org/googleads",title:"Google Keyword Planner",description:"Keyword Planner supports paid-search demand research and campaign planning.",color:"#4285F4",color2:"#34A853"},
   "Merchant Center":{logo:"https://cdn.simpleicons.org/google",title:"Google Merchant Center",description:"Merchant Center manages product data used across eligible Google commerce and advertising surfaces.",color:"#34A853",color2:"#4285F4"},
-  "Looker Studio":{logo:"https://cdn.simpleicons.org/looker",title:"Looker Studio",description:"Looker Studio turns campaign and business data into reporting dashboards.",color:"#4285F4",color2:"#FBBC04"},
   "Next.js":{logo:"https://cdn.simpleicons.org/nextdotjs/FFFFFF",title:"Next.js",description:"Next.js powers modern React applications with routing, rendering and production-focused web capabilities.",color:"#FFFFFF",color2:"#777777"},
   "React":{logo:"https://cdn.simpleicons.org/react",title:"React",description:"React provides the component model used to build interactive web interfaces.",color:"#61DAFB",color2:"#0EA5E9"},
   "Clarity":{logo:"https://cdn.simpleicons.org/microsoft",title:"Microsoft Clarity",description:"Clarity supports behavior analysis through session and interaction insights.",color:"#5E5CE6",color2:"#00A4EF"},
@@ -112,7 +130,7 @@ function DigitalArsenal({tools}:{tools:string[]}){
   const detail=active?(TOOL_META[active]||fallbackTool(active)):null;
   return <section className="svc-arsenal"><div className="shell"><header><small>OUR DIGITAL ARSENAL</small><h2>Tools & Platforms We Command</h2><p>We combine specialist platforms with human strategy to navigate the digital realm with more clarity, speed and precision.</p></header></div>
     <div className="svc-ticker-window"><div className="svc-ticker-fade left"/><div className="svc-ticker-fade right"/>
-      <div className="svc-ticker-track">{[...tools,...tools,...tools,...tools].map((name,i)=>{const meta=TOOL_META[name]||fallbackTool(name);return <div className="svc-arsenal-item" key={`${name}-${i}`}><button className="svc-arsenal-card" style={{"--tool-color":toolColors(name,meta)[0],"--tool-color-2":toolColors(name,meta)[1]} as CSSProperties} onClick={()=>setActive(name)} aria-label={`Open details for ${name}`}><span className="svc-tool-img"><img src={meta.logo} alt={`${name} logo`} loading="lazy"/></span><span className="svc-tool-glow"/></button><span className="svc-tool-name">{name}</span></div>})}</div>
+      <div className="svc-ticker-track">{[...tools,...tools,...tools,...tools].map((name,i)=>{const meta=TOOL_META[name]||fallbackTool(name);return <div className="svc-arsenal-item" key={`${name}-${i}`}><button className="svc-arsenal-card" style={{"--tool-color":toolColors(name,meta)[0],"--tool-color-2":toolColors(name,meta)[1]} as React.CSSProperties} onClick={()=>setActive(name)} aria-label={`Open details for ${name}`}><span className="svc-tool-img"><img src={meta.logo} alt={`${name} logo`} loading="lazy"/></span><span className="svc-tool-glow"/></button><span className="svc-tool-name">{name}</span></div>})}</div>
     </div>
     {detail&&<div className="svc-tool-modal" role="dialog" aria-modal="true" aria-label={detail.title} onMouseDown={e=>{if(e.target===e.currentTarget)setActive(null)}}><div className="svc-tool-modal-content"><button className="svc-tool-close" onClick={()=>setActive(null)} aria-label="Close tool details">×</button><div className="svc-modal-logo"><img src={detail.logo} alt="" /></div><h3>{detail.title}</h3><p>{detail.description}</p></div></div>}
   </section>
@@ -135,7 +153,7 @@ export default function PhantomServicePage({d}:{d:ServiceData}){
     </div></section>
 
     <section className="svc-split shell"><div><small>THE HAUNTING TRUTH</small><h2>{d.introTitle}</h2><p>{d.intro}</p><p>We turn complexity into a clear, actionable system—connecting strategy, execution, experience and measurement instead of treating isolated tactics as growth.</p></div>
-      <div className="svc-visual"><i/><strong>PHANTOM</strong><em>{d.eyebrow}</em></div>
+      <div className="svc-visual svc-photo-visual"><img src={imageAsset(serviceImageKey(d.title))} alt={`${d.title} strategy and execution`} loading="eager"/><div className="svc-photo-shade"/><i/><strong>PHANTOM</strong><em>{d.eyebrow}</em></div>
     </section>
 
     <section className="shell svc-section" id="sorcery"><header><small>OUR SORCERY</small><h2>Services That Drive Results</h2><p>A complete spellbook built around the work this service actually requires.</p></header>

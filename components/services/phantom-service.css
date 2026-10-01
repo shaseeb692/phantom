@@ -246,3 +246,10 @@
   height:34px !important;
   object-fit:contain !important;
 }
+
+/* Context image layer — local, extension-independent through image-manifest.ts */
+.svc-photo-visual{position:relative;overflow:hidden;isolation:isolate;min-height:420px}
+.svc-photo-visual>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-3;filter:saturate(.82) contrast(1.06) brightness(.68);transform:scale(1.015)}
+.svc-photo-visual .svc-photo-shade{position:absolute;inset:0;z-index:-2;background:linear-gradient(145deg,rgba(7,7,12,.2),rgba(10,5,18,.72) 58%,rgba(7,7,12,.94)),radial-gradient(circle at 72% 20%,rgba(168,85,247,.28),transparent 38%)}
+.svc-photo-visual:after{content:"";position:absolute;inset:0;z-index:-1;border:1px solid rgba(255,255,255,.08);border-radius:inherit;pointer-events:none}
+@media(max-width:760px){.svc-photo-visual{min-height:320px}}
