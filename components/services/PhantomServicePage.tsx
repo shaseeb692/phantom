@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import Link from "next/link";
 import {useEffect,useRef,useState} from "react";
 import "./phantom-service.css";
@@ -7,18 +7,40 @@ export type ServiceData={title:string;eyebrow:string;hero:string;introTitle:stri
 
 function serviceImageKey(title:string){
   const t=title.toLowerCase();
-  if(t.includes("answer engine")||t.includes("generative engine")||t.includes("llm")||t.includes("ai search")) return "services/ai-search";
-  if(t.includes("search engine optimization")||t==="seo"||t.includes("search engine marketing")) return "services/search";
-  if(t.includes("google ads")||t.includes("meta ads")||t.includes("linkedin paid")||t.includes("tiktok")||t.includes("pinterest")||t.includes("snapchat")||t.includes("line app")||t.includes("paid marketing")||t.includes("pay per click")) return "services/paid-media";
-  if(t.includes("social media")) return "services/social-media";
-  if(t.includes("web development")) return "services/web-development";
-  if(t.includes("web designing")||t.includes("web design")) return "services/web-design";
-  if(t.includes("branding")) return "services/branding";
-  if(t.includes("graphic")) return "services/creative";
-  if(t.includes("animation")) return "services/animation";
-  if(t.includes("pr marketing")) return "services/pr-marketing";
-  if(t.includes("print")) return "services/print-services";
-  return "services/creative";
+
+  if(t.includes("answer engine")) return "services/Answer Engine Optimization";
+  if(t.includes("generative engine")) return "services/Generative Search Optimization";
+  if(t.includes("llm") || t.includes("ai search")) return "services/AI Search Optimization";
+
+  if(t.includes("search engine optimization") || t === "seo") return "services/SEO";
+  if(t.includes("search engine marketing") || t === "sem") return "services/SEM";
+  if(t.includes("pay per click") || t.includes("pay-per-click") || t === "ppc") return "services/PPC Advertising";
+
+  if(t.includes("google ads")) return "services/Google Ads";
+  if(t.includes("meta ads")) return "services/Meta Ads";
+  if(t.includes("linkedin")) return "services/LinkedIn Ads";
+  if(t.includes("tiktok")) return "services/TikTok Ads";
+  if(t.includes("pinterest")) return "services/Pinterest Advertising";
+  if(t.includes("snapchat")) return "services/Snapchat Ads";
+  if(t.includes("line")) return "services/LINE Ads";
+
+  if(t.includes("paid social") || t.includes("social media paid")) return "services/Paid Social";
+  if(t.includes("social media marketing")) return "services/Social Media Marketing";
+
+  if(t.includes("graphic") || t.includes("creative design")) return "services/Creative Designing";
+  if(t.includes("branding")) return "services/Branding";
+  if(t.includes("pr marketing") || t.includes("public relation")) return "services/PR Marketing";
+
+  if(t.includes("web development")) return "services/Web Development";
+  if(t.includes("web designing") || t.includes("web design")) return "services/Web Designing";
+  if(t.includes("mobile app")) return "services/Mobile App Development";
+  if(t.includes("print")) return "services/Print Services";
+
+  if(t.includes("2d animation")) return "services/2D Animation";
+  if(t.includes("3d animation")) return "services/3D Animation";
+  if(t.includes("animation")) return "services/2D Animation";
+
+  return "services/Creative Designing";
 }
 
 const DEFAULT_INDUSTRIES=['Real Estate','Healthcare','E-Commerce','SaaS','Finance & Legal','Home Services'];
@@ -132,7 +154,7 @@ function DigitalArsenal({tools}:{tools:string[]}){
     <div className="svc-ticker-window"><div className="svc-ticker-fade left"/><div className="svc-ticker-fade right"/>
       <div className="svc-ticker-track">{[...tools,...tools,...tools,...tools].map((name,i)=>{const meta=TOOL_META[name]||fallbackTool(name);return <div className="svc-arsenal-item" key={`${name}-${i}`}><button className="svc-arsenal-card" style={{"--tool-color":toolColors(name,meta)[0],"--tool-color-2":toolColors(name,meta)[1]} as React.CSSProperties} onClick={()=>setActive(name)} aria-label={`Open details for ${name}`}><span className="svc-tool-img"><img src={meta.logo} alt={`${name} logo`} loading="lazy"/></span><span className="svc-tool-glow"/></button><span className="svc-tool-name">{name}</span></div>})}</div>
     </div>
-    {detail&&<div className="svc-tool-modal" role="dialog" aria-modal="true" aria-label={detail.title} onMouseDown={e=>{if(e.target===e.currentTarget)setActive(null)}}><div className="svc-tool-modal-content"><button className="svc-tool-close" onClick={()=>setActive(null)} aria-label="Close tool details">×</button><div className="svc-modal-logo"><img src={detail.logo} alt="" /></div><h3>{detail.title}</h3><p>{detail.description}</p></div></div>}
+    {detail&&<div className="svc-tool-modal" role="dialog" aria-modal="true" aria-label={detail.title} onMouseDown={e=>{if(e.target===e.currentTarget)setActive(null)}}><div className="svc-tool-modal-content"><button className="svc-tool-close" onClick={()=>setActive(null)} aria-label="Close tool details">Ã—</button><div className="svc-modal-logo"><img src={detail.logo} alt="" /></div><h3>{detail.title}</h3><p>{detail.description}</p></div></div>}
   </section>
 }
 export default function PhantomServicePage({d}:{d:ServiceData}){
@@ -153,7 +175,7 @@ export default function PhantomServicePage({d}:{d:ServiceData}){
     </div></section>
 
     <section className="svc-split shell"><div><small>THE HAUNTING TRUTH</small><h2>{d.introTitle}</h2><p>{d.intro}</p><p>We turn complexity into a clear, actionable system—connecting strategy, execution, experience and measurement instead of treating isolated tactics as growth.</p></div>
-      <div className="svc-visual svc-photo-visual"><img src={imageAsset(serviceImageKey(d.title))} alt={`${d.title} strategy and execution`} loading="eager"/><div className="svc-photo-shade"/><i/><strong>PHANTOM</strong><em>{d.eyebrow}</em></div>
+      <div className="svc-visual svc-photo-visual"><img src={imageAsset(serviceImageKey(d.title))} alt={`${d.title} strategy and execution`} loading="eager"/></div>
     </section>
 
     <section className="shell svc-section" id="sorcery"><header><small>OUR SORCERY</small><h2>Services That Drive Results</h2><p>A complete spellbook built around the work this service actually requires.</p></header>
@@ -195,3 +217,5 @@ export default function PhantomServicePage({d}:{d:ServiceData}){
     </section>
   </main>
 }
+
+
