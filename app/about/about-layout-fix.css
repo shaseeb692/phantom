@@ -58,3 +58,88 @@
     grid-column:auto !important;
   }
 }
+
+
+/* ABOUT - WHO WE ARE IMAGE */
+#who-we-are .svc-photo-visual{
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  aspect-ratio:1200 / 700 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  align-self:center !important;
+  background:#050507 !important;
+}
+
+#who-we-are .svc-photo-visual > img{
+  position:relative !important;
+  inset:auto !important;
+  display:block !important;
+
+  width:100% !important;
+  height:100% !important;
+
+  min-width:0 !important;
+  min-height:0 !important;
+
+  object-fit:contain !important;
+  object-position:center !important;
+
+  transform:none !important;
+  filter:none !important;
+}
+
+
+/* ABOUT WHO WE ARE FINAL */
+
+/* Give the visual more horizontal room */
+#who-we-are.svc-split{
+  grid-template-columns:minmax(0, 0.82fr) minmax(0, 1.18fr) !important;
+  align-items:center !important;
+  gap:44px !important;
+}
+
+/* Full 1200x700 image - no cropping */
+#who-we-are .svc-photo-visual{
+  width:100% !important;
+  max-width:none !important;
+  height:auto !important;
+  min-height:0 !important;
+  aspect-ratio:1200 / 700 !important;
+  padding:0 !important;
+  margin:0 !important;
+  overflow:hidden !important;
+  background:#050507 !important;
+}
+
+/* Image fills its complete frame */
+#who-we-are .svc-photo-visual > img{
+  position:absolute !important;
+  inset:0 !important;
+
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+
+  object-fit:contain !important;
+  object-position:center !important;
+
+  display:block !important;
+  transform:none !important;
+  filter:none !important;
+}
+
+/* Tablet/mobile */
+@media(max-width:900px){
+
+  #who-we-are.svc-split{
+    grid-template-columns:1fr !important;
+    gap:24px !important;
+  }
+
+  #who-we-are .svc-photo-visual{
+    width:100% !important;
+    aspect-ratio:1200 / 700 !important;
+  }
+}
