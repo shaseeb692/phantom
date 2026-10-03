@@ -2,13 +2,43 @@ import type {Metadata} from "next";
 import PhantomServicePage,{type ServiceData} from "@/components/services/PhantomServicePage";
 
 const d:ServiceData={hideArsenal:true,
+parentService:{title:"Google Ads",href:"/google-ads"},
+
 title:"Google Shopping Ads",
 eyebrow:"GOOGLE SHOPPING ADS",
 hero:"Put Products in Sight. Turn Searches Into Sales.",
 introTitle:"Product-Led Advertising Built to Sell",
 intro:"Google Shopping Ads connect product data with commercial search intent. Phantom structures feeds, campaigns and measurement so shoppers see accurate products, useful information and stronger paths to purchase.",
 services:["Merchant Center Setup","Product Feed Optimization","Shopping Campaign Structure","Product Grouping","Performance Max for Retail","Conversion Tracking","Feed Diagnostics","Shopping Remarketing"],
-failures:["Incomplete or inaccurate product feeds","Poor product segmentation","Optimizing traffic without tracking revenue actions"],
+"relatedServices":[{
+  "title":"Search Ads",
+  "description":"Capture high-intent demand from people actively searching for your products, services or solutions.",
+  "href":"/google-ads/search-ads"
+},{
+  "title":"Display Ads",
+  "description":"Build visibility across Google's Display Network with audience-led visual campaigns and remarketing.",
+  "href":"/google-ads/display-ads"
+},{
+  "title":"Video Ads",
+  "description":"Reach and influence audiences through YouTube and Google's video advertising inventory.",
+  "href":"/google-ads/video-ads"
+},{
+  "title":"Performance Max",
+  "description":"Drive goal-based performance across Google's channels through automated cross-channel campaigns.",
+  "href":"/google-ads/performance-max"
+},{
+  "title":"Demand Gen",
+  "description":"Create demand with visual campaigns designed for discovery-focused placements across Google.",
+  "href":"/google-ads/demand-gen"
+},{
+  "title":"App Advertising",
+  "description":"Promote app installs, engagement and valuable in-app actions across Google's advertising ecosystem.",
+  "href":"/google-ads/app-advertising"
+},{
+  "title":"Local Search",
+  "description":"Capture location-driven search demand from customers close to the business and ready to act.",
+  "href":"/google-ads/local-search"
+}],failures:["Incomplete or inaccurate product feeds","Poor product segmentation","Optimizing traffic without tracking revenue actions"],
 process:["Commerce Audit","Merchant Center Setup","Feed Optimization","Campaign Architecture","Conversion Validation","Performance Optimization"],
 arsenal:["Google Ads","Merchant Center","Google Analytics 4","Google Tag Manager","Looker Studio","Shopify"],
 faqs:[

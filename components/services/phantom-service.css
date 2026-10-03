@@ -279,3 +279,506 @@
 .svc-photo-visual:after{
   z-index:2 !important;
 }
+
+/* ========================================================
+   INTERNAL SERVICE JOURNEY
+======================================================== */
+
+.svc-service-link{
+  display:block;
+  color:inherit;
+  text-decoration:none;
+}
+
+.svc-service-link article{
+  height:100%;
+  cursor:pointer;
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    box-shadow .22s ease;
+}
+
+.svc-service-link:hover article{
+  transform:translateY(-4px);
+  border-color:rgba(192,132,252,.42);
+  box-shadow:0 18px 50px rgba(88,28,135,.16);
+}
+
+.svc-card-link{
+  display:inline-block;
+  margin-top:14px;
+  color:#c084fc;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.04em;
+}
+
+.svc-parent-link{
+  margin-top:28px;
+  margin-bottom:-8px;
+}
+
+.svc-parent-link a{
+  display:inline-flex;
+  align-items:center;
+  color:#c084fc;
+  font-size:13px;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.svc-parent-link a:hover{
+  color:#fff;
+}
+
+.svc-related-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+
+.svc-related-card{
+  display:block;
+  padding:24px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:18px;
+  background:rgba(255,255,255,.035);
+  color:inherit;
+  text-decoration:none;
+  transition:
+    transform .22s ease,
+    border-color .22s ease,
+    background .22s ease;
+}
+
+.svc-related-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(192,132,252,.38);
+  background:rgba(168,85,247,.07);
+}
+
+.svc-related-card h3{
+  margin:0 0 9px;
+  color:#fff;
+}
+
+.svc-related-card p{
+  margin:0;
+  color:#aeb4c0;
+  line-height:1.65;
+}
+
+.svc-related-card span{
+  display:inline-block;
+  margin-top:16px;
+  color:#c084fc;
+  font-size:12px;
+  font-weight:700;
+}
+
+@media(max-width:700px){
+  .svc-related-grid{
+    grid-template-columns:1fr;
+  }
+}
+/* Same-page service journey anchors */
+.svc-why-panel[id]{
+  scroll-margin-top:120px;
+}
+/* =========================================================
+   COMPACT SERVICE JOURNEY CARDS
+   PPC / SMM and other small service groups
+   ========================================================= */
+
+.svc-grid:has(.svc-service-link):has(.svc-service-link:nth-child(2)):not(:has(.svc-service-link:nth-child(5))){
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:14px !important;
+  align-items:stretch !important;
+}
+
+.svc-grid:has(.svc-service-link):not(:has(.svc-service-link:nth-child(5))) .svc-service-link{
+  flex:1 1 280px !important;
+  min-width:0 !important;
+  max-width:none !important;
+  text-decoration:none !important;
+}
+
+.svc-grid:has(.svc-service-link):not(:has(.svc-service-link:nth-child(5))) .svc-service-link article{
+  height:100% !important;
+  min-height:0 !important;
+  padding:24px 26px !important;
+  border-radius:22px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+}
+
+.svc-grid:has(.svc-service-link):not(:has(.svc-service-link:nth-child(5))) .svc-service-link article b{
+  margin-bottom:12px !important;
+}
+
+.svc-grid:has(.svc-service-link):not(:has(.svc-service-link:nth-child(5))) .svc-service-link article h3{
+  margin:0 0 8px !important;
+}
+
+.svc-grid:has(.svc-service-link):not(:has(.svc-service-link:nth-child(5))) .svc-service-link article p{
+  margin:0 0 12px !important;
+}
+
+.svc-grid:has(.svc-service-link):not(:has(.svc-service-link:nth-child(5))) .svc-card-link{
+  margin-top:auto !important;
+}
+
+/* Tablet */
+@media(max-width:900px){
+  .svc-grid:has(.svc-service-link):not(:has(.svc-service-link:nth-child(5))) .svc-service-link{
+    flex:1 1 calc(50% - 14px) !important;
+  }
+}
+
+/* Mobile */
+@media(max-width:620px){
+  .svc-grid:has(.svc-service-link):not(:has(.svc-service-link:nth-child(5))){
+    flex-direction:column !important;
+  }
+
+  .svc-grid:has(.svc-service-link):not(:has(.svc-service-link:nth-child(5))) .svc-service-link{
+    flex:1 1 auto !important;
+    width:100% !important;
+  }
+
+  .svc-grid:has(.svc-service-link):not(:has(.svc-service-link:nth-child(5))) .svc-service-link article{
+    padding:20px !important;
+  }
+}
+/* =========================================================
+   LARGE CLICKABLE SERVICE GROUPS
+   8 cards = 4 columns x 2 rows
+   ========================================================= */
+
+.svc-grid:has(.svc-service-link:nth-child(8)){
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:14px !important;
+}
+
+.svc-grid:has(.svc-service-link:nth-child(8)) .svc-service-link{
+  width:100% !important;
+  min-width:0 !important;
+  text-decoration:none !important;
+}
+
+.svc-grid:has(.svc-service-link:nth-child(8)) .svc-service-link article{
+  height:100% !important;
+}
+
+/* Tablet: 2 x 4 */
+@media(max-width:1100px){
+  .svc-grid:has(.svc-service-link:nth-child(8)){
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+/* Mobile: 1 column */
+@media(max-width:620px){
+  .svc-grid:has(.svc-service-link:nth-child(8)){
+    grid-template-columns:1fr !important;
+  }
+}
+/* =========================================================
+   GOOGLE ADS SIBLING RELATED GRID
+   7 cards: 4 first row + 3 full-width second row
+   ========================================================= */
+
+.svc-related-grid:has(> .svc-related-card:nth-child(7)){
+  display:grid !important;
+  grid-template-columns:repeat(12,minmax(0,1fr)) !important;
+  gap:14px !important;
+}
+
+.svc-related-grid:has(> .svc-related-card:nth-child(7)) > .svc-related-card{
+  grid-column:span 3 !important;
+  width:100% !important;
+  min-width:0 !important;
+}
+
+/* Last 3 fill second row */
+.svc-related-grid:has(> .svc-related-card:nth-child(7)) > .svc-related-card:nth-child(n+5){
+  grid-column:span 4 !important;
+}
+
+/* Tablet: 2 columns */
+@media(max-width:1000px){
+
+  .svc-related-grid:has(> .svc-related-card:nth-child(7)){
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  .svc-related-grid:has(> .svc-related-card:nth-child(7)) > .svc-related-card,
+  .svc-related-grid:has(> .svc-related-card:nth-child(7)) > .svc-related-card:nth-child(n+5){
+    grid-column:auto !important;
+  }
+
+  /* Last odd card fills row */
+  .svc-related-grid:has(> .svc-related-card:nth-child(7)) > .svc-related-card:last-child{
+    grid-column:1 / -1 !important;
+  }
+}
+
+/* Mobile */
+@media(max-width:620px){
+
+  .svc-related-grid:has(> .svc-related-card:nth-child(7)){
+    grid-template-columns:1fr !important;
+  }
+
+  .svc-related-grid:has(> .svc-related-card:nth-child(7)) > .svc-related-card:last-child{
+    grid-column:auto !important;
+  }
+}
+
+
+/* PHANTOM CLICKABLE CARD HOVER START */
+
+/*
+   DEFAULT = existing dark / black card
+   HOVER   = Phantom purple
+*/
+
+
+/* CLICKABLE SERVICE CARDS */
+
+.svc-service-link{
+  text-decoration:none !important;
+  color:inherit !important;
+}
+
+.svc-service-link article{
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease !important;
+}
+
+.svc-service-link:hover article{
+  transform:translateY(-3px) !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(48,16,64,.94),
+      rgba(22,10,31,.98)
+    ) !important;
+
+  border-color:rgba(205,112,255,.78) !important;
+
+  box-shadow:
+    0 12px 34px rgba(128,38,190,.17),
+    0 0 24px rgba(154,66,220,.09),
+    inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+
+
+/* RELATED SERVICES */
+
+.svc-related-card{
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    background .25s ease,
+    box-shadow .25s ease !important;
+}
+
+.svc-related-card:hover{
+  transform:translateY(-3px) !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(48,16,64,.94),
+      rgba(22,10,31,.98)
+    ) !important;
+
+  border-color:rgba(205,112,255,.78) !important;
+
+  box-shadow:
+    0 12px 34px rgba(128,38,190,.17),
+    0 0 24px rgba(154,66,220,.09),
+    inset 0 1px 0 rgba(255,255,255,.04) !important;
+}
+
+
+/* Purple action text ONLY on hover */
+
+.svc-service-link:hover .svc-card-link,
+.svc-related-card:hover span{
+  color:#d879ff !important;
+}
+
+/* PHANTOM CLICKABLE CARD HOVER END */
+
+/* FIVE SERVICE CARDS ONE ROW START */
+
+/*
+   Exactly 5 clickable service cards:
+   Desktop = 5 in one row
+   Tablet  = 2 columns
+   Mobile  = 1 column
+*/
+
+.svc-grid:has(> .svc-service-link:nth-child(5)):not(:has(> .svc-service-link:nth-child(6))){
+  display:grid !important;
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:12px !important;
+}
+
+.svc-grid:has(> .svc-service-link:nth-child(5)):not(:has(> .svc-service-link:nth-child(6))) > .svc-service-link{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+  flex:none !important;
+}
+
+/* Slightly compact cards so 5 fit cleanly */
+
+.svc-grid:has(> .svc-service-link:nth-child(5)):not(:has(> .svc-service-link:nth-child(6))) > .svc-service-link article{
+  height:100% !important;
+  min-height:220px !important;
+  padding:22px 18px !important;
+}
+
+.svc-grid:has(> .svc-service-link:nth-child(5)):not(:has(> .svc-service-link:nth-child(6))) h3{
+  font-size:20px !important;
+}
+
+.svc-grid:has(> .svc-service-link:nth-child(5)):not(:has(> .svc-service-link:nth-child(6))) p{
+  font-size:13px !important;
+  line-height:1.65 !important;
+}
+
+
+/* TABLET */
+
+@media(max-width:1100px){
+
+  .svc-grid:has(> .svc-service-link:nth-child(5)):not(:has(> .svc-service-link:nth-child(6))){
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  .svc-grid:has(> .svc-service-link:nth-child(5)):not(:has(> .svc-service-link:nth-child(6))) > .svc-service-link:last-child{
+    grid-column:1 / -1 !important;
+  }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:620px){
+
+  .svc-grid:has(> .svc-service-link:nth-child(5)):not(:has(> .svc-service-link:nth-child(6))){
+    grid-template-columns:1fr !important;
+  }
+
+  .svc-grid:has(> .svc-service-link:nth-child(5)):not(:has(> .svc-service-link:nth-child(6))) > .svc-service-link:last-child{
+    grid-column:auto !important;
+  }
+
+}
+
+/* FIVE SERVICE CARDS ONE ROW END */
+
+/* THREE RELATED SERVICES ONE ROW START */
+
+/*
+   Exactly 3 Related Services:
+   Desktop = 3 x 1
+   Tablet  = 2 + 1
+   Mobile  = 1 column
+*/
+
+.svc-related-grid:has(> .svc-related-card:nth-child(3)):not(:has(> .svc-related-card:nth-child(4))){
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:14px !important;
+}
+
+.svc-related-grid:has(> .svc-related-card:nth-child(3)):not(:has(> .svc-related-card:nth-child(4))) > .svc-related-card{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+}
+
+
+/* TABLET */
+
+@media(max-width:900px){
+
+  .svc-related-grid:has(> .svc-related-card:nth-child(3)):not(:has(> .svc-related-card:nth-child(4))){
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  .svc-related-grid:has(> .svc-related-card:nth-child(3)):not(:has(> .svc-related-card:nth-child(4))) > .svc-related-card:last-child{
+    grid-column:1 / -1 !important;
+  }
+
+}
+
+
+/* MOBILE */
+
+@media(max-width:620px){
+
+  .svc-related-grid:has(> .svc-related-card:nth-child(3)):not(:has(> .svc-related-card:nth-child(4))){
+    grid-template-columns:1fr !important;
+  }
+
+  .svc-related-grid:has(> .svc-related-card:nth-child(3)):not(:has(> .svc-related-card:nth-child(4))) > .svc-related-card:last-child{
+    grid-column:auto !important;
+  }
+
+}
+
+/* THREE RELATED SERVICES ONE ROW END */
+
+/* FOUR RELATED SERVICES ONE ROW START */
+
+/*
+   Exactly 4 Related Services
+   Desktop = 4 x 1
+   Tablet = 2 x 2
+   Mobile = 1 column
+*/
+
+.svc-related-grid:has(> .svc-related-card:nth-child(4)):not(:has(> .svc-related-card:nth-child(5))){
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:14px !important;
+}
+
+.svc-related-grid:has(> .svc-related-card:nth-child(4)):not(:has(> .svc-related-card:nth-child(5))) > .svc-related-card{
+  width:100% !important;
+  min-width:0 !important;
+  max-width:none !important;
+}
+
+@media(max-width:1000px){
+
+  .svc-related-grid:has(> .svc-related-card:nth-child(4)):not(:has(> .svc-related-card:nth-child(5))){
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+}
+
+@media(max-width:620px){
+
+  .svc-related-grid:has(> .svc-related-card:nth-child(4)):not(:has(> .svc-related-card:nth-child(5))){
+    grid-template-columns:1fr !important;
+  }
+
+}
+
+/* FOUR RELATED SERVICES ONE ROW END */

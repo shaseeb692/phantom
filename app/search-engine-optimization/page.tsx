@@ -8,6 +8,23 @@ export const metadata:Metadata={
 };
 
 const d:ServiceData={
+relatedServices:[
+{
+  title:"Answer Engine Optimization",
+  description:"Structure content to answer real questions clearly and strengthen visibility across answer-driven search experiences.",
+  href:"/answer-engine-optimization"
+},
+{
+  title:"Generative Engine Optimization",
+  description:"Improve how your brand and content can be understood, referenced and surfaced across generative search experiences.",
+  href:"/generative-engine-optimization"
+},
+{
+  title:"LLM / AI Search",
+  description:"Build stronger brand visibility and discoverability across AI assistants, LLM-powered search and emerging discovery journeys.",
+  href:"/llm-ai-search-optimization"
+}
+],
   title:"Search Engine Optimization",
   eyebrow:"SEARCH ENGINE OPTIMIZATION",
   hero:"Conjure Up Digital Success.",

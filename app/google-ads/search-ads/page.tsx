@@ -2,13 +2,43 @@ import type {Metadata} from "next";
 import PhantomServicePage,{type ServiceData} from "@/components/services/PhantomServicePage";
 
 const d:ServiceData={hideArsenal:true,
+parentService:{title:"Google Ads",href:"/google-ads"},
+
 title:"Google Search Ads",
 eyebrow:"GOOGLE SEARCH ADS",
 hero:"Own the Search. Capture the Intent.",
 introTitle:"High-Intent Search Advertising",
 intro:"Google Search Ads put your brand in front of people actively searching for products, services and solutions like yours. Phantom builds intent-led campaigns designed around relevance, conversion journeys and measurable action.",
 services:["Keyword Research & Intent Mapping","Search Campaign Architecture","Responsive Search Ads","Negative Keyword Management","Audience & Demographic Layering","Conversion Tracking","Landing Page Alignment","Remarketing for Search"],
-failures:["Targeting broad or irrelevant keywords","Weak ad-to-landing-page relevance","Optimizing clicks instead of meaningful conversions"],
+"relatedServices":[{
+  "title":"Display Ads",
+  "description":"Build visibility across Google's Display Network with audience-led visual campaigns and remarketing.",
+  "href":"/google-ads/display-ads"
+},{
+  "title":"Shopping Ads",
+  "description":"Put products directly in front of high-intent shoppers with feed-driven Google Shopping campaigns.",
+  "href":"/google-ads/shopping-ads"
+},{
+  "title":"Video Ads",
+  "description":"Reach and influence audiences through YouTube and Google's video advertising inventory.",
+  "href":"/google-ads/video-ads"
+},{
+  "title":"Performance Max",
+  "description":"Drive goal-based performance across Google's channels through automated cross-channel campaigns.",
+  "href":"/google-ads/performance-max"
+},{
+  "title":"Demand Gen",
+  "description":"Create demand with visual campaigns designed for discovery-focused placements across Google.",
+  "href":"/google-ads/demand-gen"
+},{
+  "title":"App Advertising",
+  "description":"Promote app installs, engagement and valuable in-app actions across Google's advertising ecosystem.",
+  "href":"/google-ads/app-advertising"
+},{
+  "title":"Local Search",
+  "description":"Capture location-driven search demand from customers close to the business and ready to act.",
+  "href":"/google-ads/local-search"
+}],failures:["Targeting broad or irrelevant keywords","Weak ad-to-landing-page relevance","Optimizing clicks instead of meaningful conversions"],
 process:["Search Intent Discovery","Keyword Architecture","Campaign & Ad Creation","Conversion Tracking","Landing Page Alignment","Continuous Optimization"],
 arsenal:["Google Ads","Keyword Planner","Google Analytics 4","Google Tag Manager","Looker Studio","Google Search Console"],
 faqs:[

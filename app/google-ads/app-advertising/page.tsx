@@ -2,13 +2,43 @@ import type {Metadata} from "next";
 import PhantomServicePage,{type ServiceData} from "@/components/services/PhantomServicePage";
 
 const d:ServiceData={hideArsenal:true,
+parentService:{title:"Google Ads",href:"/google-ads"},
+
 title:"Google Ads App Advertising",
 eyebrow:"APP ADVERTISING",
 hero:"More Installs. Better Users. Stronger App Growth.",
 introTitle:"App Campaigns Built Around Valuable Actions",
 intro:"Google App advertising can help promote mobile applications across eligible Google surfaces. Phantom aligns campaign objectives, creative assets and measurement around installs, engagement and valuable in-app actions.",
 services:["App Campaign Strategy","Install Campaigns","In-App Action Campaigns","Audience & Goal Planning","Creative Asset Strategy","Conversion Measurement","Deep-Link Journey Review","Performance Optimization"],
-failures:["Chasing installs without user quality","Weak in-app event measurement","Sending users into broken or confusing app journeys"],
+"relatedServices":[{
+  "title":"Search Ads",
+  "description":"Capture high-intent demand from people actively searching for your products, services or solutions.",
+  "href":"/google-ads/search-ads"
+},{
+  "title":"Display Ads",
+  "description":"Build visibility across Google's Display Network with audience-led visual campaigns and remarketing.",
+  "href":"/google-ads/display-ads"
+},{
+  "title":"Shopping Ads",
+  "description":"Put products directly in front of high-intent shoppers with feed-driven Google Shopping campaigns.",
+  "href":"/google-ads/shopping-ads"
+},{
+  "title":"Video Ads",
+  "description":"Reach and influence audiences through YouTube and Google's video advertising inventory.",
+  "href":"/google-ads/video-ads"
+},{
+  "title":"Performance Max",
+  "description":"Drive goal-based performance across Google's channels through automated cross-channel campaigns.",
+  "href":"/google-ads/performance-max"
+},{
+  "title":"Demand Gen",
+  "description":"Create demand with visual campaigns designed for discovery-focused placements across Google.",
+  "href":"/google-ads/demand-gen"
+},{
+  "title":"Local Search",
+  "description":"Capture location-driven search demand from customers close to the business and ready to act.",
+  "href":"/google-ads/local-search"
+}],failures:["Chasing installs without user quality","Weak in-app event measurement","Sending users into broken or confusing app journeys"],
 process:["App Growth Audit","Goal Definition","Event Validation","Creative Planning","Campaign Launch","Performance Optimization"],
 arsenal:["Google Ads","Google Analytics 4","Firebase","Google Tag Manager","Google Play","Looker Studio"],
 faqs:[

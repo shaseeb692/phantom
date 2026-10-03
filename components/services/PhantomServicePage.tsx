@@ -3,7 +3,7 @@ import Link from "next/link";
 import {useEffect,useRef,useState} from "react";
 import "./phantom-service.css";
 import {imageAsset} from "@/lib/image-manifest";
-export type ServiceData={title:string;eyebrow:string;hero:string;introTitle:string;intro:string;services:string[];failures:string[];process:string[];arsenal:string[];faqs:[string,string][];markets?:string[];marketsTitle?:string;marketsIntro?:string;industries?:string[];counterLabels?:string[];valueTitle?:string;valueIntro?:string;valueBullets?:string[];choiceTitle?:string;choiceCopy?:string;choiceButton?:string;hideArsenal?:boolean};
+export type ServiceData={title:string;eyebrow:string;hero:string;introTitle:string;intro:string;services:string[];failures:string[];process:string[];arsenal:string[];faqs:[string,string][];markets?:string[];marketsTitle?:string;marketsIntro?:string;industries?:string[];counterLabels?:string[];valueTitle?:string;valueIntro?:string;valueBullets?:string[];choiceTitle?:string;choiceCopy?:string;choiceButton?:string;hideArsenal?:boolean;serviceCards?:{title:string;description:string;href:string}[];parentService?:{title:string;href:string};relatedServices?:{title:string;description:string;href:string}[];whySectionId?:string};
 
 function serviceImageKey(title:string){
   const t=title.toLowerCase();
@@ -187,11 +187,22 @@ export default function PhantomServicePage({d}:{d:ServiceData}){
       <div className="svc-visual svc-photo-visual"><img src={imageAsset(serviceImageKey(d.title))} alt={`${d.title} strategy and execution`} loading="eager"/></div>
     </section>
 
+    {d.parentService&&
+      <div className="shell svc-parent-link">
+        <Link href={d.parentService.href}>← Explore {d.parentService.title}</Link>
+      </div>
+    }
+
     <section className="shell svc-section" id="sorcery"><header><small>OUR SORCERY</small><h2>Services That Drive Results</h2><p>A complete spellbook built around the work this service actually requires.</p></header>
-      <div className="svc-grid">{d.services.map((x,i)=><article key={x}><b>{String(i+1).padStart(2,"0")}</b><h3>{x}</h3><p>Strategy, execution and optimization aligned to your audience, goals and digital journey.</p></article>)}</div>
+      <div className="svc-grid">
+        {(d.serviceCards||d.services.map(x=>({title:x,description:"Strategy, execution and optimization aligned to your audience, goals and digital journey.",href:""}))).map((x,i)=>{
+          const card=<article><b>{String(i+1).padStart(2,"0")}</b><h3>{x.title}</h3><p>{x.description}</p>{x.href&&<span className="svc-card-link">Explore Service →</span>}</article>;
+          return x.href?<Link className="svc-service-link" href={x.href} key={x.title}>{card}</Link>:<div key={x.title}>{card}</div>
+        })}
+      </div>
     </section>
 
-    <section className="shell svc-why-panel">
+    <section className="shell svc-why-panel" id={d.whySectionId}>
       <small>WHY PHANTOM MARKETING</small><h2>{d.valueTitle||`${d.title}: Built to Drive Business, Not Vanity`}</h2>
       <div className="svc-why-top">
         <div><h3>{d.title}: Your Digital Growth Machine</h3><p>{d.valueIntro||`${d.title} should do more than create activity. It should connect visibility and attention to meaningful business action.`}</p><ul>{values.map(x=><li key={x}>{x}</li>)}</ul></div>
@@ -215,6 +226,26 @@ export default function PhantomServicePage({d}:{d:ServiceData}){
     <section className="shell svc-impact"><header><small>OUR SPECTRAL IMPACT</small><h2>Our Spectral Impact</h2><p>Clear strategy. Relevant execution. Measurable signals. We build systems designed to move from digital activity toward business impact.</p></header>
       <div className="svc-counters"><Counter to={100} suffix="%" label={(d.counterLabels||[])[0]||"Strategy Aligned"}/><Counter to={6} suffix="+" label={(d.counterLabels||[])[1]||"Core Process Stages"}/><Counter to={24} suffix="/7" label={(d.counterLabels||[])[2]||"Digital Presence"}/></div>
     </section>
+
+    {d.relatedServices&&d.relatedServices.length>0&&
+      <section className="shell svc-section svc-related">
+        <header>
+          <small>EXPLORE THE REALM</small>
+          <h2>Related Services</h2>
+          <p>Continue the journey with services that naturally support this strategy.</p>
+        </header>
+
+        <div className="svc-related-grid">
+          {d.relatedServices.map(x=>
+            <Link href={x.href} key={x.href} className="svc-related-card">
+              <h3>{x.title}</h3>
+              <p>{x.description}</p>
+              <span>Explore Service →</span>
+            </Link>
+          )}
+        </div>
+      </section>
+    }
 
     <section className="shell svc-faq"><header><small>WHISPERS FROM THE VOID</small><h2>Whispers from the Void: FAQs</h2><p>Questions about {d.title}? We&apos;ve got answers that cut through the digital fog.</p></header>
       {d.faqs.slice(0,Math.max(6,d.faqs.length)).map(([q,a])=><details key={q}><summary>{q}<span>+</span></summary><p>{a}</p></details>)}
