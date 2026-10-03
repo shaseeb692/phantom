@@ -128,7 +128,7 @@ export default function Page() {
 
         <div className="svc-visual svc-photo-visual">
           <img
-            src="/images/about/About US.webp"
+            src="/images/about/About Us.webp"
             alt="Phantom Marketing digital agency - Your Digital Demons"
             loading="eager"
           />
