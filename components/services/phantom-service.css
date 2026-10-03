@@ -253,3 +253,29 @@
 .svc-photo-visual .svc-photo-shade{position:absolute;inset:0;z-index:-2;background:linear-gradient(145deg,rgba(7,7,12,.2),rgba(10,5,18,.72) 58%,rgba(7,7,12,.94)),radial-gradient(circle at 72% 20%,rgba(168,85,247,.28),transparent 38%)}
 .svc-photo-visual:after{content:"";position:absolute;inset:0;z-index:-1;border:1px solid rgba(255,255,255,.08);border-radius:inherit;pointer-events:none}
 @media(max-width:760px){.svc-photo-visual{min-height:320px}}
+
+/* Service image frame fix - 1200x700 artwork */
+.svc-photo-visual{
+  aspect-ratio:1200 / 700 !important;
+  min-height:0 !important;
+  height:auto !important;
+  padding:0 !important;
+  background:#050507 !important;
+  overflow:hidden !important;
+}
+
+.svc-photo-visual>img{
+  position:relative !important;
+  inset:auto !important;
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  object-position:center !important;
+  z-index:1 !important;
+  filter:none !important;
+  transform:none !important;
+}
+
+.svc-photo-visual:after{
+  z-index:2 !important;
+}
