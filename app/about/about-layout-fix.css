@@ -1,0 +1,60 @@
+/* ABOUT PAGE ONLY */
+
+/* What Makes a Phantom: 4 cards in one row */
+.about-principles-row{
+  display:grid !important;
+  grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  gap:14px !important;
+}
+
+.about-principles-row > article{
+  width:100% !important;
+  min-width:0 !important;
+}
+
+/* Our Code: 5 cards in one row */
+.about-code-row{
+  display:grid !important;
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:12px !important;
+}
+
+.about-code-row > div{
+  width:100% !important;
+  min-width:0 !important;
+}
+
+.about-code-row > div > article{
+  width:100% !important;
+  height:100% !important;
+  min-width:0 !important;
+}
+
+/* Tablet */
+@media(max-width:1000px){
+
+  .about-principles-row{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  .about-code-row{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  .about-code-row > div:last-child{
+    grid-column:1 / -1 !important;
+  }
+}
+
+/* Mobile */
+@media(max-width:620px){
+
+  .about-principles-row,
+  .about-code-row{
+    grid-template-columns:1fr !important;
+  }
+
+  .about-code-row > div:last-child{
+    grid-column:auto !important;
+  }
+}

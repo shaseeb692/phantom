@@ -2,7 +2,6 @@ import type {Metadata} from "next";
 import PhantomServicePage,{type ServiceData} from "@/components/services/PhantomServicePage";
 
 const d:ServiceData={hideArsenal:true,
-parentService:{title:"Google Ads",href:"/google-ads"},
 
 title:"Google Display Ads",
 eyebrow:"GOOGLE DISPLAY ADS",
