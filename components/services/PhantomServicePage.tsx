@@ -1,9 +1,9 @@
-﻿"use client";
+"use client";
 import Link from "next/link";
 import {useEffect,useRef,useState} from "react";
 import "./phantom-service.css";
 import {imageAsset} from "@/lib/image-manifest";
-export type ServiceData={title:string;eyebrow:string;hero:string;introTitle:string;intro:string;services:string[];failures:string[];process:string[];arsenal:string[];faqs:[string,string][];markets?:string[];marketsTitle?:string;marketsIntro?:string;industries?:string[];counterLabels?:string[];valueTitle?:string;valueIntro?:string;valueBullets?:string[];choiceTitle?:string;choiceCopy?:string;choiceButton?:string};
+export type ServiceData={title:string;eyebrow:string;hero:string;introTitle:string;intro:string;services:string[];failures:string[];process:string[];arsenal:string[];faqs:[string,string][];markets?:string[];marketsTitle?:string;marketsIntro?:string;industries?:string[];counterLabels?:string[];valueTitle?:string;valueIntro?:string;valueBullets?:string[];choiceTitle?:string;choiceCopy?:string;choiceButton?:string;hideArsenal?:boolean};
 
 function serviceImageKey(title:string){
   const t=title.toLowerCase();
@@ -16,6 +16,14 @@ function serviceImageKey(title:string){
   if(t.includes("search engine marketing") || t === "sem") return "services/SEM";
   if(t.includes("pay per click") || t.includes("pay-per-click") || t === "ppc") return "services/PPC Advertising";
 
+  if(t.includes("google search ads")) return "services/Google Search Ads";
+  if(t.includes("google display ads")) return "services/Google Display Ads";
+  if(t.includes("google shopping ads")) return "services/Google Shopping Ads";
+  if(t.includes("google ads video ads") || t.includes("google video ads")) return "services/Google Ads Video Ads";
+  if(t.includes("google ads performance max") || t.includes("performance max")) return "services/Google Ads Performance Max";
+  if(t.includes("google ads demand gen") || t.includes("demand gen")) return "services/Google Ads Demand Gen";
+  if(t.includes("google ads app advertising") || t.includes("app advertising")) return "services/Google Ads App Advertising";
+  if(t.includes("google ads local search") || t.includes("local search")) return "services/Google Ads Local Search";
   if(t.includes("google ads")) return "services/Google Ads";
   if(t.includes("meta ads")) return "services/Meta Ads";
   if(t.includes("linkedin")) return "services/LinkedIn Ads";
@@ -36,6 +44,7 @@ function serviceImageKey(title:string){
   if(t.includes("mobile app")) return "services/Mobile App Development";
   if(t.includes("print")) return "services/Print Services";
 
+  if(t === "animation") return "services/Animation";
   if(t.includes("2d animation")) return "services/2D Animation";
   if(t.includes("3d animation")) return "services/3D Animation";
   if(t.includes("animation")) return "services/2D Animation";
@@ -201,7 +210,7 @@ export default function PhantomServicePage({d}:{d:ServiceData}){
       <div className="svc-industry-tail"><h3>Not seeing your industry? No problem!</h3><p>If your customers are searching, we ensure they find YOU.</p></div>
     </section>
 
-    <DigitalArsenal tools={d.arsenal}/>
+    {!d.hideArsenal&&<DigitalArsenal tools={d.arsenal}/>}
 
     <section className="shell svc-impact"><header><small>OUR SPECTRAL IMPACT</small><h2>Our Spectral Impact</h2><p>Clear strategy. Relevant execution. Measurable signals. We build systems designed to move from digital activity toward business impact.</p></header>
       <div className="svc-counters"><Counter to={100} suffix="%" label={(d.counterLabels||[])[0]||"Strategy Aligned"}/><Counter to={6} suffix="+" label={(d.counterLabels||[])[1]||"Core Process Stages"}/><Counter to={24} suffix="/7" label={(d.counterLabels||[])[2]||"Digital Presence"}/></div>

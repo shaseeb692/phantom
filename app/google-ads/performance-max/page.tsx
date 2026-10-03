@@ -1,0 +1,31 @@
+import type {Metadata} from "next";
+import PhantomServicePage,{type ServiceData} from "@/components/services/PhantomServicePage";
+
+const d:ServiceData={hideArsenal:true,
+title:"Google Ads Performance Max",
+eyebrow:"PERFORMANCE MAX",
+hero:"One Campaign. Multiple Surfaces. Relentless Optimization.",
+introTitle:"Performance Max Without the Black-Box Chaos",
+intro:"Performance Max combines Google's automation, audience signals, creative assets and conversion goals across multiple eligible Google surfaces. Phantom focuses on the inputs and measurement that give automation better direction.",
+services:["Performance Max Strategy","Asset Group Planning","Audience Signals","Creative Asset Management","Product Feed Integration","Conversion Tracking","Search Theme Strategy","Performance Analysis"],
+failures:["Feeding automation weak conversion data","Using poor or incomplete creative assets","Launching without meaningful account structure or measurement"],
+process:["Goal Definition","Tracking Audit","Signal & Asset Planning","Campaign Build","Launch & Learning","Continuous Optimization"],
+arsenal:["Google Ads","Google Analytics 4","Google Tag Manager","Merchant Center","Looker Studio","Google Ads Editor"],
+faqs:[
+["What is Performance Max?","Performance Max is a goal-based Google Ads campaign type that uses automation across multiple eligible Google advertising surfaces."],
+["Does Performance Max replace every campaign type?","Not necessarily. The right account structure depends on objectives, data, products, search strategy and the level of control required."],
+["What are audience signals?","Audience signals provide useful information that can help Google's systems understand relevant audience characteristics and intent."],
+["Does Performance Max need creative assets?","Strong text, image and video assets can improve the campaign's ability to communicate across different placements."],
+["How important is conversion tracking?","It is critical because automated bidding and optimization depend heavily on the conversion signals provided to the platform."],
+["Can Performance Max be used for e-commerce?","Yes. It can work with Merchant Center product feeds when appropriate for the retailer and campaign objectives."]
+],
+valueTitle:"Performance Max: Give Automation Better Signals",
+valueIntro:"Automation is only as useful as the objectives, conversion data, feeds, audiences and creative signals guiding it.",
+valueBullets:["Build campaigns around clearly defined business outcomes.","Give automation stronger audience, creative and conversion inputs.","Review performance signals instead of treating automation as set-and-forget."],
+choiceTitle:"The Choice is Yours… Feed the Machine Noise or Give It Direction",
+choiceCopy:"Make automation work from stronger signals, better assets and measurement tied to meaningful outcomes.",
+choiceButton:"MAXIMIZE PERFORMANCE!"
+};
+
+export const metadata:Metadata={title:`${d.title} | Phantom Marketing`,description:d.intro,alternates:{canonical:"/google-ads/performance-max"}};
+export default function Page(){return <PhantomServicePage d={d}/>}

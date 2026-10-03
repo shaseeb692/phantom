@@ -8,6 +8,7 @@ export const IMAGE_ASSETS = {
   "services/2D Animation": "/images/services/2D Animation.webp",
   "services/3D Animation": "/images/services/3D Animation.webp",
   "services/AI Search Optimization": "/images/services/AI Search Optimization.webp",
+  "services/Animation": "/images/services/Animation.webp",
   "services/Answer Engine Optimization": "/images/services/Answer Engine Optimization.webp",
   "services/Branding": "/images/services/Branding.webp",
   "services/Creative Designing": "/images/services/Creative Designing.webp",
