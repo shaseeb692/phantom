@@ -143,3 +143,27 @@
     aspect-ratio:1200 / 700 !important;
   }
 }
+
+
+/* ABOUT REALM CTA ALIGNMENT */
+
+.about-realm-grid{
+  align-items:stretch !important;
+}
+
+.about-realm-grid > *{
+  height:100% !important;
+}
+
+.about-realm-grid article,
+.about-realm-grid .svc-related-card{
+  height:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+}
+
+.about-realm-grid article > span:last-child,
+.about-realm-grid .svc-related-card > span:last-child{
+  margin-top:auto !important;
+  padding-top:18px !important;
+}

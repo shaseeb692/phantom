@@ -214,7 +214,7 @@ export default function Page() {
           </p>
         </header>
 
-        <div className="svc-related-grid">
+        <div className="svc-related-grid about-realm-grid">
 
           <Link href="/our-journey" className="svc-related-card">
             <h3>Our Journey</h3>
