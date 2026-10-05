@@ -1,83 +1,132 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "../../components/services/phantom-service.css";
+import "../about/about-layout-fix.css";
 import "./journey.css";
 
 export const metadata: Metadata = {
   title: "Our Journey | Phantom Marketing",
   description:
-    "Explore the Phantom Marketing journey, our evolution, milestones and the thinking that continues to shape Your Digital Demons.",
+    "Discover the journey behind Phantom Marketing and the moments that shaped Your Digital Demons.",
 };
 
-export default function OurJourneyPage() {
+export default function Page() {
   return (
-    <main className="svc-page journey-page">
+    <main className="svc phantom-service">
 
-      {/* HERO - NO IMAGE */}
-      <section className="svc-hero journey-hero">
-        <div className="shell svc-hero-inner">
-          <small>OUR JOURNEY</small>
+      {/* EXACT ABOUT HERO SYSTEM */}
+      <section className="svc-hero">
+        <div className="svc-glow" />
 
-          <h1>
+        <div className="svc-hero-in">
+          <span>OUR JOURNEY</span>
+
+          <h1>Phantom Marketing</h1>
+
+          <h2>
             From An Idea To
             <br />
-            <span>Your Digital Demons.</span>
-          </h1>
+            Your Digital Demons.
+          </h2>
 
           <p>
             A journey built with strategy, creativity and technology to make
-            brands visible, memorable and unignorable.
+            brands visible, memorable and difficult to ignore.
           </p>
 
           <div className="svc-actions">
-            <a href="#journey-timeline" className="svc-btn primary">
+            <a href="#our-timeline" className="gradient-btn">
               Explore Our Journey
             </a>
 
-            <Link href="/about" className="svc-btn secondary">
+            <Link href="/about" className="ghost-btn">
               Back to About
             </Link>
           </div>
 
           <div className="svc-trust">
-            <span>An Idea</span>
-            <span>A System</span>
-            <span>A Growing Legacy</span>
+            <b>Strategy First</b>
+            <b>Creativity With Purpose</b>
+            <b>Built to Evolve</b>
           </div>
         </div>
       </section>
 
 
-      {/* THE BEGINNING */}
-      <section className="shell journey-beginning">
-        <div className="journey-origin-copy">
+
+      {/* ORIGIN - ABOUT STYLE CONTENT + IMAGE */}
+      <section
+        className="svc-split shell journey-origin-split"
+        id="journey-origin"
+      >
+
+        <div>
           <small>THE BEGINNING</small>
 
-          <h2>
-            Every Phantom
-            <br />
-            Has An Origin.
-          </h2>
+          <h2>Every Phantom Has An Origin</h2>
 
           <p>
-            Phantom Marketing started with a simple idea: to create a digital
-            agency that does more than market brands. We wanted to build brands
-            that haunt searches, possess feeds and leave a presence long after
-            the first interaction.
+            Phantom Marketing started with a simple belief: digital marketing
+            should do more than generate impressions. It should create presence.
+          </p>
+
+          <p>
+            We wanted to build something that connected strategy, creativity,
+            technology and performance instead of treating every digital channel
+            as a separate activity.
+          </p>
+
+          <p>
+            That idea became <strong>Your Digital Demons</strong>: a digital
+            identity built around making brands visible, memorable and difficult
+            to ignore.
           </p>
         </div>
 
-        <div className="journey-origin-visual">
-          <div className="journey-mark">P</div>
+
+        <div className="svc-visual svc-photo-visual journey-origin-image">
+          <img
+            src="/images/about/our-journey.webp"
+            alt="The journey of Phantom Marketing"
+            loading="eager"
+          />
         </div>
+
       </section>
 
 
-      {/* TIMELINE */}
-      <section id="journey-timeline" className="shell journey-section">
-        <header className="journey-heading">
+      {/* FULL WIDTH PHANTOM STORY */}
+      <section className="shell journey-system-wrap">
+
+        <div className="journey-system-panel">
+
+          <small>THE PHANTOM STORY</small>
+
+          <h2>An Idea Became A Digital System.</h2>
+
+          <p>
+            Search, AI discovery, paid media, social, branding, creative, web
+            and motion became parts of one connected ecosystem.
+          </p>
+
+          <p>
+            The tools continue to evolve, but the purpose remains the same:
+            build digital presence that matters.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      {/* ONLY UNIQUE JOURNEY SECTION */}
+      <section className="shell svc-section journey-timeline-section" id="our-timeline">
+
+        <header>
           <small>OUR TIMELINE</small>
+
           <h2>Key Moments In Our Journey</h2>
+
           <p>
             From the first idea to a connected digital ecosystem, here are the
             moments that shaped Phantom Marketing.
@@ -87,215 +136,212 @@ export default function OurJourneyPage() {
         <div className="journey-timeline">
 
           <div className="journey-line" aria-hidden="true">
-            <span>01</span>
-            <span>02</span>
-            <span>03</span>
-            <span>04</span>
+            <span>20</span>
+            <span>21</span>
+            <span>22</span>
+            <span>23</span>
+            <span>24</span>
+            <span>26</span>
+            <span className="phantom-f">F</span>
           </div>
 
-          <article className="journey-event event-left event-1">
-            <div className="journey-event-icon">✦</div>
-            <div>
-              <small>THE BEGINNING</small>
-              <h3>The Beginning</h3>
-              <p>
-                An idea to build a modern digital agency that creates real
-                impact. Phantom Marketing was born with a clear purpose:
-                make brands unignorable.
-              </p>
-            </div>
-          </article>
 
-          <article className="journey-event event-right event-2">
-            <div className="journey-event-icon">◆</div>
-            <div>
-              <small>BUILDING THE SYSTEM</small>
-              <h3>Building The System</h3>
-              <p>
-                We developed a connected ecosystem of services across search,
-                paid media, social, creative, web, animation and digital
-                consulting.
-              </p>
-            </div>
-          </article>
+          <article className="journey-event journey-left journey-one">
+            <b>2020 | THE SPARK</b>
 
-          <article className="journey-event event-left event-3">
-            <div className="journey-event-icon">↗</div>
-            <div>
-              <small>EXPANDING OUR REACH</small>
-              <h3>Expanding Our Reach</h3>
-              <p>
-                We expanded our capabilities across strategy, content, design,
-                development, performance marketing and emerging search
-                experiences.
-              </p>
-            </div>
-          </article>
+            <h3>When The World Stopped, An Idea Started Moving.</h3>
 
-          <article className="journey-event event-right event-4">
-            <div className="journey-event-icon">▲</div>
-            <div>
-              <small>THE NEXT CHAPTER</small>
-              <h3>The Next Chapter</h3>
-              <p>
-                We continue to evolve, explore new markets and build new
-                opportunities while staying true to our identity as
-                Your Digital Demons.
-              </p>
-            </div>
-          </article>
-
-        </div>
-      </section>
-
-
-      {/* LESSONS */}
-      <section className="shell journey-section">
-        <div className="journey-panel">
-
-          <header className="journey-heading">
-            <small>WHAT WE LEARNED</small>
-            <h2>Lessons That Shaped Us</h2>
             <p>
-              Every milestone taught us something. These lessons continue to
-              guide the way we think, work and grow.
+              COVID changed how businesses survived, sold and stayed connected.
+              Somewhere in that uncertainty, one thing became clear to us.
+              Digital was no longer the future. It was becoming the present.
             </p>
-          </header>
 
-          <div className="journey-lessons">
-            <article>
-              <b>01</b>
-              <h3>Focus On Impact</h3>
-              <p>
-                It has always been about creating real value, not just activity.
-              </p>
-            </article>
+            <p>
+              That realization planted the first seed of Phantom.
+            </p>
+          </article>
 
-            <article>
-              <b>02</b>
-              <h3>Adapt Continuously</h3>
-              <p>
-                Platforms change, trends evolve and we keep adapting.
-              </p>
-            </article>
 
-            <article>
-              <b>03</b>
-              <h3>Build For The Long Term</h3>
-              <p>
-                Lasting brands are built with patience, consistency and purpose.
-              </p>
-            </article>
+          <article className="journey-event journey-right journey-two">
+            <b>2021 | PHANTOM TAKES FORM</b>
 
-            <article>
-              <b>04</b>
-              <h3>People Make It Real</h3>
-              <p>
-                Our team, clients and collaborators turn ideas into meaningful
-                outcomes.
-              </p>
-            </article>
-          </div>
+            <h3>An Idea Finally Found Its Identity.</h3>
+
+            <p>
+              Two different strengths came together with one shared belief.
+              Marketing should not just make brands visible. It should make
+              them difficult to ignore.
+            </p>
+
+            <p>
+              Phantom Marketing began taking shape, and Your Digital Demons
+              found a name.
+            </p>
+          </article>
+
+
+          <article className="journey-event journey-left journey-three">
+            <b>2022 | FINDING OUR GROUND</b>
+
+            <h3>The Idea Was Real. Now We Had To Prove It.</h3>
+
+            <p>
+              New clients brought new expectations, challenges and lessons.
+              Some things worked. Some forced us to rethink everything.
+            </p>
+
+            <p>
+              Project by project, Phantom started becoming more than the idea
+              we began with.
+            </p>
+          </article>
+
+
+          <article className="journey-event journey-right journey-four">
+            <b>2023 | FROM POTENTIAL TO PROGRESS</b>
+
+            <h3>We Stopped Wondering What Phantom Could Become.</h3>
+
+            <p>
+              Our thinking became sharper, our capabilities grew and technology
+              became a bigger part of how we worked.
+            </p>
+
+            <p>
+              We were no longer just finding our way. We were creating one.
+            </p>
+          </article>
+
+
+          <article className="journey-event journey-left journey-five">
+            <b>2024 | BUILDING THE ECOSYSTEM</b>
+
+            <h3>Separate Services Became One Connected Force.</h3>
+
+            <p>
+              Search, paid media, social, branding, creative and web were no
+              longer isolated pieces.
+            </p>
+
+            <p>
+              The vision became bigger. Build a digital ecosystem where every
+              channel strengthens the next.
+            </p>
+          </article>
+
+
+          <article className="journey-event journey-right journey-six">
+            <b>2025 TO 2026 | ENTERING THE AI ERA</b>
+
+            <h3>The Way People Discover Brands Changed. We Changed With It.</h3>
+
+            <p>
+              Search was no longer limited to a search results page. AI, answer
+              engines and generative platforms started reshaping discovery.
+            </p>
+
+            <p>
+              So Phantom evolved again, combining what we already knew with
+              what the digital world was becoming.
+            </p>
+          </article>
+
+
+          <article className="journey-event journey-left journey-seven">
+            <b>FUTURE | THE HAUNTING CONTINUES</b>
+
+            <h3>We Did Not Come This Far Just To Stop Here.</h3>
+
+            <p>
+              There are still markets we have not entered, ideas we have not
+              built and challenges we have not faced.
+            </p>
+
+            <p>
+              We do not know exactly where the journey ends.
+            </p>
+
+            <p>
+              <strong>But we know the Phantom is only getting started.</strong>
+            </p>
+          </article>
 
         </div>
+
       </section>
 
 
-      {/* NUMBERS */}
-      <section className="shell journey-section">
-        <header className="journey-heading">
-          <small>OUR JOURNEY IN NUMBERS</small>
-          <h2>From Milestones To Momentum</h2>
+      {/* SAME PHANTOM REALM */}
+      <section className="shell svc-section">
+
+        <header>
+          <small>THE PHANTOM REALM</small>
+
+          <h2>There Is More Behind the Phantom</h2>
+
           <p>
-            A glimpse of our journey through numbers that represent our growth
-            and progress.
+            Our story, our people and our identity each deserve a space of
+            their own. Here is only a glimpse.
           </p>
         </header>
 
-        <div className="journey-numbers">
-          <article>
-            <strong>3+</strong>
-            <span>Years Of Growth</span>
-          </article>
+        <div className="svc-related-grid about-realm-grid">
 
-          <article>
-            <strong>50+</strong>
-            <span>Projects Delivered</span>
-          </article>
-
-          <article>
-            <strong>15+</strong>
-            <span>Industries Served</span>
-          </article>
-
-          <article>
-            <strong>100+</strong>
-            <span>Ideas In Motion</span>
-          </article>
-        </div>
-      </section>
-
-
-      {/* MORE STORY */}
-      <section className="shell journey-section">
-        <header className="journey-heading">
-          <small>BEYOND THE TIMELINE</small>
-          <h2>More Of The Phantom Story</h2>
-          <p>
-            Our journey is one part of the story. Discover the people, identity
-            and thinking behind Phantom Marketing.
-          </p>
-        </header>
-
-        <div className="journey-related">
-
-          <Link href="/about">
+          <Link href="/about" className="svc-related-card">
             <h3>About Phantom</h3>
+
             <p>
               Discover the mission, vision and principles behind Your Digital
               Demons.
             </p>
+
             <span>Explore About Us →</span>
           </Link>
 
-          <div>
+          <Link href="/our-team" className="svc-related-card">
             <h3>Our Team</h3>
-            <p>
-              Meet the strategists, creatives, designers, developers and
-              problem-solvers.
-            </p>
-            <span>Meet the Phantoms →</span>
-          </div>
 
-          <div>
-            <h3>Our Logo Journey</h3>
             <p>
-              Explore how our identity evolved alongside the brand and the
-              story behind the Phantom mark.
+              Strategists, marketers, creatives, designers, developers and
+              problem-solvers working together as one digital force.
             </p>
-            <span>Explore Logo Journey →</span>
+
+            <span>Meet the Phantoms →</span>
+          </Link>
+
+          <div className="svc-related-card">
+            <h3>Our Logo Journey</h3>
+
+            <p>
+              Every Phantom leaves a mark. Discover the story behind our
+              identity and its evolution.
+            </p>
+
+            <span>Logo Journey - Coming Soon</span>
           </div>
 
         </div>
+
       </section>
 
 
-      {/* CTA */}
-      <section className="shell journey-section journey-last-section">
-        <div className="journey-cta">
-          <small>THE NEXT CHAPTER</small>
+      {/* EXACT ABOUT CTA */}
+      <section className="shell svc-choice">
 
-          <h2>The Story Is Still Being Written.</h2>
+        <small>THE NEXT CHAPTER</small>
 
-          <p>
-            We keep evolving, exploring new opportunities and helping more
-            brands become visible, memorable and unignorable.
-          </p>
+        <h2>The Story Is Still Being Written.</h2>
 
-          <Link href="/contact-us" className="svc-btn primary">
-            Be Part Of The Next Chapter
-          </Link>
-        </div>
+        <p>
+          The Phantom journey continues. Bring us the ambition and we'll bring
+          the strategy, creativity and digital sorcery.
+        </p>
+
+        <Link className="gradient-btn" href="/contact-us">
+          BE PART OF THE NEXT CHAPTER
+        </Link>
+
       </section>
 
     </main>

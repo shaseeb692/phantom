@@ -113,3 +113,76 @@
   color:#fff;
   background:rgba(168,85,247,.1);
 }
+
+/* GLOBAL TYPOGRAPHY CLIPPING FIX */
+.hero h1,
+.inner-hero h1{
+  line-height:1.06 !important;
+  padding:0.08em 0.08em 0.14em !important;
+}
+
+.hero h1 span,
+.hero h1 em,
+.inner-hero h1 span,
+.inner-hero h1 em{
+  display:inline-block;
+  padding:0.03em 0.04em 0.10em !important;
+}
+
+.primary-btn,
+.gradient-btn,
+.ghost-btn{
+  line-height:1.25 !important;
+  overflow:visible !important;
+}
+/* HOME HERO VIEWPORT FIT FIX */
+@media (min-width:768px){
+
+  .hero{
+    height:100svh !important;
+    min-height:680px !important;
+  }
+
+  .hero-content{
+    width:min(1080px,92%) !important;
+    padding-top:82px !important;
+  }
+
+  .hero .eyebrow{
+    margin-bottom:16px !important;
+    padding:8px 16px !important;
+  }
+
+  .hero h1{
+    font-size:clamp(44px,5.25vw,76px) !important;
+    line-height:1.04 !important;
+    padding:0.04em 0.06em 0.10em !important;
+  }
+
+  .hero h1 span,
+  .hero h1 em{
+    padding:0.02em 0.04em 0.08em !important;
+  }
+
+  .hero h3{
+    font-size:clamp(18px,1.65vw,23px) !important;
+    margin:14px 0 7px !important;
+  }
+
+  .hero p{
+    font-size:15px !important;
+    line-height:1.55 !important;
+    max-width:760px !important;
+  }
+
+  .hero-actions{
+    margin-top:20px !important;
+    gap:12px !important;
+  }
+
+  .hero-actions .primary-btn,
+  .hero-actions .ghost-btn{
+    padding:13px 21px !important;
+    line-height:1.2 !important;
+  }
+}

@@ -226,15 +226,15 @@ export default function Page() {
             <span>Explore Our Journey →</span>
           </Link>
 
-          <div className="svc-related-card">
+          <Link href="/our-team" className="svc-related-card">
             <h3>Our Team</h3>
             <p>
               Strategists, marketers, creatives, designers, developers and
               problem-solvers. Different minds working together as one digital
               force.
             </p>
-            <span>Meet the Phantoms - Coming Soon</span>
-          </div>
+            <span>Meet the Phantoms →</span>
+          </Link>
 
           <div className="svc-related-card">
             <h3>Our Logo Journey</h3>

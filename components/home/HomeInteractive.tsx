@@ -11,6 +11,41 @@ const tabs=[
  {key:"graphics",label:"Graphics Designing",title:"Graphics Designing",copy:"Campaign visuals, brand assets and digital creative designed as one recognizable visual system instead of disconnected templates.",href:"/graphics-designing"},
 ];
 
+
+export function PageSpeedScan(){
+ const [domain,setDomain]=useState("");
+
+ function scan(){
+  let value=domain.trim();
+  if(!value)return;
+
+  if(!/^https?:\/\//i.test(value)){
+   value="https://"+value;
+  }
+
+  const target="https://pagespeed.web.dev/analysis?url="+encodeURIComponent(value);
+  window.open(target,"_blank","noopener,noreferrer");
+ }
+
+ return <div className="scanbox">
+  <span>G</span>
+  <input
+   type="text"
+   value={domain}
+   onChange={e=>setDomain(e.target.value)}
+   onKeyDown={e=>{if(e.key==="Enter")scan()}}
+   placeholder="Domain.com"
+   aria-label="Website domain"
+  />
+  <button
+   type="button"
+   onClick={scan}
+   aria-label="Check website performance"
+  >
+   &#8981;
+  </button>
+ </div>
+}
 export function CoreServices(){
  const [active,setActive]=useState("digital");
  const item=tabs.find(x=>x.key===active)!;

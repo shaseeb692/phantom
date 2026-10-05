@@ -782,3 +782,20 @@
 }
 
 /* FOUR RELATED SERVICES ONE ROW END */
+
+/* SERVICE + CORPORATE TYPOGRAPHY CLIPPING FIX */
+.phantom-service .svc-hero h1{
+  line-height:1.06 !important;
+  padding:0.06em 0.06em 0.12em !important;
+}
+
+.phantom-service .svc-hero h2{
+  line-height:1.12 !important;
+  padding:0.04em 0.06em 0.12em !important;
+}
+
+.phantom-service .gradient-btn,
+.phantom-service .ghost-btn{
+  line-height:1.25 !important;
+  overflow:visible !important;
+}

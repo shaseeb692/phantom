@@ -1,3 +1,4 @@
+import {PageSpeedScan} from "../components/home/HomeInteractive";
 import Link from "next/link";
 import {imageAsset} from "@/lib/image-manifest";
 import {CoreServices,Testimonials,AccreditationModal} from "@/components/home/HomeInteractive";
@@ -19,7 +20,7 @@ export default function Home(){return <main>
 <section className="hero" id="page-top"><video autoPlay loop muted playsInline className="hero-video"><source src="https://res.cloudinary.com/dhh2s3fzs/video/upload/v1753355639/hero-banner_jk3htc.mp4" type="video/mp4"/></video><div className="hero-overlay"/><div className="hero-content"><div className="eyebrow">✦ Unleash your business potential with us</div><h1><span>Unleash Your Brand&apos;s</span> Power:<br/>Digital Marketing <em>Expertise That Delivers</em></h1><h3>We craft engaging stories & strategic campaigns to captivate your audience.</h3><p>Phantom Marketing is a full-service digital agency specializing in bespoke solutions for SEO, AI search, social media, web development and more.</p><div className="hero-actions"><Link className="primary-btn" href="/contact-us">GET A FREE CONSULTATION →</Link><Link className="ghost-btn" href="/about">LEARN MORE ABOUT US ⓘ</Link></div></div></section>
 
 <div className="shell">
-<section className="glass scan"><div><small>Is Your Website Performance According to Google Algorithm?</small><h2>Let&apos;s Scan Your Website!</h2><p>Check performance, mobile experience, technical health and search-readiness.</p></div><div className="scanbox"><span>G</span><input placeholder="Domain.com"/><button>⌕</button></div></section>
+<section className="glass scan"><div><small>Is Your Website Performance According to Google Algorithm?</small><h2>Let&apos;s Scan Your Website!</h2><p>Check performance, mobile experience, technical health and search-readiness.</p></div><PageSpeedScan/></section>
 
 <section className="split" id="about"><div className="visual-card home-context-image"><img src={imageAsset("home/agency")} alt="Phantom Marketing digital strategy workspace"/><div className="orb"/><div className="screen"><span>PHANTOM</span><b>Your Digital Demons</b><i>Strategy • Search • Creative • Technology</i></div></div><div><small>Your Trustworthy Partner In Brand Visibility</small><h2>Proficient Digital Marketing Agency</h2><p><b>Phantom Marketing</b> is a creative digital agency built around bold ideas, strategic execution and measurable growth. We turn brand imagination into digital experiences people can discover, remember and act on.</p><Link className="gradient-btn" href="/about">Dive Into Our History →</Link></div></section>
 
