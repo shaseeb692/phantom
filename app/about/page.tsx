@@ -223,7 +223,7 @@ export default function Page() {
               Discover how Phantom Marketing started and where the journey is
               heading.
             </p>
-            <span>Explore Our Journey →</span>
+            <span>Explore Our Journey ΓåÆ</span>
           </Link>
 
           <Link href="/our-team" className="svc-related-card">
@@ -233,17 +233,17 @@ export default function Page() {
               problem-solvers. Different minds working together as one digital
               force.
             </p>
-            <span>Meet the Phantoms →</span>
+            <span>Meet the Phantoms ΓåÆ</span>
           </Link>
 
-          <div className="svc-related-card">
+          <Link href="/logo-journey" className="svc-related-card">
             <h3>Our Logo Journey</h3>
             <p>
               Every Phantom leaves a mark. Discover how our identity evolved
               alongside the brand and the story behind the Phantom mark.
             </p>
-            <span>Logo Journey - Coming Soon</span>
-          </div>
+            <span>Explore Logo Journey &rarr;</span>
+          </Link>
 
         </div>
 
