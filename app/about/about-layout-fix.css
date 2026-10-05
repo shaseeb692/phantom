@@ -167,3 +167,66 @@
   margin-top:auto !important;
   padding-top:18px !important;
 }
+
+/* Logo Journey history rows */
+.logo-evolution .logo-era-row > div:not(.svc-visual) {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+.logo-evolution .logo-era-row .svc-visual {
+  overflow: hidden;
+}
+/* Logo Journey - Evolution at a Glance */
+.logo-evolution-glance .about-principles-row {
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+}
+
+.logo-evolution-glance .about-principles-row article {
+  height: 100%;
+}
+
+/* Logo Journey - Future chapter */
+.logo-future-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  align-items: center;
+  gap: clamp(50px, 7vw, 100px);
+}
+
+.logo-future-section .logo-future-copy {
+  max-width: 560px;
+}
+
+.logo-future-section .logo-future-copy h2 {
+  margin-bottom: 24px;
+}
+
+.logo-future-section .logo-future-copy p {
+  margin-bottom: 18px;
+}
+
+@media (max-width: 1050px) {
+  .logo-evolution-glance .about-principles-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .logo-future-section {
+    grid-template-columns: 1fr;
+  }
+
+  .logo-evolution-glance .about-principles-row {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .logo-evolution-glance .about-principles-row {
+    grid-template-columns: 1fr !important;
+  }
+}
